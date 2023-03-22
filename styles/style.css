@@ -1,6 +1,6 @@
 :root {
     --beispielfarbe: rgb(231,235,227);
-/* use: var(--beispielfarbe) */
+/* use: color: var(--beispielfarbe) */
   }
 
 body{

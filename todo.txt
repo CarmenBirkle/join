@@ -1,0 +1,7 @@
+Daniel: Summary 
+Carmen: Templates (side-bar + header)
+Pascal: Login (index.html) nur Grafik
+
+Generelle Infos z.B. IDs mit entsprechenr Prefix der Side benennen 
+z.B. bei ID für Summery 
+<div id="summary-task"> ... </div>
