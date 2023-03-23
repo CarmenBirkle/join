@@ -1,7 +1,15 @@
-Daniel: Summary 
+Aktuelle Todos:
+Daniel: Summary, eigenes Bild im Ordner img/profile-images hinterlegen (quadratisches Format) 
 Carmen: Templates (side-bar + header)
-Pascal: Login (index.html) nur Grafik
+Pascal: Login (index.html) nur Grafik, eigenes Bild im Ordner img/profile-images hinterlegen (quadratisches Format)
 
-Generelle Infos z.B. IDs mit entsprechenr Prefix der Side benennen 
-z.B. bei ID für Summery 
-<div id="summary-task"> ... </div>
+Generelle Infos/Arbeitsanweisung:
+- IDs mit entsprechenr Prefix der Side benennen     
+    z.B. bei ID für Summery 
+    <div id="summary-task"> ... </div>
+
+
+Erledigt: 
+Projektstruktur aufgesetzt - Daniel + Carmen 
+Fonts definiert und eingebunden- Carmen
+GitHub Account erstellt - Carmen

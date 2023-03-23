@@ -1,8 +1,35 @@
 :root {
-    --beispielfarbe: rgb(231,235,227);
+    --dark-grey: #2A3647;
+    --light-white: #CDCDCD;
+    --light-grey: #F5F5F5;
+    --text-grey: #7B7B7C;
 /* use: color: var(--beispielfarbe) */
   }
 
+
+
 body{
     font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    margin: 0;
+    background-color: var(--light-grey);
+}
+
+h1{
+  font-weight: 700;
+  font-size: 61px;
+
+}
+
+h2{
+  font-weight: 700;
+  font-size: 27px;
+}
+
+/* dimensions of the inner side area without header and sidebar */
+.main{
+  margin-top: 89px;
+  margin-left: 232px;
 }
