@@ -4,10 +4,10 @@
   --light-white: #CDCDCD;
   --light-grey: #F5F5F5;
   --text-grey: #7B7B7C;
+  --btn-dark-grey: #2A3647;
+  --light-blue: #29ABE2;
   /* use: color: var(--beispielfarbe) */
 }
-
-
 
 body {
   font-family: "Inter", sans-serif;
@@ -49,8 +49,12 @@ h2 {
   gap: 35px;
   box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
   border-radius: 30px;
-  min-width: 50vw;
-  min-height: 50vh;
+  min-width: 40vw;
+  min-height: 40vh;
+}
+
+.login-card h1{
+  font-weight: 700;
 }
 
 .input-field {
@@ -67,6 +71,18 @@ h2 {
   position: absolute;
   top: 80px;
   right: 77px;
+  gap: 35px;
+}
+
+.detail-bar{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.detail-bar a{
+  text-decoration: none;
+  color: var(--light-blue);
 }
 
 .join-logo{
@@ -74,3 +90,24 @@ h2 {
   top: 80px;
   left: 77px;
 }
+
+.btn-dark-grey{
+  background-color: var(--btn-dark-grey) !important;
+  color: white !important;
+  font-weight: 700;
+  padding: 4px, 0px, 4px, 0px !important;
+}
+
+.btn-transparent{
+  background-color: none !important;
+  color: var(--btn-dark-grey) !important;
+  font-weight: 700;
+  border: 1px solid var(--btn-dark-grey) !important;
+  padding: 4px, 0px, 4px, 0px !important;
+}
+
+.btn-bar{
+  display: flex;
+  gap: 2rem;
+}
+
