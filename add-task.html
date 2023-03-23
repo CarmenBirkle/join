@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/fonts.css">
+    <link rel="stylesheet" href="./styles/style-summary.css">
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/header.css">
+    <link rel="stylesheet" href="./styles/side-bar.css">
+    <link rel="stylesheet" href="./styles/style-add-task.css">
+    <link rel="shortcut icon" type="image/x-icon" href="./assets/img/side-bar-join-logo.svg">
+
+    <script src="./script/app.js"></script>
+
+    <title>Add Task | Join</title>
+</head>
+
+<body onload="init()">
+    <div w3-include-html="./assets/templates/header-template.html"></div>
+    <div w3-include-html="./assets/templates/side-bar-template.html"></div>
+
+    <div class="add-task-main-content">
+        <div class="add-task-headline">Add Task</div>
+        <form>
+            <div class="add-task-container">
+                <div class="add-task-lefside"></div>
+                <div class="add-task-title">
+                    <label>Title</label>
+                    <input minlength="1" placeholder="Enter a title" required>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+.add-task-main-content {
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 171px;
+    margin-left: 315px;
+}
+
+.add-task-headline {
+    width: 466px;
+    height: 78px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 61px;
+    line-height: 120%;
+}
+
+/* --- Form --- */
+.add-task-container {
+    display: flex;
+}
+
+.add-task-lefside {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 14px;
+
+    width: 422px;
+    height: 506px;
+}
+
+.add-task-title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 8px;
+
+    margin-bottom: 8px;
+    margin-top: 34px;
+
+    width: 422px;
+    height: 104px;
+}
+
+.add-task-title label {
+    width: 65px;
+    height: 25px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 120%;
+
+    color: #000000;
+}
+
+.add-task-title input {
+    padding: 11.9px;
+
+
+    width: 378px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 120%;
+
+    background: #FFFFFF;
+
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+}
+
+.add-task-title input::placeholder {
+    color: #D1D1D1;
+}
