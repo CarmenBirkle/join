@@ -1,7 +1,7 @@
 Aktuelle Todos:
 Daniel: Summary, eigenes Bild im Ordner img/profile-images hinterlegen (quadratisches Format) 
 Carmen: Help + Legal Notice
-Pascal: Login (index.html) nur Grafik, eigenes Bild im Ordner img/profile-images hinterlegen (quadratisches Format)
+Pascal: Login (index.html) nur Grafik
 
 Generelle Infos/Arbeitsanweisung:
 - IDs, Classen etc. mit entsprechenr Prefix der Side benennen     
