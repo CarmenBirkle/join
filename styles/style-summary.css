@@ -1,6 +1,4 @@
 :root {
-    --bgSummary: #F5F5F5;
-    --bgSummaryTasks: #FFFFFF;
     /* use: color: var(--beispielfarbe) */
 }
 
@@ -15,8 +13,6 @@ body {
 
     margin-top: 90px;
     margin-left: 315px;
-
-    width: 100%;
 }
 
 /* --- Summary-Header --- */
@@ -28,11 +24,17 @@ body {
     padding: 0px;
     gap: 30px;
 
-    position: absolute;
     width: 679px;
     height: 73px;
+
+    
+    margin-top: 82px;
+    /*margin-left: 50px;
+
+    /*
+    position: absolute;
     left: 355px;
-    top: 171px;
+    top: 171px;*/
 }
 
 h1 {
@@ -65,6 +67,11 @@ h1 {
 }
 
 /* --- Summary-Content-General --- */
+.summary-content {
+    display: flex;
+    align-items: center;
+    padding-top: 87px;
+}
 .summary-tasks-general {
     display: flex;
     flex-direction: column;
@@ -73,11 +80,14 @@ h1 {
     padding: 0px;
     gap: 35px;
 
-    position: absolute;
     width: 580px;
     height: 540px;
+
+    /*
+    position: absolute;
+    
     left: 355px;
-    top: 331px;
+    top: 331px;*/
 }
 
 /* --- Summary-Tasks --- */
@@ -114,8 +124,7 @@ h1 {
     color: white;
     box-shadow: 0 4px 4px 0 rgb(0 0 0 / 0.3);
 
-    width: 175px;
-    height: 175px;
+    transform: scale(1.05);
 }
 
 .summary-tasks div {
@@ -158,8 +167,7 @@ h1 {
 }
 
 .summary-urgency-date:hover {
-    width: 585px;
-    height: 155px;
+    transform: scale(1.05);
 
     background-color: #2A3647;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
@@ -275,8 +283,21 @@ h1 {
 
 .summary-to-do:hover,
 .summary-done:hover {
+    transform: scale(1.1);
     background-color: #2A3647;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
+}
+
+.d-none {
+    display: none;
+}
+
+.summary-to-do:hover .d-none {
+    display: block !important;
+}
+
+.summary-to-do:hover .pencil-img {
+    display: none;
 }
 
 .summary-to-do:hover div,
@@ -351,14 +372,17 @@ h1 {
     justify-content: center;
     align-items: flex-start;
 
-    padding: 0px;
+    padding-left: 67px;
     gap: 3px;
 
-    position: absolute;
     width: 385px;
     height: 136px;
+
+    /*
+    position: absolute;
+
     left: 1002px;
-    top: 533px;
+    top: 533px;*/
 }
 
 .summary-welcome-greeting {

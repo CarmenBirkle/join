@@ -14,67 +14,72 @@
     <title>Summary | Join</title>
 </head>
 
-<body onload = "init()">
+<body onload="init()">
     <div w3-include-html="./assets/templates/header-template.html"></div>
-        <div w3-include-html="./assets/templates/side-bar-template.html"></div>
-       
+    <div w3-include-html="./assets/templates/side-bar-template.html"></div>
 
-    <div class="summary-header">
-        <h1>Summary</h1>
-        <div class="blue-line"></div>
-        <span class="summary-header-sub">Everything in a nutshell!</span>
-    </div>
 
-    <div class="summary-tasks-general">
-        <div class="summary-tasks-info">
-            <div class="summary-tasks">
-                <div>0</div>
-                <span>Tasks in<br>Board</span>
-            </div>
-            <div class="summary-tasks">
-                <div>0</div>
-                <span>Tasks in<br>Progress</span>
-            </div>
-            <div class="summary-tasks">
-                <div>0</div>
-                <span>Tasks in<br>Feedback</span>
-            </div>
+    <div class="summary-main-container">
+        <div class="summary-header">
+            <h1>Summary</h1>
+            <div class="blue-line"></div>
+            <span class="summary-header-sub">Everything in a nutshell!</span>
         </div>
-        <div class="summary-urgency-date">
-            <div class="summary-urgency">
-                <img src="./assets/img/summary-urgency.svg" alt="summary urgent">
-                <div class="summary-urgency-info">
-                    <div class="summary-urgency-number">0</div>
-                    <div class="summary-urgency-name">Urgent</div>
+
+        <div class="summary-content">
+            <div class="summary-tasks-general">
+                <div class="summary-tasks-info">
+                    <div class="summary-tasks">
+                        <div>0</div>
+                        <span>Tasks in<br>Board</span>
+                    </div>
+                    <div class="summary-tasks">
+                        <div>0</div>
+                        <span>Tasks in<br>Progress</span>
+                    </div>
+                    <div class="summary-tasks">
+                        <div>0</div>
+                        <span>Tasks in<br>Feedback</span>
+                    </div>
+                </div>
+                <div class="summary-urgency-date">
+                    <div class="summary-urgency">
+                        <img src="./assets/img/summary-urgency.svg" alt="summary urgent">
+                        <div class="summary-urgency-info">
+                            <div class="summary-urgency-number">0</div>
+                            <div class="summary-urgency-name">Urgent</div>
+                        </div>
+                    </div>
+                    <div class="grey-line"></div>
+                    <div class="summary-date-deadline ">
+                        <div class="summary-date">October 16, 2022</div>
+                        <div class="summary-deadline">Upcoming Deadline</div>
+                    </div>
+                </div>
+                <div class="summary-to-do-done">
+                    <div class="summary-to-do">
+                        <img class="pencil-img" src="./assets/img/summary-pencil.svg" alt="summary pencil">
+                        <img class="d-none" src="./assets/img/summary-pencil-white.svg" alt="summary pencil">
+                        <div class="summary-to-do-sub">
+                            <div class="summary-to-do-sub-number">1</div>
+                            <div class="summary-to-do-sub-name">To-do</div>
+                        </div>
+                    </div>
+                    <div class="summary-done">
+                        <img src="./assets/img/summary-check.svg" alt="summary check">
+                        <div class="summary-done-sub">
+                            <div class="summary-done-sub-number">1</div>
+                            <div class="summary-done-sub-name">Done</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="grey-line"></div>
-            <div class="summary-date-deadline ">
-                <div class="summary-date">October 16, 2022</div>
-                <div class="summary-deadline">Upcoming Deadline</div>
-            </div>
-        </div>
-        <div class="summary-to-do-done">
-            <div class="summary-to-do">
-                <img src="./assets/img/summary-pencil.svg" alt="summary pencil">
-                <div class="summary-to-do-sub">
-                    <div class="summary-to-do-sub-number">0</div>
-                    <div class="summary-to-do-sub-name">To-do</div>
-                </div>
-            </div>
-            <div class="summary-done">
-                <img src="./assets/img/summary-check.svg" alt="summary check">
-                <div class="summary-done-sub">
-                    <div class="summary-done-sub-number">0</div>
-                    <div class="summary-done-sub-name">Done</div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="summary-welcome">
-        <span class="summary-welcome-greeting">Good morning,</span>
-        <span class="summary-welcome-name">Guest</span>
+            <div class="summary-welcome">
+                <span class="summary-welcome-greeting">Good morning,</span>
+                <span class="summary-welcome-name">Guest</span>
+            </div>
+        </div>
     </div>
     <script src="./script/app.js"></script>
 </body>
