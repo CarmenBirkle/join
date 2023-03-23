@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
  }
+ 
  .side-bar {
     height: 100vh;
     background-color: var(--dark-grey);
