@@ -34,9 +34,11 @@ header > div {
     height: 43px;
     border-radius: 50%;
     border: 3px solid var(--dark-grey);
+    cursor: pointer;
 }
 
 .header-icon {
     width: 31px;
     height: 31px;
+    cursor: pointer;
 }
