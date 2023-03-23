@@ -7,10 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/fonts.css">
     <link rel="stylesheet" href="./styles/style-summary.css">
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/header.css">
+    <link rel="stylesheet" href="./styles/side-bar.css">
+    <link rel="shortcut icon" type="image/x-icon" href="./assets/img/side-bar-join-logo.svg">
     <title>Summary | Join</title>
 </head>
 
-<body>
+<body onload = "init()">
+    <div w3-include-html="./assets/templates/header-template.html"></div>
+        <div w3-include-html="./assets/templates/side-bar-template.html"></div>
+       
 
     <div class="summary-header">
         <h1>Summary</h1>
@@ -69,7 +76,7 @@
         <span class="summary-welcome-greeting">Good morning,</span>
         <span class="summary-welcome-name">Guest</span>
     </div>
-
+    <script src="./script/app.js"></script>
 </body>
 
 </html>
