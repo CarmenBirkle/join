@@ -16,7 +16,7 @@ header > div {
 }
 /* css - classes for header-template.html */
 
-.titel{
+.header-titel{
     font-size: 21px;
     margin-left: 348px;
 }
@@ -29,14 +29,14 @@ header > div {
     margin-right: 33px;;
 }
 
-.profile > img {
+.header-profile > img {
     width: 43px;
     height: 43px;
     border-radius: 50%;
     border: 3px solid var(--dark-grey);
 }
 
-.icon {
+.header-icon {
     width: 31px;
     height: 31px;
 }
