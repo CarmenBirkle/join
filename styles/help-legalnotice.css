@@ -6,4 +6,29 @@ h1{
 
 .help-main{
     margin-left: 347px;
+    margin-right:117px;
+}
+
+div.list {
+    counter-reset: list-number;
+}
+
+div.list div:before {
+    counter-increment: list-number;
+    content: counter(list-number);
+}
+
+div.list div {
+    margin-left: 35px; /* Gap between number and text */
+    position: relative;
+    margin-bottom: 10px;;
+}
+  
+div.list div:before {
+    counter-increment: list-number;
+    content: counter(list-number) ". ";
+    position: absolute;
+    left: -35px; /* Gap between number and text */
+    font-weight:700;
+    font-size:27px;
 }
