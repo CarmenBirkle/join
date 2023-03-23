@@ -3,9 +3,12 @@
         <span class="header-titel">Kanban Project Management Tool</span>
         <div class="header-right">
             <img class="header-icon" src="./assets/img/icons/header-question-mark.svg" alt="Help" onclick="window.location.href='help.html'" >
-            <div class="header-profile">
+            <div class="header-profile" onclick="showLogOut()">
                 <img src="./assets/img/profile-images/profil_carmen.jpg" >
             </div>
+        </div>
+        <div id="header-log-out" class="header-log-out d-none" onclick="logout()" >
+            Log out
         </div>
     </div>
 </header>

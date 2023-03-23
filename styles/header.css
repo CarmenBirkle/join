@@ -39,3 +39,22 @@ header > div {
     height: 31px;
     cursor: pointer;
 }
+
+.header-log-out{
+    position: absolute;
+    padding: 18px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+    text-align: center;
+    cursor: pointer;
+    background: var(--dark-grey);
+    color: white;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 20px 0px 20px 20px;
+    width: 130px;
+    height: 53px;
+    top: 89px;
+    right: 33px;
+    box-sizing: border-box;
+}

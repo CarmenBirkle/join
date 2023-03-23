@@ -17,3 +17,20 @@ async function includeHTML() {
         }
     }
 }
+
+function showLogOut(){
+    document.getElementById('header-log-out').classList.remove('d-none');
+}
+
+function logout() {
+    window.location.href = 'index.html';
+  }
+
+  
+
+
+ 
+
+  
+  
+  
