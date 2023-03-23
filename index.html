@@ -1,18 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/style-login.css">
     <link rel="stylesheet" href="./styles/header.css">
     <link rel="stylesheet" href="./styles/side-bar.css">
     <link rel="shortcut icon" type="image/x-icon" href="./assets/img/side-bar-join-logo.svg">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <title>Join</title>
 </head>
+
 <body>
-        <h1>Join</h1>
+    <img src="./assets/img/icons/join-login.svg" class="join-logo">
+    <div class="signup-bar">
+        <p>Not a Join user?</p>
+        <a href="#" class="w3-button btn-dark-grey w3-round-large w3-hover-blue">Sign up</a>
+    </div>
+    <div class="login-card">
+        <h1>Log in</h1>
+        <form class="">
+            <input type="email" class="input-field w3-round-large">
+            <input type="password" class="input-field w3-round-large">
+        </form>
+        <form class="detail-bar">
+            <input type="checkbox" id="remember-login" name="remember-login" value="false">
+            <label for="remember-login"> Remember me</label><br>
+            <a href="#"> Forgot my password</a>
+        </form>
+        <div class="btn-bar">
+            <a href="#" class="w3-button btn-dark-grey w3-round-large w3-hover-blue">Log in</a>
+            <a href="#" class="w3-button btn-transparent w3-round-large w3-hover-blue">Guest Log in</a>
+        </div>
+    </div>
 
     <script src="./script/app.js"></script>
 </body>
+
 </html>

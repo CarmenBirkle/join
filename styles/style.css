@@ -1,36 +1,113 @@
 :root {
-    --dark-grey: #2A3647;
-    --focus-blue: #091931;
-    --light-white: #CDCDCD;
-    --light-grey: #F5F5F5;
-    --text-grey: #7B7B7C;
-/* use: color: var(--beispielfarbe) */
-  }
-
-
-
-body{
-    font-family: "Inter", sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    margin: 0;
-    background-color: var(--light-grey);
+  --dark-grey: #2A3647;
+  --focus-blue: #091931;
+  --light-white: #CDCDCD;
+  --light-grey: #F5F5F5;
+  --text-grey: #7B7B7C;
+  --btn-dark-grey: #2A3647;
+  --light-blue: #29ABE2;
+  /* use: color: var(--beispielfarbe) */
 }
 
-h1{
+body {
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  margin: 0;
+  background-color: var(--light-grey);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+h1 {
   font-weight: 700;
   font-size: 61px;
 
 }
 
-h2{
+h2 {
   font-weight: 700;
   font-size: 27px;
 }
 
 /* dimensions of the inner side area without header and sidebar */
-.main{
+.main {
   margin-top: 89px;
   margin-left: 232px;
 }
+
+.login-card {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 35px 0px;
+  gap: 35px;
+  box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
+  border-radius: 30px;
+  min-width: 40vw;
+  min-height: 40vh;
+}
+
+.login-card h1{
+  font-weight: 700;
+}
+
+.input-field {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 13px 21px;
+  gap: 10px;
+}
+
+.signup-bar{
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 80px;
+  right: 77px;
+  gap: 35px;
+}
+
+.detail-bar{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.detail-bar a{
+  text-decoration: none;
+  color: var(--light-blue);
+}
+
+.join-logo{
+  position: absolute;
+  top: 80px;
+  left: 77px;
+}
+
+.btn-dark-grey{
+  background-color: var(--btn-dark-grey) !important;
+  color: white !important;
+  font-weight: 700;
+  padding: 4px, 0px, 4px, 0px !important;
+}
+
+.btn-transparent{
+  background-color: none !important;
+  color: var(--btn-dark-grey) !important;
+  font-weight: 700;
+  border: 1px solid var(--btn-dark-grey) !important;
+  padding: 4px, 0px, 4px, 0px !important;
+}
+
+.btn-bar{
+  display: flex;
+  gap: 2rem;
+}
+
