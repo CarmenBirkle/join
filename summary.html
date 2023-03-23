@@ -11,10 +11,11 @@
     <link rel="stylesheet" href="./styles/header.css">
     <link rel="stylesheet" href="./styles/side-bar.css">
     <link rel="shortcut icon" type="image/x-icon" href="./assets/img/side-bar-join-logo.svg">
+    <script src="./script/summary.js"></script>
     <title>Summary | Join</title>
 </head>
 
-<body onload="init()">
+<body onload="init(); summaryGreetings()">
     <div w3-include-html="./assets/templates/header-template.html"></div>
     <div w3-include-html="./assets/templates/side-bar-template.html"></div>
 
@@ -77,7 +78,7 @@
             </div>
 
             <div class="summary-welcome">
-                <span class="summary-welcome-greeting">Good morning,</span>
+                <span id="summary-greeting" class="summary-welcome-greeting"></span>
                 <span class="summary-welcome-name">Guest</span>
             </div>
         </div>

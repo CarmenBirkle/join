@@ -16,3 +16,4 @@ Erledigt:
 Projektstruktur aufgesetzt - Daniel + Carmen 
 Fonts definiert und eingebunden - Carmen
 GitHub Account erstellt - Carmen
+Grundstruktur Summary - Daniel
