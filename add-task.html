@@ -40,17 +40,17 @@
 
                     <div class="add-task-category">
                         <label>Category</label>
-                        <div class="add-task-category-dropdown" onclick="openCategoryDropdown()">
-                            <div class="add-task-category-dropdown-top">
-                                <div>Select task category</div>
+                        <div class="add-task-category-dropdown">
+                            <div class="add-task-category-dropdown-top" id="add-task-category-dropdown-top" onclick="openCategoryDropdown()">
+                                <span>Select task category</span>
                                 <img src="assets/img/icons/add-task-dropdown-arrow.svg" alt="arrow">
                             </div>
                             <!-- Dieser Teil muss gerendert werden START -->
                             <div id="add-task-category-dropdown" class="add-task-category-dropdown-open d-none">
                                 
                             </div>
-                            <!-- Hier die Farbauswahl einfügen ??? -->
                             <!-- Dieser Teil muss gerendert werden ENDE -->
+                            <!-- Hier die Farbauswahl einfügen ??? -->
                         </div>
                     </div>
                     <div class="add-task-assigned">
