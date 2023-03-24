@@ -1,6 +1,9 @@
+/**
+ * Automatic greetings based on time
+ * 
+ */
 function summaryGreetings() {
     let currentHour = new Date().getHours();
-
     let greeting;
 
     if(currentHour < 12) {
