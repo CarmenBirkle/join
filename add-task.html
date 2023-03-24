@@ -14,6 +14,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="./assets/img/side-bar-join-logo.svg">
 
     <script src="./script/app.js"></script>
+    <script src="./script/add-task.js"></script>
 
     <title>Add Task | Join</title>
 </head>
@@ -26,13 +27,48 @@
         <div class="add-task-headline">Add Task</div>
         <form>
             <div class="add-task-container">
-                <div class="add-task-lefside"></div>
-                <div class="add-task-title">
-                    <label>Title</label>
-                    <input minlength="1" placeholder="Enter a title" required>
-                </div>
+                <div class="add-task-lefside">
+                    <div class="add-task-title">
+                        <label for="add-task-input-title">Title</label>
+                        <input id="add-task-input-title" type="text" placeholder="Enter a title" required>
+                    </div>
+                    <div class="add-task-description">
+                        <label for="add-task-input-description">Description</label>
+                        <textarea id="add-task-input-description" type="text" placeholder="Enter a Description"
+                            required></textarea>
+                    </div>
 
+                    <div class="add-task-category">
+                        <label>Category</label>
+                        <div class="add-task-category-dropdown" onclick="renderCategoryDropdown()">
+                            <div class="add-task-category-dropdown-top">
+                                <div>Select task category</div>
+                                <img src="assets/img/icons/add-task-dropdown-arrow.svg" alt="arrow">
+                            </div>
+                            <!-- Dieser Teil muss gerendert werden START -->
+                            <div id="add-task-category-dropdown-open" class="add-task-category-dropdown-open d-none">
+                                <div class="add-task-dropdown-new-category">New Category</div>
+                                <div class="add-task-dropdown-option">
+                                    <div>Marketing</div>
+                                    <div class="dopdown-option-dots" style="background-color: #ffacec;"></div>
+                                </div>
+                                <div class="add-task-dropdown-option">
+                                    <div>Design</div>
+                                    <div class="dopdown-option-dots" style="background-color: #aeeeee;"></div>
+                                </div>
+                            </div>
+                            <!-- Dieser Teil muss gerendert werden ENDE -->
+                        </div>
+                    </div>
+                    <div class="add-task-assigned">
+                        <label>Assigned to</label>
+                    </div>
+
+                    
+                </div>
+                <div class="add-task-greyline"></div>
             </div>
+
 
         </form>
     </div>
