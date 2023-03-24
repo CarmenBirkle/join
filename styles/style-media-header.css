@@ -1,0 +1,8 @@
+@media (max-width: 1170px) {
+    .header-titel{
+        display:none;
+    } 
+    .header-log-out{
+        padding: 0px 18px 18px 18px;
+    }    
+}

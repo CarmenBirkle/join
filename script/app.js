@@ -29,6 +29,7 @@ function getElement() {
     if (currentSideElement !== null) {
         console.log(currentSideElement); // kann raus wenns funzt
         console.log('geklappt'); // kann raus wenns funzt
+        console.log(currentSide);
         currentSideElement.classList.add('side-bar-position');
     }
 }
@@ -39,7 +40,28 @@ function showLogOut(){
 
 function logout() {
     window.location.href = 'index.html';
-  }
+}
+
+let test; // nur für testzwecke, kann dann wieder raus
+
+function goToPage(page, currentSide){
+    let tempPage = page;
+    currentSide = page;
+    test = tempPage;
+    // setTimeout(()=> {
+    //     currentSide = page;
+    // },500);
+    console.log(currentSide);
+    console.log(test);
+    window.location.href = page;
+    
+}
+
+
+
+
+
+
 
   
 

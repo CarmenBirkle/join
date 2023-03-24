@@ -1,0 +1,80 @@
+@media (max-width: 1170px) {
+
+    #side-bar-legal{
+        display:none;
+    }
+
+    .side-bar{
+        width: 100vw;
+        height: 80px;
+        top: auto;
+        bottom: 0px;
+    } 
+
+    .side-bar-container{
+        padding: 0;
+        align-items: unset; 
+        /* hier ggf. nochmals schauen */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 8px 0px;
+        gap: 10px;
+        height: 80px;
+        box-sizing: border-box;
+    }
+
+    .side-bar-container > img{
+        display:none;
+        gap: 0;
+    }
+
+    .side-bar-navigation{
+        flex-direction: unset;
+        margin-right: 12px;
+        margin-left:12px;
+        gap: 10px;
+    }
+
+    .side-bar-navigation > div{
+        gap:10px;
+    }
+
+    .side-bar-button{
+        height: 80px;
+        justify-content: center;
+        flex-direction: column;
+        gap: 10px;
+        padding:0;
+    }
+
+    .side-bar-nav-icon{
+        margin-top:0;
+        margin-bottom: 0;;
+    }
+
+    /* #navbar {
+        height:82px;
+    }
+
+    #navbar-bottom{
+        display:block;
+    } */
+}
+/* justify-content: space-between;
+flex-direction: unset;
+height: 80px;
+
+width: 100%;
+display: flex;
+
+einzelne taps::after    display: flex;
+flex-direction: column;
+justify-content: center;
+padding: 8px 0px;
+gap: 10px;
+height: 80px;
+box-sizing: border-box;
+
+align-items: center;
+width: 232px; */

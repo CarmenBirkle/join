@@ -1,5 +1,6 @@
 <header>
     <div>
+        <img class="header-logo-small" src="../assets/img/icons/join-login.svg" alt="Join">
         <span class="header-titel">Kanban Project Management Tool</span>
         <div class="header-right">
             <img class="header-icon" src="./assets/img/icons/header-question-mark.svg" alt="Help" onclick="window.location.href='help.html'" >
@@ -7,8 +8,10 @@
                 <img src="./assets/img/profile-images/profil_carmen.jpg" >
             </div>
         </div>
-        <div id="header-log-out" class="header-log-out d-none" onclick="logout()" >
-            Log out
+        <div id="header-log-out" class="header-log-out d-none">
+            <div>Help</div>
+            <div>Legal notice</div>
+            <div onclick="logout()">Log out</div>
         </div>
     </div>
 </header>
