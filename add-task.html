@@ -40,23 +40,16 @@
 
                     <div class="add-task-category">
                         <label>Category</label>
-                        <div class="add-task-category-dropdown" onclick="renderCategoryDropdown()">
+                        <div class="add-task-category-dropdown" onclick="openCategoryDropdown()">
                             <div class="add-task-category-dropdown-top">
                                 <div>Select task category</div>
                                 <img src="assets/img/icons/add-task-dropdown-arrow.svg" alt="arrow">
                             </div>
                             <!-- Dieser Teil muss gerendert werden START -->
-                            <div id="add-task-category-dropdown-open" class="add-task-category-dropdown-open d-none">
-                                <div class="add-task-dropdown-new-category">New Category</div>
-                                <div class="add-task-dropdown-option">
-                                    <div>Marketing</div>
-                                    <div class="dopdown-option-dots" style="background-color: #ffacec;"></div>
-                                </div>
-                                <div class="add-task-dropdown-option">
-                                    <div>Design</div>
-                                    <div class="dopdown-option-dots" style="background-color: #aeeeee;"></div>
-                                </div>
+                            <div id="add-task-category-dropdown" class="add-task-category-dropdown-open d-none">
+                                
                             </div>
+                            <!-- Hier die Farbauswahl einfügen ??? -->
                             <!-- Dieser Teil muss gerendert werden ENDE -->
                         </div>
                     </div>
@@ -64,7 +57,7 @@
                         <label>Assigned to</label>
                     </div>
 
-                    
+
                 </div>
                 <div class="add-task-greyline"></div>
             </div>
