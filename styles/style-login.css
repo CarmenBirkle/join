@@ -125,3 +125,24 @@
     top: 35px;
     left: 35px;
   }
+
+  .d-none{
+    display: none !important;
+  }
+
+  .send-confirm{
+    width: 100vw;
+    height: 100vh;
+    z-index: 99;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color:rgba(0, 0, 0, 0.2)
+  }
+
+  .send-confirm span{
+    color: #FFFFFF;
+    background-color: var(--btn-dark-grey);
+    padding: 10px 25px;
+  }
