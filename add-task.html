@@ -19,7 +19,7 @@
     <title>Add Task | Join</title>
 </head>
 
-<body onload="init()">
+<body onload="init(); initCategory()">
     <div w3-include-html="./assets/templates/header-template.html"></div>
     <div w3-include-html="./assets/templates/side-bar-template.html"></div>
 
@@ -38,21 +38,17 @@
                             required></textarea>
                     </div>
 
+                    <!-- Category Section -->
                     <div class="add-task-category">
                         <label>Category</label>
-                        <div class="add-task-category-dropdown">
-                            <div class="add-task-category-dropdown-top" id="add-task-category-dropdown-top" onclick="openCategoryDropdown()">
-                                <span>Select task category</span>
-                                <img src="assets/img/icons/add-task-dropdown-arrow.svg" alt="arrow">
-                            </div>
-                            <!-- Dieser Teil muss gerendert werden START -->
-                            <div id="add-task-category-dropdown" class="add-task-category-dropdown-open d-none">
-                                
-                            </div>
-                            <!-- Dieser Teil muss gerendert werden ENDE -->
-                            <!-- Hier die Farbauswahl einfügen ??? -->
+                        <div class="add-task-category-dropdown" id="add-task-category-render">
+                            <!-- Category Render Section -->
+                        </div>
+                        <div class="add-task-new-category-dots" id="add-task-new-category-dots">
                         </div>
                     </div>
+
+                    <!-- Assigned-to  Section -->
                     <div class="add-task-assigned">
                         <label>Assigned to</label>
                     </div>
