@@ -1,3 +1,17 @@
+function startAnimation(){
+    scaleDownLogo();
+    setTimeout(showLogin, 3000);
+}
+
+function scaleDownLogo(){
+    document.getElementById("login-logo").classList.add('animation');
+}
+
+function showLogin(){
+    document.getElementById('login-content').classList.remove('d-none');
+    document.getElementById('login-animation-container').classList.add('d-none');
+}
+
 function sendMailConfirm(){
     document.getElementById('send-mail-confirm').classList.remove('d-none');
     setTimeout(hideMailConfirm, 3000);

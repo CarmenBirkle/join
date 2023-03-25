@@ -146,3 +146,18 @@
     background-color: var(--btn-dark-grey);
     padding: 10px 25px;
   }
+
+  .login-animation-container{
+    width: 100vw;
+    height: 100vh;
+    z-index: 99;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .animation{
+    transition: ease-in-out 3s;
+    transform: scale(0.5);
+    transform: translate(-550px, -300px);
+  }

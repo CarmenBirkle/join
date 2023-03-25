@@ -12,9 +12,10 @@
     <title>Login | Join</title>
 </head>
 
-<body>
-    <div class="login-content">
-        <img src="./assets/img/icons/join-login.svg" class="join-logo" onclick="URL(index.html)">
+<body onload="startAnimation()">
+    <div class="login-animation-container" id="login-animation-container"><img id="login-logo" src="./assets/img/icons/join-logo-big.svg"></div>
+    <div class="d-none login-content" id="login-content">
+        <img src="./assets/img/icons/join-login.svg" class="join-logo">
         <div class="signup-bar">
             <p>Not a Join user?</p>
             <a href="./signup.html" class="w3-button btn-dark-grey w3-round-large w3-hover-blue">Sign up</a>
