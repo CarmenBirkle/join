@@ -12,7 +12,7 @@ Generelle Infos/Arbeitsanweisung:
 
 Zur Prüfung: 
 Templates (side-bar + header) - Carmen
-"Confirm" Animationen bei Login - Pascal 
+"Confirm" Animationen bei Login + Start-Animation (bekomme keine zwei transfrom Befehle gleichzeitig ausgeführt) - Pascal 
 
 
 Erledigt: 
