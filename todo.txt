@@ -1,9 +1,9 @@
 Aktuelle Todos:
 Daniel: Add Task / Summary responsive
 Carmen: Help + Legal Notice
-Pascal: Login (index.html) nur Grafik
+Pascal: Animationen bei Login
 
-Allgemein: Scrollbalken design (https://www.w3schools.com/howto/howto_css_custom_scrollbar.asp)
+Allgemein:  Scrollbalken design (https://www.w3schools.com/howto/howto_css_custom_scrollbar.asp)
 
 Generelle Infos/Arbeitsanweisung:
 - IDs, Classen etc. mit entsprechenr Prefix der Side benennen     
@@ -12,6 +12,7 @@ Generelle Infos/Arbeitsanweisung:
 
 Zur Prüfung: 
 Templates (side-bar + header) - Carmen
+"Confirm" Animationen bei Login - Pascal 
 
 
 Erledigt: 
@@ -19,3 +20,4 @@ Projektstruktur aufgesetzt - Daniel + Carmen
 Fonts definiert und eingebunden - Carmen
 GitHub Account erstellt - Carmen
 Grundstruktur Summary - Daniel
+Login Prozess html und css - Pascal
