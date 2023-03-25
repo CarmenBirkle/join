@@ -17,12 +17,21 @@
     border-radius: 30px;
     min-width: 40vw;
     min-height: 40vh;
+    position: relative;
   }
   
   .login-card h1{
     font-weight: 700;
+    text-align: center;
   }
-  
+
+  .underline-headline{
+    width: 150px;
+    height: 0px;
+    border: 2px solid #29ABE2;
+    margin-top: -35px;
+  }
+
   .input-bar{
     display: flex;
     flex-direction: column;
@@ -75,6 +84,7 @@
     color: white !important;
     font-weight: 700;
     padding: 4px, 0px, 4px, 0px !important;
+    overflow: unset!important;
   }
   
   .btn-transparent{
@@ -90,6 +100,11 @@
     gap: 2rem;
   }
 
+  .name{
+    background: url(../assets/img/icons/login-name.svg) no-repeat;
+    background-position: 95% 50%;
+  }
+
   .email{
     background: url(../assets/img/icons/login-email.svg) no-repeat;
     background-position: 95% 50%;
@@ -98,4 +113,15 @@
   .password{
     background: url(../assets/img/icons/login-password.svg) no-repeat;
     background-position: 95% 50%;
+  }
+
+  p{
+    text-align: center;
+    width: 80%;
+  }
+
+  .login-arrow-left{
+    position: absolute;
+    top: 35px;
+    left: 35px;
   }
