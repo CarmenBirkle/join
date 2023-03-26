@@ -2,6 +2,10 @@
     display: none !important;
 }
 
+.d-flex {
+    display: flex !important;
+}
+
 .add-task-main-content {
     display: flex;
     flex-direction: column;
@@ -143,7 +147,6 @@
     gap: 8px;
 
     width: 378px;
-    height: 104px;
 }
 
 .add-task-category label {
@@ -276,6 +279,13 @@
 .new-category-dot:hover {
     cursor: pointer;
     transform: scale(1.1);
+}
+
+.new-category-error {
+    display: none;
+    color: red;
+    font-size: 12px;
+    font-weight: bold;
 }
 
 
