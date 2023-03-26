@@ -51,14 +51,16 @@ function renderNewCategoryDots() {
 
     for (let d = 0; d < allCategoryColor.length; d++) {
         let dotColor = allCategoryColor[d];
-        document.getElementById('add-task-new-category-dots').innerHTML += openNewCategoryDotsHTML(dotColor);
+        document.getElementById('add-task-new-category-dots').innerHTML += openNewCategoryDotsHTML(dotColor, d);
     }
 }
 
 /*-- Category add new Category --*/
-function saveNewColor(dotColor) {
+function saveNewColor(dotColor, d) {
     selectedColorNewCategory = [];
+    renderNewCategoryDots();
     selectedColorNewCategory.push(dotColor);
+    document.getElementById(`selected-dot-active${d}`).classList.add('dropdown-option-dots-selected');
 }
 
 function saveNewCategory() {
@@ -146,9 +148,9 @@ function openNewCategorySelectHTML() {
     `;
 }
 
-function openNewCategoryDotsHTML(dotColor) {
+function openNewCategoryDotsHTML(dotColor, d) {
     return /*html*/`
-    <div class="dropdown-option-dots new-category-dot" style="background-color: ${dotColor};" onclick="saveNewColor('${dotColor}')"></div>
+    <div id="selected-dot-active${d}" class="dropdown-option-dots new-category-dot" style="background-color: ${dotColor};" onclick="saveNewColor('${dotColor}', '${d}')"></div>
     `;
 }
 
