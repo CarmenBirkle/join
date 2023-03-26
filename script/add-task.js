@@ -44,7 +44,6 @@ function renderNewCategory() {
     document.getElementById('add-task-category-render').innerHTML = '';
     document.getElementById('add-task-category-render').innerHTML = openNewCategorySelectHTML();
     renderNewCategoryDots();
-    renderNewCategoryError();
 }
 
 function renderNewCategoryDots() {
@@ -52,31 +51,42 @@ function renderNewCategoryDots() {
 
     for (let d = 0; d < allCategoryColor.length; d++) {
         let dotColor = allCategoryColor[d];
-        document.getElementById('add-task-new-category-dots').innerHTML += openNewCategoryDotsHTML(dotColor);
+        document.getElementById('add-task-new-category-dots').innerHTML += openNewCategoryDotsHTML(dotColor, d);
     }
 }
 
 /*-- Category add new Category --*/
-function renderNewCategoryError() {
-    document.getElementById('add-task-new-category-error').innerHTML = '';
-    document.getElementById('add-task-new-category-error').innerHTML = newCategoryErrorHTML();
-}
-
-function saveNewColor(dotColor) {
+function saveNewColor(dotColor, d) {
     selectedColorNewCategory = [];
+    renderNewCategoryDots();
     selectedColorNewCategory.push(dotColor);
-    console.log(selectedColorNewCategory); // TEST: WENN FUNKTION FERTIG DANN LÖSCHEN
+    document.getElementById(`selected-dot-active${d}`).classList.add('dropdown-option-dots-selected');
 }
 
 function saveNewCategory() {
     let newType = document.getElementById('new-category-type-name');
 
     if (newType.value == '' || selectedColorNewCategory.length == 0) {
-        console.log('ERROR KEIN TYPE ODER FARBE');
-        const errorMessage = document.querySelector('.new-category-error');
-        errorMessage.classList.add('d-flex');
-        return;
+        renderNewCategoryError();
+    } else {
+        defaultCategoryColor = defaultCategoryColor.concat(selectedColorNewCategory);
+        defaultCategoryType.push(newType.value);
+        initCategory();
+        addedNewCategoryMessage();
     }
+}
+
+function renderNewCategoryError() {
+    document.getElementById('add-task-new-category-error').innerHTML = '';
+    document.getElementById('add-task-new-category-error').innerHTML = newCategoryErrorHTML();
+}
+
+function addedNewCategoryMessage() {
+    document.getElementById('add-task-new-category-error').innerHTML = '';
+    document.getElementById('add-task-new-category-error').innerHTML = newCategoryAddedHTML();
+    setTimeout(() => {
+        document.getElementById('add-task-new-category-error').innerHTML = '';
+    }, 2000)
 }
 
 
@@ -138,14 +148,20 @@ function openNewCategorySelectHTML() {
     `;
 }
 
-function openNewCategoryDotsHTML(dotColor) {
+function openNewCategoryDotsHTML(dotColor, d) {
     return /*html*/`
-    <div class="dropdown-option-dots new-category-dot" style="background-color: ${dotColor};" onclick="saveNewColor('${dotColor}')"></div>
+    <div id="selected-dot-active${d}" class="dropdown-option-dots new-category-dot" style="background-color: ${dotColor};" onclick="saveNewColor('${dotColor}', '${d}')"></div>
     `;
 }
 
 function newCategoryErrorHTML() {
     return /*html*/ `
     <span class="new-category-error">Please write a category name and pick a color</span>
+    `;
+}
+
+function newCategoryAddedHTML() {
+    return /*html*/ `
+    <span class="new-category-error">Added new category</span>
     `;
 }

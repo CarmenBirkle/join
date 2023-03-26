@@ -233,6 +233,10 @@
     margin-left: 20px;
 }
 
+.dropdown-option-dots-selected {
+    border: 2px solid black !important;
+}
+
 .add-task-new-categroy-input {
     font-family: 'Inter';
     font-style: normal;
@@ -282,7 +286,6 @@
 }
 
 .new-category-error {
-    display: none;
     color: red;
     font-size: 12px;
     font-weight: bold;
