@@ -43,10 +43,10 @@ header > div {
 .header-log-out{
     position: absolute;
     padding: 18px;
-    font-weight: 400;
-    font-size: 16px;
+    display:flex;
+    flex-direction: column;
+    display: flex;
     line-height: 120%;
-    text-align: center;
     cursor: pointer;
     background: var(--dark-grey);
     color: white;
@@ -59,7 +59,19 @@ header > div {
     box-sizing: border-box;
 }
 
+.header-log-out > div {
+    width: calc(130px-18);
+}
+
+.header-log-out > div:hover {
+   background: var(--focus-blue);
+}
+
 .header-logo-small{
     width:32px;
     margin-left: 32px;
 }
+
+.header-d-none{
+    display:none;
+  }

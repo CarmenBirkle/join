@@ -1,7 +1,5 @@
 // main java-script file , side behavior an all pages, menue
 
-let currentSide = 'side-bar-add-Task'; // global variable to set the current page
-
 async function init() {
     await includeHTML();
 }
@@ -14,47 +12,19 @@ async function includeHTML(currentPage) {
         let resp = await fetch(file);
         if (resp.ok) {
             element.innerHTML = await resp.text();
-            getElement();
         } else {
             element.innerHTML = 'Page not found';
         }
     }
 
 }
-//noch in Arbei -> Carmen
-// open a page, the side-bar menu becomes active (dark-blue botton)
-function getElement() {
-    console.log('geladen'); // kann raus wenns funzt
-    let currentSideElement = document.getElementById(currentSide);
-    if (currentSideElement !== null) {
-        console.log(currentSideElement); // kann raus wenns funzt
-        console.log('geklappt'); // kann raus wenns funzt
-        console.log(currentSide);
-        currentSideElement.classList.add('side-bar-position');
-    }
-}
 
 function showLogOut(){
-    document.getElementById('header-log-out').classList.remove('d-none');
+    document.getElementById('header-log-out').classList.remove('header-d-none');
 }
 
 function logout() {
     window.location.href = 'index.html';
-}
-
-let test; // nur für testzwecke, kann dann wieder raus
-
-function goToPage(page, currentSide){
-    let tempPage = page;
-    currentSide = page;
-    test = tempPage;
-    // setTimeout(()=> {
-    //     currentSide = page;
-    // },500);
-    console.log(currentSide);
-    console.log(test);
-    window.location.href = page;
-    
 }
 
 
