@@ -9,13 +9,70 @@
         <link rel="stylesheet" href="./styles/side-bar.css">
         <link rel="stylesheet" href="./styles/style-media-side-bar.css">
         <link rel="stylesheet" href="./styles/style-media-header.css">
+        <link rel="stylesheet" href="./styles/style-contacts.css">
         <link rel="shortcut icon" type="image/x-icon" href="./assets/img/side-bar-join-logo.svg">
         <title>Contacts | Join</title>
     </head>
     <body onload = "init()">
         <div w3-include-html="./assets/templates/header-template.html"></div>
         <div w3-include-html="./assets/templates/side-bar-template.html"></div>
+        
+        <div class="contacts-main">
+            <div class="contacts-container-left">
 
+                Inhalt linker Container
+            </div>
+
+            <div class="contacts-container-right">
+                <div class="contacts-titel">
+                    <h1>Contacts</h1>
+                    <div></div>
+                    <h3>Better with a team</h3>
+                </div>
+            </div>
+
+            <div class="contacts-information">
+                <div class="contacts-information-top">
+                    <div class="contact-icon">
+                        CB
+                    </div>
+                        <div>
+                            <div class="contact-name">Carmen Birkle</div>
+                            <div class="add-task">
+                                <img src="./assets/img/icons/contact-add-task.svg" alt="">
+                                <div>Add Task</div>
+                            </div>
+                        </div>
+                </div>
+                <div class="contacts-information-center">
+                    <div>Contact information</div>
+                    <div>
+                        <img src="./assets/img/icons/contact-add-task.svg" alt="add">
+                        <div>Edit Contact</div>
+                    </div>
+                </div>
+
+                <div class="contacts-information-bottom">
+                    <div>
+                        Email
+                    </div>
+                    <div>
+                        test@test.de
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        Phone
+                    </div>
+                    <div>
+                        +49 123 456 456 
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+       
     
         <script src="./script/app.js"></script>
     </body>
