@@ -1,4 +1,5 @@
 // main java-script file , side behavior an all pages, menue
+let showMenue = false;
 
 async function init() {
     await includeHTML();
@@ -18,9 +19,15 @@ async function includeHTML(currentPage) {
     }
 
 }
-
-function showLogOut(){
-    document.getElementById('header-log-out').classList.remove('header-d-none');
+// hide and show the logOutArea
+function toggleLogOutArea(){
+    if (showMenue){
+        document.getElementById('header-log-out').classList.add('header-d-none');
+        showMenue = false;
+    } else {
+        document.getElementById('header-log-out').classList.remove('header-d-none');
+        showMenue = true;
+    }
 }
 
 function logout() {
