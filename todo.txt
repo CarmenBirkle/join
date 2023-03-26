@@ -32,4 +32,5 @@ Grundstruktur Summary - Daniel
 Login Prozess html und css - Pascal
 Templates (side-bar + header) - Carmen
 Templates (side-bar + header) responsive - Carmen
+Help + Legal Notice incl. responsive - Carmen
 
