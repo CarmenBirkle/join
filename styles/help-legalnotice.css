@@ -12,22 +12,22 @@ h1{
     overflow-x: hidden;
 }
 
-div.help-list {
+div.list {
     counter-reset: list-number;
 }
 
-div.help-list div:before {
+div.list div:before {
     counter-increment: list-number;
     content: counter(list-number);
 }
 
-div.help-list div {
+div.list div {
     margin-left: 35px; /* Gap between number and text */
     position: relative;
     margin-bottom: 10px;;
 }
   
-div.help-list div:before {
+div.list div:before {
     counter-increment: list-number;
     content: counter(list-number) ". ";
     position: absolute;
@@ -39,29 +39,4 @@ div.help-list div:before {
 .legal-notice-link{
     color: black;
     cursor: pointer;
-}
-
-.legal-notice-help-responsive-top{
-    display: none; 
-    justify-content: space-between;
-    align-items: center;
-}
-
-
-@media (max-width: 1170px) {
-
-    .legal-notice-help-responsive-top{
-        display:flex;
-        margin-top: 114px;
-    }
-
-    h1{
-        margin-top: 19px;
-        margin-bottom: 35px;
-    }
-    .legal-notice-help-main{
-        margin-left: 33px;
-        margin-right: 33px;
-    }
-
 }

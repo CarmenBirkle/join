@@ -7,7 +7,6 @@ Pascal: Animationen bei Login
 Allgemein: 
 Scrollbalken design (https://www.w3schools.com/howto/howto_css_custom_scrollbar.asp)
 Account-Namen merken beim einloggen (cookie oder anders)
-klick auf den Hintergrund - Hide LogOut Menue (nice2have)
 
 
 Generelle Infos/Arbeitsanweisung:
@@ -17,11 +16,11 @@ Generelle Infos/Arbeitsanweisung:
 
 
 Zur Prüfung: 
-Templates normal + responsive (side-bar + header), bitte einmal auf Korrektheit prüfen - Carmen
+Templates (side-bar + header) - Carmen
 "Confirm" Animationen bei Login + Start-Animation (bekomme keine zwei transfrom Befehle gleichzeitig ausgeführt) - Pascal 
 
 offen: 
-Logik für Sidebar Button bleibt blau -> hier brauche ich Hilfe, hänge hier - Carmen
+Logik für Sidebar Button bleibt blau -> hier brauche ich Hilfe, hänge hier
 
 
 Erledigt: 
@@ -31,6 +30,4 @@ GitHub Account erstellt - Carmen
 Grundstruktur Summary - Daniel
 Login Prozess html und css - Pascal
 Templates (side-bar + header) - Carmen
-Templates (side-bar + header) responsive - Carmen
-Help + Legal Notice incl. responsive - Carmen
 
