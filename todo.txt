@@ -17,7 +17,7 @@ Generelle Infos/Arbeitsanweisung:
 
 Zur Prüfung: 
 Templates (side-bar + header) - Carmen
-"Confirm" Animationen bei Login + Start-Animation (bekomme keine zwei transfrom Befehle gleichzeitig ausgeführt) - Pascal 
+"Confirm" Animationen bei Login + Start-Animation - Pascal 
 
 offen: 
 Logik für Sidebar Button bleibt blau -> hier brauche ich Hilfe, hänge hier
