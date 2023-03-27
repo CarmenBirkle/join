@@ -73,19 +73,16 @@ function saveNewCategory() {
         defaultCategoryColor = defaultCategoryColor.concat(selectedColorNewCategory);
         defaultCategoryType.push(newType.value);
         initCategory();
+        openTopSetNewCategory();
         addedNewCategoryMessage();
     }
 }
 
-function openTopSetNewCategory() { // TEST NOCH NICHT IN BENUTZUNG !!!!!!!!!!!!!!!!!!!!!!!!
+function openTopSetNewCategory() {
     let newColor = defaultCategoryColor[defaultCategoryColor.length -1];
     let newType = defaultCategoryType[defaultCategoryType.length -1];
-    document.getElementById('add-task-new-category-dots').innerHTML = '';
-    document.getElementById('add-task-new-category-error').innerHTML = '';
-    document.getElementById('add-task-category-dropdown').innerHTML = '';
-    document.getElementById('add-task-category-dropdown').classList.add('d-none');
 
-    openTopSetCategoryHTML(newColor, newType);
+    document.getElementById('add-task-category-dropdown-top').innerHTML = openTopSetCategoryHTML(newColor, newType);
 }
 
 function renderNewCategoryError() {
