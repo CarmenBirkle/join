@@ -19,7 +19,7 @@ h3{
 
 .contacts-container-left{
     height: 100%;
-    min-width: 350px;
+    min-width: 453px;
     /* ggf. auf max-height ändern */
     height: calc(100vh - 89px); 
     left: 232px;
@@ -28,6 +28,84 @@ h3{
     box-shadow: 4px 0px 6px rgba(0, 0, 0, 0.08);
     overflow-y: scroll;
 }
+
+.contact-list-container{
+    margin: 2px 48px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    font-size: 21px;
+    line-height: 120%;
+
+}
+
+.contacts-single-data{
+    display: flex;
+    gap: 35px;
+    align-items: center;
+    padding-left:25px;
+    margin-bottom: 10px;
+    width:357px;
+    height: 79px;
+    border-radius: 10px;
+}
+
+.contacts-single-data:hover{
+    background-color: var(--dark-grey);
+    color:white;
+}
+
+/* .contacts-letter-container{
+
+
+} */
+
+.contacts-initals{
+    height: 42px;
+    width: 42px;
+    background-color: blueviolet;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    color:white;
+}
+
+.contacts-details{
+    display: flex;
+    flex-direction: column;
+    font-size: 21px;
+    line-height: 120%;
+}
+
+.contacts-first-letter{
+    width: 282px;
+    height: 40px;
+    margin: 10px 37.5px 24px
+}
+
+.contacts-single-email{
+    font-size:16px;
+    color: var(--light-blue);
+}
+
+.contacts-single-data:hover{
+
+}
+
+hr {
+    width: calc(323px-34);
+    margin:17px;
+    border: 1px solid #D1D1D1;
+    border-radius: 3px;
+}
+
+
+
+
+
 
 .contacts-container-right{
     margin-top: 82px;
@@ -171,6 +249,8 @@ h3{
     font-size: 21px;
     line-height: 120%;
 }
+
+
 
 
    
