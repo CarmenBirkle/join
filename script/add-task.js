@@ -2,6 +2,7 @@ const allCategoryColor = ['#FC71FF', '#1FD7C1', '#FF8A00', '#8AA4FF', '#FF0000',
 let defaultCategoryColor = ['#FC71FF', '#1FD7C1', '#FF8A00', '#8AA4FF'];
 let defaultCategoryType = ['Sale', 'Backoffice', 'Design', 'Marketing'];
 let selectedColorNewCategory = [];
+let prioButton = [];
 
 
 /*-- Category --*/
@@ -108,7 +109,7 @@ function initAssignedTo() {
 function openAssignedToDropdown() {
     document.getElementById('add-task-assignedto-dropdown').classList.toggle('d-none');
     renderTopAssigendTo();
-    renderAssignedToSelection();
+    //renderAssignedToSelection();
 }
 
 function renderTopAssigendTo() {
@@ -116,7 +117,7 @@ function renderTopAssigendTo() {
     document.getElementById('add-task-assigendto-dropdown-top').innerHTML = openTopPlaceholderHTML('Select contacts to assign');
 }
 /*
-function renderCategorySelection() {
+function renderAssignedToSelection() {
     document.getElementById('add-task-category-dropdown').innerHTML = '';
     document.getElementById('add-task-category-dropdown').innerHTML = openNewCategoryHTML();
 
@@ -128,6 +129,17 @@ function renderCategorySelection() {
     }
 }
 */
+
+/*-- Prio --*/
+function addTaskPrioButton(prioId) {
+    // initPrioButton() ???
+    prioButton = [];
+    prioButton.push(prioId);
+
+    document.getElementById(`${prioId}`).classList.add(`bg-${prioId}`,'add-task-font-color');
+    document.getElementById(`img-${prioId}`).classList.add('d-none');
+    document.getElementById(`img-${prioId}-white`).classList.remove('d-none')
+}
 
 
 /*-- Template-HTML --*/
