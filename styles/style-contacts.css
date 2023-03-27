@@ -68,13 +68,13 @@ h3{
 }
 
 .contacts-add-contact-left > h1{
-    margin-top: 12px;
+    margin-top: 12px; 
 }
 
-.contacts-add-vontact-left >h3{
-    font-weight: 400;
-   
+.contacts-400{
+    font-weight: 400;;
 }
+
 .contacts-add-contact-left > hr {
     width: 90px;
     height: 0px;
@@ -83,38 +83,54 @@ h3{
    /* transform: rotate(90deg);  */
 }
 
+.contacts-add-contact-right{
+    display: flex;
+    align-items: center;
+    gap: 84px;
+
+}
+
 .contacts-add-contact-right > img{
     position: absolute;
-    width: 0px;
+    /* width: 0px; */
     height: 21.65px;
     left: 1148.82px;
     top: 49.11px;
 
-    border: 2px solid #2A3647;
-    transform: rotate(135deg);
+    /* border: 2px solid #2A3647;
+    transform: rotate(135deg); */
 }
 
-.contacts-add-contact-right:before,
-.contacts-add-contact-right:after {
-    content: "";
+.input-with-icon {
+    position: relative;
+  }
+  
+  .input-with-icon input[type="text"] {
+    padding-right: 30px;
+  }
+  
+  .input-with-icon .icon {
     position: absolute;
-    width: 0px;
-    height: 21.65px;
-    left: 1148.82px;
-    top: 49.11px;
-    height: 2px;
-    background-color: #2A3647;
     top: 50%;
-    left: 0;
-    transform: translate(-50%, -50%);
-}
+    right: 10px;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background-image: url('../assets/img/icons/contacts-letter.svg');
+    background-size: cover;
+  }
+  
 
-.contacts-add-contact-right:before {
-    transform: rotate(45deg);
-}
-
-.contacts-add-contact-right:after {
-    transform: rotate(-45deg);
+.contact-img{
+    width: 120px;
+    height: 120px;
+    background-color: var(--grey);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left:70px;
+    
 }
 
 
