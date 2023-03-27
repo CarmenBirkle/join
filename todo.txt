@@ -1,6 +1,6 @@
 Aktuelle Todos:
 Daniel: Add Task / Summary responsive
-Carmen: Help + Legal Notice
+Carmen: Contacts
 Pascal: Animationen bei Login
 
 
@@ -20,7 +20,6 @@ Templates (side-bar + header) - Carmen
 "Confirm" Animationen bei Login + Start-Animation (bekomme keine zwei transfrom Befehle gleichzeitig ausgeführt) - Pascal 
 
 offen: 
-Logik für Sidebar Button bleibt blau -> hier brauche ich Hilfe, hänge hier
 
 
 Erledigt: 
@@ -31,5 +30,6 @@ Grundstruktur Summary - Daniel
 Login Prozess html und css - Pascal
 Templates (side-bar + header) responsive  - Carmen
 Help + Legal Notice incl. responsive - Carmen 
+Logik Sidebar - Carmen
 
 

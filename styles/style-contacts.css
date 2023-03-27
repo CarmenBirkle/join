@@ -31,18 +31,16 @@ h3{
 
 .contacts-container-right{
     margin-top: 82px;
-    /* display: flex; 
-    justify-content: center; */
-    /* width: -webkit-fill-available; */
+    width: -webkit-fill-available;
+    position: relative;
 }
 
 .contacts-titel{
     padding-top: 82px;
+    margin-left: 58px;
     display: flex;
     gap: 30px;
-    align-items: center;
-    
-    
+    align-items: center;   
 }
 
 .contacts-titel > div {
@@ -50,7 +48,128 @@ h3{
     margin-right: 30px;height: 59px;
     border: 3px solid var(--light-blue);
     width: 0px;
- 
+}
+
+.contacts-information-top{
+    display: flex;
+    gap: 54px;
+    margin-top: 82px;
+    margin-left: 65px;
+}
+
+.contact-icon{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: aquamarine;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-icon > div{
+    font-weight: 500;
+    font-size: 47px;
+    line-height: 120%;
+    color: #FFFFFF;
+}
+
+.contact-info-top-right{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contact-name{
+    font-weight: 500;
+    font-size: 47px;
+    line-height: 120%;
+}
+
+.add-task{
+    display: flex;
+    gap:13px;
+    margin-top:13px;
+    cursor:pointer;
+}
+
+.add-task > div{
+    font-size:16px; 
+    line-height: 120%;
+    color: var(--light-blue);
+    width:100px;
+}
+
+.add-task >div:hover{
+    text-decoration: underline;;
+}
+
+.contacts-information-center{
+    margin-top: 21px;
+    margin-left: 65px;
+    height: 74px;
+    font-size: 21px;
+    gap:59px;
+    line-height: 120%;
+    display: flex;
+    align-items: center;
+}
+
+.contacts-info-center-titel{
+    width:201px;
+}
+
+.contacts-edit{
+    display:flex;
+    gap:6px;
+    cursor:pointer;
+    font-size: 16px;
+    align-items: end;
+}
+.contacts-edit > div{
+    width: 100px;
+    height: 19px;
+}
+
+.contacts-information-bottom{
+    margin-top: 21px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 120%;
+    margin-left: 65px;
+}
+
+.contacts-info-botton-email{
+    color: var(--light-blue);
+    margin-bottom: 22px;
+}
+.contacts-info-botton-content{
+    font-weight:400;
+    display:flex;
+    align-items:center;
+    margin-top:15px;
+}
+
+.contacts-new-contact-button{
+    background-color: var(--dark-grey);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 10px;
+    gap: 10px;
+    position: absolute;
+    color:white;
+    border: 1px solid #2A3647;
+    border-radius: 10px;
+    bottom: 67px;
+    right:  52px;
+}
+
+.contacts-new-contact-button > div {
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 120%;
 }
 
 
