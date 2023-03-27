@@ -21,7 +21,7 @@
     <title>Add Task | Join</title>
 </head>
 
-<body onload="init(); initCategory()">
+<body onload="init(); initCategory(); initAssignedTo()">
     <div w3-include-html="./assets/templates/header-template.html"></div>
     <div w3-include-html="./assets/templates/side-bar-template.html"></div>
 
@@ -55,15 +55,8 @@
                     <!-- Assigned-to  Section -->
                     <div class="add-task-assigned">
                         <label>Assigned to</label>
-                        <div class="add-task-assigned-dropdown">
+                        <div class="add-task-assigned-dropdown" id="add-task-assignedto-render">
                             <!-- Assigned Render Section -->
-                            <div class="add-task-category-dropdown-top">
-                                <span>Select contacts to assign</span>
-                                <img src="assets/img/icons/add-task-dropdown-arrow.svg" alt="arrow">
-                            </div>
-                            <div id="add-task-category-dropdown" class="add-task-category-dropdown-open d-none">
-                            </div>
-                            <!-- Assigned Render Section ENDE ENDE-->
                         </div>
                         <span>ERROR</span>
                     </div>
@@ -79,18 +72,21 @@
                     <div class="add-task-prio">
                         <label>Prio</label>
                         <div class="add-task-prio-button-container">
-                            <div>
-                                <span>Urgent</span>
-                                <img src="./assets/img/icons/add-task-urgent.svg" alt="urgent">
-                            </div>
-                            <div>
-                                <span>Medium</span>
-                                <img src="./assets/img/icons/add-task-medium.svg" alt="medium">
-                            </div>
-                            <div>
-                                <span>Low</span>
-                                <img src="./assets/img/icons/add-task-low.svg" alt="low">
-                            </div>
+                            <button type="button" id="prio-urgent" onclick="addTaskPrioButton('prio-urgent')">
+                                Urgent
+                                <img id="img-prio-urgent" src="./assets/img/icons/add-task-urgent.svg" alt="urgent">
+                                <img id="img-prio-urgent-white" class="d-none" src="./assets/img/icons/add-task-urgent-white.svg" alt="urgent">
+                            </button>
+                            <button type="button" id="prio-medium" onclick="addTaskPrioButton('prio-medium')">
+                                Medium
+                                <img id="img-prio-medium" src="./assets/img/icons/add-task-medium.svg" alt="medium">
+                                <img id="img-prio-medium-white" src="./assets/img/icons/add-task-medium-white.svg" alt="medium">
+                            </button>
+                            <button type="button" id="prio-low" onclick="addTaskPrioButton('prio-low')">
+                                Low
+                                <img id="img-prio-low" src="./assets/img/icons/add-task-low.svg" alt="low">
+                                <img id="img-prio-low-white" src="./assets/img/icons/add-task-low-white.svg" alt="low">
+                            </button>
                         </div>
                     </div>
                     <div class="add-task-subtask">
