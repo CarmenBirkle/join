@@ -136,6 +136,15 @@
     color: #D1D1D1;
 }
 
+/* --- Form-Left-Side-Category-And-AssignedTo --- */
+.add-task-dropdown-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 11.9px 21px;
+}
+
 /* --- Form-Left-Side-Category --- */
 .add-task-category {
     display: flex;
@@ -182,14 +191,6 @@
     color: #000000;
 
     cursor: pointer;
-}
-
-.add-task-category-dropdown-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 11.9px 21px;
 }
 
 .add-task-category-dropdown-open {

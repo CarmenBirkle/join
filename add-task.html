@@ -21,7 +21,7 @@
     <title>Add Task | Join</title>
 </head>
 
-<body onload="init(); initCategory()">
+<body onload="init(); initCategory(); initAssignedTo()">
     <div w3-include-html="./assets/templates/header-template.html"></div>
     <div w3-include-html="./assets/templates/side-bar-template.html"></div>
 
@@ -55,14 +55,9 @@
                     <!-- Assigned-to  Section -->
                     <div class="add-task-assigned">
                         <label>Assigned to</label>
-                        <div class="add-task-assigned-dropdown">
+                        <div class="add-task-assigned-dropdown" id="add-task-assignedto-render">
                             <!-- Assigned Render Section -->
-                            <div class="add-task-category-dropdown-top">
-                                <span>Select contacts to assign</span>
-                                <img src="assets/img/icons/add-task-dropdown-arrow.svg" alt="arrow">
-                            </div>
-                            <div id="add-task-category-dropdown" class="add-task-category-dropdown-open d-none">
-                            </div>
+                            
                             <!-- Assigned Render Section ENDE ENDE-->
                         </div>
                         <span>ERROR</span>

@@ -19,7 +19,7 @@ function openCategoryDropdown() {
 
 function renderTopCategory() {
     document.getElementById('add-task-category-dropdown-top').innerHTML = '';
-    document.getElementById('add-task-category-dropdown-top').innerHTML = openTopCategoryPlaceholderHTML();
+    document.getElementById('add-task-category-dropdown-top').innerHTML = openTopPlaceholderHTML('Select task category');
 }
 
 function renderCategorySelection() {
@@ -76,6 +76,17 @@ function saveNewCategory() {
     }
 }
 
+function openTopSetNewCategory() { // TEST NOCH NICHT IN BENUTZUNG !!!!!!!!!!!!!!!!!!!!!!!!
+    let newColor = defaultCategoryColor[defaultCategoryColor.length -1];
+    let newType = defaultCategoryType[defaultCategoryType.length -1];
+    document.getElementById('add-task-new-category-dots').innerHTML = '';
+    document.getElementById('add-task-new-category-error').innerHTML = '';
+    document.getElementById('add-task-category-dropdown').innerHTML = '';
+    document.getElementById('add-task-category-dropdown').classList.add('d-none');
+
+    openTopSetCategoryHTML(newColor, newType);
+}
+
 function renderNewCategoryError() {
     document.getElementById('add-task-new-category-error').innerHTML = '';
     document.getElementById('add-task-new-category-error').innerHTML = newCategoryErrorHTML();
@@ -89,24 +100,54 @@ function addedNewCategoryMessage() {
     }, 2000)
 }
 
+/*-- Assigned-To --*/
+function initAssignedTo() {
+    document.getElementById('add-task-assignedto-render').innerHTML = loadAssignedToHTML();
+}
 
+function openAssignedToDropdown() {
+    document.getElementById('add-task-assignedto-dropdown').classList.toggle('d-none');
+    renderTopAssigendTo();
+    renderAssignedToSelection();
+}
+
+function renderTopAssigendTo() {
+    document.getElementById('add-task-assigendto-dropdown-top').innerHTML = '';
+    document.getElementById('add-task-assigendto-dropdown-top').innerHTML = openTopPlaceholderHTML('Select contacts to assign');
+}
+/*
+function renderCategorySelection() {
+    document.getElementById('add-task-category-dropdown').innerHTML = '';
+    document.getElementById('add-task-category-dropdown').innerHTML = openNewCategoryHTML();
+
+    for (let j = 0; j < defaultCategoryColor.length; j++) {
+        let color = defaultCategoryColor[j];
+        let type = defaultCategoryType[j];
+
+        document.getElementById('add-task-category-dropdown').innerHTML += openCategorysHTML(color, type);
+    }
+}
+*/
+
+
+/*-- Template-HTML --*/
+/*-- Category and AssignedTo Template-HTML --*/
+function openTopPlaceholderHTML(placeholder) {
+    return /*html*/`
+    <span>${placeholder}</span>
+    <img src="assets/img/icons/add-task-dropdown-arrow.svg" alt="arrow">
+    `;
+}
 
 /*-- Category Template-HTML --*/
 function loadCategoryHTML() {
     return /*html*/`
-    <div class="add-task-category-dropdown-top" id="add-task-category-dropdown-top" onclick="openCategoryDropdown()">
+    <div class="add-task-dropdown-top" id="add-task-category-dropdown-top" onclick="openCategoryDropdown()">
         <span>Select task category</span>
         <img src="assets/img/icons/add-task-dropdown-arrow.svg" alt="arrow">
     </div>
     <div id="add-task-category-dropdown" class="add-task-category-dropdown-open d-none">                          
      </div>
-    `;
-}
-
-function openTopCategoryPlaceholderHTML() {
-    return /*html*/`
-    <span>Select task category</span>
-    <img src="assets/img/icons/add-task-dropdown-arrow.svg" alt="arrow">
     `;
 }
 
@@ -137,7 +178,7 @@ function openTopSetCategoryHTML(color, type) {
 
 function openNewCategorySelectHTML() {
     return /*html*/`
-    <div class="add-task-category-dropdown-top">
+    <div class="add-task-dropdown-top">
         <input id="new-category-type-name" class="add-task-new-categroy-input" type="text" placeholder="New category name">
             <div class="add-task-new-categroy-buttons">
             <img src="./assets/img/icons/add-task-button-cross.svg" onclick="initCategory()" alt="cross">
@@ -163,5 +204,17 @@ function newCategoryErrorHTML() {
 function newCategoryAddedHTML() {
     return /*html*/ `
     <span class="new-category-error">Added new category</span>
+    `;
+}
+
+/*-- Assigned to Template-HTML --*/
+function loadAssignedToHTML() {
+    return /*html*/`
+    <div class="add-task-dropdown-top" id="add-task-assigendto-dropdown-top" onclick="openAssignedToDropdown()">
+        <span>Select contacts to assign</span>
+        <img src="assets/img/icons/add-task-dropdown-arrow.svg" alt="arrow">
+    </div>
+    <div id="add-task-assignedto-dropdown" class="add-task-category-dropdown-open d-none">                          
+     </div>
     `;
 }
