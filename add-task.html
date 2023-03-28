@@ -21,7 +21,7 @@
     <title>Add Task | Join</title>
 </head>
 
-<body onload="init(); initCategory(); initAssignedTo(); initPrioButtons()">
+<body onload="init(); initCategory(); initAssignedTo(); initPrioButtons(); initSubtask()">
     <div w3-include-html="./assets/templates/header-template.html"></div>
     <div w3-include-html="./assets/templates/side-bar-template.html"></div>
 
@@ -77,9 +77,10 @@
                     </div>
                     <div class="add-task-subtask">
                         <label>Subtask</label>
-                        <div class="add-task-subtask-input-container">
-
+                        <div class="add-task-subtask-input-container" id="add-task-subtask-render">
+                            <!-- Subtask TOP Render Section -->
                         </div>
+                        <div>Subtask Tasks</div>
                     </div>
                 </div>
             </div>

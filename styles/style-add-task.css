@@ -524,6 +524,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     padding: 18px 21px;
     gap: 10px;
     isolation: isolate;
@@ -537,4 +538,40 @@
 
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
+}
+
+.add-task-subtask-main-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+}
+
+.add-task-subtask-main-placeholder input {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 120%;
+
+    border: none;
+    outline: none;
+}
+
+.add-task-subtask-placeholder::placeholder {
+    color: #D1D1D1;
+}
+
+.add-task-subtask-main-placeholder img {
+    cursor: pointer;
+}
+
+.add-task-new-subtask-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 9px;
 }

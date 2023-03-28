@@ -79,8 +79,8 @@ function saveNewCategory() {
 }
 
 function openTopSetNewCategory() {
-    let newColor = defaultCategoryColor[defaultCategoryColor.length -1];
-    let newType = defaultCategoryType[defaultCategoryType.length -1];
+    let newColor = defaultCategoryColor[defaultCategoryColor.length - 1];
+    let newType = defaultCategoryType[defaultCategoryType.length - 1];
 
     document.getElementById('add-task-category-dropdown-top').innerHTML = openTopSetCategoryHTML(newColor, newType);
 }
@@ -131,10 +131,10 @@ function renderAssignedToSelection() {
 function initPrioButtons() {
     const prioButtons = ['urgent', 'medium', 'low'];
 
-    for(let i = 0; i < prioButtons.length; i++) {
+    for (let i = 0; i < prioButtons.length; i++) {
         let prioButton = prioButtons[i];
         let prioButtonFormatted = prioButton.charAt(0).toUpperCase() + prioButton.slice(1).toLowerCase();
-        document.getElementById('add-task-priobutton-render').innerHTML += openPrioButtons(prioButton, prioButtonFormatted);
+        document.getElementById('add-task-priobutton-render').innerHTML += openPrioButtonsHTML(prioButton, prioButtonFormatted);
     }
 }
 
@@ -149,9 +149,25 @@ function setAddTaskPrioButton(prioId) {
 }
 
 function setPrioButtonDesign(prioId) {
-    document.getElementById(`${prioId}`).classList.add(`bg-${prioId}`,'add-task-font-color');
+    document.getElementById(`${prioId}`).classList.add(`bg-${prioId}`, 'add-task-font-color');
     document.getElementById(`img-${prioId}`).classList.add('d-none');
     document.getElementById(`img-${prioId}-white`).classList.remove('d-none');
+}
+
+/*-- Subtask --*/
+function initSubtask() {
+    document.getElementById('add-task-subtask-render').innerHTML = '';
+    document.getElementById('add-task-subtask-render').innerHTML = loadSubtaskHTML();
+}
+
+function changeSubtask() {
+    document.getElementById('add-task-subtask-render').innerHTML = '';
+    document.getElementById('add-task-subtask-render').innerHTML = openSubtaskInput();
+    document.getElementById('add-task-subtask-input').focus();
+}
+
+function addNewSubtask() {
+    
 }
 
 
@@ -207,7 +223,7 @@ function openNewCategorySelectHTML() {
     return /*html*/`
     <div class="add-task-dropdown-top">
         <input id="new-category-type-name" class="add-task-new-categroy-input" type="text" placeholder="New category name">
-            <div class="add-task-new-categroy-buttons">
+        <div class="add-task-new-categroy-buttons">
             <img src="./assets/img/icons/add-task-button-cross.svg" onclick="initCategory()" alt="cross">
             <div class="add-task-category-greyline"></div>
             <img src="./assets/img/icons/add-task-button-check.svg" onclick="saveNewCategory()" alt="check">
@@ -247,12 +263,35 @@ function loadAssignedToHTML() {
 }
 
 /*-- Prio-Buttons-HTML --*/
-function openPrioButtons(prioButton, prioButtonFormatted) {
+function openPrioButtonsHTML(prioButton, prioButtonFormatted) {
     return /*html*/`
     <button type="button" id="prio-${prioButton}" onclick="setAddTaskPrioButton('prio-${prioButton}')">
         ${prioButtonFormatted}
         <img id="img-prio-${prioButton}" src="./assets/img/icons/add-task-${prioButton}.svg" alt="${prioButton}">
         <img id="img-prio-${prioButton}-white" class="d-none" src="./assets/img/icons/add-task-${prioButton}-white.svg" alt="${prioButton}">
     </button>
+    `;
+}
+
+/*-- Subtasks Template-HTML --*/
+function loadSubtaskHTML() {
+    return /*html*/`
+    <div class="add-task-subtask-main-placeholder" onclick="changeSubtask()">
+        <input type="text" placeholder="Add new subtask">
+        <img src="./assets/img/icons/add-task-subtask-plus.svg" alt="plus">
+    </div>
+    `;
+}
+
+function openSubtaskInput() {
+    return /*html*/`
+    <div class="add-task-subtask-main-placeholder">
+        <input id="add-task-subtask-input" type="text" placeholder="Create new icons">
+        <div class="add-task-new-subtask-buttons">
+            <img src="./assets/img/icons/add-task-button-cross.svg" onclick="initSubtask()" alt="cross">
+            <div class="add-task-category-greyline"></div>
+            <img src="./assets/img/icons/add-task-button-check.svg" onclick="addNewSubtask()" alt="check">
+        </div>
+    </div>
     `;
 }
