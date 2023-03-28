@@ -52,4 +52,24 @@
         margin-top:0;
         margin-bottom: 0;;
     }
+
+    .side-bar-nav-icon-small{
+        margin-bottom: 0;
+    }
 }
+
+@media (max-width: 350px) {
+
+    .side-bar-button > span{
+        font-size:14px;
+    }
+    .side-bar-button{
+        font-size:14px;
+    }
+
+    .legal-notice-help-sub-title{
+        font-size: 14px;
+
+    }
+}
+

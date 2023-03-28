@@ -62,6 +62,10 @@ div.help-list div:before {
     .legal-notice-help-main{
         margin-left: 33px;
         margin-right: 33px;
+        margin-bottom: 150px;
+    }
+    .side-bar{
+        z-index:3;
     }
 
 }
