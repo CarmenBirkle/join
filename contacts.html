@@ -18,7 +18,7 @@
         <div w3-include-html="./assets/templates/side-bar-template.html"></div>
         
         <div class="contacts-main">
-            <div id="contacts-popup-add-contact">
+            <div id="contacts-popup-add-contact" >
                 <div class="contacts-add-contact">
                     <div class="contacts-add-contact-left">
                         <img src="./assets/img/side-bar-join-logo.svg" alt="Join">
@@ -27,22 +27,34 @@
                         <hr>
                     </div>
                     <div class="contacts-add-contact-right">
-                        <img src="./assets/img/icons/contacs-x.svg" alt="close">
+                        <img src="./assets/img/icons/contacs-x.svg" onclick="contactsCloseOverlayNew()" alt="close">
                         <div class="contact-img">
                             <img src="./assets/img/icons/contacts-empty-icon.svg" alt="newContact">
                         </div>
                         <form action="">
-                            <input type="text" placeholder="Name">
+                            <div class="contacts-input-with-icon">
+                                <input type="text" placeholder="Name">
+                                <span class="contacts-icon-name"></span>
+                            </div>
+                            
                          
-                            <div class="input-with-icon">
-                                <input type="text" placeholder="Email">
-                                <span class="icon"></span>
-                              </div>
+                            <div class="contacts-input-with-icon">
+                                <input class="contacts-email" type="email" placeholder="Email">
+                                <span class="contacts-icon-email"></span>
+                            </div>
 
-                            <input type="text" placeholder="Phone">
-                            <div>
-                                <button>Cancel</button>
-                                <button>Create contact</button>
+                            <div class="contacts-input-with-icon">
+                                <input type="text" placeholder="Phone">
+                                <span class="contacts-icon-phone"></span>
+                            </div>
+                
+                            <div class="contacts-btn-container">
+                                <button class="contacts-btn-cancel">Cancel
+                                    <img class="contacts-img-cancel "src="./assets/img/icons/contacs-x.svg">
+                                </button>
+                                <button class="contacts-btn-create-contact">Create contact
+                                    <img class="contacts-img-check" src="./assets/img/icons/contacts-check.svg">
+                                </button>
                             </div>
                             
                         </form>
@@ -175,22 +187,16 @@
                 
                 </div>
 
-                <div class="contacts-new-contact-button">
+                <div class="contacts-new-contact-button" onclick="contactsShowOverlayNew()">
                     <div>New contact</div>
                     <img src="./assets/img/icons/conctacts-add-new-contact.icon.png" alt="">
                 </div>
             </div>
         </div>
 
-
-
-
-        </div>
-
-            
-
-       
-    
+        
+      
+        <script src="./script/contacts.js"></script>
         <script src="./script/app.js"></script>
     </body>
 </html>
