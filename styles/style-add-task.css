@@ -359,7 +359,6 @@
     gap: 14px;
 
     width: 422px;
-    height: 356px;
 }
 
 /* --- Form Rightside Due-Date --- */
@@ -506,7 +505,6 @@
     gap: 8px;
 
     width: 100%;
-    height: 111px;
 }
 
 .add-task-subtask label {
@@ -574,4 +572,30 @@
     align-items: center;
     padding: 0px;
     gap: 9px;
+}
+
+.add-task-add-subtask {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: 70px;
+
+    overflow-y: scroll;
+}
+
+.add-task-add-subtask div input {
+    background: linear-gradient(180deg, #F9F9F9 0%, #F0F0F0 100%);
+    border: 1px solid #000000;
+    border-radius: 3px
+}
+
+.add-task-add-subtask div span {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+    
+    color: #000000;
 }

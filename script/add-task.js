@@ -3,6 +3,7 @@ let defaultCategoryColor = ['#FC71FF', '#1FD7C1', '#FF8A00', '#8AA4FF'];
 let defaultCategoryType = ['Sale', 'Backoffice', 'Design', 'Marketing'];
 let selectedColorNewCategory = [];
 let prioButtonSet = [];
+let addSubtasks = [];
 
 
 /*-- Category --*/
@@ -132,9 +133,9 @@ function initPrioButtons() {
     const prioButtons = ['urgent', 'medium', 'low'];
 
     for (let i = 0; i < prioButtons.length; i++) {
-        let prioButton = prioButtons[i];
-        let prioButtonFormatted = prioButton.charAt(0).toUpperCase() + prioButton.slice(1).toLowerCase();
-        document.getElementById('add-task-priobutton-render').innerHTML += openPrioButtonsHTML(prioButton, prioButtonFormatted);
+        let prioName = prioButtons[i];
+        let prioNameFormatted = prioName.charAt(0).toUpperCase() + prioName.slice(1).toLowerCase();
+        document.getElementById('add-task-priobutton-render').innerHTML += openPrioButtonsHTML(prioName, prioNameFormatted);
     }
 }
 
@@ -167,7 +168,15 @@ function changeSubtask() {
 }
 
 function addNewSubtask() {
-    
+    let subtaskInput = document.getElementById('add-task-subtask-input');
+    addSubtasks.push(subtaskInput.value);
+    subtaskInput.value = "";
+    document.getElementById('add-task-subtask-addtask-render').innerHTML = '';
+
+    for(let i = 0; i < addSubtasks.length; i++) {
+        let subTaskCheckbox = addSubtasks[i];
+        document.getElementById('add-task-subtask-addtask-render').innerHTML += openSubtasksCheckboxHTML(subTaskCheckbox);
+    }
 }
 
 
@@ -263,12 +272,12 @@ function loadAssignedToHTML() {
 }
 
 /*-- Prio-Buttons-HTML --*/
-function openPrioButtonsHTML(prioButton, prioButtonFormatted) {
+function openPrioButtonsHTML(prioName, prioNameFormatted) {
     return /*html*/`
-    <button type="button" id="prio-${prioButton}" onclick="setAddTaskPrioButton('prio-${prioButton}')">
-        ${prioButtonFormatted}
-        <img id="img-prio-${prioButton}" src="./assets/img/icons/add-task-${prioButton}.svg" alt="${prioButton}">
-        <img id="img-prio-${prioButton}-white" class="d-none" src="./assets/img/icons/add-task-${prioButton}-white.svg" alt="${prioButton}">
+    <button type="button" id="prio-${prioName}" onclick="setAddTaskPrioButton('prio-${prioName}')">
+        ${prioNameFormatted}
+        <img id="img-prio-${prioName}" src="./assets/img/icons/add-task-${prioName}.svg" alt="${prioName}">
+        <img id="img-prio-${prioName}-white" class="d-none" src="./assets/img/icons/add-task-${prioName}-white.svg" alt="${prioName}">
     </button>
     `;
 }
@@ -292,6 +301,15 @@ function openSubtaskInput() {
             <div class="add-task-category-greyline"></div>
             <img src="./assets/img/icons/add-task-button-check.svg" onclick="addNewSubtask()" alt="check">
         </div>
+    </div>
+    `;
+}
+
+function openSubtasksCheckboxHTML(subTaskCheckbox) {
+    return /*html*/`
+    <div>
+        <input type="checkbox" name="subtasks" value="${subTaskCheckbox}" checked>
+        <span>${subTaskCheckbox}</span>
     </div>
     `;
 }
