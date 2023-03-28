@@ -234,6 +234,7 @@
 
 .dropdown-option-dots-selected {
     border: 2px solid black !important;
+    transform: scale(1.1);
 }
 
 .add-task-new-categroy-input {
@@ -275,8 +276,6 @@
     justify-content: flex-start;
     align-items: center;
     flex-direction: row;
-
-    margin-top: 5px;
 }
 
 .new-category-dot:hover {

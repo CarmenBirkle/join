@@ -15,6 +15,7 @@ function initCategory() {
 
 function openCategoryDropdown() {
     document.getElementById('add-task-category-dropdown').classList.toggle('d-none');
+    document.getElementById('add-task-new-category-error').innerHTML = '';
     renderTopCategory();
     renderCategorySelection();
 }
