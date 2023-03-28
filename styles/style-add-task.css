@@ -409,7 +409,7 @@
     font-weight: 400;
     font-size: 21px;
     line-height: 120%;
-    
+
     color: #000000;
 
     cursor: pointer;
@@ -599,6 +599,87 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 120%;
-    
+
     color: #000000;
+}
+
+/* --- Form Rightside Buttons --- */
+.add-task-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 25px;
+}
+
+.add-task-clear {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 18px 10px;
+    gap: 10px;
+
+    width: 136px;
+    height: 61px;
+
+    border: 1px solid #2A3647;
+    border-radius: 10px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 120%;
+
+    color: #2A3647;
+    cursor: pointer;
+}
+
+.add-task-clear:hover {
+    border: 2px solid #29ABE2;
+
+    color: #29ABE2;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.add-task-clear:hover .d-none {
+    display: block !important;
+}
+
+.add-task-clear:hover .add-task-clear-img {
+    display: none;
+}
+
+.add-task-create {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 18px 10px;
+    gap: 10px;
+
+    width: 185px;
+    height: 61px;
+
+    background: #2A3647;
+    border-radius: 10px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 120%;
+
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.add-task-create:hover {
+    background: #29ABE2;
+    border: #29ABE2;
+
+    color: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
