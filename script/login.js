@@ -4,14 +4,14 @@
 function startAnimation(){
     if(screen.width >= 768){
     document.getElementById('login-logo').classList.add('animation');
-    setTimeout(showLogin, 3000);
+    setTimeout(showLoginCard, 3000);
     }
     if(screen.width < 768){
         responsiveLogin();
     };
 }
 
-function showLogin(){
+function showLoginCard(){
     document.getElementById('login-content').classList.remove('d-none');
     document.getElementById('login-animation-container').classList.add('d-none');
 }
@@ -20,7 +20,7 @@ function responsiveLogin(){
     document.getElementById('login-logo').classList.add('d-none');
     document.getElementById('login-logo-responsive').classList.remove('d-none');
     document.getElementById('login-logo-responsive').classList.add('animation');
-    setTimeout(showLogin, 3000);
+    setTimeout(showLoginCard, 3000);
 }
 
 /**

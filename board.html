@@ -1,22 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./styles/style.css">
-        <link rel="stylesheet" href="./styles/header.css">
-        <link rel="stylesheet" href="./styles/side-bar.css">
-        <link rel="stylesheet" href="./styles/style-media-header.css">
-        <link rel="stylesheet" href="./styles/style-media-side-bar.css">
-        <link rel="shortcut icon" type="image/x-icon" href="./assets/img/side-bar-join-logo.svg">
-        <title>Board | Join</title>
-    </head>
-    <body onload = "init()">
-        <div w3-include-html="./assets/templates/header-template.html"></div>
-        <div w3-include-html="./assets/templates/side-bar-template.html"></div>
 
-    
-        <script src="./script/app.js"></script>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/style-board.css">
+    <link rel="stylesheet" href="./styles/header.css">
+    <link rel="stylesheet" href="./styles/side-bar.css">
+    <link rel="stylesheet" href="./styles/style-media-header.css">
+    <link rel="stylesheet" href="./styles/style-media-side-bar.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="shortcut icon" type="image/x-icon" href="./assets/img/side-bar-join-logo.svg">
+    <title>Board | Join</title>
+</head>
+
+<body onload="init()">
+    <div w3-include-html="./assets/templates/header-template.html"></div>
+    <div w3-include-html="./assets/templates/side-bar-template.html"></div>
+    <div class="board-main-container">
+        <div class="board-header-bar">
+            <h1>Board</h1>
+            <div class="board-header-input">
+                <input type="text" placeholder="Find task" class="input-field">
+                <a class="w3-button btn-dark-grey w3-round-large w3-hover-blue">Add task +</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="./script/app.js"></script>
+</body>
+
 </html>
