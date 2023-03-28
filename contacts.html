@@ -18,8 +18,63 @@
         <div w3-include-html="./assets/templates/side-bar-template.html"></div>
         
         <div class="contacts-main">
-            <div id="contacts-popup-add-contact" >
-                <div class="contacts-add-contact">
+            <!-- Include Template Add Task - noch nicht fertig, derzeit nur Platzhalter -->
+            <div id="contacts-add-task" class="d-none">
+                <div class="contacts-overlay">
+                    <div class="contacts-add-contact">
+                        <img class="contacts-addTask-close" onclick="contactsCloseAddTask()" src="./assets/img/icons/contacs-x.svg" onclick="contactsCloseAddTask()" alt="X">
+                        <div class="contacts-include-tasks" w3-include-html="./assets/templates/task-template.html"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- RenderArea Edit Contact -->
+            <div id="contacts-popup-edit-Contact" class="d-none" >
+                <!-- ab hier in rednerfunktion -->
+
+                <div id="render-popup-edit-Contact" class="contacts-overlay">
+                    <div class="contacts-add-contact fadeInRight">
+                        <div class="contacts-add-contact-left">
+                            <img src="./assets/img/side-bar-join-logo.svg" alt="Join">
+                            <h1>Edit Contact</h1>
+                            <hr>
+                        </div>
+                        <div class="contacts-add-contact-right">
+                            <img src="./assets/img/icons/contacs-x.svg" onclick="contactsCloseOverlayEdit()" alt="close">
+                            <div class="contact-img">
+                                <div class="contact-initals-big">CB</div>
+                            </div>
+                            <form action="">
+                                <div class="contacts-input-with-icon">
+                                    <input type="text" required required pattern="[a-zA-ZäöüÄÖÜß]+\s[a-zA-ZäöüÄÖÜß]+" placeholder="Name" value="Carmen Birkle" title="Gebe Deinen Vor- und Nachnamen an (2 Wörter)">
+                                    <span class="contacts-icon-name"></span>
+                                </div>
+                                
+                             
+                                <div class="contacts-input-with-icon">
+                                    <input class="contacts-email" type="email" required placeholder="Email"  value="carmen@test.de">
+                                    <span class="contacts-icon-email"></span>
+                                </div>
+    
+                                <div class="contacts-input-with-icon">
+                                    <input type="tel" required placeholder="Phone" pattern="[0-9]+-[0-9]+" value="0123-45678" title="Das Format sollte diesem Schema entsprechen: 0123-456789" >
+                                    <span class="contacts-icon-phone"></span>
+                                </div>
+                    
+                                <div class="contacts-btn-container-edit">
+                                    <button class="contacts-btn-save-contact">Save</button>
+                                </div>
+                                
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- bis hier in renderunktion  -->
+            </div>
+            <div id="contacts-popup-add-contact" style="display: none" >
+                <div class="contacts-add-contact fadeInRight">
                     <div class="contacts-add-contact-left">
                         <img src="./assets/img/side-bar-join-logo.svg" alt="Join">
                         <h1>Add contact</h1>
@@ -27,32 +82,32 @@
                         <hr>
                     </div>
                     <div class="contacts-add-contact-right">
-                        <img src="./assets/img/icons/contacs-x.svg" onclick="contactsCloseOverlayNew()" alt="close">
+                        <img src="./assets/img/icons/contacs-x.svg" onclick="contactsCloseOverlayNew()" alt="X">
                         <div class="contact-img">
                             <img src="./assets/img/icons/contacts-empty-icon.svg" alt="newContact">
                         </div>
                         <form action="">
                             <div class="contacts-input-with-icon">
-                                <input type="text" placeholder="Name">
+                                <input id="contact-name" type="text" required required pattern="[a-zA-ZäöüÄÖÜß]+\s[a-zA-ZäöüÄÖÜß]+" placeholder="Name" title="Gebe Deinen Vor- und Nachnamen an (2 Wörter)">
                                 <span class="contacts-icon-name"></span>
                             </div>
                             
                          
                             <div class="contacts-input-with-icon">
-                                <input class="contacts-email" type="email" placeholder="Email">
+                                <input id="contact-email" class="contacts-email" type="email" required placeholder="Email">
                                 <span class="contacts-icon-email"></span>
                             </div>
 
                             <div class="contacts-input-with-icon">
-                                <input type="text" placeholder="Phone">
+                                <input id="contact-tel" type="tel" required placeholder="Phone" pattern="[0-9]+-[0-9]+" title="Das Format sollte diesem Schema entsprechen: 0123-456789" >
                                 <span class="contacts-icon-phone"></span>
                             </div>
                 
                             <div class="contacts-btn-container">
-                                <button class="contacts-btn-cancel">Cancel
+                                <button class="contacts-btn-cancel" formnovalidate>Cancel
                                     <img class="contacts-img-cancel "src="./assets/img/icons/contacs-x.svg">
                                 </button>
-                                <button class="contacts-btn-create-contact">Create contact
+                                <button class="contacts-btn-create-contact" onclick="animateDiv();">Create contact
                                     <img class="contacts-img-check" src="./assets/img/icons/contacts-check.svg">
                                 </button>
                             </div>
@@ -136,6 +191,10 @@
             </div>   
             
             <div class="contacts-container-right">
+                <div class="contacts-container-success">
+                    <div id="contacts-success" class="contacts-success fadeInBottom">Contact succesfully created</div>
+                </div>
+                
                 <div class="contacts-titel">
                     <h1>Contacts</h1>
                     <div></div>
@@ -145,11 +204,11 @@
                 <div class="contacts-information">
                     <div class="contacts-information-top">
                         <div class="contact-icon">
-                            <div>CB</div>
+                            <div class="contact-initals-big">CB</div>
                         </div>
                         <div class="contact-info-top-right">
                             <div class="contact-name">Carmen Birkle</div>
-                            <div class="add-task">
+                            <div class="add-task" onclick="contactsOpenAddTask()">
                                 <img src="./assets/img/icons/contact-add-task.png" alt="+">
                                 <div>Add Task</div>
                             </div>
@@ -158,7 +217,7 @@
 
                     <div class="contacts-information-center">
                         <div class="contacts-info-center-titel">Contact information</div>
-                        <div class="contacts-edit">
+                        <div class="contacts-edit" onclick="contactsShowOverlayEdit()">
                             <img src="./assets/img/icons/contact-edit.png" alt="edit">
                             <div>Edit Contact</div>
                         </div>
@@ -191,6 +250,8 @@
                     <div>New contact</div>
                     <img src="./assets/img/icons/conctacts-add-new-contact.icon.png" alt="">
                 </div>
+
+        
             </div>
         </div>
 

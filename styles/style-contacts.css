@@ -27,6 +27,11 @@ input{
     font-size: 21px;
 }
 
+input:focus {
+    outline: none;
+  }
+  
+
 input::placeholder{
     color:var(--grey);
 }
@@ -46,11 +51,26 @@ input::placeholder{
     bottom: 0;
     position: absolute;
     z-index: 5;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.3);
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+.contacts-overlay{
+        height: 100vh;
+        width: 100vw;
+        top:0;
+        left:0;
+        right: 0;
+        bottom: 0;
+        position: absolute;
+        z-index: 5;
+        background: rgba(0, 0, 0, 0.3);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
 .contacts-add-contact{
     position: relative;
@@ -59,6 +79,10 @@ input::placeholder{
     height: 594px;
     background: #FFFFFF;
     border-radius: 30px;
+}
+
+.contacts-include-tasks{
+    padding: 20px;
 }
 
 .contacts-add-contact-left{
@@ -103,10 +127,18 @@ input::placeholder{
     display: flex;
     align-items: center;
     gap: 84px;
+    overflow: hidden;
 
 }
 
 .contacts-add-contact-right > img{
+    position: absolute;
+    height: 21.65px;
+    left: 1148.82px;
+    top: 49.11px;
+}
+
+.contacts-addTask-close{
     position: absolute;
     height: 21.65px;
     left: 1148.82px;
@@ -268,6 +300,29 @@ input::placeholder{
     gap: 20px
 }
 
+.contacts-btn-container-edit{
+    display:flex;
+    justify-content: end;
+}
+
+.contacts-btn-save-contact{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 18px 10px;
+    margin-right:192px;
+    gap: 10px;
+    width: 143px;
+    height: 61px;
+    color:white;
+    background:var(--dark-grey);
+    border-radius: 10px;
+    font-size:21px;
+    cursor: pointer;
+}
+
+
 .contacts-btn-cancel{
     display: flex;
     flex-direction: row;
@@ -331,7 +386,7 @@ input::placeholder{
     align-items: center;
 }
 
-.contact-icon > div{
+.contact-initals-big{
     font-weight: 500;
     font-size: 47px;
     line-height: 120%;
@@ -431,6 +486,13 @@ input::placeholder{
     right:  52px;  
     cursor: pointer;
 }
+.contacts-new-contact-button:hover{
+    border: 1px solid #29abe2;
+    transition: 0.2s;
+    background: #29ABE2;
+    transform: scale(1.01);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
 
 .contacts-new-contact-button > div {
     font-weight: 700;
@@ -438,7 +500,89 @@ input::placeholder{
     line-height: 120%;
 }
 
+.contacts-success{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    width: 326px;
+    height: 74px;
+    background: #2A3647;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
+    color: white;
+    font-size: 21px;
+}
 
+
+.contacts-container-success{
+    display: flex;
+    justify-content: center;
+}
+
+.fadeInRight {
+    animation: fadeInRight 0.8s ease-in-out 0s 1 normal forwards;
+  }
+  
+.fadeInBottom {
+    animation: slide-top 2s ease-in-out forwards 2s;
+    opacity: 0;
+}
+
+.fadeOut {
+    animation: fade-out 0.8s ease-in-out forwards;
+}
+
+  @keyframes fadeInRight {
+    from {
+      opacity: 1;
+    }
+  
+    to {
+      opacity: 1;
+    }
+  
+    0% {
+      transform: translateX(100%);
+    }
+  
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slide-top {
+    0% {
+            transform: translateY(1200px);
+            opacity: 0;
+    }
+    90% {   
+            transform: translateY(0px);
+            opacity: 1;
+         }
+    100% {
+     
+            transform: translateY(0px);
+            opacity: 1;
+    }
+  }
+  
+  @keyframes fade-out {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  
+
+
+
+ 
+  
+  
 
 
 
