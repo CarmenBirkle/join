@@ -2,7 +2,7 @@ const allCategoryColor = ['#FC71FF', '#1FD7C1', '#FF8A00', '#8AA4FF', '#FF0000',
 let defaultCategoryColor = ['#FC71FF', '#1FD7C1', '#FF8A00', '#8AA4FF'];
 let defaultCategoryType = ['Sale', 'Backoffice', 'Design', 'Marketing'];
 let selectedColorNewCategory = [];
-let prioButton = [];
+let prioButtonSet = [];
 
 
 /*-- Category --*/
@@ -128,15 +128,33 @@ function renderAssignedToSelection() {
 */
 
 /*-- Prio --*/
-function addTaskPrioButton(prioId) {
-    // initPrioButton() ???
-    prioButton = [];
-    prioButton.push(prioId);
+function initPrioButtons() {
+    const prioButtons = ['urgent', 'medium', 'low'];
 
+    for(let i = 0; i < prioButtons.length; i++) {
+        let prioButton = prioButtons[i];
+        let prioButtonFormatted = prioButton.charAt(0).toUpperCase() + prioButton.slice(1).toLowerCase();
+        document.getElementById('add-task-priobutton-render').innerHTML += openPrioButtons(prioButton, prioButtonFormatted);
+    }
+}
+
+function setAddTaskPrioButton(prioId) {
+    document.getElementById('add-task-priobutton-render').innerHTML = '';
+    initPrioButtons();
+
+    prioButtonSet = [];
+    prioButtonSet.push(prioId);
+
+    setPrioButtonDesign(prioId);
+}
+
+function setPrioButtonDesign(prioId) {
     document.getElementById(`${prioId}`).classList.add(`bg-${prioId}`,'add-task-font-color');
     document.getElementById(`img-${prioId}`).classList.add('d-none');
-    document.getElementById(`img-${prioId}-white`).classList.remove('d-none')
+    document.getElementById(`img-${prioId}-white`).classList.remove('d-none');
 }
+
+
 
 
 /*-- Template-HTML --*/
@@ -225,5 +243,16 @@ function loadAssignedToHTML() {
     </div>
     <div id="add-task-assignedto-dropdown" class="add-task-category-dropdown-open d-none">                          
      </div>
+    `;
+}
+
+/*-- Prio-Buttons-HTML --*/
+function openPrioButtons(prioButton, prioButtonFormatted) {
+    return /*html*/`
+    <button type="button" id="prio-${prioButton}" onclick="setAddTaskPrioButton('prio-${prioButton}')">
+        ${prioButtonFormatted}
+        <img id="img-prio-${prioButton}" src="./assets/img/icons/add-task-${prioButton}.svg" alt="${prioButton}">
+        <img id="img-prio-${prioButton}-white" class="d-none" src="./assets/img/icons/add-task-${prioButton}-white.svg" alt="${prioButton}">
+    </button>
     `;
 }

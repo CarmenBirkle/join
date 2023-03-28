@@ -21,7 +21,7 @@
     <title>Add Task | Join</title>
 </head>
 
-<body onload="init(); initCategory(); initAssignedTo()">
+<body onload="init(); initCategory(); initAssignedTo(); initPrioButtons()">
     <div w3-include-html="./assets/templates/header-template.html"></div>
     <div w3-include-html="./assets/templates/side-bar-template.html"></div>
 
@@ -30,7 +30,7 @@
         <form>
             <div class="add-task-container">
                 <!-- Left Side -->
-                <div class="add-task-lefside">
+                <div class="add-task-leftside">
                     <div class="add-task-title">
                         <label for="add-task-input-title">Title</label>
                         <input id="add-task-input-title" type="text" placeholder="Enter a title" required>
@@ -71,22 +71,8 @@
                     </div>
                     <div class="add-task-prio">
                         <label>Prio</label>
-                        <div class="add-task-prio-button-container">
-                            <button type="button" id="prio-urgent" onclick="addTaskPrioButton('prio-urgent')">
-                                Urgent
-                                <img id="img-prio-urgent" src="./assets/img/icons/add-task-urgent.svg" alt="urgent">
-                                <img id="img-prio-urgent-white" class="d-none" src="./assets/img/icons/add-task-urgent-white.svg" alt="urgent">
-                            </button>
-                            <button type="button" id="prio-medium" onclick="addTaskPrioButton('prio-medium')">
-                                Medium
-                                <img id="img-prio-medium" src="./assets/img/icons/add-task-medium.svg" alt="medium">
-                                <img id="img-prio-medium-white" src="./assets/img/icons/add-task-medium-white.svg" alt="medium">
-                            </button>
-                            <button type="button" id="prio-low" onclick="addTaskPrioButton('prio-low')">
-                                Low
-                                <img id="img-prio-low" src="./assets/img/icons/add-task-low.svg" alt="low">
-                                <img id="img-prio-low-white" src="./assets/img/icons/add-task-low-white.svg" alt="low">
-                            </button>
+                        <div class="add-task-prio-button-container" id="add-task-priobutton-render">
+                            <!-- Prio-Buttons Render Section -->
                         </div>
                     </div>
                     <div class="add-task-subtask">

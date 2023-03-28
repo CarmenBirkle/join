@@ -29,7 +29,7 @@
 }
 
 /* --- Form-Left-Side --- */
-.add-task-lefside {
+.add-task-leftside {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
