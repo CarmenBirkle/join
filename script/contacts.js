@@ -10,27 +10,22 @@ function contactsCloseOverlayNew(){
 
 function contactsCancelNewContact(){
     contactsCloseOverlayNew();
+    contacsResetNewContact();
+}
+
+function contacsResetNewContact(){
     document.getElementById('contact-name').value ='';
     document.getElementById('contact-email').value ='';
     document.getElementById('contact-tel').value ='';
-
 }
 
 function contactsShowOverlayEdit(){
     document.getElementById('contacts-popup-edit-Contact').classList.remove('d-none');
-    console.log('aufgerufen');
 }
 
 function contactsCloseOverlayEdit(){
     document.getElementById('contacts-popup-edit-Contact').classList.add('d-none');
 }
-
-// function contactsCancelEdit(){
-//     document.getElementById('contacts-popup-edit-Contact').classList.add('d-none');
-//     document.getElementById("contacts-popup-edit-Contact").addEventListener("click", function(event) {
-//         event.preventDefault();
-//       });
-// } 
 
 function contactsOpenAddTask(){
     document.getElementById('contacts-add-task').classList.remove('d-none');
@@ -40,16 +35,44 @@ function contactsCloseAddTask(){
     document.getElementById('contacts-add-task').classList.add('d-none');
 }
 
-// function animateDiv() {
-//     const box = document.querySelector('.contacts-success');
-//     box.style.animation = 'slide-up 800ms ease-in-out, slide-down 800ms ease-in-out 800ms';
-//   }
+// TODO - wenn das Backend steht, eine Logik implementieren, wenn die Daten erfolgreich 
+// gespeichert wurden dem Butten der ID "contacts-success" die Klasse fadeInBottom geben und dann 
+// dann in Abhängigkeit die setTimeout Funktion von unten ausführen. ggf. die Classen-logik auslagern
 
-setTimeout(() => {
-    const div = document.querySelector('.fadeInBottom');
-    div.classList.add('fadeOut');
-  }, 4000);
+
+function saveContact(){
+    const div = document.getElementById('contacts-success')
+    div.classList.add('fadeInBottom')
+    div.classList.remove('d-none');
+    setTimeout(() => {
+        contactsCloseOverlayNew();
+        contacsResetNewContact()
+        div.classList.remove('fadeInBottom');
+        div.classList.add('d-none');
+      }, 2000);
+}
+
+// function saveContact() {
+//     // Prüfen, ob der "Cancel"-Button geklickt wurde
+//     if (event.target.id === 'contacts-save') {
+//         console.log('jepp');
+//         const div = document.getElementById('contacts-success')
+//         div.classList.add('fadeInBottom')
+//         div.classList.remove('d-none');
+//         setTimeout(() => {
+//             contactsCloseOverlayNew();
+//             contacsResetNewContact()
+//             div.classList.remove('fadeInBottom');
+//             div.classList.add('d-none');
+//           }, 2000);
+//     }
+//     console.log('false');
+//     contactsCloseOverlayNew();
+//         contacsResetNewContact();
+    
+//   }
   
+  //return false; // Verhindern, dass das Formular gesendet wird
 
        
  

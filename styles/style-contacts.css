@@ -201,7 +201,8 @@ input::placeholder{
 }
   
 .contact-img{
-    width: 120px;
+    /* width: 120px; */
+    width:240px;
     height: 120px;
     background-color: var(--grey);
     border-radius: 50%;
@@ -513,12 +514,14 @@ input::placeholder{
     border-radius: 20px;
     color: white;
     font-size: 21px;
+    opacity: 0;
 }
 
 
 .contacts-container-success{
-    display: flex;
-    justify-content: center;
+    position:absolute;
+    top: 20px;
+    left: 50%;
 }
 
 .fadeInRight {
@@ -526,12 +529,8 @@ input::placeholder{
   }
   
 .fadeInBottom {
-    animation: slide-top 2s ease-in-out forwards 2s;
+    animation: slide-top 0.8s ease-in-out forwards 0.5s;
     opacity: 0;
-}
-
-.fadeOut {
-    animation: fade-out 0.8s ease-in-out forwards;
 }
 
   @keyframes fadeInRight {
@@ -557,7 +556,7 @@ input::placeholder{
             transform: translateY(1200px);
             opacity: 0;
     }
-    90% {   
+    98% {   
             transform: translateY(0px);
             opacity: 1;
          }
@@ -565,15 +564,6 @@ input::placeholder{
      
             transform: translateY(0px);
             opacity: 1;
-    }
-  }
-  
-  @keyframes fade-out {
-    0% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
     }
   }
   
