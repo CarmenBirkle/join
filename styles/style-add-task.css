@@ -404,10 +404,13 @@
     border: 1px solid #D1D1D1;
     border-radius: 10px;
 
+    font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
     font-size: 21px;
     line-height: 120%;
+    
+    color: #000000;
 
     cursor: pointer;
 }

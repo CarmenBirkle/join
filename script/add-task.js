@@ -171,8 +171,13 @@ function addNewSubtask() {
     let subtaskInput = document.getElementById('add-task-subtask-input');
     addSubtasks.push(subtaskInput.value);
     subtaskInput.value = "";
+    subtaskInput.focus();
+   
     document.getElementById('add-task-subtask-addtask-render').innerHTML = '';
+    renderSubtaskCheckbox();
+}
 
+function renderSubtaskCheckbox() {
     for(let i = 0; i < addSubtasks.length; i++) {
         let subTaskCheckbox = addSubtasks[i];
         document.getElementById('add-task-subtask-addtask-render').innerHTML += openSubtasksCheckboxHTML(subTaskCheckbox);
