@@ -169,17 +169,23 @@ function changeSubtask() {
 }
 
 function addNewSubtask() {
+    document.getElementById('add-task-subtask-error').innerHTML = '';
     let subtaskInput = document.getElementById('add-task-subtask-input');
-    addSubtasks.push(subtaskInput.value);
-    subtaskInput.value = "";
-    subtaskInput.focus();
-   
-    document.getElementById('add-task-subtask-addtask-render').innerHTML = '';
-    renderSubtaskCheckbox();
+    if (subtaskInput.value === "") {
+        document.getElementById('add-task-subtask-error').innerHTML = subtaskErrorHTML();
+        subtaskInput.focus();
+    } else {
+        addSubtasks.push(subtaskInput.value);
+        subtaskInput.value = "";
+        subtaskInput.focus();
+
+        document.getElementById('add-task-subtask-addtask-render').innerHTML = '';
+        renderSubtaskCheckbox();
+    }
 }
 
 function renderSubtaskCheckbox() {
-    for(let i = 0; i < addSubtasks.length; i++) {
+    for (let i = 0; i < addSubtasks.length; i++) {
         let subTaskCheckbox = addSubtasks[i];
         document.getElementById('add-task-subtask-addtask-render').innerHTML += openSubtasksCheckboxHTML(subTaskCheckbox);
     }
@@ -317,5 +323,11 @@ function openSubtasksCheckboxHTML(subTaskCheckbox) {
         <input type="checkbox" name="subtasks" value="${subTaskCheckbox}" checked>
         <span>${subTaskCheckbox}</span>
     </div>
+    `;
+}
+
+function subtaskErrorHTML() {
+    return /*html*/ `
+    <span class="new-category-error">Please write a subtask</span>
     `;
 }

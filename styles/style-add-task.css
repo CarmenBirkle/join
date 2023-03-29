@@ -175,7 +175,7 @@
 
     isolation: isolate;
 
-    width: 422px;
+    width: 100%;
 
     background: #FFFFFF;
 
@@ -321,7 +321,7 @@
 
     isolation: isolate;
 
-    width: 422px;
+    width: 100%;
 
     background: #FFFFFF;
 
@@ -437,6 +437,7 @@
 }
 
 .add-task-prio-button-container {
+    box-sizing: border-box;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -500,6 +501,7 @@
 
 /* --- Form Rightside Subtask --- */
 .add-task-subtask {
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -577,6 +579,7 @@
 }
 
 .add-task-add-subtask {
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
 
@@ -604,6 +607,7 @@
 
 /* --- Form Rightside Buttons --- */
 .add-task-buttons {
+    box-sizing: border-box;
     display: flex;
     flex-direction: row;
     justify-content: center;
