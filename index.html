@@ -21,7 +21,7 @@
         <div class="login-card">
             <h1>Log in</h1>
             <div class="underline-headline"></div>
-            <form class="input-bar">
+            <form class="input-bar" onsubmit="test()" autocomplete="on">
                 <input required type="email" class="input-field email w3-round-large" placeholder="Email">
                 <input required type="password" class="input-field password w3-round-large" placeholder="Password">
                 <div class="detail-bar">
@@ -30,9 +30,8 @@
                     <a href="./forgotten-password.html"> Forgot my password</a>
                 </div>
                 <div class="btn-bar">
-                    <a href="#" class="w3-button btn-dark-grey w3-round-large w3-hover-blue">Log in</a>
-                    <a type="button" href="./summary.html" class="w3-button btn-transparent w3-round-large w3-hover-blue">Guest Log
-                        in</a>
+                    <input type="submit" class="w3-button btn-dark-grey w3-round-large w3-hover-blue" value="Log in">
+                    <a href="./summary.html" type="button" class="w3-button btn-transparent w3-round-large w3-hover-blue">Guest Log in</a>
                 </div>
             </form>
         </div>
