@@ -1,0 +1,37 @@
+.board-main-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 89px;
+    margin-left: 232px;
+    padding: 50px;
+}
+
+.board-main-container h1 {
+    font-weight: 700;
+}
+
+.board-header-bar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.board-header-input{
+    display: flex;
+    gap: 45px;
+}
+
+.input-field {
+    padding: 13px 21px;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+  }
+
+.btn-dark-grey {
+    background-color: var(--btn-dark-grey) !important;
+    color: white !important;
+    font-weight: 700;
+    padding: 4px, 0px, 4px, 0px !important;
+    overflow: unset !important;
+    text-align: center !important;
+  }

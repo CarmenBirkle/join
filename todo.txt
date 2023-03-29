@@ -1,7 +1,12 @@
 Aktuelle Todos:
 Daniel: Add Task / Summary responsive
+<<<<<<< HEAD
 Carmen: Contacts
 Pascal: Animationen bei Login
+=======
+Carmen: Help + Legal Notice
+Pascal: Animationen bei Login, Board html
+>>>>>>> main
 
 
 Allgemein: 
@@ -18,7 +23,6 @@ Generelle Infos/Arbeitsanweisung:
 
 Zur Prüfung: 
 Templates (side-bar + header) - Carmen
-"Confirm" Animationen bei Login + Start-Animation - Pascal 
 
 offen: 
 

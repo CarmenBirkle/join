@@ -29,7 +29,7 @@
 }
 
 /* --- Form-Left-Side --- */
-.add-task-lefside {
+.add-task-leftside {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -175,7 +175,7 @@
 
     isolation: isolate;
 
-    width: 422px;
+    width: 100%;
 
     background: #FFFFFF;
 
@@ -234,6 +234,7 @@
 
 .dropdown-option-dots-selected {
     border: 2px solid black !important;
+    transform: scale(1.1);
 }
 
 .add-task-new-categroy-input {
@@ -275,8 +276,6 @@
     justify-content: flex-start;
     align-items: center;
     flex-direction: row;
-
-    margin-top: 5px;
 }
 
 .new-category-dot:hover {
@@ -322,7 +321,7 @@
 
     isolation: isolate;
 
-    width: 422px;
+    width: 100%;
 
     background: #FFFFFF;
 
@@ -359,7 +358,6 @@
     gap: 14px;
 
     width: 422px;
-    height: 356px;
 }
 
 /* --- Form Rightside Due-Date --- */
@@ -405,10 +403,13 @@
     border: 1px solid #D1D1D1;
     border-radius: 10px;
 
+    font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
     font-size: 21px;
     line-height: 120%;
+
+    color: #000000;
 
     cursor: pointer;
 }
@@ -436,6 +437,7 @@
 }
 
 .add-task-prio-button-container {
+    box-sizing: border-box;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -499,6 +501,7 @@
 
 /* --- Form Rightside Subtask --- */
 .add-task-subtask {
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -506,7 +509,6 @@
     gap: 8px;
 
     width: 100%;
-    height: 111px;
 }
 
 .add-task-subtask label {
@@ -524,6 +526,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     padding: 18px 21px;
     gap: 10px;
     isolation: isolate;
@@ -537,4 +540,149 @@
 
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
+}
+
+.add-task-subtask-main-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+}
+
+.add-task-subtask-main-placeholder input {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 120%;
+
+    border: none;
+    outline: none;
+}
+
+.add-task-subtask-placeholder::placeholder {
+    color: #D1D1D1;
+}
+
+.add-task-subtask-main-placeholder img {
+    cursor: pointer;
+}
+
+.add-task-new-subtask-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 9px;
+}
+
+.add-task-add-subtask {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: 70px;
+
+    overflow-y: scroll;
+}
+
+.add-task-add-subtask div input {
+    background: linear-gradient(180deg, #F9F9F9 0%, #F0F0F0 100%);
+    border: 1px solid #000000;
+    border-radius: 3px
+}
+
+.add-task-add-subtask div span {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+
+    color: #000000;
+}
+
+/* --- Form Rightside Buttons --- */
+.add-task-buttons {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 25px;
+}
+
+.add-task-clear {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 18px 10px;
+    gap: 10px;
+
+    width: 136px;
+    height: 61px;
+
+    border: 1px solid #2A3647;
+    border-radius: 10px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 120%;
+
+    color: #2A3647;
+    cursor: pointer;
+}
+
+.add-task-clear:hover {
+    border: 2px solid #29ABE2;
+
+    color: #29ABE2;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.add-task-clear:hover .d-none {
+    display: block !important;
+}
+
+.add-task-clear:hover .add-task-clear-img {
+    display: none;
+}
+
+.add-task-create {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 18px 10px;
+    gap: 10px;
+
+    width: 185px;
+    height: 61px;
+
+    background: #2A3647;
+    border-radius: 10px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 120%;
+
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.add-task-create:hover {
+    background: #29ABE2;
+    border: #29ABE2;
+
+    color: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
