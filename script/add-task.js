@@ -70,8 +70,9 @@ function renderNewCategoryDots() {
 /*-- Category add new Category --*/
 function saveNewColor(dotColor, d) {
     selectedColorNewCategory = [];
-    renderNewCategoryDots();
     selectedColorNewCategory.push(dotColor);
+    console.log(selectedColorNewCategory);
+    renderNewCategoryDots();
     document.getElementById(`selected-dot-active${d}`).classList.add('dropdown-option-dots-selected');
 }
 
@@ -150,6 +151,7 @@ function initDueDate() {
 /*-- Prio --*/
 function initPrioButtons() {
     const prioButtons = ['urgent', 'medium', 'low'];
+    document.getElementById('add-task-priobutton-render').innerHTML = '';
 
     for (let i = 0; i < prioButtons.length; i++) {
         let prioName = prioButtons[i];
@@ -159,7 +161,6 @@ function initPrioButtons() {
 }
 
 function setAddTaskPrioButton(prioId) {
-    document.getElementById('add-task-priobutton-render').innerHTML = '';
     initPrioButtons();
 
     prioButtonSet = [];
@@ -213,7 +214,6 @@ function renderSubtaskCheckbox() {
 function clearAddTask() {
     selectedColorNewCategory = []; // nicht entfernen??????
     prioButtonSet = [];
-    document.getElementById('add-task-priobutton-render').innerHTML = '';
     addSubtasks = [];
     document.getElementById('add-task-subtask-addtask-render').innerHTML = '';
 
@@ -311,6 +311,7 @@ function loadAssignedToHTML() {
     `;
 }
 
+/*-- Due Date Template-HTML --*/
 function renderDueDate(today) {
     return /*html*/`
     <label for="add-task-input-due-date">Due date</label>
