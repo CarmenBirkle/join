@@ -123,14 +123,14 @@
             </div>
                 
 
-            <div class="contacts-container-left">
+            <div id="contacts-container-left" class="contacts-container-left">
 
                 <div class="contacts-newcontact-btn-resp" onclick="contactsShowOverlayNew()">
                     <div>New contact</div>
                     <img src="./assets/img/icons/conctacts-add-new-contact.icon.png" alt="">
                 </div>
 
-                <div id="contacts-list" class="contact-list-container">
+                <div id="contacts-list" class="contact-list-container" >
  <!-- Testdaten  -->
 <!-- Renderbereich für Contacts - aktuell nur mit Testdaten -->
                         <div id="contacts-letter-container-C" class="contacts-letter-container">
@@ -138,7 +138,7 @@
                                 C 
                             </div>
                             <hr>
-                            <div class="contacts-single-data">
+                            <div id="contacs-singele-data1" class="contacts-single-data" onclick="contactsShowUser(1)">
                                 <div>
                                     <div class="contacts-initals">CB</div>
                                 </div>
@@ -155,7 +155,7 @@
                                 G 
                             </div>
                             <hr>
-                            <div class="contacts-single-data">
+                            <div class="contacts-single-data" onclick="contactsShowUser(1)">
                                 <div>
                                     <div class="contacts-initals">GB</div>
                                 </div>
@@ -165,7 +165,7 @@
                                 </div>
                             </div>
 
-                            <div class="contacts-single-data">
+                            <div class="contacts-single-data" onclick="contactsShowUser(1)">
                                 <div>
                                     <div class="contacts-initals">GU</div>
                                 </div>
@@ -182,7 +182,7 @@
                                 H 
                             </div>
                             <hr>
-                            <div class="contacts-single-data">
+                            <div class="contacts-single-data" onclick="contactsShowUser(1)">
                                 <div>
                                     <div class="contacts-initals">CB</div>
                                 </div>
@@ -197,59 +197,18 @@
                     
                  </div>
             </div>   
-            
-            <div class="contacts-container-right">
+    <!-- Render-Area for mobile Contact Details - only display if triggert per button and screen smaller then 1070px -->
+            <div id="contacts-container-right-mobile" class="d-none"> </div>
+    <!-- Contact Details - display only and screen bigger then 1070 px  -->
+            <div id="contacts-container-right" class="contacts-container-right">
                 
                 <div class="contacts-titel">
                     <h1>Contacts</h1>
                     <div></div>
                     <h3>Better with a team</h3>
                 </div>
-
-                <div class="contacts-information">
-                    <div class="contacts-information-top">
-                        <div class="contact-icon">
-                            <div class="contact-initals-big">CB</div>
-                        </div>
-                        <div class="contact-info-top-right">
-                            <div class="contact-name">Carmen Birkle</div>
-                            <div class="add-task" onclick="contactsOpenAddTask()">
-                                <img src="./assets/img/icons/contact-add-task.png" alt="+">
-                                <div>Add Task</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="contacts-information-center">
-                        <div class="contacts-info-center-titel">Contact information</div>
-                        <div class="contacts-edit" onclick="contactsShowOverlayEdit()">
-                            <img src="./assets/img/icons/contact-edit.png" alt="edit">
-                            <div>Edit Contact</div>
-                        </div>
-                    </div>
-    
-                    <div class="contacts-information-bottom">
-                        <div>
-                            <div>
-                                Email
-                            </div>
-                            <div class="contacts-info-botton-email contacts-info-botton-content">
-                                test@test.de
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <div>
-                                    Phone
-                                </div>
-                                <div class="contacts-info-botton-content">
-                                    +49 123 456 456 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                
-                </div>
+    <!-- Render-Area for left Contact-Details - screen bigger then 1070px -->
+                <div id="contacts-user" class="contacts-information"> </div>
 
                 <div class="contacts-new-contact-button" onclick="contactsShowOverlayNew()">
                     <div>New contact</div>
@@ -261,7 +220,7 @@
         </div>
 
         
-      
+        <script src="./script/contacts-templates.js"></script>
         <script src="./script/contacts.js"></script>
         <script src="./script/app.js"></script>
     </body>

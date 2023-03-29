@@ -451,6 +451,10 @@ input::placeholder{
     height: 19px;
 }
 
+.contacts-information{
+    /* display:none; */
+}
+
 .contacts-information-bottom{
     margin-top: 21px;
     font-weight: 700;
@@ -519,6 +523,10 @@ input::placeholder{
     font-weight: 700;
     font-size: 21px;
     line-height: 120%;
+}
+
+.contacts-container-right-mobile{
+    display: flex;
 }
 
 .contacts-success{
