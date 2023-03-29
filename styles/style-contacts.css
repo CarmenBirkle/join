@@ -499,30 +499,51 @@ input::placeholder{
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.contacts-newcontact-btn-resp{
+.contacts-container-btn-resp{
+    height:87px;
     display: none;
+}
+
+.contacts-newcontact-btn-resp{
     background-color: var(--dark-grey);
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 14px 10px;
     gap: 10px;
     position: absolute;
     color:white;
     border: 1px solid #2A3647;
     border-radius: 10px;
-    top: 106px;
+    right: 0;
     width:130px;
-    right:  10px;  
+    height: 53px;
+    width:193px;
     cursor: pointer;
-
+    margin-top: 17px;
+    margin-right: 10px;
+    font-size: 21px;
 }
 
 .contacts-new-contact-button > div {
     font-weight: 700;
     font-size: 21px;
     line-height: 120%;
+}
+
+#mobile-LeftTemplate{
+    
+}
+
+.contacts-title{
+    
+}
+.contacts-mobile-back{
+    position:absolute;
+    right: 35px;
+    top: 17.59%;
+    height: 15.56px;
+    width: 16px;
 }
 
 .contacts-container-right-mobile{

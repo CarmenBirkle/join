@@ -48,14 +48,16 @@ function mobileLeftTemplate(i){
     return `
     <div id="mobileLeftTemplate" class="">
 
-    <div class="contacts-titel">
-                    <h1>Contacts</h1>
-                    <div></div>
-                    <h3>Better with a team</h3>
-                </div>
+        <div class="contacts-titel-mobile">
+            <div class="contacts-sub-title-mobile">Kanban Project Management Tool</div>
+            <img class="contacts-mobile-back" src="./assets/img/icons/help-side-back.svg" onclick="contactsCloseMobileContacts()" alt="X">
+            <h1>Contacts</h1>
+            <h3>Better with a team</h3>
+            <div class=contacts-mobile-line></div>
+        </div>
 
     <div class="contacts-information-top">
-                <div class="contact-icon">
+                <div class="contact-icon-mobile">
                     <div class="contact-initals-big">CB</div>
                 </div>
                 <div class="contact-info-top-right">
@@ -94,6 +96,9 @@ function mobileLeftTemplate(i){
                     </div>
                 </div>
             </div>
+            <div class="btn-mobil-edit"> 
+                <img src="./assets/img/icons/contacts-edit-mobile.png" alt="edit">
             </div>
+    </div>
     `;
 }

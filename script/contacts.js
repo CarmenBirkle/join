@@ -46,7 +46,7 @@ function contactsCloseAddTask(){
 * @param {number} i // index-number of contacts-array
  */
 
-// vervollständigen wenn das Backand steht (Logik: es wird ein Index übergeben und anhand dessen 
+// TODO vervollständigen wenn das Backand steht (Logik: es wird ein Index übergeben und anhand dessen 
 // die Daten in der Renderfunktion verarbeiten) -> Daten Links
 function contactsShowUser(i){
     document.getElementById('contacts-user').innerHTML = getUserLeftTemplate(i);
@@ -54,42 +54,20 @@ function contactsShowUser(i){
    
     if (window.innerWidth < 1170) {
         document.getElementById('contacts-container-right-mobile').classList.remove('d-none');
-        document.getElementById('contacts-container-left').classList.add('d-none');
-        // document.getElementById('mobileContainerRight').classList.remove('d-none');
-      
-        
-        console.log('funktion - klein')
+        document.getElementById('contacts-container-left').classList.add('d-none');    
+        console.log('funktion - klein') // TODO Rausnehmen wenn Contacts fertig
 
       
     } else {
         document.getElementById('contacts-container-right-mobile').classList.add('d-none');
         document.getElementById('contacts-container-left').classList.remove('d-none');
-        console.log('funktion - groß');
+        console.log('funktion - groß'); // TODO Rausnehmen wenn Contacts fertig
     }
 }
 
 
-//   function handleWindowResize() {
-//     try {
-//         handleWindowResizeContacs()
-//     } catch (error) {
-        
-//     }
-    // handleWindowResizeContacs()
-    
-    // if (window.innerWidth > 1170) {
-    //   console.log('rezise groß') 
-    //   document.getElementById('contacts-container-right-mobile').classList.add('d-none');
-    //   document.getElementById('contacts-container-right').classList.remove('d-none');
-    //   document.getElementById('contacts-container-left').classList.remove('d-none');
-    //   console.log('ende groß')
-    // } else {
-    //   console.log('resise klein')
-    //   document.getElementById('contacts-container-right').classList.add('d-none');
-    // }
-  //}
 
-  window.onresize = handleWindowResizeContacs;
+window.onresize = handleWindowResizeContacs;
   
 function handleWindowResizeContacs(){
        if (window.innerWidth > 1170) {
@@ -145,5 +123,8 @@ function saveContact(){
   
   //return false; // Verhindern, dass das Formular gesendet wird
 
-       
+  function contactsCloseMobileContacts(){
+    document.getElementById('contacts-container-right-mobile').classList.add('d-none');
+    document.getElementById('contacts-container-left').classList.remove('d-none');  
+  }
  
