@@ -75,6 +75,7 @@ function handleWindowResizeContacs(){
       document.getElementById('contacts-container-right-mobile').classList.add('d-none');
       document.getElementById('contacts-container-right').classList.remove('d-none');
       document.getElementById('contacts-container-left').classList.remove('d-none');
+
     //   console.log('ende groß')
     } else {
     //   console.log('resise klein')

@@ -1,3 +1,7 @@
+body{
+    overflow-x: hidden;
+}
+
 h1{
     font-weight: 700;
     font-size: 61px;
@@ -112,6 +116,11 @@ input::placeholder{
     margin-top: 12px; 
 }
 
+.contacts-white{
+    display: none;
+    cursor: pointer;
+}
+
 .contacts-400{
     font-weight: 400;;
 }
@@ -127,15 +136,14 @@ input::placeholder{
     display: flex;
     align-items: center;
     gap: 84px;
-    /* overflow: hidden; */
-
 }
 
-.contacts-add-contact-right > img{
+.contacts-full{
     position: absolute;
     height: 21.65px;
     left: 1148.82px;
     top: 49.11px;
+    cursor: pointer;
 }
 
 .contacts-addTask-close{
@@ -143,6 +151,7 @@ input::placeholder{
     height: 21.65px;
     left: 1148.82px;
     top: 49.11px;
+    cursor: pointer;
 }
 
 .contacts-input-with-icon {
@@ -243,6 +252,7 @@ input::placeholder{
     width:357px;
     height: 79px;
     border-radius: 10px;
+    cursor:pointer
 }
 
 .contacts-single-data:hover{
@@ -531,19 +541,13 @@ input::placeholder{
     line-height: 120%;
 }
 
-#mobile-LeftTemplate{
-    
-}
-
-.contacts-title{
-    
-}
 .contacts-mobile-back{
     position:absolute;
     right: 35px;
     top: 17.59%;
     height: 15.56px;
     width: 16px;
+    cursor: pointer;
 }
 
 .contacts-container-right-mobile{
@@ -582,21 +586,26 @@ input::placeholder{
     opacity: 0;
 }
 
+
   @keyframes fadeInRight {
     from {
       opacity: 1;
+      overflow:hidden;
     }
   
     to {
       opacity: 1;
+      overflow:hidden;
     }
   
     0% {
       transform: translateX(100%);
+      overflow:hidden;
     }
   
     100% {
       transform: translateX(0);
+      overflow:hidden;
     }
   }
   
@@ -615,6 +624,7 @@ input::placeholder{
             opacity: 1;
     }
   }
+
   
 
 

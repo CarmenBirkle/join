@@ -128,6 +128,18 @@
         align-items: center;
     }
 
+    .contacts-full{
+        display:none;
+    }
+
+    .contacts-white{
+        display:block;
+        position: absolute;
+        height: 21.65px;
+        left: 334.82px;
+        top: -321.83px;
+    }
+
     .contacts-add-contact{
         flex-direction: column;
         max-width: 381px;
@@ -199,7 +211,7 @@
     .contacts-btn-create-contact{
         height:51px;
         width: 212px;
-        
+
     }
 }
 
