@@ -21,7 +21,7 @@
     <title>Add Task | Join</title>
 </head>
 
-<body onload="init(); initCategory(); initAssignedTo(); initPrioButtons(); initSubtask()">
+<body onload="init(); initAddTask()">
     <div w3-include-html="./assets/templates/header-template.html"></div>
     <div w3-include-html="./assets/templates/side-bar-template.html"></div>
 
@@ -65,9 +65,8 @@
                 <div class="add-task-greyline"></div>
                 <!-- Right Side -->
                 <div class="add-task-rightside">
-                    <div class="add-task-due-date">
-                        <label for="add-task-input-due-date">Due date</label>
-                        <input id="add-task-input-due-date" type="date" required>
+                    <div class="add-task-due-date" id="add-task-due-date">
+                        <!-- Due Date Render Section -->
                     </div>
                     <div class="add-task-prio">
                         <label>Prio</label>
@@ -86,7 +85,7 @@
                         </div>
                     </div>
                     <div class="add-task-buttons">
-                        <button type="button" class="add-task-clear">
+                        <button type="reset" class="add-task-clear" onclick="clearAddTask()">
                             Clear
                             <img class="add-task-clear-img" src="./assets/img/icons/add-task-button-clear.svg" alt="cross">
                             <img class="d-none" src="./assets/img/icons/add-task-button-clear-blue.svg" alt="cross">

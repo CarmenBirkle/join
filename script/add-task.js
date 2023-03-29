@@ -6,6 +6,15 @@ let prioButtonSet = [];
 let addSubtasks = [];
 
 
+/*-- Init All Elements --*/
+function initAddTask() {
+    initCategory();
+    initAssignedTo();
+    initDueDate();
+    initPrioButtons();
+    initSubtask();
+}
+
 /*-- Category --*/
 function initCategory() {
     document.getElementById('add-task-category-render').innerHTML = loadCategoryHTML();
@@ -102,6 +111,7 @@ function addedNewCategoryMessage() {
 
 /*-- Assigned-To --*/
 function initAssignedTo() {
+    document.getElementById('add-task-assignedto-render').innerHTML = '';
     document.getElementById('add-task-assignedto-render').innerHTML = loadAssignedToHTML();
 }
 
@@ -128,6 +138,14 @@ function renderAssignedToSelection() {
     }
 }
 */
+
+/*-- Due Date --*/
+function initDueDate() {
+    document.getElementById('add-task-due-date').innerHTML = '';
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('add-task-due-date').innerHTML = renderDueDate(today);
+}
+
 
 /*-- Prio --*/
 function initPrioButtons() {
@@ -191,6 +209,16 @@ function renderSubtaskCheckbox() {
     }
 }
 
+/*-- Clear / Create Button --*/
+function clearAddTask() {
+    selectedColorNewCategory = []; // nicht entfernen??????
+    prioButtonSet = [];
+    document.getElementById('add-task-priobutton-render').innerHTML = '';
+    addSubtasks = [];
+    document.getElementById('add-task-subtask-addtask-render').innerHTML = '';
+
+    initAddTask();
+}
 
 
 
@@ -280,6 +308,13 @@ function loadAssignedToHTML() {
     </div>
     <div id="add-task-assignedto-dropdown" class="add-task-category-dropdown-open d-none">                          
      </div>
+    `;
+}
+
+function renderDueDate(today) {
+    return /*html*/`
+    <label for="add-task-input-due-date">Due date</label>
+    <input id="add-task-input-due-date" type="date" min="${today}" required>
     `;
 }
 
