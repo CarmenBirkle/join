@@ -6,6 +6,15 @@ let prioButtonSet = [];
 let addSubtasks = [];
 
 
+/*-- Init All Elements --*/
+function initAddTask() {
+    initCategory();
+    initAssignedTo();
+    initDueDate();
+    initPrioButtons();
+    initSubtask();
+}
+
 /*-- Category --*/
 function initCategory() {
     document.getElementById('add-task-category-render').innerHTML = loadCategoryHTML();
@@ -61,8 +70,9 @@ function renderNewCategoryDots() {
 /*-- Category add new Category --*/
 function saveNewColor(dotColor, d) {
     selectedColorNewCategory = [];
-    renderNewCategoryDots();
     selectedColorNewCategory.push(dotColor);
+    console.log(selectedColorNewCategory);
+    renderNewCategoryDots();
     document.getElementById(`selected-dot-active${d}`).classList.add('dropdown-option-dots-selected');
 }
 
@@ -102,6 +112,7 @@ function addedNewCategoryMessage() {
 
 /*-- Assigned-To --*/
 function initAssignedTo() {
+    document.getElementById('add-task-assignedto-render').innerHTML = '';
     document.getElementById('add-task-assignedto-render').innerHTML = loadAssignedToHTML();
 }
 
@@ -129,9 +140,18 @@ function renderAssignedToSelection() {
 }
 */
 
+/*-- Due Date --*/
+function initDueDate() {
+    document.getElementById('add-task-due-date').innerHTML = '';
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('add-task-due-date').innerHTML = renderDueDate(today);
+}
+
+
 /*-- Prio --*/
 function initPrioButtons() {
     const prioButtons = ['urgent', 'medium', 'low'];
+    document.getElementById('add-task-priobutton-render').innerHTML = '';
 
     for (let i = 0; i < prioButtons.length; i++) {
         let prioName = prioButtons[i];
@@ -141,7 +161,6 @@ function initPrioButtons() {
 }
 
 function setAddTaskPrioButton(prioId) {
-    document.getElementById('add-task-priobutton-render').innerHTML = '';
     initPrioButtons();
 
     prioButtonSet = [];
@@ -191,6 +210,15 @@ function renderSubtaskCheckbox() {
     }
 }
 
+/*-- Clear / Create Button --*/
+function clearAddTask() {
+    selectedColorNewCategory = []; // nicht entfernen??????
+    prioButtonSet = [];
+    addSubtasks = [];
+    document.getElementById('add-task-subtask-addtask-render').innerHTML = '';
+
+    initAddTask();
+}
 
 
 
@@ -280,6 +308,14 @@ function loadAssignedToHTML() {
     </div>
     <div id="add-task-assignedto-dropdown" class="add-task-category-dropdown-open d-none">                          
      </div>
+    `;
+}
+
+/*-- Due Date Template-HTML --*/
+function renderDueDate(today) {
+    return /*html*/`
+    <label for="add-task-input-due-date">Due date</label>
+    <input id="add-task-input-due-date" type="date" min="${today}" required>
     `;
 }
 

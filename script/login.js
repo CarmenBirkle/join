@@ -47,3 +47,7 @@ function hidePasswordConfirm(){
     document.getElementById('send-new-password-confirm').classList.add('d-none');
     window.location.replace("index.html");
 }
+
+function test(){
+    console.log('Submitted')
+}
