@@ -131,6 +131,7 @@
     .contacts-add-contact{
         flex-direction: column;
         max-width: 381px;
+        height: 761px;
     }
 
     .contacts-add-contact-left{
@@ -147,6 +148,7 @@
         height:761px;
         overflow: visible;
         margin-bottom: 32px;
+        position:relative;
     }
     
     .contacts-add-contact-left > img{
@@ -170,6 +172,9 @@
 
     .contact-img{
         width:120px;
+        position: absolute;
+        left: 15%;
+        top: -85px;
     }
     .contacts-input-with-icon{
         width: 327px;
@@ -179,6 +184,22 @@
     
     .contacts-btn-cancel{
         display:none;
+    }
+
+    .form{
+        margin-top:49px;
+        width: 381px;
+
+    }
+
+    .contacts-btn-container{
+        justify-content: center;
+    }
+
+    .contacts-btn-create-contact{
+        height:51px;
+        width: 212px;
+        
     }
 }
 
