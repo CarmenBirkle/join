@@ -1,11 +1,17 @@
 Aktuelle Todos:
 Daniel: Add Task / Summary responsive
+<<<<<<< HEAD
+Carmen: Contacts
+Pascal: Animationen bei Login
+=======
 Carmen: Help + Legal Notice
 Pascal: Animationen bei Login, Board html
+>>>>>>> main
 
 
 Allgemein: 
 Scrollbalken design (https://www.w3schools.com/howto/howto_css_custom_scrollbar.asp)
+Scrollbalken weg Contacts
 Account-Namen merken beim einloggen (cookie oder anders)
 
 
@@ -19,7 +25,6 @@ Zur Prüfung:
 Templates (side-bar + header) - Carmen
 
 offen: 
-Logik für Sidebar Button bleibt blau -> hier brauche ich Hilfe, hänge hier
 
 
 Erledigt: 
@@ -28,5 +33,8 @@ Fonts definiert und eingebunden - Carmen
 GitHub Account erstellt - Carmen
 Grundstruktur Summary - Daniel
 Login Prozess html und css - Pascal
-Templates (side-bar + header) - Carmen
+Templates (side-bar + header) responsive  - Carmen
+Help + Legal Notice incl. responsive - Carmen 
+Logik Sidebar - Carmen
+
 

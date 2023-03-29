@@ -9,14 +9,221 @@
         <link rel="stylesheet" href="./styles/side-bar.css">
         <link rel="stylesheet" href="./styles/style-media-side-bar.css">
         <link rel="stylesheet" href="./styles/style-media-header.css">
+        <link rel="stylesheet" href="./styles/style-contacts.css">
+        <link rel="stylesheet" href="./styles/style-media-contacts.css">
         <link rel="shortcut icon" type="image/x-icon" href="./assets/img/side-bar-join-logo.svg">
         <title>Contacts | Join</title>
     </head>
     <body onload = "init()">
         <div w3-include-html="./assets/templates/header-template.html"></div>
         <div w3-include-html="./assets/templates/side-bar-template.html"></div>
+        
+        <div class="contacts-main">
+            <!-- Include Template Add Task - noch nicht fertig, derzeit nur Platzhalter -->
+            <div id="contacts-add-task" class="d-none">
+                <div class="contacts-overlay">
+                    <div class="contacts-add-contact fadeInRight">
+                        <img class="contacts-addTask-close" onclick="contactsCloseAddTask()" src="./assets/img/icons/contacs-x.svg" onclick="contactsCloseAddTask()" alt="X">
+                        <div class="contacts-include-tasks" w3-include-html="./assets/templates/task-template.html"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- RenderArea Edit Contact -->
+            <div id="contacts-popup-edit-Contact" class="d-none" >
+                <!-- ab hier in rednerfunktion -->
 
+                <div id="render-popup-edit-Contact" class="contacts-overlay">
+                    <div class="contacts-add-contact fadeInRight">
+                        <div class="contacts-add-contact-left">
+                            <img src="./assets/img/side-bar-join-logo.svg" alt="Join">
+                            <h1>Edit Contact</h1>
+                            <hr>
+                        </div>
+                        <div class="contacts-add-contact-right">
+                            <img src="./assets/img/icons/contacs-x.svg" onclick="contactsCloseOverlayEdit()" alt="close">
+                            <div class="contact-img">
+                                <div class="contact-initals-big">CB</div>
+                            </div>
+                            <form action="" onsubmit="saveContact(); return false">
+                                <div class="contacts-input-with-icon">
+                                    <input type="text" required required pattern="[a-zA-ZäöüÄÖÜß]+\s[a-zA-ZäöüÄÖÜß]+" placeholder="Name" value="Carmen Birkle" title="Gebe Deinen Vor- und Nachnamen an (2 Wörter)">
+                                    <span class="contacts-icon-name"></span>
+                                </div>
+                                
+                             
+                                <div class="contacts-input-with-icon">
+                                    <input class="contacts-email" type="email" required placeholder="Email"  value="carmen@test.de">
+                                    <span class="contacts-icon-email"></span>
+                                </div>
     
+                                <div class="contacts-input-with-icon">
+                                    <input type="tel" required placeholder="Phone" pattern="[0-9]+-[0-9]+" value="0123-45678" title="Das Format sollte diesem Schema entsprechen: 0123-456789" >
+                                    <span class="contacts-icon-phone"></span>
+                                </div>
+                    
+                                <div class="contacts-btn-container-edit">
+                                    <button class="contacts-btn-save-contact">Save</button>
+                                </div>
+                                
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- bis hier in renderunktion  -->
+            </div>
+            <div id="contacts-popup-add-contact" style="display: none" >
+                <div class="contacts-add-contact fadeInRight">
+                    <div class="contacts-add-contact-left">
+                        <img src="./assets/img/side-bar-join-logo.svg" alt="Join">
+                        <h1>Add contact</h1>
+                        <h3 class="contacts-400">Tasks are better with a team!</h3>
+                        <hr class="contacts-hr">
+                    </div>
+                    <div class="contacts-add-contact-right">
+                        <img src="./assets/img/icons/contacs-x.svg" onclick="contactsCloseOverlayNew()" alt="X">
+                        <div class="contacts-container-success">
+                            <div id="contacts-success" class="contacts-success d-none">Contact succesfully created</div>
+                        </div>
+                        <div class="contact-img">
+                            <img src="./assets/img/icons/contacts-empty-icon.svg" alt="newContact">
+                        </div>
+                        <form class="form" onsubmit="saveContact(); return false;">
+                            <div class="contacts-input-with-icon">
+                                <input id="contact-name" type="text" required required pattern="[a-zA-ZäöüÄÖÜß]+\s[a-zA-ZäöüÄÖÜß]+" placeholder="Name" title="Gebe Deinen Vor- und Nachnamen an (2 Wörter)">
+                                <span class="contacts-icon-name"></span>
+                            </div>
+                            
+                         
+                            <div class="contacts-input-with-icon">
+                                <input id="contact-email" class="contacts-email" type="email" required placeholder="Email">
+                                <span class="contacts-icon-email"></span>
+                            </div>
+
+                            <div class="contacts-input-with-icon">
+                                <input id="contact-tel" type="tel" required placeholder="Phone" pattern="[0-9]+-[0-9]+" title="Das Format sollte diesem Schema entsprechen: 0123-456789" >
+                                <span class="contacts-icon-phone"></span>
+                            </div>
+                
+                            <div class="contacts-btn-container">
+                                <button id="contacts-cancel"class="contacts-btn-cancel" formnovalidate onclick="contactsCancelNewContact()">Cancel
+                                    <img class="contacts-img-cancel "src="./assets/img/icons/contacs-x.svg">
+                                </button>
+                                <button id="contacts-save" class="contacts-btn-create-contact"> Create contact
+                                    <img class="contacts-img-check" src="./assets/img/icons/contacts-check.svg">
+                                </button>
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+                
+
+            <div id="contacts-container-left" class="contacts-container-left">
+                <div class="contacts-container-btn-resp">
+                    <div class="contacts-newcontact-btn-resp" onclick="contactsShowOverlayNew()">
+                        <div>New contact</div>
+                        <img src="./assets/img/icons/conctacts-add-new-contact.icon.png" alt="">
+                    </div>
+                </div>
+
+
+                <div id="contacts-list" class="contact-list-container" >
+ <!-- Testdaten  -->
+<!-- Renderbereich für Contacts - aktuell nur mit Testdaten -->
+                        <div id="contacts-letter-container-C" class="contacts-letter-container">
+                            <div class="contacts-first-letter">
+                                C 
+                            </div>
+                            <hr>
+                            <div id="contacs-singele-data1" class="contacts-single-data" onclick="contactsShowUser(1)">
+                                <div>
+                                    <div class="contacts-initals">CB</div>
+                                </div>
+                                <div class="contacts-details">
+                                    <div>Carmen Birkle</div>
+                                    <div class="contacts-single-email">carmen@test.de</div>
+                                </div>
+                            </div>
+                        </div>
+                    
+
+                        <div id="contacts-letter-container-G" class="contacts-letter-container">
+                            <div class="contacts-first-letter">
+                                G 
+                            </div>
+                            <hr>
+                            <div class="contacts-single-data" onclick="contactsShowUser(1)">
+                                <div>
+                                    <div class="contacts-initals">GB</div>
+                                </div>
+                                <div class="contacts-details">
+                                    <div>Pascal Gajewski</div>
+                                    <div class="contacts-single-email">gajewski@test.de</div>
+                                </div>
+                            </div>
+
+                            <div class="contacts-single-data" onclick="contactsShowUser(1)">
+                                <div>
+                                    <div class="contacts-initals">GU</div>
+                                </div>
+                                <div class="contacts-details">
+                                    <div>GuestUser</div>
+                                    <div class="contacts-single-email">guest@test.de</div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div id="contacts-letter-container-H" class="contacts-letter-container">
+                            <div class="contacts-first-letter">
+                                H 
+                            </div>
+                            <hr>
+                            <div class="contacts-single-data" onclick="contactsShowUser(1)">
+                                <div>
+                                    <div class="contacts-initals">CB</div>
+                                </div>
+                                <div class="contacts-details">
+                                    <div>Daniel Hartmann</div>
+                                    <div class="contacts-single-email">hartmann@test.de</div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- Renderbereich bis hierher - kann dann gelöscht werden  -->
+                    
+                 </div>
+            </div>   
+    <!-- Render-Area for mobile Contact Details - only display if triggert per button and screen smaller then 1070px -->
+            <div id="contacts-container-right-mobile" class="d-none"> </div>
+    <!-- Contact Details - display only and screen bigger then 1070 px  -->
+            <div id="contacts-container-right" class="contacts-container-right">
+                
+                <div class="contacts-titel">
+                    <h1>Contacts</h1>
+                    <div></div>
+                    <h3>Better with a team</h3>
+                </div>
+    <!-- Render-Area for left Contact-Details - screen bigger then 1070px -->
+                <div id="contacts-user" class="contacts-information"> </div>
+
+                <div class="contacts-new-contact-button" onclick="contactsShowOverlayNew()">
+                    <div>New contact</div>
+                    <img src="./assets/img/icons/conctacts-add-new-contact.icon.png" alt="">
+                </div>
+
+        
+            </div>
+        </div>
+
+        
+        <script src="./script/contacts-templates.js"></script>
+        <script src="./script/contacts.js"></script>
         <script src="./script/app.js"></script>
     </body>
 </html>
