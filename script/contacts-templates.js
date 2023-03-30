@@ -96,7 +96,7 @@ function mobileLeftTemplate(i) {
                     </div>
                 </div>
             </div>
-            <div class="btn-mobil-edit"> 
+            <div class="btn-mobil-edit" onclick="contactsShowOverlayEdit()"> 
                 <img src="./assets/img/icons/contacts-edit-mobile.png" alt="edit">
             </div>
     </div>
@@ -182,13 +182,13 @@ function contactEditSingleContactTemplate(i) {
                     <div class="contacts-add-contact-right">
                         <img class="contacts-full" src="./assets/img/icons/contacs-x.svg"
                             onclick="contactsCloseOverlayEdit()" alt="X">
-                        <img class="contacts-white" src="./assets/img/icons/X-white.png"
+                        <img class="contacts-white-edit" src="./assets/img/icons/X-white.png"
                             onclick="contactsCloseOverlayEdit()" alt="X">
                         <div class="contact-img">
                             <div class="contact-initals-big">CB</div>
                     </div>
                     
-                        <form action="" onsubmit="saveContact(); return false">
+                        <form class="form-mobile" action="" onsubmit="saveContact(); return false">
                             <div class="contacts-input-with-icon">
                                 <input type="text" required required pattern="[a-zA-ZäöüÄÖÜß]+\s[a-zA-ZäöüÄÖÜß]+"
                                     placeholder="Name" value="Carmen Birkle"
