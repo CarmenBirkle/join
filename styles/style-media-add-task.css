@@ -1,5 +1,6 @@
 @media (max-width: 1170px) {
     .add-task-main-content {
+        margin-top: 0px;
         margin-left: 30px;
         margin-right: 30px;
         align-items: center;
@@ -7,6 +8,20 @@
 
     .add-task-media {
         width: 363px;
+    }
+
+    .add-task-media-kanban {
+        display: flex;
+
+        margin: 119px 0px 20px 3px;
+
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 120%;
+
+        color: #000000;
     }
 
     .add-task-headline {
@@ -44,8 +59,6 @@
     }
 
     .add-task-description {
-        margin-bottom: 0px;
-
         height: 120px;
     }
 
@@ -99,8 +112,6 @@
     /* --- Form Rightside Due-Date --- */
     .add-task-due-date {
         height: 68px;
-
-        margin-bottom: 0px;
     }
 
     .add-task-due-date label {
@@ -160,13 +171,13 @@
 
         background: #2A3647;
         border-radius: 10px;
-    
+
         font-family: 'Inter';
         font-style: normal;
         font-weight: 700;
         font-size: 21px;
         line-height: 120%;
-    
+
         color: #FFFFFF;
         cursor: pointer;
 
@@ -175,14 +186,14 @@
         justify-content: center;
         align-items: center;
         position: absolute;
-        top:17px;
+        top: 17px;
         right: 10px;
     }
 
     .add-task-create-media:hover {
         background: #29ABE2;
         border: #29ABE2;
-    
+
         color: #FFFFFF;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     }
