@@ -1,0 +1,189 @@
+@media (max-width: 1170px) {
+    .add-task-main-content {
+        margin-left: 30px;
+        margin-right: 30px;
+        align-items: center;
+    }
+
+    .add-task-media {
+        width: 363px;
+    }
+
+    .add-task-headline {
+        width: 363px;
+        height: 56px;
+        font-size: 47px;
+        margin-left: 3px;
+        flex-direction: flex-start;
+    }
+
+    /* --- Form --- */
+    .add-task-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* --- Form-Left-Side --- */
+    .add-task-leftside {
+        width: 363px;
+
+        gap: 9px;
+    }
+
+    .add-task-title {
+        height: 68px;
+    }
+
+    .add-task-title label {
+        height: 19px;
+        font-size: 16px;
+    }
+
+    .add-task-title input {
+        font-size: 16px;
+    }
+
+    .add-task-description {
+        margin-bottom: 0px;
+
+        height: 120px;
+    }
+
+    .add-task-description label {
+        height: 19px;
+        font-size: 16px;
+    }
+
+    .add-task-description textarea {
+        font-size: 16px;
+    }
+
+    /* --- Form-Left-Side-Category --- */
+    .add-task-category label {
+        height: 19px;
+
+        font-size: 16px;
+    }
+
+    .add-task-category-dropdown {
+        font-size: 16px;
+    }
+
+    .add-task-new-categroy-input {
+        font-size: 16px;
+    }
+
+    /* --- Form-Left-Side-Assigned --- */
+    .add-task-assigned label {
+        height: 19px;
+
+        font-size: 16px;
+    }
+
+    .add-task-assigned-dropdown {
+        font-size: 16px;
+    }
+
+    /* --- Form-Greyline-Mid --- */
+    .add-task-greyline {
+        display: none;
+    }
+
+    /* --- Form-Right-Side --- */
+    .add-task-rightside {
+        width: 363px;
+
+        gap: 9px;
+    }
+
+    /* --- Form Rightside Due-Date --- */
+    .add-task-due-date {
+        height: 68px;
+
+        margin-bottom: 0px;
+    }
+
+    .add-task-due-date label {
+        font-size: 16px;
+    }
+
+    .add-task-due-date input {
+        font-size: 16px;
+    }
+
+    /* --- Form Rightside Due-Date --- */
+    .add-task-prio {
+        height: 78px;
+    }
+
+    .add-task-prio label {
+        height: 19px;
+
+        font-size: 16px;
+    }
+
+    .add-task-prio-button-container {
+        height: 51px;
+    }
+
+    .add-task-prio-button-container button {
+        height: 41px;
+
+        font-size: 16px;
+    }
+
+    /* --- Form Rightside Subtask --- */
+    .add-task-subtask label {
+        font-size: 16px;
+    }
+
+    .add-task-subtask-input-container {
+        height: 41px;
+    }
+
+    .add-task-subtask-main-placeholder input {
+        font-size: 16px;
+    }
+
+    /* --- Form Rightside Buttons --- */
+    .add-task-clear {
+        display: none;
+    }
+
+    .add-task-create {
+        display: none;
+    }
+
+    .add-task-create-media {
+        width: 124px;
+        height: 51px;
+
+        background: #2A3647;
+        border-radius: 10px;
+    
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 21px;
+        line-height: 120%;
+    
+        color: #FFFFFF;
+        cursor: pointer;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top:17px;
+        right: 10px;
+    }
+
+    .add-task-create-media:hover {
+        background: #29ABE2;
+        border: #29ABE2;
+    
+        color: #FFFFFF;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+}
