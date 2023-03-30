@@ -4,8 +4,8 @@ const activePage = window.location.pathname; // get the current pathname from wi
 
 async function init() {
     await includeHTML();
-    handleWindowResize(); // TODO Final info rausnehmen ->Solltet ihr ein Problem hiermit bekommen, kurz mal Rückskprache halten. Am besten als letzte Funktion in onLoad aufrufen
-}
+    handleWindowResize(); // TODO Final info rausnehmen 
+}     
 
 function handleWindowResize() {
     try {

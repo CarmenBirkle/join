@@ -209,7 +209,7 @@ function contactEditSingleContactTemplate(i) {
                             </div>
 
                             <div class="contacts-btn-container-edit">
-                                <button class="contacts-btn-save-contact">Save</button>
+                                <button type="submit" class="contacts-btn-save-contact">Save</button>
                             </div>
 
                         </form>

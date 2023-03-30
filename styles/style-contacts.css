@@ -306,6 +306,13 @@ input::placeholder{
     cursor: pointer;
 }
 
+.contacts-btn-create-contact:hover{
+    background: #29ABE2;
+    border: #29ABE2;
+    color: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
 .contacts-btn-container{
     display:flex;
     gap: 20px
@@ -333,6 +340,13 @@ input::placeholder{
     cursor: pointer;
 }
 
+.contacts-btn-save-contact:hover{
+    background: #29ABE2;
+    border: #29ABE2;
+    color: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
 
 .contacts-btn-cancel{
     display: flex;
@@ -348,6 +362,14 @@ input::placeholder{
     border: 0.5px solid var(--dark-grey);
     cursor: pointer;
 }
+
+.contacts-btn-cancel:hover{
+    border: 2px solid #29ABE2;
+    color: #29ABE2;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+
 
 .contacts-img-cancel{
     height: 10.49px;
