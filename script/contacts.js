@@ -1,41 +1,58 @@
 /**
  * 
  */
-function contactsShowOverlayNew(){
+
+function initContacts() {
+    contactsShowContactlist();
+}
+
+function contactsShowOverlayNew() {
     let overlay = document.getElementById('contacts-popup-add-contact');
     overlay.style.display = "flex";
 }
 
-function contactsCloseOverlayNew(){ 
+function contactsCloseOverlayNew() {
     let overlay = document.getElementById('contacts-popup-add-contact');
     overlay.style.display = "none";
 }
 
-function contactsCancelNewContact(){
+function contactsCancelNewContact() {
     contactsCloseOverlayNew();
     contacsResetNewContact();
 }
 
-function contacsResetNewContact(){
-    document.getElementById('contact-name').value ='';
-    document.getElementById('contact-email').value ='';
-    document.getElementById('contact-tel').value ='';
+function contacsResetNewContact() {
+    document.getElementById('contact-name').value = '';
+    document.getElementById('contact-email').value = '';
+    document.getElementById('contact-tel').value = '';
 }
 
-function contactsShowOverlayEdit(){
+function contactsShowOverlayEdit(i) {
+    contactsShowContactToEdit(i);
     document.getElementById('contacts-popup-edit-Contact').classList.remove('d-none');
 }
 
-function contactsCloseOverlayEdit(){
+function contactsCloseOverlayEdit() {
     document.getElementById('contacts-popup-edit-Contact').classList.add('d-none');
 }
 
-function contactsOpenAddTask(){
+function contactsOpenAddTask() {
     document.getElementById('contacts-add-task').classList.remove('d-none');
 }
 
-function contactsCloseAddTask(){
+function contactsCloseAddTask() {
     document.getElementById('contacts-add-task').classList.add('d-none');
+}
+
+
+// nur vorbereitet, später mir realen Daten testen
+//Render-Funktion for ContactList Left
+function contactsShowContactlist(i) {
+    document.getElementById('contacts-list').innerHTML = contactListTemplate(i);
+}
+
+function contactsShowContactToEdit(i) {
+    document.getElementById('contacts-popup-edit-Contact').innerHTML = contactEditSingleContactTemplate(i);
 }
 
 
@@ -48,16 +65,16 @@ function contactsCloseAddTask(){
 
 // TODO vervollständigen wenn das Backand steht (Logik: es wird ein Index übergeben und anhand dessen 
 // die Daten in der Renderfunktion verarbeiten) -> Daten Links
-function contactsShowUser(i){
+function contactsShowUser(i) {
     document.getElementById('contacts-user').innerHTML = getUserLeftTemplate(i);
     document.getElementById('contacts-container-right-mobile').innerHTML = mobileLeftTemplate(i);
-   
+
     if (window.innerWidth < 1170) {
         document.getElementById('contacts-container-right-mobile').classList.remove('d-none');
-        document.getElementById('contacts-container-left').classList.add('d-none');    
+        document.getElementById('contacts-container-left').classList.add('d-none');
         console.log('funktion - klein') // TODO Rausnehmen wenn Contacts fertig
 
-      
+
     } else {
         document.getElementById('contacts-container-right-mobile').classList.add('d-none');
         document.getElementById('contacts-container-left').classList.remove('d-none');
@@ -68,18 +85,18 @@ function contactsShowUser(i){
 
 
 window.onresize = handleWindowResizeContacs;
-  
-function handleWindowResizeContacs(){
-       if (window.innerWidth > 1170) {
-    //   console.log('rezise groß') 
-      document.getElementById('contacts-container-right-mobile').classList.add('d-none');
-      document.getElementById('contacts-container-right').classList.remove('d-none');
-      document.getElementById('contacts-container-left').classList.remove('d-none');
 
-    //   console.log('ende groß')
+function handleWindowResizeContacs() {
+    if (window.innerWidth > 1170) {
+        //   console.log('rezise groß') 
+        document.getElementById('contacts-container-right-mobile').classList.add('d-none');
+        document.getElementById('contacts-container-right').classList.remove('d-none');
+        document.getElementById('contacts-container-left').classList.remove('d-none');
+
+        //   console.log('ende groß')
     } else {
-    //   console.log('resise klein')
-      document.getElementById('contacts-container-right').classList.add('d-none');
+        //   console.log('resise klein')
+        document.getElementById('contacts-container-right').classList.add('d-none');
     }
 }
 
@@ -90,7 +107,7 @@ function handleWindowResizeContacs(){
 // dann in Abhängigkeit die setTimeout Funktion von unten ausführen. ggf. die Classen-logik auslagern
 
 
-function saveContact(){
+function saveContact() {
     const div = document.getElementById('contacts-success')
     div.classList.add('fadeInBottom')
     div.classList.remove('d-none');
@@ -99,7 +116,7 @@ function saveContact(){
         contacsResetNewContact()
         div.classList.remove('fadeInBottom');
         div.classList.add('d-none');
-      }, 2000);
+    }, 2000);
 }
 
 // function saveContact() {
@@ -119,13 +136,13 @@ function saveContact(){
 //     console.log('false');
 //     contactsCloseOverlayNew();
 //         contacsResetNewContact();
-    
-//   }
-  
-  //return false; // Verhindern, dass das Formular gesendet wird
 
-  function contactsCloseMobileContacts(){
+//   }
+
+//return false; // Verhindern, dass das Formular gesendet wird
+
+function contactsCloseMobileContacts() {
     document.getElementById('contacts-container-right-mobile').classList.add('d-none');
-    document.getElementById('contacts-container-left').classList.remove('d-none');  
-  }
- 
+    document.getElementById('contacts-container-left').classList.remove('d-none');
+}
+
