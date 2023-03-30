@@ -47,6 +47,15 @@ function contactsCloseAddTask() {
     document.getElementById('contacts-add-task').classList.add('d-none');
 }
 
+function getFirstLetter(contacts){
+    contacts.forEach(element => {
+        
+    });
+    const firstLetters = name
+    .split(' ')
+    .map(word =>word.charAt(0).toUpperCase())
+}
+
 
 // nur vorbereitet, später mir realen Daten testen
 //Render-Funktion for ContactList Left
