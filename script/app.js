@@ -1,10 +1,14 @@
 // main java-script file , side behavior an all pages, menue
 let activLogOutArea = false; 
 const activePage = window.location.pathname; // get the current pathname from window.location
+setURL('https://carmen-birkle.developerakademie.net/smallest_backend_ever');
 
 async function init() {
     await includeHTML();
-    handleWindowResize(); // TODO Final info rausnehmen 
+    await downloadFromServer();
+    users = JSON.parse(backend.getItem('users')) || [];
+ 
+    // handleWindowResize(); // TODO Final info rausnehmen 
 }     
 
 function handleWindowResize() {
