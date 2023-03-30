@@ -245,6 +245,15 @@
         top: -297.83px;
     }
 
+    .contacts-container-success{
+        top: -291px;
+        left: 8%
+    }
+
+    .contacts-success{
+        border: 3px solid white; 
+    }
+
 
 }
 
