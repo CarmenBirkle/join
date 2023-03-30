@@ -2,6 +2,7 @@
     .add-task-main-content {
         margin: 0px 30px 80px 30px;
         align-items: center;
+        font-size: 16px;
     }
 
     .add-task-media {
@@ -11,13 +12,7 @@
     .add-task-media-kanban {
         display: flex;
 
-        margin: 119px 0px 20px 3px;
-
-        font-family: 'Inter';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 120%;
+        margin: 119px 0px 30px 3px;
 
         color: #000000;
     }
@@ -34,6 +29,7 @@
     .add-task-container {
         flex-direction: column;
         align-items: center;
+        margin-top: 0px;
     }
 
     /* --- Form-Left-Side --- */
@@ -49,7 +45,6 @@
 
     .add-task-title label {
         height: 19px;
-        font-size: 16px;
     }
 
     .add-task-title input {
@@ -62,7 +57,6 @@
 
     .add-task-description label {
         height: 19px;
-        font-size: 16px;
     }
 
     .add-task-description textarea {
@@ -77,12 +71,6 @@
     .add-task-category label {
         height: 19px;
         margin-bottom: 8px;
-
-        font-size: 16px;
-    }
-
-    .add-task-category-dropdown {
-        font-size: 16px;
     }
 
     .add-task-new-categroy-input {
@@ -96,8 +84,6 @@
     /* --- Form-Left-Side-Assigned --- */
     .add-task-assigned label {
         height: 19px;
-
-        font-size: 16px;
     }
 
     .add-task-assigned-dropdown {
@@ -121,10 +107,6 @@
         height: 68px;
     }
 
-    .add-task-due-date label {
-        font-size: 16px;
-    }
-
     .add-task-due-date input {
         font-size: 16px;
     }
@@ -136,8 +118,6 @@
 
     .add-task-prio label {
         height: 19px;
-
-        font-size: 16px;
     }
 
     .add-task-prio-button-container {

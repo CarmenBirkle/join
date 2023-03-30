@@ -8,6 +8,12 @@
 
     margin-top: 171px;
     margin-left: 315px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 120%;
 }
 
 .add-task-media-kanban {
@@ -17,11 +23,8 @@
 .add-task-headline {
     height: 78px;
 
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 700;
     font-size: 61px;
-    line-height: 120%;
 }
 
 /* --- Form --- */
@@ -56,12 +59,6 @@
 .add-task-title label {
     width: 65px;
     height: 25px;
-
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 21px;
-    line-height: 120%;
 
     color: #000000;
 }
@@ -102,12 +99,6 @@
 .add-task-description label {
     width: 154px;
     height: 25px;
-
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 21px;
-    line-height: 120%;
 
     color: #000000;
 }
@@ -159,12 +150,6 @@
     width: 93px;
     height: 25px;
 
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 21px;
-    line-height: 120%;
-
     color: #000000;
 }
 
@@ -180,12 +165,6 @@
 
     border: 1px solid #D1D1D1;
     border-radius: 10px;
-
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 21px;
-    line-height: 120%;
 
     color: #000000;
 
@@ -304,12 +283,6 @@
     width: 118px;
     height: 25px;
 
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 21px;
-    line-height: 120%;
-
     color: #000000;
 }
 
@@ -325,12 +298,6 @@
 
     border: 1px solid #D1D1D1;
     border-radius: 10px;
-
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 21px;
-    line-height: 120%;
 
     color: #000000;
 
@@ -373,12 +340,6 @@
 .add-task-due-date label {
     width: 91px;
     height: 25px;
-
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 21px;
-    line-height: 120%;
 
     color: #000000;
 }
@@ -424,12 +385,6 @@
 }
 
 .add-task-prio label {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 21px;
-    line-height: 120%;
-
     color: #000000;
 }
 
@@ -509,12 +464,6 @@
 }
 
 .add-task-subtask label {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 21px;
-    line-height: 120%;
-
     color: #000000;
 }
 
@@ -593,11 +542,7 @@
 }
 
 .add-task-add-subtask div span {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
     font-size: 16px;
-    line-height: 120%;
 
     color: #000000;
 }
