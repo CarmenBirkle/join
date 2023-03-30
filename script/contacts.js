@@ -2,6 +2,9 @@
  * 
  */
 
+let contacts = [];
+
+
 function initContacts() {
     contactsShowContactlist();
 }
@@ -93,14 +96,46 @@ function handleWindowResizeContacs() {
     }
 }
 
+function randomRGBColor(){
+    let r = Math.floor(Math.random() * 156);
+    let g = Math.floor(Math.random() * 156);
+    let b = Math.floor(Math.random() * 156);
+    let randomRGBColor = `${r},`+`${g},`+`${b}`;
+    return randomRGBColor;
+  }
 
+function getInitals(name){
+    const firstLetters = name
+    .split(' ')
+    .map(word =>word.charAt(0).toUpperCase())
+}
 
 // TODO - wenn das Backend steht, eine Logik implementieren, wenn die Daten erfolgreich 
 // gespeichert wurden dem Butten der ID "contacts-success" die Klasse fadeInBottom geben und dann 
 // dann in Abhängigkeit die setTimeout Funktion von unten ausführen. ggf. die Classen-logik auslagern
 
+//TODO kürzen!
 
-function saveContact() {
+async function saveContact() {
+try{
+        let name = document.getElementById('contact-name').value;
+        let email = document.getElementById('contact-email').value;
+        let phone = document.getElementById('contact-tel').value;
+        console.log(randomRGBColor())
+
+        let contact = {
+            'initals': getInitals(name), // hier ggf. nochmals schauen, wie das Format rauskommt
+            'number': contacts.length + 1,
+            'fullname':name,
+            'email': email,
+            'phone': phone,
+            'bgcolor': randomRGBColor()
+        };
+
+        contacts.push(contact);
+        await backend.setItem('contacts', JSON.stringify(contacts));
+
+
     const div = document.getElementById('contacts-success')
     div.classList.add('fadeInBottom')
     div.classList.remove('d-none');
@@ -110,7 +145,12 @@ function saveContact() {
         div.classList.remove('fadeInBottom');
         div.classList.add('d-none');
     }, 2000);
+} catch (error){
+    console.log(error);
 }
+}
+
+
 
 // function saveContact() {
 //     // Prüfen, ob der "Cancel"-Button geklickt wurde
