@@ -1,8 +1,6 @@
 @media (max-width: 1170px) {
     .add-task-main-content {
-        margin-top: 0px;
-        margin-left: 30px;
-        margin-right: 30px;
+        margin: 0px 30px 80px 30px;
         align-items: center;
     }
 
@@ -72,8 +70,13 @@
     }
 
     /* --- Form-Left-Side-Category --- */
+    .add-task-category {
+        gap: 0px;
+    }
+
     .add-task-category label {
         height: 19px;
+        margin-bottom: 8px;
 
         font-size: 16px;
     }
@@ -84,6 +87,10 @@
 
     .add-task-new-categroy-input {
         font-size: 16px;
+    }
+
+    .add-task-new-category-dots {
+        margin-top: 4px;
     }
 
     /* --- Form-Left-Side-Assigned --- */
