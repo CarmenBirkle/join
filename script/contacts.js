@@ -1,3 +1,5 @@
+
+'use strict';
 /**
  * 
  */
@@ -47,15 +49,53 @@ function contactsCloseAddTask() {
     document.getElementById('contacts-add-task').classList.add('d-none');
 }
 
-function getFirstLetter(contacts){
-    contacts.forEach(element => {
-        
+function getListofFirstLetters(){
+    let initialsMap = new Map();
+    contacts.forEach(contact => {
+      let name = contact.fullname.trim(); // removes blank charactor
+      let initials = name.charAt(0).toUpperCase();
+      if (!initialsMap.has(initials)) {
+        initialsMap.set(initials, []);
+      }
+      initialsMap.get(initials).push(contact);
     });
-    const firstLetters = name
-    .split(' ')
-    .map(word =>word.charAt(0).toUpperCase())
+    // ggf. return noch hinzufügen
+    return initialsMap;
+    
 }
 
+// funzt bis hierhin - ggf. noch um sortierung erweitern - aber nochmals prüfen: 
+
+// function getListofFirstLetters() {
+//     let initialsMap = new Map();
+//     contacts.forEach(contact => {
+//       let name = contact.fullname.trim(); // removes blank charactor
+//       let initials = name.charAt(0).toUpperCase();
+//       if (!initialsMap.has(initials)) {
+//         initialsMap.set(initials, []);
+//       }
+//       initialsMap.get(initials).push(contact);
+//     });
+  
+//     // sort initials alphabetically
+//     let sortedInitialsMap = new Map([...initialsMap.entries()].sort());
+  
+//     // sort contacts by fullname
+//     sortedInitialsMap.forEach((contacts, initials) => {
+//       contacts.sort((a, b) => {
+//         if (a.fullname < b.fullname) { return -1; }
+//         if (a.fullname > b.fullname) { return 1; }
+//         return 0;
+//       });
+//     });
+  
+//     return sortedInitialsMap;
+//   }
+  
+
+// function filterContactlist(){
+
+// }
 
 // nur vorbereitet, später mir realen Daten testen
 //Render-Funktion for ContactList Left
@@ -91,8 +131,6 @@ function contactsShowUser(i) {
     }
 }
 
-
-
 window.onresize = handleWindowResizeContacs;
 
 function handleWindowResizeContacs() {
@@ -113,32 +151,40 @@ function randomRGBColor(){
     return randomRGBColor;
   }
 
-function getInitals(name){
-    const firstLetters = name
-    .split(' ')
-    .map(word =>word.charAt(0).toUpperCase())
-}
+// function getInitals(name){
+//     const firstLetters = name
+//     .split(' ')
+//     .map(word =>word.charAt(0).toUpperCase())
+// }
 
-// TODO - wenn das Backend steht, eine Logik implementieren, wenn die Daten erfolgreich 
-// gespeichert wurden dem Butten der ID "contacts-success" die Klasse fadeInBottom geben und dann 
-// dann in Abhängigkeit die setTimeout Funktion von unten ausführen. ggf. die Classen-logik auslagern
+function getInitials(name) {
+    const firstLetters = name.split(' ')
+    .map(word => word.charAt(0).toUpperCase());
+    return firstLetters.join('');
+  }
+
 
 //TODO kürzen!
 
 async function saveContact() {
 try{
+    const button = document.getElementById('contacts-save');
+    button.disabled = true;
+
         let name = document.getElementById('contact-name').value;
         let email = document.getElementById('contact-email').value;
         let phone = document.getElementById('contact-tel').value;
-        console.log(randomRGBColor())
+        let initials = getInitials(name);        
 
         let contact = {
-            'initals': getInitals(name), // hier ggf. nochmals schauen, wie das Format rauskommt
+            'initals': initials,
             'number': contacts.length + 1,
             'fullname':name,
             'email': email,
             'phone': phone,
-            'bgcolor': randomRGBColor()
+            'bgcolor': randomRGBColor(),
+            'password': '',
+            'image': ''
         };
 
         contacts.push(contact);
@@ -154,10 +200,15 @@ try{
         div.classList.remove('fadeInBottom');
         div.classList.add('d-none');
     }, 2000);
-} catch (error){
-    console.log(error);
+    } catch (error){
+        console.log(error);
+    } finally {
+        const button = document.getElementById('contacts-save');
+        button.disabled = false;
+    }
 }
-}
+
+
 
 
 
