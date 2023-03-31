@@ -188,7 +188,7 @@ input::placeholder{
     top: 50%;
     right: 10px;
     transform: translateY(-50%);
-    width: 19.5px;
+    width: 20.5px;
     height: 19.5px;
     background-image: url('../assets/img/icons/login-email.svg');
     background-size: cover;
@@ -373,8 +373,25 @@ input::placeholder{
 
 .contacts-img-cancel{
     height: 10.49px;
-    width: 10.49px;;
+    width: 10.49px;
 }
+.contacts-btn-cancel:hover .img-d-none{
+    display: block !important;
+}
+
+.contacts-btn-cancel:hover .contacts-img-cancel{
+    display: none;
+}
+
+.contacts-img-cancel-blue{
+    height: 20px;
+    width: 20px;
+}
+
+.img-d-none{
+    display: none;;
+}
+
 
 .contacts-img-check{
     height: 12px;
@@ -413,7 +430,7 @@ input::placeholder{
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    background-color: aquamarine;
+    background-color: rgb(18,24,136);
     display: flex;
     justify-content: center;
     align-items: center;
