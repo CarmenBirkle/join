@@ -24,9 +24,9 @@
         <div class="login-card">
             <h1>Log in</h1>
             <div class="underline-headline"></div>
-            <form class="input-bar" onsubmit="test()" autocomplete="on">
-                <input required type="email" class="input-field email w3-round-large" placeholder="Email">
-                <input required type="password" class="input-field password w3-round-large" placeholder="Password">
+            <form class="input-bar" onsubmit="submitUserData(); return false" autocomplete="on">
+                <input required type="email" class="input-field email w3-round-large" name="usermail" placeholder="Email">
+                <input required type="password" class="input-field password w3-round-large" name="userpassword" placeholder="Password">
                 <div class="detail-bar">
                     <input type="checkbox" id="remember-login" name="remember-login" value="false">
                     <label for="remember-login"> Remember me</label><br>

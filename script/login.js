@@ -48,6 +48,7 @@ function hidePasswordConfirm(){
     window.location.replace("index.html");
 }
 
-function test(){
-    console.log('Submitted')
+function submitUserData(){
+    console.log('Form has been submitted!')
+    window.location.replace("summary.html");
 }
