@@ -25,6 +25,9 @@
 
     font-weight: 700;
     font-size: 61px;
+
+    display: flex;
+    align-items: center;
 }
 
 /* --- Form --- */

@@ -138,7 +138,7 @@ function renderAssignedToSelection() {
     for (let i = 0; i < names.length; i++) {
         let name = names[i];
 
-        document.getElementById('add-task-assignedto-dropdown').innerHTML += openAssignedListHTML(name, email);
+        document.getElementById('add-task-assignedto-dropdown').innerHTML += openAssignedListHTML(name);
     }
 }
 
@@ -215,7 +215,7 @@ function renderSubtaskCheckbox() {
 
 /*-- Clear / Create Button --*/
 function clearAddTask() {
-    selectedColorNewCategory = []; // nicht entfernen??????
+    selectedColorNewCategory = [];
     prioButtonSet = [];
     addSubtasks = [];
     document.getElementById('add-task-subtask-addtask-render').innerHTML = '';
@@ -314,7 +314,7 @@ function loadAssignedToHTML() {
     `;
 }
 
-function openAssignedListHTML(name, email) {
+function openAssignedListHTML(name) {
     return /*html*/`
     <div style="justify-content: space-between;" class="add-task-dropdown-option" onclick="">
         <span>${name}</span>
