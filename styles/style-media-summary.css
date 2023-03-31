@@ -6,6 +6,34 @@
 
 @media (max-width: 1170px) {
     .summary-main-container {
+        margin: 119px 0px 0px 0px;
+        align-items: center;
+        font-size: 16px;
+    }
+
+    .summary-media-kanban {
+        display: flex;
+
+        margin: 0px 0px 23px 3px;
+
+        color: #000000;
+    }
+
+    /* --- Summary-Header --- */
+    .summary-header {
+        margin-top: 0px;
+        gap: 20px;
+        width: 100%;
+    }
+
+    /* --- Summary-Content-General --- */
+    .summary-content {
+        padding-top: 33px;
+    }
+}
+
+@media (max-width: 800px) {
+    .summary-main-container {
         margin: 119px 33px 0px 33px;
         align-items: center;
         font-size: 16px;
@@ -16,11 +44,7 @@
     }
 
     .summary-media-kanban {
-        display: flex;
-
         margin: 0px 0px 30px 3px;
-
-        color: #000000;
     }
 
     /* --- Summary-Header --- */
