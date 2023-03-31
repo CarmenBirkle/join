@@ -1,6 +1,6 @@
 @media (max-width: 1170px) {
     .add-task-main-content {
-        margin: 0px 30px 80px 30px;
+        margin: 119px 30px 80px 30px;
         align-items: center;
         font-size: 16px;
     }
@@ -12,7 +12,7 @@
     .add-task-media-kanban {
         display: flex;
 
-        margin: 119px 0px 30px 3px;
+        margin: 0px 0px 30px 3px;
 
         color: #000000;
     }
