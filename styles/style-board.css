@@ -9,6 +9,7 @@
 
 .board-main-container h1 {
     font-weight: 700;
+    font-size: 300%;
 }
 
 .board-header-bar{
@@ -17,9 +18,14 @@
     align-items: center;
 }
 
-.board-header-input{
+.board-header-input {
     display: flex;
     gap: 45px;
+}
+
+.btn-text-center{
+    display: flex !important;
+    align-items: center;
 }
 
 .input-field {
@@ -35,4 +41,15 @@
     padding: 4px, 0px, 4px, 0px !important;
     overflow: unset !important;
     text-align: center !important;
+  }
+
+.find-task{
+    background: url(../assets/img/icons/board-search.svg) no-repeat;
+    background-position: 90% 50%;
+}
+
+  @media screen and (max-width: 1170px){
+    .board-main-container {
+        margin-left: 0;
+    }
   }
