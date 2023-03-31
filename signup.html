@@ -22,10 +22,10 @@
             <a href="./index.html"><img src="./assets/img/icons/login-arrow-left.svg" class="login-arrow-left"></a>
             <h1>Sign up</h1>
             <div class="underline-headline"></div>
-            <form class="input-bar">
-                <input required type="text" class="input-field name w3-round-large" placeholder="Name">
-                <input required type="email" class="input-field email w3-round-large" placeholder="Email">
-                <input required type="password" class="input-field password w3-round-large" placeholder="Password">
+            <form class="input-bar" onsubmit="addNewUser(); return false" autocomplete="on">
+                <input required type="text" id="newusername" class="input-field name w3-round-large" placeholder="Name">
+                <input required type="email" id="newuseremail" class="input-field email w3-round-large" placeholder="Email">
+                <input required type="password" id="newuserpassword" class="input-field password w3-round-large" placeholder="Password">
                 <div class="btn-bar">
                     <input type="submit" href="./summary.html" class="w3-button btn-dark-grey w3-round-large w3-hover-blue" value="Sign up">
                 </div>
