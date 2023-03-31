@@ -114,31 +114,34 @@ function addedNewCategoryMessage() {
 function initAssignedTo() {
     document.getElementById('add-task-assignedto-render').innerHTML = '';
     document.getElementById('add-task-assignedto-render').innerHTML = loadAssignedToHTML();
+    renderAssignedToSelection();
 }
 
 function openAssignedToDropdown() {
     document.getElementById('add-task-assignedto-dropdown').classList.toggle('d-none');
     renderTopAssigendTo();
-    //renderAssignedToSelection();
 }
 
 function renderTopAssigendTo() {
     document.getElementById('add-task-assigendto-dropdown-top').innerHTML = '';
     document.getElementById('add-task-assigendto-dropdown-top').innerHTML = openTopPlaceholderHTML('Select contacts to assign');
 }
-/*
+
+
 function renderAssignedToSelection() {
-    document.getElementById('add-task-category-dropdown').innerHTML = '';
-    document.getElementById('add-task-category-dropdown').innerHTML = openNewCategoryHTML();
+    document.getElementById('add-task-assignedto-dropdown').innerHTML = '';
 
-    for (let j = 0; j < defaultCategoryColor.length; j++) {
-        let color = defaultCategoryColor[j];
-        let type = defaultCategoryType[j];
+    //TEST
+    let names = ['Anna', 'Daniel'];
+    // TEST
 
-        document.getElementById('add-task-category-dropdown').innerHTML += openCategorysHTML(color, type);
+    for (let i = 0; i < names.length; i++) {
+        let name = names[i];
+
+        document.getElementById('add-task-assignedto-dropdown').innerHTML += openAssignedListHTML(name, email);
     }
 }
-*/
+
 
 /*-- Due Date --*/
 function initDueDate() {
@@ -238,7 +241,7 @@ function loadCategoryHTML() {
         <span>Select task category</span>
         <img src="assets/img/icons/add-task-dropdown-arrow.svg" alt="arrow">
     </div>
-    <div id="add-task-category-dropdown" class="add-task-category-dropdown-open d-none">                          
+    <div id="add-task-category-dropdown" class="add-task-dropdown-open d-none">                          
      </div>
     `;
 }
@@ -306,9 +309,18 @@ function loadAssignedToHTML() {
         <span>Select contacts to assign</span>
         <img src="assets/img/icons/add-task-dropdown-arrow.svg" alt="arrow">
     </div>
-    <div id="add-task-assignedto-dropdown" class="add-task-category-dropdown-open d-none">                          
+    <div id="add-task-assignedto-dropdown" class="add-task-dropdown-open d-none">                          
      </div>
     `;
+}
+
+function openAssignedListHTML(name, email) {
+    return /*html*/`
+    <div style="justify-content: space-between;" class="add-task-dropdown-option" onclick="">
+        <span>${name}</span>
+        <input type="checkbox" name="${name}" value="${name}">
+    </div>
+     `;
 }
 
 /*-- Due Date Template-HTML --*/
