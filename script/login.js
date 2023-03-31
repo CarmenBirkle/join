@@ -19,7 +19,7 @@ function showLoginCard(){
 function responsiveLogin(){
     document.getElementById('login-logo').classList.add('d-none');
     document.getElementById('login-logo-responsive').classList.remove('d-none');
-    document.getElementById('login-logo-responsive').classList.add('animation');
+    document.getElementById('login-logo-responsive').classList.add('animation-responsive');
     setTimeout(showLoginCard, 3000);
 }
 
@@ -57,10 +57,10 @@ function loginUser(){
     let password = document.getElementById('userpassword');
     let user = users.find( u => u.email == email.value && u.password == password.value) 
     if (user){
-        console.log('Form has been submitted. You have been loged in successfully!');
+        alert('Form has been submitted. You have been loged in successfully!');
         window.location.replace("summary.html");}
     else{
-        console.log('Uupps! You are not registered. Please sign in first.');
+        alert('Uupps! You are not registered. Please sign in first.');
         window.location.replace("index.html");}
     }
 
@@ -75,4 +75,5 @@ function addNewUser(){
     users.push({name: name.value, email: email.value, password: password.value});
     alert('Form has been submitted. You are registered right now!')
     window.location.replace("index.html");
+    // wird noch nicht im local storage bzw. im backend gespeichert !!
 }

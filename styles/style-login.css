@@ -136,17 +136,20 @@ p {
   height: 100vh;
   z-index: 99;
   position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: rgba(0, 0, 0, 0.2)
 }
 
 .send-confirm span {
-  position: relative;
+  position: absolute;
   color: #FFFFFF;
   background-color: var(--btn-dark-grey);
   padding: 10px 25px;
+  animation: animation-slide 1s both;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  width: fit-content;
 }
 
 .login-animation-container {
@@ -171,6 +174,10 @@ p {
   animation: animation ease-in-out 3s both;
 }
 
+.animation-responsive {
+  animation: animation-responsive ease-in-out 3s both;
+}
+
 /**
  * ----------------------------------------
  * animation scale-down
@@ -186,6 +193,24 @@ p {
             transform: scale(1);
             top: 80px;
             left: 77px;
+  }
+}
+
+@keyframes animation-responsive {
+  0% {
+            transform: scale(2);
+  }
+  100% {
+            transform: scale(0.5);
+  }
+}
+
+@keyframes animation-slide {
+  0% {
+            bottom: 0;
+  }
+  100% {
+            bottom: 50%;
   }
 }
 
