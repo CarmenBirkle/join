@@ -1,14 +1,15 @@
-body {
-    font-family: "Inter", sans-serif;
-    background-color: #F5F5F5;
-}
-
 .summary-main-container {
     display: flex;
     flex-direction: column;
 
     margin-top: 90px;
     margin-left: 315px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 120%;
 }
 
 /* --- Summary-Header --- */
@@ -29,8 +30,6 @@ h1 {
     width: 315px;
     height: 73px;
 
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 700;
     font-size: 61px;
     line-height: 120%;
@@ -45,8 +44,6 @@ h1 {
     width: 308px;
     height: 32px;
 
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 400;
     font-size: 27px;
     line-height: 120%;
@@ -112,8 +109,6 @@ h1 {
 .summary-tasks div {
     text-align: center;
 
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 600;
     font-size: 64px;
     line-height: 120%;
@@ -121,12 +116,6 @@ h1 {
 
 .summary-tasks span {
     text-align: center;
-
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 21px;
-    line-height: 120%;
 }
 
 /* --- Summary-Content-Urgency --- */
@@ -185,8 +174,6 @@ h1 {
     width: 50px;
     height: 56px;
 
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 600;
     font-size: 47px;
     line-height: 120%;
@@ -198,11 +185,8 @@ h1 {
     width: 52px;
     height: 19px;
 
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 400;
     font-size: 16px;
-    line-height: 120%;
 
     color: #2A3647;
 }
@@ -229,11 +213,7 @@ h1 {
     width: 178px;
     height: 25px;
 
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 700;
-    font-size: 21px;
-    line-height: 120%;
 
     color: #2A3647;
 }
@@ -242,11 +222,8 @@ h1 {
     width: 148px;
     height: 19px;
 
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 400;
     font-size: 16px;
-    line-height: 120%;
 
     color: #2A3647;
 }
@@ -340,12 +317,6 @@ h1 {
     width: 60px;
     height: 25px;
 
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 21px;
-    line-height: 120%;
-
     color: #2A3647;
 }
 
@@ -364,8 +335,6 @@ h1 {
 }
 
 .summary-welcome-greeting {
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 500;
     font-size: 47px;
     line-height: 120%;
@@ -374,8 +343,6 @@ h1 {
 }
 
 .summary-welcome-name {
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 700;
     font-size: 64px;
     line-height: 120%;
