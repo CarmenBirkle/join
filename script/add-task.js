@@ -1,9 +1,11 @@
 const allCategoryColor = ['#FC71FF', '#1FD7C1', '#FF8A00', '#8AA4FF', '#FF0000', '#2AD300', '#E200BE', '#0038FF'];
 let defaultCategoryColor = ['#FC71FF', '#1FD7C1', '#FF8A00', '#8AA4FF'];
 let defaultCategoryType = ['Sale', 'Backoffice', 'Design', 'Marketing'];
-let selectedColorNewCategory = [];
-let prioButtonSet = [];
-let addSubtasks = [];
+
+let chosenCategoryType = []; // validate form
+let chosenCategoryColor = []; // validate form
+let chosenPrioButton = []; // validate form
+let addSubtasks = []; // validate form
 
 
 /*-- Init All Elements --*/
@@ -47,6 +49,7 @@ function renderCategorySelection() {
 }
 
 function setCategory(color, type) {
+    choseCategory(color, type);
     document.getElementById('add-task-category-dropdown-top').innerHTML = openTopSetCategoryHTML(color, type);
     document.getElementById('add-task-category-dropdown').innerHTML = '';
     document.getElementById('add-task-category-dropdown').classList.add('d-none');
@@ -61,17 +64,16 @@ function renderNewCategory() {
 function renderNewCategoryDots() {
     document.getElementById('add-task-new-category-dots').innerHTML = '';
 
-    for (let d = 0; d < allCategoryColor.length; d++) {
-        let dotColor = allCategoryColor[d];
-        document.getElementById('add-task-new-category-dots').innerHTML += openNewCategoryDotsHTML(dotColor, d);
+    for (let i = 0; i < allCategoryColor.length; i++) {
+        let dotColor = allCategoryColor[i];
+        document.getElementById('add-task-new-category-dots').innerHTML += openNewCategoryDotsHTML(dotColor, i);
     }
 }
 
 /*-- Category add new Category --*/
 function saveNewColor(dotColor, d) {
-    selectedColorNewCategory = [];
-    selectedColorNewCategory.push(dotColor);
-    console.log(selectedColorNewCategory);
+    chosenCategoryColor = [];
+    chosenCategoryColor.push(dotColor);
     renderNewCategoryDots();
     document.getElementById(`selected-dot-active${d}`).classList.add('dropdown-option-dots-selected');
 }
@@ -79,10 +81,10 @@ function saveNewColor(dotColor, d) {
 function saveNewCategory() {
     let newType = document.getElementById('new-category-type-name');
 
-    if (newType.value == '' || selectedColorNewCategory.length == 0) {
-        renderNewCategoryError();
+    if (newType.value === '' || chosenCategoryColor.length === 0) {
+        renderCategoryError();
     } else {
-        defaultCategoryColor = defaultCategoryColor.concat(selectedColorNewCategory);
+        defaultCategoryColor = defaultCategoryColor.concat(chosenCategoryColor);
         defaultCategoryType.push(newType.value);
         initCategory();
         openTopSetNewCategory();
@@ -94,17 +96,18 @@ function openTopSetNewCategory() {
     let newColor = defaultCategoryColor[defaultCategoryColor.length - 1];
     let newType = defaultCategoryType[defaultCategoryType.length - 1];
 
+    choseCategory(newColor, newType);
     document.getElementById('add-task-category-dropdown-top').innerHTML = openTopSetCategoryHTML(newColor, newType);
 }
 
-function renderNewCategoryError() {
+function renderCategoryError() {
     document.getElementById('add-task-new-category-error').innerHTML = '';
-    document.getElementById('add-task-new-category-error').innerHTML = newCategoryErrorHTML();
+    document.getElementById('add-task-new-category-error').innerHTML = addTaskErrorHTML('Please select a category name and pick a color');
 }
 
 function addedNewCategoryMessage() {
     document.getElementById('add-task-new-category-error').innerHTML = '';
-    document.getElementById('add-task-new-category-error').innerHTML = newCategoryAddedHTML();
+    document.getElementById('add-task-new-category-error').innerHTML = addTaskErrorHTML('Added new category');
     setTimeout(() => {
         document.getElementById('add-task-new-category-error').innerHTML = '';
     }, 2000)
@@ -132,7 +135,7 @@ function renderAssignedToSelection() {
     document.getElementById('add-task-assignedto-dropdown').innerHTML = '';
 
     //TEST
-    let names = ['Anna', 'Daniel'];
+    let names = ['Anna', 'Daniel','Peter'];
     // TEST
 
     for (let i = 0; i < names.length; i++) {
@@ -155,6 +158,7 @@ function initDueDate() {
 function initPrioButtons() {
     const prioButtons = ['urgent', 'medium', 'low'];
     document.getElementById('add-task-priobutton-render').innerHTML = '';
+    document.getElementById('add-task-prio-button-error').innerHTML = '';
 
     for (let i = 0; i < prioButtons.length; i++) {
         let prioName = prioButtons[i];
@@ -166,8 +170,8 @@ function initPrioButtons() {
 function setAddTaskPrioButton(prioId) {
     initPrioButtons();
 
-    prioButtonSet = [];
-    prioButtonSet.push(prioId);
+    chosenPrioButton = [];
+    chosenPrioButton.push(prioId);
 
     setPrioButtonDesign(prioId);
 }
@@ -178,9 +182,15 @@ function setPrioButtonDesign(prioId) {
     document.getElementById(`img-${prioId}-white`).classList.remove('d-none');
 }
 
+function renderPrioButtonError() {
+    document.getElementById('add-task-prio-button-error').innerHTML = '';
+    document.getElementById('add-task-prio-button-error').innerHTML = addTaskErrorHTML('Please select a Priority');
+}
+
 /*-- Subtask --*/
 function initSubtask() {
     document.getElementById('add-task-subtask-render').innerHTML = '';
+    document.getElementById('add-task-subtask-error').innerHTML = '';
     document.getElementById('add-task-subtask-render').innerHTML = loadSubtaskHTML();
 }
 
@@ -194,7 +204,7 @@ function addNewSubtask() {
     document.getElementById('add-task-subtask-error').innerHTML = '';
     let subtaskInput = document.getElementById('add-task-subtask-input');
     if (subtaskInput.value === "") {
-        document.getElementById('add-task-subtask-error').innerHTML = subtaskErrorHTML();
+        document.getElementById('add-task-subtask-error').innerHTML = addTaskErrorHTML('Please write a subtask');
         subtaskInput.focus();
     } else {
         addSubtasks.push(subtaskInput.value);
@@ -213,19 +223,50 @@ function renderSubtaskCheckbox() {
     }
 }
 
-/*-- Clear / Create Button --*/
+/*-- Clear Button --*/
 function clearAddTask() {
-    selectedColorNewCategory = [];
-    prioButtonSet = [];
+    chosenCategoryColor = [];
+    chosenCategoryType = [];
+    chosenPrioButton = [];
     addSubtasks = [];
     document.getElementById('add-task-subtask-addtask-render').innerHTML = '';
 
     initAddTask();
 }
 
+/*-- Form / Create Button --*/
+function choseCategory(color, type) {
+    chosenCategoryColor = [];
+    chosenCategoryType = [];
+
+    chosenCategoryColor.push(color);
+    chosenCategoryType.push(type);
+}
+
+function validateForm() {
+    if (chosenCategoryType.length === 0 || chosenCategoryColor.length === 0) {
+        renderCategoryError();
+        return;
+    } if (chosenPrioButton.length === 0) {
+        renderPrioButtonError();
+        return;
+    }
+    sendFormToBackend();
+}
+
+function sendFormToBackend() {
+    console.log('SEND');
+}
 
 
 /*-- Template-HTML --*/
+/*-- Error-HTML --*/
+function addTaskErrorHTML(error) {
+    return /*html*/ `
+    <span class="add-task-error-message">${error}</span>
+    `;
+}
+
 /*-- Category and AssignedTo Template-HTML --*/
 function openTopPlaceholderHTML(placeholder) {
     return /*html*/`
@@ -284,21 +325,9 @@ function openNewCategorySelectHTML() {
     `;
 }
 
-function openNewCategoryDotsHTML(dotColor, d) {
+function openNewCategoryDotsHTML(dotColor, i) {
     return /*html*/`
-    <div id="selected-dot-active${d}" class="dropdown-option-dots new-category-dot" style="background-color: ${dotColor};" onclick="saveNewColor('${dotColor}', '${d}')"></div>
-    `;
-}
-
-function newCategoryErrorHTML() {
-    return /*html*/ `
-    <span class="new-category-error">Please write a category name and pick a color</span>
-    `;
-}
-
-function newCategoryAddedHTML() {
-    return /*html*/ `
-    <span class="new-category-error">Added new category</span>
+    <div id="selected-dot-active${i}" class="dropdown-option-dots new-category-dot" style="background-color: ${dotColor};" onclick="saveNewColor('${dotColor}', '${i}')"></div>
     `;
 }
 
@@ -371,11 +400,5 @@ function openSubtasksCheckboxHTML(subTaskCheckbox) {
         <input type="checkbox" name="subtasks" value="${subTaskCheckbox}" checked>
         <span>${subTaskCheckbox}</span>
     </div>
-    `;
-}
-
-function subtaskErrorHTML() {
-    return /*html*/ `
-    <span class="new-category-error">Please write a subtask</span>
     `;
 }

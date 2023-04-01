@@ -264,7 +264,7 @@
     transform: scale(1.1);
 }
 
-.new-category-error {
+.add-task-error-message {
     color: red;
     font-size: 12px;
     font-weight: bold;

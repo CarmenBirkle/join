@@ -30,7 +30,7 @@
         <div class="add-task-media">
             <div class="add-task-media-kanban">Kanban Project Management Tool</div>
             <div class="add-task-headline">Add Task</div>
-            <form>
+            <form onsubmit="validateForm(); return false">
                 <div class="add-task-container">
                     <!-- Left Side -->
                     <div class="add-task-leftside">
@@ -76,6 +76,7 @@
                             <div class="add-task-prio-button-container" id="add-task-priobutton-render">
                                 <!-- Prio-Buttons Render Section -->
                             </div>
+                            <span id="add-task-prio-button-error"></span>
                         </div>
                         <div class="add-task-subtask">
                             <label>Subtask</label>
