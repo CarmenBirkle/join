@@ -5,6 +5,7 @@ let addSubtasks = [];
 
 let chosenCategoryColor = []; // validate form
 let chosenCategoryType = []; // validate form
+let chosenAssignedTo = []; // validate form
 let chosenPrioButton = []; // validate form
 let chosenSubtasks = []; // validate form
 
@@ -230,6 +231,7 @@ function renderSubtaskCheckbox() {
 function clearAddTask() {
     chosenCategoryColor = [];
     chosenCategoryType = [];
+    chosenAssignedTo = [];
     chosenPrioButton = [];
     chosenSubtasks = [];
     addSubtasks = [];
@@ -256,6 +258,7 @@ function validateForm() {
         return;
     }
     pushChosenSubtasks();
+    pushChosenAssignedTo();
     sendFormToBackend();
 }
 
@@ -268,12 +271,22 @@ function pushChosenSubtasks() {
     }
 }
 
+function pushChosenAssignedTo() {
+    let contactsCheckboxes = document.querySelectorAll('input[name=contacts]');
+    for(let i = 0; i < contactsCheckboxes.length; i++) {
+        if(contactsCheckboxes[i].checked) {
+            chosenAssignedTo.push(contactsCheckboxes[i].value);
+        }
+    }
+}
+
 async function sendFormToBackend() {
     try {
         let title = document.getElementById('add-task-input-title').value;
         let description = document.getElementById('add-task-input-description').value;
         let categoryColor = chosenCategoryColor[0];
         let categoryType = chosenCategoryType[0];
+        let contact = chosenAssignedTo;
         let date = document.getElementById('add-task-input-due-date').value;
         let prio = chosenPrioButton[0];
         let subtask = chosenSubtasks;
@@ -284,6 +297,7 @@ async function sendFormToBackend() {
             'description': description,
             'categoryColor': categoryColor,
             'categoryType': categoryType,
+            'contact': contact,
             'date': date,
             'prio': prio,
             'subtask': subtask
@@ -389,7 +403,7 @@ function openAssignedListHTML(name) {
     return /*html*/`
     <div style="justify-content: space-between;" class="add-task-dropdown-option">
         <span>${name}</span>
-        <input type="checkbox" name="${name}" value="${name}">
+        <input type="checkbox" name="contacts" value="${name}">
     </div>
      `;
 }
