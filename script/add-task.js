@@ -1,11 +1,14 @@
 const allCategoryColor = ['#FC71FF', '#1FD7C1', '#FF8A00', '#8AA4FF', '#FF0000', '#2AD300', '#E200BE', '#0038FF'];
 let defaultCategoryColor = ['#FC71FF', '#1FD7C1', '#FF8A00', '#8AA4FF'];
 let defaultCategoryType = ['Sale', 'Backoffice', 'Design', 'Marketing'];
+let addSubtasks = [];
 
-let chosenCategoryType = []; // validate form
 let chosenCategoryColor = []; // validate form
+let chosenCategoryType = []; // validate form
 let chosenPrioButton = []; // validate form
-let addSubtasks = []; // validate form
+let chosenSubtasks = []; // validate form
+
+let tasks = [];
 
 
 /*-- Init All Elements --*/
@@ -228,6 +231,7 @@ function clearAddTask() {
     chosenCategoryColor = [];
     chosenCategoryType = [];
     chosenPrioButton = [];
+    chosenSubtasks = [];
     addSubtasks = [];
     document.getElementById('add-task-subtask-addtask-render').innerHTML = '';
 
@@ -251,11 +255,46 @@ function validateForm() {
         renderPrioButtonError();
         return;
     }
+    pushChosenSubtasks();
     sendFormToBackend();
 }
 
-function sendFormToBackend() {
-    console.log('SEND');
+function pushChosenSubtasks() {
+    let subtaskCheckboxes = document.querySelectorAll('input[name=subtasks]');
+    for(let i = 0; i < subtaskCheckboxes.length; i++) {
+        if(subtaskCheckboxes[i].checked) {
+            chosenSubtasks.push(subtaskCheckboxes[i].value);
+        }
+    }
+}
+
+async function sendFormToBackend() {
+    try {
+        let title = document.getElementById('add-task-input-title').value;
+        let description = document.getElementById('add-task-input-description').value;
+        let categoryColor = chosenCategoryColor[0];
+        let categoryType = chosenCategoryType[0];
+        let date = document.getElementById('add-task-input-due-date').value;
+        let prio = chosenPrioButton[0];
+        let subtask = chosenSubtasks;
+        
+        let task = {
+            'number': tasks.length +1,
+            'title': title,
+            'description': description,
+            'categoryColor': categoryColor,
+            'categoryType': categoryType,
+            'date': date,
+            'prio': prio,
+            'subtask': subtask
+        }
+
+        tasks.push(task);
+        console.log('SEND');
+        console.log(tasks);
+    } catch {
+        console.log('ERROR');
+    }
 }
 
 
@@ -345,7 +384,7 @@ function loadAssignedToHTML() {
 
 function openAssignedListHTML(name) {
     return /*html*/`
-    <div style="justify-content: space-between;" class="add-task-dropdown-option" onclick="">
+    <div style="justify-content: space-between;" class="add-task-dropdown-option">
         <span>${name}</span>
         <input type="checkbox" name="${name}" value="${name}">
     </div>
