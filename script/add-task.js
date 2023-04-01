@@ -290,8 +290,11 @@ async function sendFormToBackend() {
         }
 
         tasks.push(task);
-        console.log('SEND');
-        console.log(tasks);
+        console.log('SEND'); // TEST
+        console.log(tasks); // TEST
+
+        let clearButton = document.getElementById('add-task-clear-button');
+        clearButton.click();
     } catch {
         console.log('ERROR');
     }
