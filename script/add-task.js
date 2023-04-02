@@ -293,6 +293,11 @@ function pushChosenSubtasks() {
 
 async function sendFormToBackend() {
     try {
+        const button = document.getElementById('add-task-create-button');
+        const buttonMedia = document.getElementById('add-task-create-button-media');
+        button.disabled = true;
+        buttonMedia.disabled = true;
+
         let title = document.getElementById('add-task-input-title').value;
         let description = document.getElementById('add-task-input-description').value;
         let categoryColor = chosenCategoryColor[0];
@@ -322,6 +327,11 @@ async function sendFormToBackend() {
         clearButton.click();
     } catch {
         console.log('ERROR');
+    } finally {
+        const button = document.getElementById('add-task-create-button');
+        const buttonMedia = document.getElementById('add-task-create-button-media');
+        button.disabled = false;
+        buttonMedia.disabled = false;
     }
 }
 

@@ -89,25 +89,31 @@
                             </div>
                         </div>
                         <div class="add-task-buttons">
-                            <button id="add-task-clear-button" type="reset" class="add-task-clear" onclick="clearAddTask()">
+                            <button id="add-task-clear-button" type="reset" class="add-task-clear"
+                                onclick="clearAddTask()">
                                 Clear
                                 <img class="add-task-clear-img" src="./assets/img/icons/add-task-button-clear.svg"
                                     alt="cross">
                                 <img class="d-none" src="./assets/img/icons/add-task-button-clear-blue.svg" alt="cross">
                             </button>
-                            <button class="add-task-create">
+                            <button class="add-task-create" id="add-task-create-button">
                                 Create Task
                                 <img src="./assets/img/icons/add-task-button-create.svg" alt="check">
                             </button>
-                            <button class="add-task-create-media">
+                            <button class="add-task-create-media" id="add-task-create-button-media">
                                 Create
                                 <img src="./assets/img/icons/add-task-button-create.svg" alt="check">
                             </button>
                         </div>
                     </div>
                 </div>
-
             </form>
+            <div class="add-task-added d-none">
+                <div class="add-task-added-content">
+                    <span>Task added to board</span>
+                    <img src="./assets/img/icons/add-task-added-board.svg" alt="board">
+                </div>
+            </div>
         </div>
     </div>
 
