@@ -1,7 +1,11 @@
 .d-none {
     display: none !important;
 }
-
+/*
+body {
+    overflow-x: hidden;
+}
+*/
 .add-task-main-content {
     display: flex;
     flex-direction: column;
@@ -183,12 +187,21 @@
 }
 
 .add-task-dropdown-new-category {
+    display: flex;
+    align-items: center;
     margin-top: 5px;
     padding: 11.9px 21px;
 }
 
 .add-task-dropdown-new-category:hover {
     background-color: lightgrey;
+}
+
+.add-task-category-plus {
+    width: 20px;
+    height: 20px;
+
+    margin-right: 20px;
 }
 
 .add-task-dropdown-option {
@@ -303,6 +316,22 @@
     cursor: pointer;
 }
 
+.add-task-dropdown-new-contact {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 11.9px 21px;
+}
+
+.add-task-dropdown-new-contact:hover {
+    background-color: lightgrey;
+}
+
+.add-task-dropdown-new-contact img {
+    width: 23px;
+    height: 23px;
+}
+
 /* --- Form-Greyline-Mid --- */
 .add-task-greyline {
     box-sizing: border-box;
@@ -348,7 +377,7 @@
     flex-direction: row;
     align-items: center;
 
-   /* isolation: isolate;*/
+    /* isolation: isolate;*/
 
     padding: 18px 21px;
 
@@ -532,7 +561,7 @@
     width: 100%;
     height: 70px;
 
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .add-task-add-subtask div input {
@@ -677,6 +706,7 @@
     from {
         top: 90%;
     }
+
     to {
         top: 70%;
     }

@@ -82,6 +82,12 @@ function saveNewColor(dotColor, d) {
     document.getElementById(`selected-dot-active${d}`).classList.add('dropdown-option-dots-selected');
 }
 
+function saveNewCategoryEnter(event) {
+    if(event.key == "Enter") {
+        saveNewCategory();
+    }
+}
+
 function saveNewCategory() {
     let newType = document.getElementById('new-category-type-name');
 
@@ -123,6 +129,7 @@ function initAssignedTo() {
     document.getElementById('add-task-assigned-error').innerHTML = '';
     document.getElementById('add-task-assignedto-render').innerHTML = loadAssignedToHTML();
     renderAssignedToSelection();
+    renderInviteNewContact();
 }
 
 function openAssignedToDropdown() {
@@ -134,6 +141,10 @@ function renderTopAssigendTo() {
     document.getElementById('add-task-assigendto-dropdown-top').innerHTML = '';
     document.getElementById('add-task-assigned-error').innerHTML = '';
     document.getElementById('add-task-assigendto-dropdown-top').innerHTML = openTopPlaceholderHTML('Select contacts to assign');
+}
+
+function renderInviteNewContact() {
+    document.getElementById('add-task-assignedto-dropdown').innerHTML += openInviteNewContactHTML();
 }
 
 
@@ -209,6 +220,12 @@ function changeSubtask() {
     document.getElementById('add-task-subtask-render').innerHTML = '';
     document.getElementById('add-task-subtask-render').innerHTML = openSubtaskInput();
     document.getElementById('add-task-subtask-input').focus();
+}
+
+function addNewSubtaskEnter(event) {
+    if(event.key == "Enter") {
+        addNewSubtask();
+    }
 }
 
 function addNewSubtask() {
@@ -374,7 +391,10 @@ function loadCategoryHTML() {
 
 function openNewCategoryHTML() {
     return /*html*/`
-    <span class="add-task-dropdown-new-category" onclick="renderNewCategory()">New Category</span>
+    <div class="add-task-dropdown-new-category" onclick="renderNewCategory()">
+        <img class="add-task-category-plus" src="./assets/img/icons/add-task-plus-category.svg" alt="plus">
+        New Category
+    </div>
     `;
 }
 
@@ -400,7 +420,7 @@ function openTopSetCategoryHTML(color, type) {
 function openNewCategorySelectHTML() {
     return /*html*/`
     <div class="add-task-dropdown-top">
-        <input id="new-category-type-name" class="add-task-new-categroy-input" type="text" placeholder="New category name">
+        <input id="new-category-type-name" class="add-task-new-categroy-input" type="text" placeholder="New category name" onkeypress="saveNewCategoryEnter(event)">
         <div class="add-task-new-categroy-buttons">
             <img src="./assets/img/icons/add-task-button-cross.svg" onclick="initCategory()" alt="cross">
             <div class="add-task-category-greyline"></div>
@@ -437,6 +457,15 @@ function openAssignedListHTML(name) {
      `;
 }
 
+function openInviteNewContactHTML() {
+    return /*html*/`
+    <div class="add-task-dropdown-new-contact" onclick="">
+        Invite new Contact
+        <img src="./assets/img/icons/add-task-new-contact.svg" alt="contact">
+    </div>
+    `;
+}
+
 /*-- Due Date Template-HTML --*/
 function renderDueDate(today) {
     return /*html*/`
@@ -469,7 +498,7 @@ function loadSubtaskHTML() {
 function openSubtaskInput() {
     return /*html*/`
     <div class="add-task-subtask-main-placeholder">
-        <input id="add-task-subtask-input" type="text" placeholder="Create new icons">
+        <input id="add-task-subtask-input" type="text" placeholder="Create new icons" onkeypress="addNewSubtaskEnter(event)">
         <div class="add-task-new-subtask-buttons">
             <img src="./assets/img/icons/add-task-button-cross.svg" onclick="initSubtask()" alt="cross">
             <div class="add-task-category-greyline"></div>
