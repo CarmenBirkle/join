@@ -1,8 +1,8 @@
 // global variables for ALL html sites / used by ALL html sites
 
 //TEST
-let currentDraggedElement;
-let currentLoggedInUser;
+let currentDraggedElement = 0;
+let currentLoggedInUser = 0;
 let users = [               // JSON array with all data for every user, saved on backend server
     // LISTE DER ARRAYS DIE IN DAS USERS JSON KOMMEN ---> 
     // contacts[], alles aus den add task []?,...
