@@ -58,7 +58,9 @@ function loginUser(){
     let user = users.find( u => u.email == email.value && u.password == password.value) 
     if (user){
         alert('Form has been submitted. You have been loged in successfully!');
-        window.location.replace("summary.html");}
+        window.location.replace("summary.html");
+        currentLoggedInUser = users.indexOf(user);
+        console.log(currentLoggedInUser)}
     else{
         alert('Uupps! You are not registered. Please sign in first.');
         window.location.replace("index.html");}
