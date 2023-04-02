@@ -120,6 +120,7 @@ function addedNewCategoryMessage() {
 /*-- Assigned-To --*/
 function initAssignedTo() {
     document.getElementById('add-task-assignedto-render').innerHTML = '';
+    document.getElementById('add-task-assigned-error').innerHTML = '';
     document.getElementById('add-task-assignedto-render').innerHTML = loadAssignedToHTML();
     renderAssignedToSelection();
 }
@@ -131,6 +132,7 @@ function openAssignedToDropdown() {
 
 function renderTopAssigendTo() {
     document.getElementById('add-task-assigendto-dropdown-top').innerHTML = '';
+    document.getElementById('add-task-assigned-error').innerHTML = '';
     document.getElementById('add-task-assigendto-dropdown-top').innerHTML = openTopPlaceholderHTML('Select contacts to assign');
 }
 
@@ -147,6 +149,11 @@ function renderAssignedToSelection() {
 
         document.getElementById('add-task-assignedto-dropdown').innerHTML += openAssignedListHTML(name);
     }
+}
+
+function renderAssignedToError() {
+    document.getElementById('add-task-assigned-error').innerHTML = '';
+    document.getElementById('add-task-assigned-error').innerHTML = addTaskErrorHTML('Please select a Contact');
 }
 
 
@@ -257,18 +264,13 @@ function validateForm() {
         renderPrioButtonError();
         return;
     }
-    pushChosenSubtasks();
     pushChosenAssignedTo();
-    sendFormToBackend();
-}
-
-function pushChosenSubtasks() {
-    let subtaskCheckboxes = document.querySelectorAll('input[name=subtasks]');
-    for(let i = 0; i < subtaskCheckboxes.length; i++) {
-        if(subtaskCheckboxes[i].checked) {
-            chosenSubtasks.push(subtaskCheckboxes[i].value);
-        }
+    if(chosenAssignedTo.length === 0) {
+        renderAssignedToError();
+        return;
     }
+    pushChosenSubtasks(); // not a required field
+    sendFormToBackend();
 }
 
 function pushChosenAssignedTo() {
@@ -276,6 +278,15 @@ function pushChosenAssignedTo() {
     for(let i = 0; i < contactsCheckboxes.length; i++) {
         if(contactsCheckboxes[i].checked) {
             chosenAssignedTo.push(contactsCheckboxes[i].value);
+        }
+    }
+}
+
+function pushChosenSubtasks() {
+    let subtaskCheckboxes = document.querySelectorAll('input[name=subtasks]');
+    for(let i = 0; i < subtaskCheckboxes.length; i++) {
+        if(subtaskCheckboxes[i].checked) {
+            chosenSubtasks.push(subtaskCheckboxes[i].value);
         }
     }
 }
