@@ -79,12 +79,14 @@ async function init() {
     await downloadFromServer();
     contacts = JSON.parse(backend.getItem('contacts')) || [];
 
-    handleWindowResize(); // TODO Final info rausnehmen 
+    handleWindowResize(); // TODO Final info rausnehmen    
 }
 
 function handleWindowResize() {
     try {
         handleWindowResizeContacs()
+        getSortListofContacts();
+        contactsShowContactlist(sortContacts);
     } catch (error) {
         //do nothing, then the corresponding js file is not included, because not relevant an this page
     }

@@ -5,10 +5,11 @@
  */
 
 let contacts = [];
+let sortContacts = [];
 
 
 function initContacts() {
-    contactsShowContactlist();
+
 }
 
 function contactsShowOverlayNew() {
@@ -49,7 +50,9 @@ function contactsCloseAddTask() {
     document.getElementById('contacts-add-task').classList.add('d-none');
 }
 
-function getListofFirstLetters(){
+//TODO kürzen
+//creates a map with sorted data by first letter and associated contact list
+function getSortListofContacts() {
     let initialsMap = new Map();
     contacts.forEach(contact => {
       let name = contact.fullname.trim(); // removes blank charactor
@@ -59,52 +62,40 @@ function getListofFirstLetters(){
       }
       initialsMap.get(initials).push(contact);
     });
-    // ggf. return noch hinzufügen
-    return initialsMap;
-    
+  
+    let sortedInitialsMap = new Map([...initialsMap.entries()].sort());   // sort initials alphabetically
+  
+    // sort contacts by fullname
+    sortedInitialsMap.forEach((contacts, initials) => {
+      contacts.sort((a, b) => {
+        if (a.fullname < b.fullname) { return -1; }
+        if (a.fullname > b.fullname) { return 1; }
+        return 0;
+      });
+    });
+
+    sortContacts = sortedInitialsMap;
+  }
+  
+
+//Render Function for ContactList Left
+function contactsShowContactlist(sortContacts) {
+    for (let [key, value] of sortContacts) {
+        document.getElementById('contacts-list').innerHTML += contactListLetterTemplate(key);
+        for (let contact of value) {
+            if (contact.fullname.charAt(0) === key) { // check if the first letter of the name corresponds to the current letter
+                document.getElementById(`contacs-render-single-Data-${key}`).innerHTML += contactListContactTemplate(contact);
+            }
+        }
+    }
 }
 
-// funzt bis hierhin - ggf. noch um sortierung erweitern - aber nochmals prüfen: 
-
-// function getListofFirstLetters() {
-//     let initialsMap = new Map();
-//     contacts.forEach(contact => {
-//       let name = contact.fullname.trim(); // removes blank charactor
-//       let initials = name.charAt(0).toUpperCase();
-//       if (!initialsMap.has(initials)) {
-//         initialsMap.set(initials, []);
-//       }
-//       initialsMap.get(initials).push(contact);
-//     });
-  
-//     // sort initials alphabetically
-//     let sortedInitialsMap = new Map([...initialsMap.entries()].sort());
-  
-//     // sort contacts by fullname
-//     sortedInitialsMap.forEach((contacts, initials) => {
-//       contacts.sort((a, b) => {
-//         if (a.fullname < b.fullname) { return -1; }
-//         if (a.fullname > b.fullname) { return 1; }
-//         return 0;
-//       });
-//     });
-  
-//     return sortedInitialsMap;
-//   }
-  
-
-// function filterContactlist(){
-
-// }
-
-// nur vorbereitet, später mir realen Daten testen
-//Render-Funktion for ContactList Left
-function contactsShowContactlist(i) {
-    document.getElementById('contacts-list').innerHTML = contactListTemplate(i);
-}
-
-function contactsShowContactToEdit(i) {
-    document.getElementById('contacts-popup-edit-Contact').innerHTML = contactEditSingleContactTemplate(i);
+// TODO vervollständigen wenn das Backand steht (Logik: es wird ein Index übergeben und anhand dessen 
+// die Daten in der Renderfunktion verarbeiten) -> Daten Links
+// passt noch nicht ganz
+function contactsShowContactToEdit(contacts, contactNumber) {
+    const selectedContact = contacts.find(contact => contact.number === contactNumber);
+    document.getElementById('contacts-popup-edit-Contact').innerHTML = contactEditSingleContactTemplate(selectedContact);
 }
 
 
@@ -115,11 +106,12 @@ function contactsShowContactToEdit(i) {
 * @param {number} i // index-number of contacts-array
  */
 
-// TODO vervollständigen wenn das Backand steht (Logik: es wird ein Index übergeben und anhand dessen 
-// die Daten in der Renderfunktion verarbeiten) -> Daten Links
-function contactsShowUser(i) {
-    document.getElementById('contacts-user').innerHTML = getUserLeftTemplate(i);
-    document.getElementById('contacts-container-right-mobile').innerHTML = mobileLeftTemplate(i);
+
+function contactsShowUser(contacts, contactNumber) {
+    const selectedContact = contacts.find(contact => contact.number === contactNumber);
+    console.log('kontakt', selectedContact);
+    document.getElementById('contacts-user').innerHTML = getUserLeftTemplate(selectedContact);
+    document.getElementById('contacts-container-right-mobile').innerHTML = mobileLeftTemplate(selectedContact);
 
     if (window.innerWidth < 1170) {
         document.getElementById('contacts-container-right-mobile').classList.remove('d-none');
@@ -151,11 +143,6 @@ function randomRGBColor(){
     return randomRGBColor;
   }
 
-// function getInitals(name){
-//     const firstLetters = name
-//     .split(' ')
-//     .map(word =>word.charAt(0).toUpperCase())
-// }
 
 function getInitials(name) {
     const firstLetters = name.split(' ')
@@ -209,30 +196,6 @@ try{
 }
 
 
-
-
-
-// function saveContact() {
-//     // Prüfen, ob der "Cancel"-Button geklickt wurde
-//     if (event.target.id === 'contacts-save') {
-//         console.log('jepp');
-//         const div = document.getElementById('contacts-success')
-//         div.classList.add('fadeInBottom')
-//         div.classList.remove('d-none');
-//         setTimeout(() => {
-//             contactsCloseOverlayNew();
-//             contacsResetNewContact()
-//             div.classList.remove('fadeInBottom');
-//             div.classList.add('d-none');
-//           }, 2000);
-//     }
-//     console.log('false');
-//     contactsCloseOverlayNew();
-//         contacsResetNewContact();
-
-//   }
-
-//return false; // Verhindern, dass das Formular gesendet wird
 
 function contactsCloseMobileContacts() {
     document.getElementById('contacts-container-right-mobile').classList.add('d-none');

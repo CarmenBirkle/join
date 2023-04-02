@@ -1,11 +1,11 @@
-function getUserLeftTemplate(i) {
+function getUserLeftTemplate(contact) {
     return `
             <div class="contacts-information-top">
                 <div class="contact-icon">
-                    <div class="contact-initals-big">CB</div>
+                    <div class="contact-initals-big">${contact.initals}</div>
                 </div>
                 <div class="contact-info-top-right">
-                    <div class="contact-name">Carmen Birkle</div>
+                    <div class="contact-name">${contact.fullname}</div>
                     <div class="add-task" onclick="contactsOpenAddTask()">
                         <img src="./assets/img/icons/contact-add-task.png" alt="+">
                         <div>Add Task</div>
@@ -27,7 +27,7 @@ function getUserLeftTemplate(i) {
                     Email
                 </div>
                 <div class="contacts-info-botton-email contacts-info-botton-content">
-                    test@test.de
+                ${contact.email}
                 </div>
             </div>
             <div>
@@ -36,7 +36,7 @@ function getUserLeftTemplate(i) {
                         Phone
                     </div>
                     <div class="contacts-info-botton-content">
-                        +49 123 456 456 
+                    ${contact.phone}
                     </div>
                 </div>
             </div>
@@ -44,7 +44,7 @@ function getUserLeftTemplate(i) {
 `;
 }
 
-function mobileLeftTemplate(i) {
+function mobileLeftTemplate(contact) {
     return `
     <div id="mobileLeftTemplate" class="">
 
@@ -57,11 +57,11 @@ function mobileLeftTemplate(i) {
         </div>
 
     <div class="contacts-information-top">
-                <div class="contact-icon-mobile">
-                    <div class="contact-initals-big">CB</div>
+                <div  class="contact-icon-mobile" style="background-color: rgb(${contact.bgcolor})>
+                    <div class="contact-initals-big">${contact.initals}</div>
                 </div>
                 <div class="contact-info-top-right">
-                    <div class="contact-name">Carmen Birkle</div>
+                    <div class="contact-name">${contact.fullname}</div>
                     <div class="add-task" onclick="contactsOpenAddTask()">
                         <img src="./assets/img/icons/contact-add-task.png" alt="+">
                         <div>Add Task</div>
@@ -83,7 +83,7 @@ function mobileLeftTemplate(i) {
                     Email
                 </div>
                 <div class="contacts-info-botton-email contacts-info-botton-content">
-                    test@test.de
+                ${contact.email}
                 </div>
             </div>
             <div>
@@ -92,7 +92,7 @@ function mobileLeftTemplate(i) {
                         Phone
                     </div>
                     <div class="contacts-info-botton-content">
-                        +49 123 456 456 
+                        ${contact.phone}
                     </div>
                 </div>
             </div>
@@ -103,69 +103,35 @@ function mobileLeftTemplate(i) {
     `;
 }
 
-function contactListTemplate(i) {
+function contactListLetterTemplate(letter) {
     return `
             
-        <div id="contacts-letter-container-C" class="contacts-letter-container">
+        <div id="contacts-letter-container-${letter}" class="contacts-letter-container">
             <div class="contacts-first-letter">
-                C 
+                ${letter}
             </div>
             <hr>
-            <div id="contacs-singele-data1" class="contacts-single-data" onclick="contactsShowUser(1)">
-                <div>
-                    <div class="contacts-initals">CB</div>
-                </div>
-                <div class="contacts-details">
-                    <div>Carmen Birkle</div>
-                    <div class="contacts-single-email">carmen@test.de</div>
-                </div>
-            </div>
-        </div>
-
-
-        <div id="contacts-letter-container-G" class="contacts-letter-container">
-            <div class="contacts-first-letter">
-                G 
-            </div>
-            <hr>
-            <div class="contacts-single-data" onclick="contactsShowUser(1)">
-                <div>
-                    <div class="contacts-initals">GB</div>
-                </div>
-                <div class="contacts-details">
-                    <div>Pascal Gajewski</div>
-                    <div class="contacts-single-email">gajewski@test.de</div>
-                </div>
-            </div>
-
-            <div class="contacts-single-data" onclick="contactsShowUser(1)">
-                <div>
-                    <div class="contacts-initals">GU</div>
-                </div>
-                <div class="contacts-details">
-                    <div>GuestUser</div>
-                    <div class="contacts-single-email">guest@test.de</div>
-                </div>
-            </div>
-
-        </div>
-
-        <div id="contacts-letter-container-H" class="contacts-letter-container">
-            <div class="contacts-first-letter">
-                H 
-            </div>
-            <hr>
-            <div class="contacts-single-data" onclick="contactsShowUser(1)">
-                <div>
-                    <div class="contacts-initals">CB</div>
-                </div>
-                <div class="contacts-details">
-                    <div>Daniel Hartmann</div>
-                    <div class="contacts-single-email">hartmann@test.de</div>
-                </div>
+            <div id="contacs-render-single-Data-${letter}"> 
+               
             </div>
         </div>
             
+    `;
+}
+
+function contactListContactTemplate(contact){
+    return `
+    <div id="contacs-singele-data${contact.number}" class="contacts-single-data" onclick="contactsShowUser(contacts, ${contact.number})">
+    <div>
+        <div class="contacts-initals">${contact.initals}</div>
+    </div>
+    <div class="contacts-details">
+        <div>${contact.fullname}</div>
+        <div class="contacts-single-email">${contact.email}</div>
+    </div>
+</div>
+
+
     `;
 }
 
