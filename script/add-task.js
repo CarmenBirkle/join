@@ -325,8 +325,8 @@ async function sendFormToBackend() {
 
         let clearButton = document.getElementById('add-task-clear-button');
         clearButton.click();
-    } catch {
-        console.log('ERROR');
+    } catch (error) {
+        console.log('An error has occurred!' + error);
     } finally {
         const button = document.getElementById('add-task-create-button');
         const buttonMedia = document.getElementById('add-task-create-button-media');
