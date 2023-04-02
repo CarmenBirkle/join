@@ -2,10 +2,67 @@
 
 //TEST
 let users = [               // JSON array with all data for every user, saved on backend server
-                                // LISTE DER ARRAYS DIE IN DAS USERS JSON KOMMEN ---> 
-                                    // contacts[], alles aus den add task []?,...
-{'name': 'max','email': 'max@test.de', 'password': 'test' },
-{'name': 'marie','email': 'marie@test.de', 'password': 'test' }
+    // LISTE DER ARRAYS DIE IN DAS USERS JSON KOMMEN ---> 
+    // contacts[], alles aus den add task []?,...
+    {
+        'name': 'max', 
+        'email': 'max@test.de', 
+        'password': 'test', 
+        'tasks': [{
+            'number': 1,
+            'title': 'Call potential clients',
+            'description': 'Make the product presentation to prospective buyers',
+            'categoryColor': '#FC71FF',
+            'categoryType': 'Sales',
+            'category': 'to-do',
+            'contact': ['David Eisenberg', 'Benedikt Ziegler', 'Marcel Bauer', 'Stefanie Farber'],
+            'date': 05-08-2022,
+            'prio': 'Urgent',
+            'subtask': ''
+        }, {
+            'number': 2,
+            'title': 'Call potential clients',
+            'description': 'Make the product presentation to prospective buyers',
+            'categoryColor': '#FC71FF',
+            'categoryType': 'Sales',
+            'category': 'in-progress',
+            'contact': ['David Eisenberg', 'Benedikt Ziegler', 'Marcel Bauer', 'Stefanie Farber'],
+            'date': 05-08-2022,
+            'prio': 'Urgent',
+            'subtask': ''
+        }
+        ],
+        'contacts': []
+    },
+    {
+        'name': 'marie', 
+        'email': 'marie@test.de', 
+        'password': 'test', 
+        'tasks': [{
+            'number': 1,
+            'title': 'Call potential clients',
+            'description': 'Make the product presentation to prospective buyers',
+            'categoryColor': '#FC71FF',
+            'categoryType': 'Sales',
+            'category': 'to-do',
+            'contact': ['David Eisenberg', 'Benedikt Ziegler', 'Marcel Bauer', 'Stefanie Farber'],
+            'date': 05-08-2022,
+            'prio': 'Urgent',
+            'subtask': ''
+        }, {
+            'number': 2,
+            'title': 'Call potential clients',
+            'description': 'Make the product presentation to prospective buyers',
+            'categoryColor': '#FC71FF',
+            'categoryType': 'Sales',
+            'category': 'in-progress',
+            'contact': ['David Eisenberg', 'Benedikt Ziegler', 'Marcel Bauer', 'Stefanie Farber'],
+            'date': 05-08-2022,
+            'prio': 'Urgent',
+            'subtask': ''
+        }
+        ], 'contacts': []
+    }
 ];
 
 //TEST ENDE

@@ -16,6 +16,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 10vh;
 }
 
 .board-header-input {
@@ -45,7 +46,63 @@
 
 .find-task{
     background: url(../assets/img/icons/board-search.svg) no-repeat;
-    background-position: 90% 50%;
+    background-position: 95% 50%;
+}
+
+.board-content-container{
+    display: flex;
+    white-space: nowrap;
+    width: 100%;
+    padding: 8px;
+}
+
+.board-box{
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    padding: 0 13px;
+}
+
+.board-box-header{
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 16px;
+    margin-bottom: 24px;
+}
+
+.board-box-header h4{
+    font-weight: 700 !important;
+}
+
+.box-content{
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+.box-category{
+    width: fit-content;
+    border-radius: 8px; 
+    padding: 4px 24px;
+}
+
+.task-card{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 30px;
+    padding: 18px 19px;
+    overflow: auto;
+    white-space: normal;
+}
+
+.task-card h6{
+    font-weight: 700;
+}
+
+.task-card p{
+    color: #A8A8A8;
+    ;
 }
 
   @media screen and (max-width: 1170px){

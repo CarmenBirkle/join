@@ -16,9 +16,10 @@
     <title>Board | Join</title>
     <script src="./mini_backend.js"></script>
     <script src="./script/app.js"></script>
+    <script src="./script/board.js"></script>
 </head>
 
-<body onload="init()">
+<body onload="init(), renderTasks()">
     <div w3-include-html="./assets/templates/header-template.html"></div>
     <div w3-include-html="./assets/templates/side-bar-template.html"></div>
     <div class="board-main-container">
@@ -28,6 +29,12 @@
                 <input type="text" placeholder="Find task" class="input-field find-task">
                 <a class="w3-button btn-dark-grey w3-round-large w3-hover-blue btn-text-center">Add task +</a>
             </div>
+        </div>
+        <div class="board-content-container">
+            <div class="board-box"><div class="board-box-header"><h4>To do</h4><img src="./assets/img/icons/board-plus.svg"></div><div class="box-content" id="to-do"></div></div>
+            <div class="board-box"><div class="board-box-header"><h4>In progress</h4><img src="./assets/img/icons/board-plus.svg"></div><div class="box-content" id="in-progress"></div></div>
+            <div class="board-box"><div class="board-box-header"><h4>Awaiting Feedback</h4><img src="./assets/img/icons/board-plus.svg"></div><div class="box-content" id="awaiting-feedback"></div></div>
+            <div class="board-box"><div class="board-box-header"><h4>Done</h4><img src="./assets/img/icons/board-plus.svg"></div><div class="box-content" id="done"></div></div>
         </div>
     </div>
 
