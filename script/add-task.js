@@ -83,7 +83,7 @@ function saveNewColor(dotColor, d) {
 }
 
 function saveNewCategoryEnter(event) {
-    if(event.key == "Enter") {
+    if (event.key == "Enter") {
         saveNewCategory();
     }
 }
@@ -152,7 +152,7 @@ function renderAssignedToSelection() {
     document.getElementById('add-task-assignedto-dropdown').innerHTML = '';
 
     //TEST
-    let names = ['Anna', 'Daniel','Peter'];
+    let names = ['Anna', 'Daniel', 'Peter'];
     // TEST
 
     for (let i = 0; i < names.length; i++) {
@@ -223,7 +223,7 @@ function changeSubtask() {
 }
 
 function addNewSubtaskEnter(event) {
-    if(event.key == "Enter") {
+    if (event.key == "Enter") {
         addNewSubtask();
     }
 }
@@ -282,7 +282,7 @@ function validateForm() {
         return;
     }
     pushChosenAssignedTo();
-    if(chosenAssignedTo.length === 0) {
+    if (chosenAssignedTo.length === 0) {
         renderAssignedToError();
         return;
     }
@@ -292,8 +292,8 @@ function validateForm() {
 
 function pushChosenAssignedTo() {
     let contactsCheckboxes = document.querySelectorAll('input[name=contacts]');
-    for(let i = 0; i < contactsCheckboxes.length; i++) {
-        if(contactsCheckboxes[i].checked) {
+    for (let i = 0; i < contactsCheckboxes.length; i++) {
+        if (contactsCheckboxes[i].checked) {
             chosenAssignedTo.push(contactsCheckboxes[i].value);
         }
     }
@@ -301,8 +301,8 @@ function pushChosenAssignedTo() {
 
 function pushChosenSubtasks() {
     let subtaskCheckboxes = document.querySelectorAll('input[name=subtasks]');
-    for(let i = 0; i < subtaskCheckboxes.length; i++) {
-        if(subtaskCheckboxes[i].checked) {
+    for (let i = 0; i < subtaskCheckboxes.length; i++) {
+        if (subtaskCheckboxes[i].checked) {
             chosenSubtasks.push(subtaskCheckboxes[i].value);
         }
     }
@@ -323,9 +323,9 @@ async function sendFormToBackend() {
         let date = document.getElementById('add-task-input-due-date').value;
         let prio = chosenPrioButton[0];
         let subtask = chosenSubtasks;
-        
+
         let task = {
-            'number': tasks.length +1,
+            'number': tasks.length + 1,
             'title': title,
             'description': description,
             'categoryColor': categoryColor,
@@ -343,7 +343,7 @@ async function sendFormToBackend() {
         let clearButton = document.getElementById('add-task-clear-button');
         clearButton.click();
 
-        const addedContainer =  document.getElementById('add-task-added');
+        const addedContainer = document.getElementById('add-task-added');
         addedContainer.classList.add('add-task-added-animation');
         addedContainer.classList.remove('d-none');
         setTimeout(() => {
