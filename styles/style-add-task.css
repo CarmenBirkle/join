@@ -641,7 +641,7 @@
     position: absolute;
     width: 326px;
     height: 74px;
-    top: 55%;
+    top: 90%;
     left: 610px;
     z-index: 5;
 
@@ -670,4 +670,17 @@
     font-size: 21px;
 
     color: #FFFFFF;
+}
+
+.add-task-added-animation {
+    animation: bottomToTop 0.8s ease-in-out forwards 0.5s;
+}
+
+@keyframes bottomToTop {
+    from {
+        top: 90%;
+    }
+    to {
+        top: 70%;
+    }
 }

@@ -325,6 +325,14 @@ async function sendFormToBackend() {
 
         let clearButton = document.getElementById('add-task-clear-button');
         clearButton.click();
+
+        const addedContainer =  document.getElementById('add-task-added');
+        addedContainer.classList.add('add-task-added-animation');
+        addedContainer.classList.remove('d-none');
+        setTimeout(() => {
+            addedContainer.classList.remove('add-task-added-animation');
+            addedContainer.classList.add('d-none');
+        }, 2000);
     } catch (error) {
         console.log('An error has occurred!' + error);
     } finally {
