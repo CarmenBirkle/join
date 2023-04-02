@@ -48,7 +48,7 @@ function renderTasksDone() {
     for (let index = 0; index < done.length; index++) {
         const element = done[index];
         if (element) {
-            document.getElementById('done').innerHTML += generateTaskHTML(element);
+            document.getElementById('done').innerHTML += generateTaskHTML(element, index);
         }
     }
 }
@@ -58,9 +58,9 @@ function renderTasksDone() {
  *  This function generates the HTML Code for a Task Card, task variables are given by parent function
  * (Design is not completed yet!!!)
  */
-function generateTaskHTML(task) {
+function generateTaskHTML(task, index) {
     return `
-    <div draggable="true" ondragstart="startDragging(${task['number']})" class="task-card">
+    <div draggable="true" ondragstart="startDragging(${index})" class="task-card">
         <span class="box-category" style="background-color: ${task['categoryColor']}">${task['categoryType']}</span>
         <h6>${task['title']}</h6>
         <p>${task['description']}</p>
@@ -69,14 +69,17 @@ function generateTaskHTML(task) {
     `;
 }
 
-function startDragging(taskNumber){
-    currentDraggedElement = taskNumber;
+function startDragging(taskIndex){
+    currentDraggedElement = taskIndex;
+    console.log(currentDraggedElement);
 }
 
 function allowDrop(ev) {
     ev.preventDefault();
+
 }
 
 function moveTo(category){
-    users[0]['tasks']
+    users[currentLoggedInUser]['tasks'][currentDraggedElement]['category'] = category;
+    renderTasks();
 }
