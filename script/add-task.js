@@ -332,6 +332,7 @@ async function sendFormToBackend() {
             'description': description,
             'categoryColor': categoryColor,
             'categoryType': categoryType,
+            'category': 'to-do',
             'contact': contact,
             'date': date,
             'prio': prio,
@@ -340,8 +341,7 @@ async function sendFormToBackend() {
 
         tasks.push(task);
         sendTaskToUsers(task); // Test
-        console.log('SEND'); // TEST
-        console.log(tasks); // TEST
+        console.log('sendFormToBackend',tasks); // TEST
 
         let clearButton = document.getElementById('add-task-clear-button');
         clearButton.click();
@@ -521,13 +521,36 @@ function openSubtasksCheckboxHTML(subTaskCheckbox) {
 }
 
 /////////////////////// TEST FUNCTION //////////////////////////////////
-
+/*
 async function sendTaskToUsers(task) {
     for (let i = 0; i < users.length; i++) {
         const user = users[i];
-        if (task.contact.includes(user.name) && task.contact.length === 1 && task.contact[0] === user.name) {
-            user.tasks.push(task);
-            console.log(`Task added to user "${user.name}"`, users);
+        for (let j = 0; j < task.contact.length; j++) {
+            if (task.contact.includes(user.name) && task.contact[j] === user.name) {
+                user.tasks.push(task);
+                console.log(`Task added to user "${user.name}"`, users);
+            }
         }
+    }
+}*/
+
+
+async function sendTaskToUsers(task) {
+    let usersWithTask = []; // leeres Array für User, die den Task erhalten sollen
+
+    for (let i = 0; i < users.length; i++) {
+        const user = users[i];
+        for (let j = 0; j < task.contact.length; j++) {
+            if (task.contact.includes(user.name) && task.contact[j] === user.name) {
+                usersWithTask.push(user); // User zum Array hinzufügen
+                console.log(`Task added to user "${user.name}"`, users);
+            }
+        }
+    }
+
+    // Schleife über das Array mit den Usern, die den Task erhalten sollen
+    for (let i = 0; i < usersWithTask.length; i++) {
+        const user = usersWithTask[i];
+        user.tasks.push(task);
     }
 }
