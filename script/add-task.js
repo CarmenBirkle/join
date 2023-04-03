@@ -14,11 +14,13 @@ let tasks = [];
 
 /*-- Init All Elements --*/
 function initAddTask() {
-    initCategory();
-    initAssignedTo();
-    initDueDate();
-    initPrioButtons();
-    initSubtask();
+    setTimeout(() => {
+        initCategory();
+        initAssignedTo();
+        initDueDate();
+        initPrioButtons();
+        initSubtask();
+    }, 400)
 }
 
 /*-- Category --*/
@@ -156,11 +158,32 @@ function renderAssignedToSelection() {
     let names = ['max', 'marie', 'ma'];
     // TEST
 
-    for (let i = 0; i < names.length; i++) {
-        let name = names[i];
-
+    for (let i = 0; i < contacts.length; i++) {
+        const name = contacts[i].fullname;
         document.getElementById('add-task-assignedto-dropdown').innerHTML += openAssignedListHTML(name);
     }
+}
+
+function renderAssignedToNewContact() {
+    document.getElementById('add-task-assignedto-dropdown').classList.toggle('d-none');
+    document.getElementById('add-task-assigendto-dropdown-top').innerHTML = '';
+    document.getElementById('add-task-add-new-contact-section').innerHTML = openNewContactSelectHTML();
+}
+
+function searchNewContactEnter(event) {
+    if (event.key == "Enter") {
+        event.preventDefault();
+        searchNewContact();
+    }
+}
+
+function searchNewContact() {
+    console.log('Moin');
+}
+
+function renderTopAssigendToAfterNewContact() {
+    document.getElementById('add-task-add-new-contact-section').innerHTML = '';
+    document.getElementById('add-task-add-new-contact-section').innerHTML = openTopAssignedToHTML();
 }
 
 function renderAssignedToError() {
@@ -340,8 +363,7 @@ async function sendFormToBackend() {
         }
 
         tasks.push(task);
-        sendTaskToUsers(task); // Test
-        console.log('sendFormToBackend',tasks); // TEST
+        //sendTaskToUsers(task); // Test
 
         let clearButton = document.getElementById('add-task-clear-button');
         clearButton.click();
@@ -442,12 +464,23 @@ function openNewCategoryDotsHTML(dotColor, i) {
 /*-- Assigned to Template-HTML --*/
 function loadAssignedToHTML() {
     return /*html*/`
+    <div id="add-task-add-new-contact-section">
+        <div class="add-task-dropdown-top" id="add-task-assigendto-dropdown-top" onclick="openAssignedToDropdown()">
+            <span>Select contacts to assign</span>
+            <img src="assets/img/icons/add-task-dropdown-arrow.svg" alt="arrow">
+        </div>
+    </div>
+    <div id="add-task-assignedto-dropdown" class="add-task-dropdown-open d-none">                          
+    </div>
+    `;
+}
+
+function openTopAssignedToHTML() {
+    return /*html*/`
     <div class="add-task-dropdown-top" id="add-task-assigendto-dropdown-top" onclick="openAssignedToDropdown()">
         <span>Select contacts to assign</span>
         <img src="assets/img/icons/add-task-dropdown-arrow.svg" alt="arrow">
     </div>
-    <div id="add-task-assignedto-dropdown" class="add-task-dropdown-open d-none">                          
-     </div>
     `;
 }
 
@@ -462,9 +495,22 @@ function openAssignedListHTML(name) {
 
 function openInviteNewContactHTML() {
     return /*html*/`
-    <div class="add-task-dropdown-new-contact" onclick="">
+    <div class="add-task-dropdown-new-contact" onclick="renderAssignedToNewContact()">
         Invite new Contact
         <img src="./assets/img/icons/add-task-new-contact.svg" alt="contact">
+    </div>
+    `;
+}
+
+function openNewContactSelectHTML() {
+    return /*html*/`
+    <div class="add-task-dropdown-top">
+        <input id="assigned-new-contact" class="add-task-new-contact-input" type="text" placeholder="Contact name" onkeypress="searchNewContactEnter(event)">
+        <div class="add-task-new-categroy-buttons">
+            <img src="./assets/img/icons/add-task-button-cross.svg" onclick="renderTopAssigendToAfterNewContact()" alt="cross">
+            <div class="add-task-category-greyline"></div>
+            <img src="./assets/img/icons/add-task-button-check.svg" onclick="searchNewContact()" alt="check">
+        </div>
     </div>
     `;
 }
@@ -534,7 +580,7 @@ async function sendTaskToUsers(task) {
     }
 }*/
 
-
+/*
 async function sendTaskToUsers(task) {
     let usersWithTask = []; // leeres Array für User, die den Task erhalten sollen
 
@@ -554,3 +600,4 @@ async function sendTaskToUsers(task) {
         user.tasks.push(task);
     }
 }
+*/

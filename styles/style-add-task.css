@@ -333,6 +333,25 @@ body {
     height: 23px;
 }
 
+.add-task-new-contact-input {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 120%;
+    padding: 0px;
+
+    border: unset;
+}
+
+.add-task-new-contact-input::placeholder {
+    color: #D1D1D1;
+}
+
+.add-task-new-contact-input:focus {
+    outline: none;
+}
+
 /* --- Form-Greyline-Mid --- */
 .add-task-greyline {
     box-sizing: border-box;

@@ -77,6 +77,10 @@
         font-size: 16px;
     }
 
+    .add-task-new-contact-input {
+        font-size: 16px;
+    }
+
     /* --- Form-Greyline-Mid --- */
     .add-task-greyline {
         display: none;
