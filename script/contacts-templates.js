@@ -1,7 +1,7 @@
 function getUserLeftTemplate(contact) {
     return `
             <div class="contacts-information-top">
-                <div class="contact-icon">
+                <div class="contact-icon" style="background-color: rgb(${contact.bgcolor});>
                     <div class="contact-initals-big">${contact.initals}</div>
                 </div>
                 <div class="contact-info-top-right">
@@ -57,7 +57,7 @@ function mobileLeftTemplate(contact) {
         </div>
 
     <div class="contacts-information-top">
-                <div  class="contact-icon-mobile" style="background-color: rgb(${contact.bgcolor})>
+                <div  class="contact-icon-mobile" style="background-color: rgb(${contact.bgcolor});>
                     <div class="contact-initals-big">${contact.initals}</div>
                 </div>
                 <div class="contact-info-top-right">
@@ -122,14 +122,16 @@ function contactListLetterTemplate(letter) {
 function contactListContactTemplate(contact){
     return `
     <div id="contacs-singele-data${contact.number}" class="contacts-single-data" onclick="contactsShowUser(contacts, ${contact.number})">
-    <div>
-        <div class="contacts-initals">${contact.initals}</div>
+        <div>    
+            <div class="contacts-initals" style="background-color: rgb(${contact.bgcolor});>
+                <div class="contacts-initals"> ${contact.initals} </div>
+            </div>
+            <div class="contacts-details">
+                <div>${contact.fullname}</div>
+                <div class="contacts-single-email">${contact.email}</div>
+            </div>
+        </div>
     </div>
-    <div class="contacts-details">
-        <div>${contact.fullname}</div>
-        <div class="contacts-single-email">${contact.email}</div>
-    </div>
-</div>
 
 
     `;

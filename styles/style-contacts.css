@@ -263,7 +263,7 @@ input::placeholder{
 .contacts-initals{
     height: 42px;
     width: 42px;
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
     border-radius: 50%;
     display: flex;
     justify-content: center;
