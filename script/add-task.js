@@ -84,6 +84,7 @@ function saveNewColor(dotColor, d) {
 
 function saveNewCategoryEnter(event) {
     if (event.key == "Enter") {
+        event.preventDefault();
         saveNewCategory();
     }
 }
@@ -152,7 +153,7 @@ function renderAssignedToSelection() {
     document.getElementById('add-task-assignedto-dropdown').innerHTML = '';
 
     //TEST
-    let names = ['Anna', 'Daniel', 'Peter'];
+    let names = ['max', 'marie', 'ma'];
     // TEST
 
     for (let i = 0; i < names.length; i++) {
@@ -224,6 +225,7 @@ function changeSubtask() {
 
 function addNewSubtaskEnter(event) {
     if (event.key == "Enter") {
+        event.preventDefault();
         addNewSubtask();
     }
 }
@@ -337,6 +339,7 @@ async function sendFormToBackend() {
         }
 
         tasks.push(task);
+        sendTaskToUsers(task); // Test
         console.log('SEND'); // TEST
         console.log(tasks); // TEST
 
@@ -515,4 +518,16 @@ function openSubtasksCheckboxHTML(subTaskCheckbox) {
         <span>${subTaskCheckbox}</span>
     </div>
     `;
+}
+
+/////////////////////// TEST FUNCTION //////////////////////////////////
+
+async function sendTaskToUsers(task) {
+    for (let i = 0; i < users.length; i++) {
+        const user = users[i];
+        if (task.contact.includes(user.name) && task.contact.length === 1 && task.contact[0] === user.name) {
+            user.tasks.push(task);
+            console.log(`Task added to user "${user.name}"`, users);
+        }
+    }
 }
