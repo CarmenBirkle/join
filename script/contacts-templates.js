@@ -1,7 +1,7 @@
 function getUserLeftTemplate(contact) {
     return `
             <div class="contacts-information-top">
-                <div class="contact-icon" style="background-color: rgb(${contact.bgcolor});>
+                <div class="contact-icon" style="background-color: rgb(${contact.bgcolor})";>
                     <div class="contact-initals-big">${contact.initals}</div>
                 </div>
                 <div class="contact-info-top-right">
@@ -56,8 +56,8 @@ function mobileLeftTemplate(contact) {
             <div class=contacts-mobile-line></div>
         </div>
 
-    <div class="contacts-information-top">
-                <div  class="contact-icon-mobile" style="background-color: rgb(${contact.bgcolor});>
+            <div class="contacts-information-top">
+                <div  class="contact-icon-mobile" style="background-color: rgb(${contact.bgcolor});">
                     <div class="contact-initals-big">${contact.initals}</div>
                 </div>
                 <div class="contact-info-top-right">
@@ -105,25 +105,21 @@ function mobileLeftTemplate(contact) {
 
 function contactListLetterTemplate(letter) {
     return `
-            
         <div id="contacts-letter-container-${letter}" class="contacts-letter-container">
             <div class="contacts-first-letter">
                 ${letter}
             </div>
             <hr>
-            <div id="contacs-render-single-Data-${letter}"> 
-               
+            <div id="contacs-render-single-Data-${letter}">  
             </div>
-        </div>
-            
+        </div>  
     `;
 }
 
 function contactListContactTemplate(contact){
     return `
-    <div id="contacs-singele-data${contact.number}" class="contacts-single-data" onclick="contactsShowUser(contacts, ${contact.number})">
-        <div>    
-            <div class="contacts-initals" style="background-color: rgb(${contact.bgcolor});>
+        <div id="contacs-singele-data${contact.number}" class="contacts-single-data" onclick="contactsShowUser(contacts, ${contact.number})">
+            <div class="contacts-initals" style="background-color: rgb(${contact.bgcolor});">
                 <div class="contacts-initals"> ${contact.initals} </div>
             </div>
             <div class="contacts-details">
@@ -131,15 +127,11 @@ function contactListContactTemplate(contact){
                 <div class="contacts-single-email">${contact.email}</div>
             </div>
         </div>
-    </div>
-
-
     `;
 }
 
 function contactsShowContactToEditTemplate(contact) {
     return `
-    
             <div id="render-popup-edit-Contact" class="contacts-overlay">
                 <div class="contacts-add-contact fadeInRight">
                     <div class="contacts-add-contact-left">
@@ -152,10 +144,9 @@ function contactsShowContactToEditTemplate(contact) {
                             onclick="contactsCloseOverlayEdit()" alt="X">
                         <img class="contacts-white-edit" src="./assets/img/icons/X-white.png"
                             onclick="contactsCloseOverlayEdit()" alt="X">
-                        <div class="contact-img">
+                        <div class="contact-img" style="background-color: rgb(${contact.bgcolor});">
                             <div class="contact-initals-big">${contact.initals}</div>
                     </div>
-                    
                         <form class="form-mobile" action="" onsubmit="saveContact(); return false">
                             <div class="contacts-input-with-icon">
                                 <input type="text" required pattern="[a-zA-ZäöüÄÖÜß]+\s[a-zA-ZäöüÄÖÜß]+"
@@ -163,7 +154,6 @@ function contactsShowContactToEditTemplate(contact) {
                                     title="Gebe Deinen Vor- und Nachnamen an (2 Wörter)">
                                 <span class="contacts-icon-name"></span>
                             </div>
-
                             <div class="contacts-input-with-icon">
                                 <input class="contacts-email" type="email" required placeholder="Email"
                                     value="${contact.email}">
@@ -179,12 +169,9 @@ function contactsShowContactToEditTemplate(contact) {
                             <div class="contacts-btn-container-edit">
                                 <button type="submit" class="contacts-btn-save-contact">Save</button>
                             </div>
-
                         </form>
                     </div>
                 </div>
-
         </div>
-    
     `;
 }

@@ -204,3 +204,14 @@ function contactsCloseMobileContacts() {
     document.getElementById('contacts-container-left').classList.remove('d-none');
 }
 
+// window.onscroll = function() {
+//     let element = document.querySelector('.contacts-single-data');
+//     let elementPosition = element.getBoundingClientRect();
+//     if (elementPosition.top >= 0 && elementPosition.top <= 60) {
+//       element.style.pointerEvents = 'none';
+//     } else {
+//       element.style.pointerEvents = 'auto';
+//     }
+//   }
+  
+
