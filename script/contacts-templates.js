@@ -135,14 +135,14 @@ function contactsShowContactToEditTemplate(contact) {
             <div id="render-popup-edit-Contact" class="contacts-overlay">
                 <div class="contacts-add-contact fadeInRight">
                     <div class="contacts-add-contact-left">
-                        <img src="./assets/img/side-bar-join-logo.svg" alt="Join">
+                    <img class="contacts-white-edit" src="./assets/img/icons/X-white.png"
+                    onclick="contactsCloseOverlayEdit()" alt="X">
+                        <img class="contacts-join-logo"src="./assets/img/side-bar-join-logo.svg" alt="Join">
                         <h1>Edit Contact</h1>
                         <hr>
                     </div>
                     <div class="contacts-add-contact-right">
                         <img class="contacts-full" src="./assets/img/icons/contacs-x.svg"
-                            onclick="contactsCloseOverlayEdit()" alt="X">
-                        <img class="contacts-white-edit" src="./assets/img/icons/X-white.png"
                             onclick="contactsCloseOverlayEdit()" alt="X">
                         <div class="contact-img" style="background-color: rgb(${contact.bgcolor});">
                             <div class="contact-initals-big">${contact.initals}</div>

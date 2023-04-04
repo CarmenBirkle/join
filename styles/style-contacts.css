@@ -89,6 +89,10 @@ input::placeholder{
     padding: 20px;
 }
 
+.contacts-white-edit {
+    display:none;
+}
+
 .contacts-add-contact-left{
     display: flex;
     flex-direction: column;
@@ -96,7 +100,6 @@ input::placeholder{
     align-items: flex-start;
     padding: 66px 46px;
     gap: 12px;
-    /* isolation: isolate; */
     background-color: var(--dark-grey);
     width: 463px;
     border-top-left-radius: 25px;
@@ -104,7 +107,7 @@ input::placeholder{
     color:white;
 }
 
-.contacts-add-contact-left > img{
+.contacts-join-logo{
     height: 66.48px;
     width: 55.12px;
     position: absolute;

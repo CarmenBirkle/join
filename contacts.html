@@ -44,7 +44,9 @@
         <div id="contacts-popup-add-contact" style="display: none">
             <div class="contacts-add-contact fadeInRight">
                 <div class="contacts-add-contact-left">
-                    <img src="./assets/img/side-bar-join-logo.svg" alt="Join">
+                    <img class="contacts-white" src="./assets/img/icons/X-white.png" onclick="contactsCancelNewContact()"
+                    alt="X">
+                    <img class="contacts-join-logo" src="./assets/img/side-bar-join-logo.svg" alt="Join">
                     <h1>Add contact</h1>
                     <h3 class="contacts-400">Tasks are better with a team!</h3>
                     <hr class="contacts-hr">
@@ -52,8 +54,6 @@
                 <div class="contacts-add-contact-right">
                     <img class="contacts-full" src="./assets/img/icons/contacs-x.svg"
                         onclick="contactsCancelNewContact()" alt="X">
-                    <img class="contacts-white" src="./assets/img/icons/X-white.png" onclick="contactsCancelNewContact()"
-                        alt="X">
                     <div class="contacts-container-success">
                         <div id="contacts-success" class="contacts-success d-none">Contact succesfully created</div>
                     </div>
