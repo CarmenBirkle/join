@@ -565,7 +565,7 @@ input::placeholder{
     gap: 10px;
     position: absolute;
     color:white;
-    border: 1px solid #2A3647;
+    border: 2px solid white;
     border-radius: 10px;
     right: 0;
     width:130px;

@@ -51,8 +51,8 @@
                 </div>
                 <div class="contacts-add-contact-right">
                     <img class="contacts-full" src="./assets/img/icons/contacs-x.svg"
-                        onclick="contactsCloseOverlayNew()" alt="X">
-                    <img class="contacts-white" src="./assets/img/icons/X-white.png" onclick="contactsCloseOverlayNew()"
+                        onclick="contactsCancelNewContact()" alt="X">
+                    <img class="contacts-white" src="./assets/img/icons/X-white.png" onclick="contactsCancelNewContact()"
                         alt="X">
                     <div class="contacts-container-success">
                         <div id="contacts-success" class="contacts-success d-none">Contact succesfully created</div>
@@ -97,7 +97,7 @@
 
         <div id="contacts-container-left" class="contacts-container-left">
             <div class="contacts-container-btn-resp">
-                <div class="contacts-newcontact-btn-resp" onclick="contactsShowOverlayNew()">
+                <div id="contacts-newcontact-btn-resp" class="contacts-newcontact-btn-resp" onclick="contactsShowOverlayNew()">
                     <div>New contact</div>
                     <img src="./assets/img/icons/conctacts-add-new-contact.icon.png" alt="">
                 </div>

@@ -118,9 +118,11 @@ function logout() {
 function toggleShowLogOutArea() {
     if (activLogOutArea) {
         document.getElementById('header-log-out').classList.add('header-d-none');
+        document.getElementById('contacts-newcontact-btn-resp').classList.remove('d-none');
         activLogOutArea = false;
     } else {
         document.getElementById('header-log-out').classList.remove('header-d-none');
+        document.getElementById('contacts-newcontact-btn-resp').classList.add('d-none');
         activLogOutArea = true;
     }
 }
