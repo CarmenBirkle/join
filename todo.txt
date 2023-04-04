@@ -32,5 +32,7 @@ Login Prozess html und css - Pascal
 Templates (side-bar + header) responsive  - Carmen
 Help + Legal Notice incl. responsive - Carmen 
 Logik Sidebar - Carmen
+Contacts html, css, (desktop + responsive) - Carmen
+Contacts js - Carmen
 
 
