@@ -198,6 +198,21 @@ function renderTopAssigendToAfterNewContact() {
     document.getElementById('add-task-add-new-contact-section').innerHTML = openTopAssignedToHTML();
 }
 
+function toggleCheckboxAssigned(event) {
+    let divContainerAssigned = event.target;
+    let checkboxAssigned = divContainerAssigned.querySelector('.validate-assignedto-checkbox');
+
+    if (checkboxAssigned && divContainerAssigned !== checkboxAssigned) {
+        // If the click event was triggered by clicking on the DIV element,
+        // toggle the checkbox state
+        checkboxAssigned.checked = !checkboxAssigned.checked;
+    } else {
+        // If the click event was triggered by clicking on the checkbox element,
+        // stop the event from propagating to the DIV element
+        event.stopPropagation();
+    }
+}
+
 function renderAssignedToError() {
     document.getElementById('add-task-assigned-error').innerHTML = '';
     document.getElementById('add-task-assigned-error').innerHTML = addTaskErrorHTML('Please select a Contact');
@@ -499,7 +514,7 @@ function openTopAssignedToHTML() {
 
 function openAssignedListHTML(name, email) {
     return /*html*/`
-    <div style="justify-content: space-between;" class="add-task-dropdown-option">
+    <div style="justify-content: space-between;" class="add-task-dropdown-option"  onclick="toggleCheckboxAssigned(event)">
         <span>${name}</span>
         <input type="checkbox" name="${email}" value="${name}" class="validate-assignedto-checkbox">
     </div>
