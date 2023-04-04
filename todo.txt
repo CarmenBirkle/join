@@ -1,5 +1,5 @@
 Aktuelle Todos:
-Daniel: Add Task / Summary responsive
+Daniel: Add Task js / Summary js
 Carmen: Contacts
 Pascal: Animationen bei Login, Board html
 
@@ -27,12 +27,14 @@ Erledigt:
 Projektstruktur aufgesetzt - Daniel + Carmen 
 Fonts definiert und eingebunden - Carmen
 GitHub Account erstellt - Carmen
-Grundstruktur Summary - Daniel
+Summary html css responsive - Daniel
 Login Prozess html und css - Pascal
 Templates (side-bar + header) responsive  - Carmen
 Help + Legal Notice incl. responsive - Carmen 
 Logik Sidebar - Carmen
 Contacts html, css, (desktop + responsive) - Carmen
 Contacts js - Carmen
+Add Task html css responsive - Daniel
+Add Task js - Daniel
 
 

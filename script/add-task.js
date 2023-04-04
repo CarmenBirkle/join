@@ -328,7 +328,7 @@ function validateForm() {
 }
 
 function pushChosenAssignedTo() {
-    let contactsCheckboxes = document.querySelectorAll('input[name=contacts]');
+    let contactsCheckboxes = document.querySelectorAll('.validate-assignedto-checkbox');
     for (let i = 0; i < contactsCheckboxes.length; i++) {
         if (contactsCheckboxes[i].checked) {
             chosenAssignedTo.push(contactsCheckboxes[i].value);
@@ -501,7 +501,7 @@ function openAssignedListHTML(name, email) {
     return /*html*/`
     <div style="justify-content: space-between;" class="add-task-dropdown-option">
         <span>${name}</span>
-        <input type="checkbox" name="${email}" value="${name}">
+        <input type="checkbox" name="${email}" value="${name}" class="validate-assignedto-checkbox">
     </div>
      `;
 }
