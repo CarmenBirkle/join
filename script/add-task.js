@@ -572,7 +572,7 @@ function openSubtaskInput() {
 
 function openSubtasksCheckboxHTML(subTaskCheckbox) {
     return /*html*/`
-    <div>
+    <div class="add-task-subtask-checkbox-container">
         <input type="checkbox" name="subtasks" value="${subTaskCheckbox}" checked>
         <span>${subTaskCheckbox}</span>
     </div>
