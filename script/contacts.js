@@ -1,4 +1,3 @@
-
 'use strict';
 /**
  * 
@@ -7,10 +6,6 @@
 let contacts = [];
 let sortContacts = [];
 
-
-function initContacts() {
-
-}
 
 function contactsShowOverlayNew() {
     let overlay = document.getElementById('contacts-popup-add-contact');
@@ -105,13 +100,12 @@ function contactsShowContactToEdit(contacts, contactNumber) {
  * function to see the individual user data  on the left side. 
 * query if window size bigger then 1170 mobile or small displays are present, 
 * then the function contacsshowuserMobile is called
-* @param {number} i // index-number of contacts-array
+* @param {contactNumber} contactNumber // contacts-number for index
  */
 
 
 function contactsShowUser(contacts, contactNumber) {
     const selectedContact = contacts.find(contact => contact.number === contactNumber);
-    console.log('kontakt', selectedContact);
     document.getElementById('contacts-user').innerHTML = getUserLeftTemplate(selectedContact);
     document.getElementById('contacts-container-right-mobile').innerHTML = mobileLeftTemplate(selectedContact);
 
@@ -121,7 +115,6 @@ function contactsShowUser(contacts, contactNumber) {
     } else {
         document.getElementById('contacts-container-right-mobile').classList.add('d-none');
         document.getElementById('contacts-container-left').classList.remove('d-none');
-       
     }
 }
 
@@ -198,20 +191,11 @@ try{
 }
 
 
-
 function contactsCloseMobileContacts() {
     document.getElementById('contacts-container-right-mobile').classList.add('d-none');
     document.getElementById('contacts-container-left').classList.remove('d-none');
 }
 
-// window.onscroll = function() {
-//     let element = document.querySelector('.contacts-single-data');
-//     let elementPosition = element.getBoundingClientRect();
-//     if (elementPosition.top >= 0 && elementPosition.top <= 60) {
-//       element.style.pointerEvents = 'none';
-//     } else {
-//       element.style.pointerEvents = 'auto';
-//     }
-//   }
+
   
 
