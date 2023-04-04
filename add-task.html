@@ -17,13 +17,12 @@
     <link rel="shortcut icon" type="image/x-icon" href="./assets/img/side-bar-join-logo.svg">
     <script src="./mini_backend.js"></script>
     <script src="./script/app.js"></script>
-    <script src="./script/contacts.js"></script>
     <script src="./script/add-task.js"></script>
 
     <title>Add Task | Join</title>
 </head>
 
-<body onload="init(); initAddTask()">
+<body onload="initAddTask()">
     <div w3-include-html="./assets/templates/header-template.html"></div>
     <div w3-include-html="./assets/templates/side-bar-template.html"></div>
 
@@ -42,7 +41,7 @@
 
                         <div class="add-task-description">
                             <label for="add-task-input-description">Description</label>
-                            <textarea id="add-task-input-description" type="text" placeholder="Enter a Description"
+                            <textarea id="add-task-input-description" placeholder="Enter a Description"
                                 required></textarea>
                         </div>
 

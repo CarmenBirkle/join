@@ -1,6 +1,7 @@
 .d-none {
     display: none !important;
 }
+
 /*
 body {
     overflow-x: hidden;
@@ -331,6 +332,7 @@ body {
 .add-task-dropdown-new-contact img {
     width: 23px;
     height: 23px;
+    margin-right: 3px;
 }
 
 .add-task-new-contact-input {
@@ -596,6 +598,11 @@ body {
     color: #000000;
 }
 
+.add-task-subtask-checkbox-container {
+    display: flex;
+    align-items: center;
+}
+
 /* --- Form Rightside Buttons --- */
 .add-task-buttons {
     box-sizing: border-box;
@@ -730,4 +737,35 @@ body {
     to {
         top: 70%;
     }
+}
+
+/* --- Checkbox Design --- */
+input[type=checkbox] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    display: inline-block;
+    position: relative;
+    background-color: #fff;
+    color: #000;
+    top: 0;
+    height: 15px;
+    width: 15px;
+    border: 0;
+    cursor: pointer;     
+    margin-right: 7px;
+    margin-bottom: 5px;
+    outline: none;
+    border: 1px solid #000;
+    border-radius: 100%;
+}
+
+input[type=checkbox]:checked::before {
+    position: absolute;
+    font-size: 10px;
+    left: 3.5px;
+    top: 0;
+    font-weight: 700;
+    content: '\02143';
+    transform: rotate(40deg);
 }

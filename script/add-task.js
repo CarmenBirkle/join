@@ -13,14 +13,13 @@ let tasks = [];
 
 
 /*-- Init All Elements --*/
-function initAddTask() {
-    setTimeout(() => {
-        initCategory();
-        initAssignedTo();
-        initDueDate();
-        initPrioButtons();
-        initSubtask();
-    }, 400)
+async function initAddTask() {
+    await init();
+    initCategory();
+    initAssignedTo();
+    initDueDate();
+    initPrioButtons();
+    initSubtask();
 }
 
 /*-- Category --*/
@@ -160,7 +159,8 @@ function renderAssignedToSelection() {
 
     for (let i = 0; i < contacts.length; i++) {
         const name = contacts[i].fullname;
-        document.getElementById('add-task-assignedto-dropdown').innerHTML += openAssignedListHTML(name);
+        const email = contacts[i].email;
+        document.getElementById('add-task-assignedto-dropdown').innerHTML += openAssignedListHTML(name, email);
     }
 }
 
@@ -178,7 +178,19 @@ function searchNewContactEnter(event) {
 }
 
 function searchNewContact() {
-    console.log('Moin');
+    let emailInput = document.getElementById('assigned-new-contact-input').value;
+    let checkEmail = document.querySelector(`input[type="checkbox"][name="${emailInput}"]`);
+    if (checkEmail) {
+        checkEmail.checked = true;
+        document.getElementById('add-task-assigned-error').innerHTML = addTaskErrorHTML(`${emailInput} added!`);
+        renderTopAssigendToAfterNewContact();
+    } else {
+        document.getElementById('add-task-assigned-error').innerHTML = addTaskErrorHTML(`${emailInput} email not found!`);
+        document.getElementById('assigned-new-contact-input').focus();
+    }
+    setTimeout(() => {
+        document.getElementById('add-task-assigned-error').innerHTML = '';
+    }, 2000);
 }
 
 function renderTopAssigendToAfterNewContact() {
@@ -316,7 +328,7 @@ function validateForm() {
 }
 
 function pushChosenAssignedTo() {
-    let contactsCheckboxes = document.querySelectorAll('input[name=contacts]');
+    let contactsCheckboxes = document.querySelectorAll('.validate-assignedto-checkbox');
     for (let i = 0; i < contactsCheckboxes.length; i++) {
         if (contactsCheckboxes[i].checked) {
             chosenAssignedTo.push(contactsCheckboxes[i].value);
@@ -363,6 +375,7 @@ async function sendFormToBackend() {
         }
 
         tasks.push(task);
+        console.log(tasks); // Test
         //sendTaskToUsers(task); // Test
 
         let clearButton = document.getElementById('add-task-clear-button');
@@ -484,11 +497,11 @@ function openTopAssignedToHTML() {
     `;
 }
 
-function openAssignedListHTML(name) {
+function openAssignedListHTML(name, email) {
     return /*html*/`
     <div style="justify-content: space-between;" class="add-task-dropdown-option">
         <span>${name}</span>
-        <input type="checkbox" name="contacts" value="${name}">
+        <input type="checkbox" name="${email}" value="${name}" class="validate-assignedto-checkbox">
     </div>
      `;
 }
@@ -505,7 +518,7 @@ function openInviteNewContactHTML() {
 function openNewContactSelectHTML() {
     return /*html*/`
     <div class="add-task-dropdown-top">
-        <input id="assigned-new-contact" class="add-task-new-contact-input" type="text" placeholder="Contact name" onkeypress="searchNewContactEnter(event)">
+        <input id="assigned-new-contact-input" class="add-task-new-contact-input" type="email" placeholder="Contact email" onkeypress="searchNewContactEnter(event)">
         <div class="add-task-new-categroy-buttons">
             <img src="./assets/img/icons/add-task-button-cross.svg" onclick="renderTopAssigendToAfterNewContact()" alt="cross">
             <div class="add-task-category-greyline"></div>
@@ -559,7 +572,7 @@ function openSubtaskInput() {
 
 function openSubtasksCheckboxHTML(subTaskCheckbox) {
     return /*html*/`
-    <div>
+    <div class="add-task-subtask-checkbox-container">
         <input type="checkbox" name="subtasks" value="${subTaskCheckbox}" checked>
         <span>${subTaskCheckbox}</span>
     </div>
