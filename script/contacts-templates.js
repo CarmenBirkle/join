@@ -15,7 +15,7 @@ function getUserLeftTemplate(contact) {
 
             <div class="contacts-information-center">
                 <div class="contacts-info-center-titel">Contact information</div>
-                    <div class="contacts-edit" onclick="contactsShowOverlayEdit()">
+                    <div class="contacts-edit" onclick="contactsShowOverlayEdit(contacts, ${contact.number})">
                         <img src="./assets/img/icons/contact-edit.png" alt="edit">
                         <div>Edit Contact</div>
                     </div>
@@ -71,7 +71,7 @@ function mobileLeftTemplate(contact) {
 
             <div class="contacts-information-center">
                 <div class="contacts-info-center-titel">Contact information</div>
-                    <div class="contacts-edit" onclick="contactsShowOverlayEdit()">
+                    <div class="contacts-edit" onclick="contactsShowOverlayEdit(contacts, ${contact.number})">
                         <img src="./assets/img/icons/contact-edit.png" alt="edit">
                         <div>Edit Contact</div>
                     </div>
@@ -96,7 +96,7 @@ function mobileLeftTemplate(contact) {
                     </div>
                 </div>
             </div>
-            <div class="btn-mobil-edit" onclick="contactsShowOverlayEdit()"> 
+            <div class="btn-mobil-edit" onclick="contactsShowOverlayEdit(contacts, ${contact.number})"> 
                 <img src="./assets/img/icons/contacts-edit-mobile.png" alt="edit">
             </div>
     </div>
@@ -137,7 +137,7 @@ function contactListContactTemplate(contact){
     `;
 }
 
-function contactEditSingleContactTemplate(i) {
+function contactsShowContactToEditTemplate(contact) {
     return `
     
             <div id="render-popup-edit-Contact" class="contacts-overlay">
@@ -153,26 +153,26 @@ function contactEditSingleContactTemplate(i) {
                         <img class="contacts-white-edit" src="./assets/img/icons/X-white.png"
                             onclick="contactsCloseOverlayEdit()" alt="X">
                         <div class="contact-img">
-                            <div class="contact-initals-big">CB</div>
+                            <div class="contact-initals-big">${contact.initals}</div>
                     </div>
                     
                         <form class="form-mobile" action="" onsubmit="saveContact(); return false">
                             <div class="contacts-input-with-icon">
-                                <input type="text" required required pattern="[a-zA-ZäöüÄÖÜß]+\s[a-zA-ZäöüÄÖÜß]+"
-                                    placeholder="Name" value="Carmen Birkle"
+                                <input type="text" required pattern="[a-zA-ZäöüÄÖÜß]+\s[a-zA-ZäöüÄÖÜß]+"
+                                    placeholder="First- and Lastname"  value="${contact.fullname}" 
                                     title="Gebe Deinen Vor- und Nachnamen an (2 Wörter)">
                                 <span class="contacts-icon-name"></span>
                             </div>
 
                             <div class="contacts-input-with-icon">
                                 <input class="contacts-email" type="email" required placeholder="Email"
-                                    value="carmen@test.de">
+                                    value="${contact.email}">
                                 <span class="contacts-icon-email"></span>
                             </div>
 
                             <div class="contacts-input-with-icon">
                                 <input type="tel" required placeholder="Phone" pattern="[0-9]+-[0-9]+"
-                                    value="0123-45678" title="Das Format sollte diesem Schema entsprechen: 0123-456789">
+                                    value="${contact.phone}" title="Das Format sollte diesem Schema entsprechen: 0123-456789">
                                 <span class="contacts-icon-phone"></span>
                             </div>
 

@@ -33,10 +33,7 @@ function contacsResetNewContact() {
     document.getElementById('contact-tel').value = '';
 }
 
-function contactsShowOverlayEdit(i) {
-    contactsShowContactToEdit(i);
-    document.getElementById('contacts-popup-edit-Contact').classList.remove('d-none');
-}
+
 
 function contactsCloseOverlayEdit() {
     document.getElementById('contacts-popup-edit-Contact').classList.add('d-none');
@@ -90,12 +87,17 @@ function contactsShowContactlist(sortContacts) {
     }
 }
 
-// TODO vervollständigen wenn das Backand steht (Logik: es wird ein Index übergeben und anhand dessen 
-// die Daten in der Renderfunktion verarbeiten) -> Daten Links
-// passt noch nicht ganz
+function contactsShowOverlayEdit(contacts, contactNumber) {
+    contactsShowContactToEdit(contacts, contactNumber);
+    document.getElementById('contacts-popup-edit-Contact').classList.remove('d-none');
+}
+
 function contactsShowContactToEdit(contacts, contactNumber) {
+    console.log(contactNumber);
     const selectedContact = contacts.find(contact => contact.number === contactNumber);
-    document.getElementById('contacts-popup-edit-Contact').innerHTML = contactEditSingleContactTemplate(selectedContact);
+    console.log('kontakt', selectedContact);
+    console.log(selectedContact);
+    document.getElementById('contacts-popup-edit-Contact').innerHTML =  contactsShowContactToEditTemplate(selectedContact);
 }
 
 
@@ -141,7 +143,7 @@ function randomRGBColor(){
     let b = Math.floor(Math.random() * 156);
     let randomRGBColor = `${r},`+`${g},`+`${b}`;
     return randomRGBColor;
-  }
+}
 
 
 function getInitials(name) {

@@ -96,7 +96,7 @@ input::placeholder{
     align-items: flex-start;
     padding: 66px 46px;
     gap: 12px;
-    isolation: isolate;
+    /* isolation: isolate; */
     background-color: var(--dark-grey);
     width: 463px;
     border-top-left-radius: 25px;
