@@ -72,6 +72,7 @@ function getSortListofContacts() {
 
 //Render Function for ContactList Left
 function contactsShowContactlist(sortContacts) {
+    document.getElementById('contacts-list').innerHTML ='';
     for (let [key, value] of sortContacts) {
         document.getElementById('contacts-list').innerHTML += contactListLetterTemplate(key);
         for (let contact of value) {
@@ -88,10 +89,7 @@ function contactsShowOverlayEdit(contacts, contactNumber) {
 }
 
 function contactsShowContactToEdit(contacts, contactNumber) {
-    console.log(contactNumber);
     const selectedContact = contacts.find(contact => contact.number === contactNumber);
-    console.log('kontakt', selectedContact);
-    console.log(selectedContact);
     document.getElementById('contacts-popup-edit-Contact').innerHTML =  contactsShowContactToEditTemplate(selectedContact);
 }
 
@@ -196,6 +194,52 @@ function contactsCloseMobileContacts() {
     document.getElementById('contacts-container-left').classList.remove('d-none');
 }
 
+async function editContact(contact){
+    // let name = document.getElementById('contacts-edit-fullname').value;
+    // let email = document.getElementById('contacts-edit-email').value;
+    // let phone = document.getElementById('contacts-edit-phone').value;
 
+    // const foundContact = contacts.find(c => c.number === contact);
+    // const index = contacts.findIndex(c => c.number === contact);
+
+    // foundContact.initals = getInitials(name); ;
+    // foundContact.fullname = name;
+    // foundContact.email = email;
+    // foundContact.phone = phone;
+
+    // contacts[index] = foundContact;
+    updateContacts(contact);
+    await backend.setItem('contacts', JSON.stringify(contacts));
+
+    contactsShowContactlist(sortContacts);
+    contactsShowUser(contacts, contact);
+    contactsCloseOverlayEdit();
+}
+
+function updateContacts(contact){
+    let name = document.getElementById('contacts-edit-fullname').value;
+    let email = document.getElementById('contacts-edit-email').value;
+    let phone = document.getElementById('contacts-edit-phone').value;
+
+    const foundContact = contacts.find(c => c.number === contact);
+    const index = contacts.findIndex(c => c.number === contact);
+
+    foundContact.initals = getInitials(name); ;
+    foundContact.fullname = name;
+    foundContact.email = email;
+    foundContact.phone = phone;
+    
+    contacts[index] = foundContact;
+}
   
+// function deleteUser(id) {
+//     users.splice(id, 1);
+//     for (let i = 0; i < users.length; i++) {
+//       users[i].id = i;
+//     }
+//     backend.setItem("users", users);
+//     returnContacts();
+//   }
+
+
 

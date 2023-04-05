@@ -147,21 +147,21 @@ function contactsShowContactToEditTemplate(contact) {
                         <div class="contact-img" style="background-color: rgb(${contact.bgcolor});">
                             <div class="contact-initals-big">${contact.initals}</div>
                     </div>
-                        <form class="form-mobile" action="" onsubmit="saveContact(); return false">
+                        <form class="form-mobile" action="" onsubmit="editContact(${contact.number}); return false">
                             <div class="contacts-input-with-icon">
-                                <input type="text" required pattern="[a-zA-ZäöüÄÖÜß]+\s[a-zA-ZäöüÄÖÜß]+"
+                                <input id="contacts-edit-fullname" type="text" 
                                     placeholder="First- and Lastname"  value="${contact.fullname}" 
                                     title="Gebe Deinen Vor- und Nachnamen an (2 Wörter)">
                                 <span class="contacts-icon-name"></span>
                             </div>
                             <div class="contacts-input-with-icon">
-                                <input class="contacts-email" type="email" required placeholder="Email"
+                                <input id="contacts-edit-email" class="contacts-email" type="email" required placeholder="Email"
                                     value="${contact.email}">
                                 <span class="contacts-icon-email"></span>
                             </div>
 
                             <div class="contacts-input-with-icon">
-                                <input type="tel" required placeholder="Phone" pattern="[0-9]+-[0-9]+"
+                                <input id="contacts-edit-phone" type="tel" required placeholder="Phone" pattern="[0-9]+-[0-9]+"
                                     value="${contact.phone}" title="Das Format sollte diesem Schema entsprechen: 0123-456789">
                                 <span class="contacts-icon-phone"></span>
                             </div>
@@ -175,3 +175,49 @@ function contactsShowContactToEditTemplate(contact) {
         </div>
     `;
 }
+
+// function contactsShowContactToEditTemplate(contact) {
+//     return `
+//             <div id="render-popup-edit-Contact" class="contacts-overlay">
+//                 <div class="contacts-add-contact fadeInRight">
+//                     <div class="contacts-add-contact-left">
+//                     <img class="contacts-white-edit" src="./assets/img/icons/X-white.png"
+//                     onclick="contactsCloseOverlayEdit()" alt="X">
+//                         <img class="contacts-join-logo"src="./assets/img/side-bar-join-logo.svg" alt="Join">
+//                         <h1>Edit Contact</h1>
+//                         <hr>
+//                     </div>
+//                     <div class="contacts-add-contact-right">
+//                         <img class="contacts-full" src="./assets/img/icons/contacs-x.svg"
+//                             onclick="contactsCloseOverlayEdit()" alt="X">
+//                         <div class="contact-img" style="background-color: rgb(${contact.bgcolor});">
+//                             <div class="contact-initals-big">${contact.initals}</div>
+//                     </div>
+//                         <form class="form-mobile" action="" onsubmit="editContact(${contact.number}); return false">
+//                             <div class="contacts-input-with-icon">
+//                                 <input id="contacts-edit-fullname" type="text" required pattern="[a-zA-ZäöüÄÖÜß]+\s[a-zA-ZäöüÄÖÜß]+"
+//                                     placeholder="First- and Lastname"  value="${contact.fullname}" 
+//                                     title="Gebe Deinen Vor- und Nachnamen an (2 Wörter)">
+//                                 <span class="contacts-icon-name"></span>
+//                             </div>
+//                             <div class="contacts-input-with-icon">
+//                                 <input id="contacts-edit-email" class="contacts-email" type="email" required placeholder="Email"
+//                                     value="${contact.email}">
+//                                 <span class="contacts-icon-email"></span>
+//                             </div>
+
+//                             <div class="contacts-input-with-icon">
+//                                 <input id="contacts-edit-phone" type="tel" required placeholder="Phone" pattern="[0-9]+-[0-9]+"
+//                                     value="${contact.phone}" title="Das Format sollte diesem Schema entsprechen: 0123-456789">
+//                                 <span class="contacts-icon-phone"></span>
+//                             </div>
+
+//                             <div class="contacts-btn-container-edit">
+//                                 <button type="submit" class="contacts-btn-save-contact">Save</button>
+//                             </div>
+//                         </form>
+//                     </div>
+//                 </div>
+//         </div>
+//     `;
+// }
