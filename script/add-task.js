@@ -216,38 +216,35 @@ function searchNewContactPushUser(emailInput) {
 function toggleCheckboxAssigned(event, bgColor, initals) {
     let divContainerAssigned = event.target.closest('.add-task-dropdown-option');
     let checkboxAssigned = divContainerAssigned.querySelector('.validate-assignedto-checkbox');
-  
-    if (checkboxAssigned && divContainerAssigned !== checkboxAssigned) {
-      // Wenn die Checkbox geklickt wurde, toggle den Zustand
-      checkboxAssigned.checked = !checkboxAssigned.checked;
-  
-      // Suchen Sie die Zuweisungsinfo für die aktuelle onclick-Funktion
-      let index = assignedToUsers.findIndex(info => info.bgColor === bgColor && info.initals === initals);
-  
-      if (checkboxAssigned.checked) {
+
+    if (divContainerAssigned === event.target) {
+        // Wenn das DIV-Element geklickt wurde, toggle den Zustand der Checkbox
+        checkboxAssigned.checked = !checkboxAssigned.checked;
+    }
+    // Suchen Sie die Zuweisungsinfo für die aktuelle onclick-Funktion
+    let index = assignedToUsers.findIndex(info => info.bgColor === bgColor && info.initals === initals);
+
+    if (checkboxAssigned.checked) {
         // Wenn die Checkbox jetzt ausgewählt ist, füge eine neue Zuweisungsinfo hinzu, wenn es noch keine gibt
         if (index === -1) {
             assignedToUsers.push({ bgColor: bgColor, initals: initals });
         }
-      } else {
+    } else {
         // Wenn die Checkbox jetzt nicht ausgewählt ist, entferne die entsprechende Zuweisungsinfo
         if (index !== -1) {
             assignedToUsers.splice(index, 1);
         }
-      }
-    } else {
-      // Wenn das DIV-Element geklickt wurde, stoppe die Propagation des Events
-      event.stopPropagation();
     }
+
     bgColor = assignedToUsers.map(info => info.bgColor);
     initals = assignedToUsers.map(info => info.initals);
-    console.log(assignedToUsers);
+    console.log(assignedToUsers); // TEST !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     renderAssignedUsers();
 }
 
 function renderAssignedUsers() {
     document.getElementById('add-task-assigned-users').innerHTML = '';
-    for(let i=0; i< assignedToUsers.length;i++) {
+    for (let i = 0; i < assignedToUsers.length; i++) {
         let bgColor = assignedToUsers[i].bgColor;
         let initals = assignedToUsers[i].initals;
         document.getElementById('add-task-assigned-users').innerHTML += openrenderAssignedUser(bgColor, initals);

@@ -99,7 +99,7 @@ function openTopAssignedToHTML() {
 function openAssignedListHTML(name, email, bgColor, initals) {
     return /*html*/`
     <div style="justify-content: space-between;" class="add-task-dropdown-option"  onclick="toggleCheckboxAssigned(event,'${bgColor}','${initals}')">
-        <span>${name}</span>
+        ${name}
         <input type="checkbox" name="${email}" value="${name}" class="validate-assignedto-checkbox">
     </div>
      `;
