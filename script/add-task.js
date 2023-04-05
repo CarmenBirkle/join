@@ -372,7 +372,6 @@ async function sendFormToBackend() {
         let categoryColor = chosenCategoryColor[0];
         let categoryType = chosenCategoryType[0];
         let contact = chosenAssignedTo;
-        let date = document.getElementById('add-task-input-due-date').value;
         let prio = chosenPrioButton[0];
         let subtask = chosenSubtasks;
 
@@ -384,7 +383,7 @@ async function sendFormToBackend() {
             'categoryType': categoryType,
             'category': 'to-do',
             'contact': contact,
-            'date': date,
+            'date': dateFormattedMilliseconds(),
             'prio': prio,
             'subtask': subtask
         }
@@ -411,6 +410,13 @@ async function sendFormToBackend() {
         button.disabled = false;
         buttonMedia.disabled = false;
     }
+}
+
+function dateFormattedMilliseconds() {
+    let date = document.getElementById('add-task-input-due-date').value;
+    let isoDate = date.split('-').reverse().join('-');
+    let milliseconds = Date.parse(isoDate);
+    return milliseconds;
 }
 
 
