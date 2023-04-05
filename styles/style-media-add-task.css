@@ -81,6 +81,11 @@
         font-size: 16px;
     }
 
+    .add-task-assigned-user {
+        width: 25px;
+        height: 25px;
+    }
+
     /* --- Form-Greyline-Mid --- */
     .add-task-greyline {
         display: none;
