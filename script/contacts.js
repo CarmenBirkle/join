@@ -195,19 +195,6 @@ function contactsCloseMobileContacts() {
 }
 
 async function editContact(contact){
-    // let name = document.getElementById('contacts-edit-fullname').value;
-    // let email = document.getElementById('contacts-edit-email').value;
-    // let phone = document.getElementById('contacts-edit-phone').value;
-
-    // const foundContact = contacts.find(c => c.number === contact);
-    // const index = contacts.findIndex(c => c.number === contact);
-
-    // foundContact.initals = getInitials(name); ;
-    // foundContact.fullname = name;
-    // foundContact.email = email;
-    // foundContact.phone = phone;
-
-    // contacts[index] = foundContact;
     updateContacts(contact);
     await backend.setItem('contacts', JSON.stringify(contacts));
 
@@ -232,14 +219,13 @@ function updateContacts(contact){
     contacts[index] = foundContact;
 }
   
-// function deleteUser(id) {
-//     users.splice(id, 1);
-//     for (let i = 0; i < users.length; i++) {
-//       users[i].id = i;
-//     }
-//     backend.setItem("users", users);
-//     returnContacts();
-//   }
+async function deleteContacts(contact) {
+    const index = contacts.findIndex(c => c.number === contact);
+    contacts.splice(index, 1);
+    await backend.setItem('contacts', JSON.stringify(contacts));
+    contactsShowContactlist(sortContacts);
+    location.reload();
+  }
 
 
 

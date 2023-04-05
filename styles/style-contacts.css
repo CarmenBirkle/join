@@ -357,8 +357,7 @@ input::placeholder{
     justify-content: center;
     align-items: center;
     padding: 18px 10px;
-    gap: 10px;
-    /* width: 208px; */
+    gap: 10px;  
     height: 61px;
     border-radius: 10px;
     font-size:21px;
@@ -371,8 +370,37 @@ input::placeholder{
     color: #29ABE2;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
+.contacts-config{
+    gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
 
 
+.contacts-trash{
+    height: 25px;
+    width: 25px;
+}
+
+.btn-trash {
+    height: 40px;
+    width: 40px;
+    background-color: var(--dark-grey);
+    border-radius: 10px;
+    position: fixed;
+    bottom: 121px;
+    top: unset;
+    right: 70px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-trash:hover{
+    background-color: #29ABE2;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
 
 .contacts-img-cancel{
     height: 10.49px;
@@ -491,7 +519,7 @@ input::placeholder{
 }
 
 .contacts-info-center-titel{
-    width:201px;
+    min-width:200px;
 }
 
 .contacts-edit{
@@ -502,12 +530,8 @@ input::placeholder{
     align-items: end;
 }
 .contacts-edit > div{
-    width: 100px;
+    width: 115px;
     height: 19px;
-}
-
-.contacts-information{
-    /* display:none; */
 }
 
 .contacts-information-bottom{

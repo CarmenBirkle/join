@@ -14,11 +14,18 @@ function getUserLeftTemplate(contact) {
             </div>
 
             <div class="contacts-information-center">
-                <div class="contacts-info-center-titel">Contact information</div>
+                <div class="contacts-info-center-titel">Contact information</div> 
+                <div class="contacts-config">
                     <div class="contacts-edit" onclick="contactsShowOverlayEdit(contacts, ${contact.number})">
                         <img src="./assets/img/icons/contact-edit.png" alt="edit">
                         <div>Edit Contact</div>
                     </div>
+                   
+                    <div  class="contacts-edit" onclick="deleteContacts(${contact.number})"> 
+                        <img class="contacts-trash" src="./assets/img/icons/contacts-trash-black.png" alt="delete">        
+                        <div>Delete Contact</div>
+                    </div>
+                </div>
                 </div>
 
             <div class="contacts-information-bottom">
@@ -39,6 +46,7 @@ function getUserLeftTemplate(contact) {
                     ${contact.phone}
                     </div>
                 </div>
+
             </div>
             </div>
 `;
@@ -96,6 +104,11 @@ function mobileLeftTemplate(contact) {
                     </div>
                 </div>
             </div>
+            <div class="btn-trash" onclick="deleteContacts(${contact.number})"> 
+                <img class="contacts-trash" src="./assets/img/icons/contacts-trash.png" alt="delete">
+            </div>
+
+
             <div class="btn-mobil-edit" onclick="contactsShowOverlayEdit(contacts, ${contact.number})"> 
                 <img src="./assets/img/icons/contacts-edit-mobile.png" alt="edit">
             </div>
