@@ -185,8 +185,9 @@ function searchNewContact() {
     let checkEmail = document.querySelector(`input[type="checkbox"][name="${emailInput}"]`);
     if (checkEmail) {
         checkEmail.checked = true;
-        document.getElementById('add-task-assigned-error').innerHTML = addTaskErrorHTML(`${emailInput} added!`);
         renderTopAssigendToAfterNewContact();
+        searchNewContactPushUser(emailInput);
+        renderAssignedUsers();
     } else {
         document.getElementById('add-task-assigned-error').innerHTML = addTaskErrorHTML(`${emailInput} email not found!`);
         document.getElementById('assigned-new-contact-input').focus();
@@ -201,23 +202,19 @@ function renderTopAssigendToAfterNewContact() {
     document.getElementById('add-task-add-new-contact-section').innerHTML = openTopAssignedToHTML();
 }
 
-/*function toggleCheckboxAssigned(event, bgColor, initals) {
-    let divContainerAssigned = event.target;
-    let checkboxAssigned = divContainerAssigned.querySelector('.validate-assignedto-checkbox');
-
-    if (checkboxAssigned && divContainerAssigned !== checkboxAssigned) {
-        // If the click event was triggered by clicking on the DIV element,
-        // toggle the checkbox state
-        checkboxAssigned.checked = !checkboxAssigned.checked;
-    } else {
-        // If the click event was triggered by clicking on the checkbox element,
-        // stop the event from propagating to the DIV element
-        event.stopPropagation();
+function searchNewContactPushUser(emailInput) {
+    const selectedContact = contacts.find(contact => contact.email === emailInput);
+    let bgColor = selectedContact.bgcolor;
+    let initals = selectedContact.initals;
+    let index = assignedToUsers.findIndex(info => info.bgColor === bgColor && info.initals === initals);
+    // prevent multi generate
+    if (index === -1) {
+        assignedToUsers.push({ bgColor: bgColor, initals: initals });
     }
-}*/
+}
 
 function toggleCheckboxAssigned(event, bgColor, initals) {
-    let divContainerAssigned = event.target;
+    let divContainerAssigned = event.target.closest('.add-task-dropdown-option');
     let checkboxAssigned = divContainerAssigned.querySelector('.validate-assignedto-checkbox');
   
     if (checkboxAssigned && divContainerAssigned !== checkboxAssigned) {
