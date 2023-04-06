@@ -32,8 +32,8 @@
     <div class="contacts-main">
         <!-- Include Template Add Task -->
         <div id="contacts-add-task" class="d-none">
-            <div class="contacts-overlay">
-                <div id="contacts-add-contact" class="contacts-add-contact-add-task fadeInRightAlways">
+            <div class="contacts-overlay" onclick="closeAllPopups()">
+                <div id="contacts-add-contact" class="contacts-add-contact-add-task fadeInRightAlways" onclick="doNotClose(event)">
                     <img class="contacts-addTask-close-add-task" onclick="contactsCloseAddTask()"
                         src="./assets/img/icons/contacs-x.svg" onclick="contactsCloseAddTask()" alt="X">
                     <div class="contacts-include-tasks" w3-include-html="./assets/templates/task-template.html"></div>
@@ -43,8 +43,8 @@
         <!-- RenderArea Edit Contact -->
         <div id="contacts-popup-edit-Contact" class="d-none"> </div>
         <!-- Static HTML - Add Contact -->
-        <div id="contacts-popup-add-contact" style="display: none">
-            <div class="contacts-add-contact fadeInRight fadeInBottom">
+        <div id="contacts-popup-add-contact" onclick="closeAllPopups()" style="display: none">
+            <div class="contacts-add-contact fadeInRight fadeInBottom" onclick="doNotClose(event)">
                 <div class="contacts-add-contact-left">
                     <img class="contacts-white" src="./assets/img/icons/X-white.png" onclick="contactsCancelNewContact()"
                     alt="X">
@@ -106,7 +106,7 @@
             </div>
 
             <!-- Render-Area for Contact-List, Left Side -->
-            <div id="contacts-list" class="contact-list-container"> </div>
+            <div id="contacts-list" class="contact-list-container" > </div>
         </div>
         <!-- Render-Area for mobile Contact Details - only display if triggert per button and screen smaller then 1070px -->
         <div id="contacts-container-right-mobile" class="d-none"> </div>

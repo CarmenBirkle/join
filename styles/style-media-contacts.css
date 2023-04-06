@@ -376,3 +376,23 @@
     }
 
 }
+
+@media (max-width: 350px){
+
+    .contact-list-container{
+        margin-left: 20px;
+    }
+
+    .contacts-details{
+        font-size: 19px;
+    }
+
+    .contacts-single-email{
+        font-size: 14px;
+    }
+
+    .contacts-single-data{
+        gap: 25px;
+    }
+
+}

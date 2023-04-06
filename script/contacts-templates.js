@@ -145,8 +145,8 @@ function contactListContactTemplate(contact){
 
 function contactsShowContactToEditTemplate(contact) {
     return `
-            <div id="render-popup-edit-Contact" class="contacts-overlay">
-                <div class="contacts-add-contact fadeInRight fadeInBottom">
+            <div id="render-popup-edit-Contact" class="contacts-overlay" onclick="closeAllPopups()">
+                <div class="contacts-add-contact fadeInRight fadeInBottom" onclick="doNotClose(event)">
                     <div class="contacts-add-contact-left">
                     <img class="contacts-white-edit" src="./assets/img/icons/X-white.png"
                     onclick="contactsCloseOverlayEdit()" alt="X">

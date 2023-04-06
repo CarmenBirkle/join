@@ -128,60 +128,6 @@ function getInitials(name) {
 
 //TODO kürzen!
 
-// async function saveContact() {
-// try{
-//     const button = document.getElementById('contacts-save');
-//     button.disabled = true;
-
-//         let name = document.getElementById('contact-name').value;
-//         let email = document.getElementById('contact-email').value;
-//         let phone = document.getElementById('contact-tel').value;
-//         let initials = getInitials(name);        
-
-//         let contact = {
-//             'initals': initials,
-//             'number': contacts.length + 1,
-//             'fullname':name,
-//             'email': email,
-//             'phone': phone,
-//             'bgcolor': randomRGBColor(),
-//             'password': '',
-//             'image': ''
-//         };
-
-//         contacts.push(contact);
-//         await backend.setItem('contacts', JSON.stringify(contacts));
-
-// // showSuccessfullAlert();
-//     const div = document.getElementById('contacts-success')
-//     div.classList.add('fadeInBottom')
-//     div.classList.remove('d-none');
-//     setTimeout(() => {
-//         contactsCloseOverlayNew();
-//         contacsResetNewContact()
-//         div.classList.remove('fadeInBottom');
-//         div.classList.add('d-none');
-//     }, 2000);
-//     } catch (error){
-//         console.log(error);
-//     } finally {
-//         const button = document.getElementById('contacts-save');
-//         button.disabled = false;
-//     }
-// }
-
-// function showSuccessfullAlert(){
-//     const div = document.getElementById('contacts-success')
-//     div.classList.add('fadeInBottom')
-//     div.classList.remove('d-none');
-//     setTimeout(() => {
-//         contactsCloseOverlayNew();
-//         contacsResetNewContact()
-//         div.classList.remove('fadeInBottom');
-//         div.classList.add('d-none');
-//     }, 2000);
-// }
-
 // Find the highest number in the array
 function getHighestNumber(){
     let highestNumber = 0;
@@ -224,10 +170,14 @@ async function saveContact() {
         div.classList.remove('d-none');
         setTimeout(() => {
             contactsCloseOverlayNew();
-            contacsResetNewContact()
+            contacsResetNewContact();
             div.classList.remove('fadeInBottomAlways');
             div.classList.add('d-none');
         }, 2000);
+
+        getSortListofContacts();
+        contactsShowContactlist(sortContacts);
+
         } catch (error){
             console.log(error);
         } finally {
@@ -343,3 +293,12 @@ function contactsCloseAddTask() {
     document.getElementById('contacts-add-task').classList.add('d-none');
 }
 
+function closeAllPopups(){
+    contactsCancelNewContact();
+    contactsCloseOverlayEdit();
+    contactsCloseAddTask();
+}
+
+function doNotClose(event){
+    event.stopPropagation();
+}
