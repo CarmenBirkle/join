@@ -1,49 +1,28 @@
 'use strict';
 /**
- * 
+ * contains all functions that are relevant for the contacts.html. 
+ * Windows behavior, saving, modifying and deleting records, as well as helper functions. 
+ * @author Carmen Birkle
+ * @version 1.0
  */
 
+/**
+ * @param {Array.<Contacts>} contacts - Contains an Array of Contacts
+ * @param {Array.<sortContacts>} sortContacts - Contains an Array of Contactsdata, sort by Initial char
+ */
 let contacts = [];
 let sortContacts = [];
 
 
-function contactsShowOverlayNew() {
-    let overlay = document.getElementById('contacts-popup-add-contact');
-    overlay.style.display = "flex";
-}
-
-function contactsCloseOverlayNew() {
-    let overlay = document.getElementById('contacts-popup-add-contact');
-    overlay.style.display = "none";
-}
-
-function contactsCancelNewContact() {
-    contactsCloseOverlayNew();
-    contacsResetNewContact();
-}
-
-function contacsResetNewContact() {
-    document.getElementById('contact-name').value = '';
-    document.getElementById('contact-email').value = '';
-    document.getElementById('contact-tel').value = '';
-}
 
 
+/**
+ * Funktion to creat a map with sorted data by first letter and associated contact list.
+ * a map is used so that the initial letters are unique.
+ * then all contacts for this letter are listed alphabetically sorted by first name.
+ * This sorted list is stored in the global array sortContacts
+ */
 
-function contactsCloseOverlayEdit() {
-    document.getElementById('contacts-popup-edit-Contact').classList.add('d-none');
-}
-
-function contactsOpenAddTask() {
-    document.getElementById('contacts-add-task').classList.remove('d-none');
-}
-
-function contactsCloseAddTask() {
-    document.getElementById('contacts-add-task').classList.add('d-none');
-}
-
-//TODO kürzen
-//creates a map with sorted data by first letter and associated contact list
 function getSortListofContacts() {
     let initialsMap = new Map();
     contacts.forEach(contact => {
@@ -68,6 +47,8 @@ function getSortListofContacts() {
 
     sortContacts = sortedInitialsMap;
   }
+
+
   
 
 //Render Function for ContactList Left
@@ -95,12 +76,12 @@ function contactsShowContactToEdit(contacts, contactNumber) {
 
 
 /**
- * function to see the individual user data  on the left side. 
-* query if window size bigger then 1170 mobile or small displays are present, 
+ * render-function to see the individual user data  on the left side in detail an render it.
+* contains a query if window size bigger then 1170 mobile or small displays are present, 
 * then the function contacsshowuserMobile is called
-* @param {contactNumber} contactNumber // contacts-number for index
+* @param {Object} contacts - Array of all Contacts
+* @param {integer} contactNumber - specific contact number
  */
-
 
 function contactsShowUser(contacts, contactNumber) {
     const selectedContact = contacts.find(contact => contact.number === contactNumber);
@@ -170,7 +151,7 @@ try{
         contacts.push(contact);
         await backend.setItem('contacts', JSON.stringify(contacts));
 
-
+// showSuccessfullAlert();
     const div = document.getElementById('contacts-success')
     div.classList.add('fadeInBottom')
     div.classList.remove('d-none');
@@ -187,6 +168,18 @@ try{
         button.disabled = false;
     }
 }
+
+// function showSuccessfullAlert(){
+//     const div = document.getElementById('contacts-success')
+//     div.classList.add('fadeInBottom')
+//     div.classList.remove('d-none');
+//     setTimeout(() => {
+//         contactsCloseOverlayNew();
+//         contacsResetNewContact()
+//         div.classList.remove('fadeInBottom');
+//         div.classList.add('d-none');
+//     }, 2000);
+// }
 
 
 function contactsCloseMobileContacts() {
@@ -218,7 +211,19 @@ function updateContacts(contact){
     
     contacts[index] = foundContact;
 }
-  
+
+/**
+ * based on the contact number the matching record is searched from the 
+ * contakt-array and the index is caught. this index dataset is deleted, 
+ * the contact list is re-sorted and generated and the page is reloaded
+ * @async
+ * @function 
+ * @param {integer} contact - the individual contact number, this is generated 
+ * dynamically in ascending order when creating a contact
+ * 
+ * 
+ */
+
 async function deleteContacts(contact) {
     const index = contacts.findIndex(c => c.number === contact);
     contacts.splice(index, 1);
@@ -227,5 +232,59 @@ async function deleteContacts(contact) {
     location.reload();
   }
 
+/**
+ * Function so Display the Overlay to create an new Contact
+ */
+function contactsShowOverlayNew() {
+    let overlay = document.getElementById('contacts-popup-add-contact');
+    overlay.style.display = "flex";
+}
 
+/**
+ * Function to Close the Overlay for create an new Contact
+ */
+function contactsCloseOverlayNew() {
+    let overlay = document.getElementById('contacts-popup-add-contact');
+    overlay.style.display = "none";
+}
+
+/**
+ * Function to cancel a contact creation. closes the overlay and calls the 
+ * funktion to resets the fields
+ */
+function contactsCancelNewContact() {
+    contactsCloseOverlayNew();
+    contacsResetNewContact();
+}
+
+/**
+ * function to clear the input fields
+ */
+function contacsResetNewContact() {
+    document.getElementById('contact-name').value = '';
+    document.getElementById('contact-email').value = '';
+    document.getElementById('contact-tel').value = '';
+}
+
+
+/**
+ * function to display the overlay to edit a contact
+ */
+function contactsCloseOverlayEdit() {
+    document.getElementById('contacts-popup-edit-Contact').classList.add('d-none');
+}
+
+/**
+ * function to display the overlay to add a new task
+ */
+function contactsOpenAddTask() {
+    document.getElementById('contacts-add-task').classList.remove('d-none');
+}
+
+/**
+ * funktion to close the overlay from new task
+ */
+function contactsCloseAddTask() {
+    document.getElementById('contacts-add-task').classList.add('d-none');
+}
 

@@ -1,6 +1,6 @@
 Aktuelle Todos:
 Daniel: Add Task js / Summary js
-Carmen: Contacts
+Carmen: Logik Header
 Pascal: Animationen bei Login, Board html
 
 
@@ -16,11 +16,6 @@ Generelle Infos/Arbeitsanweisung:
     z.B. bei ID für Summery 
     <div id="summary-task"> ... </div>
 
-
-Zur Prüfung: 
-Templates (side-bar + header) - Carmen
-
-offen: 
 
 
 Erledigt: 

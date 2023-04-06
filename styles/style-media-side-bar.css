@@ -1,3 +1,4 @@
+/* css - classes for side-bar-template.html responsive*/
 @media (max-width: 1170px) {
 
     #side-bar-legal{
@@ -14,7 +15,6 @@
     .side-bar-container{
         padding: 0;
         align-items: unset; 
-        /* hier ggf. nochmals schauen */
         display: flex;
         flex-direction: column;
         justify-content: center;
