@@ -1,74 +1,4 @@
-// global variables for ALL html sites / used by ALL html sites
-
-//TEST
-let currentDraggedElement = 0;
-let currentLoggedInUser = 0;
-let users = [               // JSON array with all data for every user, saved on backend server
-    // LISTE DER ARRAYS DIE IN DAS USERS JSON KOMMEN ---> 
-    // contacts[], alles aus den add task []?,...
-    {
-        'name': 'max', 
-        'email': 'max@test.de', 
-        'password': 'test', 
-        'tasks': [{
-            'number': 1,
-            'title': 'Call potential clients',
-            'description': 'Make the product presentation to prospective buyers',
-            'categoryColor': '#FC71FF',
-            'categoryType': 'Sales',
-            'category': 'to-do',
-            'contact': ['David Eisenberg', 'Benedikt Ziegler', 'Marcel Bauer', 'Stefanie Farber'],
-            'date': 05-08-2022,
-            'prio': 'Urgent',
-            'subtask': ''
-        }, {
-            'number': 2,
-            'title': 'Call potential clients',
-            'description': 'Make the product presentation to prospective buyers',
-            'categoryColor': '#FC71FF',
-            'categoryType': 'Sales',
-            'category': 'in-progress',
-            'contact': ['David Eisenberg', 'Benedikt Ziegler', 'Marcel Bauer', 'Stefanie Farber'],
-            'date': 05-08-2022,
-            'prio': 'Urgent',
-            'subtask': ''
-        }
-        ],
-        'contacts': []
-    },
-    {
-        'name': 'marie', 
-        'email': 'marie@test.de', 
-        'password': 'test', 
-        'tasks': [{
-            'number': 1,
-            'title': 'Call potential clients',
-            'description': 'Make the product presentation to prospective buyers',
-            'categoryColor': '#FC71FF',
-            'categoryType': 'Sales',
-            'category': 'to-do',
-            'contact': ['David Eisenberg', 'Benedikt Ziegler', 'Marcel Bauer', 'Stefanie Farber'],
-            'date': 05-08-2022,
-            'prio': 'Urgent',
-            'subtask': ''
-        }, {
-            'number': 2,
-            'title': 'Call potential clients',
-            'description': 'Make the product presentation to prospective buyers',
-            'categoryColor': '#FC71FF',
-            'categoryType': 'Sales',
-            'category': 'in-progress',
-            'contact': ['David Eisenberg', 'Benedikt Ziegler', 'Marcel Bauer', 'Stefanie Farber'],
-            'date': 05-08-2022,
-            'prio': 'Urgent',
-            'subtask': ''
-        }
-        ], 'contacts': []
-    }
-];
-
-//TEST ENDE
-
+let users = [];
 // main java-script file , side behavior an all pages, menue
 let activLogOutArea = false;
 const activePage = window.location.pathname; // get the current pathname from window.location
@@ -78,7 +8,7 @@ async function init() {
     await includeHTML();
     await downloadFromServer();
     contacts = JSON.parse(backend.getItem('contacts')) || [];
-
+    users = JSON.parse(backend.getItem('users')) || [];
     handleWindowResize(); // TODO Final info rausnehmen    
 }
 

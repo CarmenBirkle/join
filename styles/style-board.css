@@ -85,6 +85,7 @@
     width: fit-content;
     border-radius: 8px; 
     padding: 4px 24px;
+    color: white;
 }
 
 .task-card{
