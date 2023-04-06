@@ -2,10 +2,9 @@
     display: flex;
     flex-direction: column;
 
-    margin-top: 90px;
+    margin-top: 141px;
     margin-left: 315px;
 
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
     font-size: 21px;
@@ -23,7 +22,6 @@
     justify-content: center;
     align-items: center;
     padding: 0px;
-    margin-top: 82px;
     gap: 30px;
 
     width: 679px;

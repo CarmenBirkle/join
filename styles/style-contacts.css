@@ -85,6 +85,24 @@ input::placeholder{
     border-radius: 30px;
 }
 
+.contacts-add-contact-add-task{
+    position: relative;
+    display:flex;
+    justify-content: center;
+    width: 1116px;
+    height: 923px;
+    background: #FFFFFF;
+    border-radius: 30px;
+}
+
+.contacts-addTask-close-add-task{
+    position: absolute;
+    height: 21.65px;
+    left: 1050.82px;
+    top: 49.11px;
+    cursor: pointer;
+}
+
 .contacts-include-tasks{
     padding: 20px;
 }

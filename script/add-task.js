@@ -32,6 +32,7 @@ function initCategory() {
 
 function openCategoryDropdown() {
     document.getElementById('add-task-category-dropdown').classList.toggle('d-none');
+    document.getElementById('add-task-assignedto-dropdown').classList.add('d-none');
     document.getElementById('add-task-new-category-error').innerHTML = '';
     renderTopCategory();
     renderCategorySelection();
@@ -137,6 +138,7 @@ function initAssignedTo() {
 
 function openAssignedToDropdown() {
     document.getElementById('add-task-assignedto-dropdown').classList.toggle('d-none');
+    document.getElementById('add-task-category-dropdown').classList.add('d-none');
     renderTopAssigendTo();
 }
 
@@ -153,10 +155,6 @@ function renderInviteNewContact() {
 
 function renderAssignedToSelection() {
     document.getElementById('add-task-assignedto-dropdown').innerHTML = '';
-
-    //TEST
-    let names = ['max', 'marie', 'ma'];
-    // TEST
 
     for (let i = 0; i < contacts.length; i++) {
         const name = contacts[i].fullname;
