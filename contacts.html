@@ -18,13 +18,14 @@
     <title>Contacts | Join</title>
     <script src="./mini_backend.js"></script>
     <script src="./script/app.js"></script>
+    <script src="./script/add-task-template.js"></script>
     <script src="./script/contacts-templates.js"></script>
     <script src="./script/add-task.js"></script>
     <script src="./script/contacts.js"></script>
   
 </head>
 
-<body onload="init();">
+<body onload="initAddTask();">
     <div w3-include-html="./assets/templates/header-template.html"></div>
     <div w3-include-html="./assets/templates/side-bar-template.html"></div>
 
@@ -32,8 +33,8 @@
         <!-- Include Template Add Task -->
         <div id="contacts-add-task" class="d-none">
             <div class="contacts-overlay">
-                <div id="contacts-add-contact" class="contacts-add-contact fadeInRightAlways">
-                    <img class="contacts-addTask-close" onclick="contactsCloseAddTask()"
+                <div id="contacts-add-contact" class="contacts-add-contact-add-task fadeInRightAlways">
+                    <img class="contacts-addTask-close-add-task" onclick="contactsCloseAddTask()"
                         src="./assets/img/icons/contacs-x.svg" onclick="contactsCloseAddTask()" alt="X">
                     <div class="contacts-include-tasks" w3-include-html="./assets/templates/task-template.html"></div>
                 </div>

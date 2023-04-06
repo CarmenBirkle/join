@@ -139,7 +139,7 @@ function openrenderAssignedUser(bgColor, initals) {
 function renderDueDate(today) {
     return /*html*/`
     <label for="add-task-input-due-date">Due date</label>
-    <input id="add-task-input-due-date" type="date" min="${today}" required>
+    <input style="font-family: Inter, sans-serif;" id="add-task-input-due-date" type="date" min="${today}" required>
     `;
 }
 

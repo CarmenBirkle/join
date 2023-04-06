@@ -1,4 +1,4 @@
-<div class="add-task-main-content">
+<div class="add-task-main-content-template">
     <div class="add-task-media">
         <div class="add-task-media-kanban">Kanban Project Management Tool</div>
         <div class="add-task-headline">Add Task</div>
@@ -13,8 +13,8 @@
 
                     <div class="add-task-description">
                         <label for="add-task-input-description">Description</label>
-                        <textarea id="add-task-input-description" type="text" placeholder="Enter a Description"
-                            required></textarea>
+                        <textarea style="font-family: Inter, sans-serif;" id="add-task-input-description"
+                            placeholder="Enter a Description" required></textarea>
                     </div>
 
                     <div class="add-task-category">
@@ -33,6 +33,8 @@
                             <!-- Assigned Render Section -->
                         </div>
                         <span id="add-task-assigned-error"></span>
+                        <div class="add-task-assigned-users-main" id="add-task-assigned-users">
+                        </div>
                     </div>
                 </div>
                 <!-- Mid Greyline -->
@@ -63,8 +65,7 @@
                     </div>
 
                     <div class="add-task-buttons">
-                        <button id="add-task-clear-button" type="reset" class="add-task-clear"
-                            onclick="clearAddTask()">
+                        <button id="add-task-clear-button" type="reset" class="add-task-clear" onclick="clearAddTask()">
                             Clear
                             <img class="add-task-clear-img" src="./assets/img/icons/add-task-button-clear.svg"
                                 alt="cross">
@@ -80,8 +81,7 @@
                         </button>
                     </div>
                 </div>
-
-                <div class="add-task-added d-none" id="add-task-added">
+                <div class="add-task-added-template d-none" id="add-task-added">
                     <div class="add-task-added-content">
                         <span>Task added to board</span>
                         <img src="./assets/img/icons/add-task-added-board.svg" alt="board">

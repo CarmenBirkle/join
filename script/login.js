@@ -58,24 +58,23 @@ function loginUser(){
     let user = users.find( u => u.email == email.value && u.password == password.value) 
     if (user){
         alert('Form has been submitted. You have been loged in successfully!');
-        window.location.replace("summary.html");
-        currentLoggedInUser = users.indexOf(user);
-        console.log(currentLoggedInUser)}
+        window.location.replace("summary.html");}
     else{
         alert('Uupps! You are not registered. Please sign in first.');
-        window.location.replace("index.html");}
+        window.location.replace("index.html");
     }
+}
 
 /**
  * This function registries a new User and submits the new User Data to the backend server
+ * (In this version the users array is reloaded with the original users, so that the array is constant)
  */
 
 function addNewUser(){
     let name = document.getElementById('newusername');
     let email = document.getElementById('newuseremail');
     let password = document.getElementById('newuserpassword');
-    users.push({name: name.value, email: email.value, password: password.value});
-    alert('Form has been submitted. You are registered right now!')
-    window.location.replace("index.html");
-    // wird noch nicht im local storage bzw. im backend gespeichert !!
+    users.push({name: name.value, email: email.value, password: password.value, 'profile-image': 'assets\img\icons\contacts-empty-icon.svg'});
+    alert('Form has been submitted. You are registered right now!');
+    window.location.replace("index.html")
 }

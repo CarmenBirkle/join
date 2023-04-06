@@ -28,7 +28,7 @@ function countUrgent() {
     let urgentCount = 0;
     for (let i = 0; i < testTasks.length; i++) {
         let taskPrio = testTasks[i].prio;
-        if (taskPrio === 'Urgent') {
+        if (taskPrio === 'prio-urgent') {
             urgentCount++;
         }
     }
@@ -57,7 +57,7 @@ let testTasks = [{
     'category': 'to-do',
     'contact': ['David Eisenberg', 'Benedikt Ziegler', 'Marcel Bauer', 'Stefanie Farber'],
     'date': 1367644800000,
-    'prio': 'Urgent',
+    'prio': 'prio-urgent',
     'subtask': ''
 }, {
     'number': 2,
@@ -68,7 +68,7 @@ let testTasks = [{
     'category': 'in-progress',
     'contact': ['David Eisenberg', 'Benedikt Ziegler', 'Marcel Bauer', 'Stefanie Farber'],
     'date': 1667644800000,
-    'prio': 'Medium',
+    'prio': 'prio-medium',
     'subtask': ''
 }, {
     'number': 2,
@@ -79,6 +79,6 @@ let testTasks = [{
     'category': 'in-progress',
     'contact': ['David Eisenberg', 'Benedikt Ziegler', 'Marcel Bauer', 'Stefanie Farber'],
     'date': 1167644800000,
-    'prio': 'Urgent',
+    'prio': 'prio-urgent',
     'subtask': ''
 } ]
