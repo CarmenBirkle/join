@@ -57,6 +57,7 @@ header > div {
     top: 89px;
     right: 33px;
     box-sizing: border-box;
+    z-index: 10;
 }
 
 .header-log-out > div {

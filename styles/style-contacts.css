@@ -646,16 +646,35 @@ input::placeholder{
     left: 50%;
 }
 
-.fadeInRight {
-    animation: fadeInRight 0.8s ease-in-out 0s 1 normal forwards;
+
+/* special rules that the slider for addContacts and editContacts comes from below 1070, 
+above 1070 from the right. */
+
+.fadeInBottom {
+    opacity: 0;
   }
   
-.fadeInBottom {
-    animation: slide-top 0.8s ease-in-out forwards 0.5s;
+  .fadeInRight {
     opacity: 0;
-}
+  }
 
-
+  .fadeInRightAlways{
+    animation: fadeInRight 0.8s ease-in-out 0s 1 normal forwards;
+    opacity: 0;
+  }
+  
+  @media (max-width: 1070px) {
+    .fadeInBottom {
+      animation: slide-top 0.8s ease-in-out forwards 0s;
+    }
+  }
+  
+  @media (min-width: 1071px) {
+    .fadeInRight {
+      animation: fadeInRight 0.8s ease-in-out 0s 1 normal forwards;
+    }
+  }
+  
   @keyframes fadeInRight {
     from {
       opacity: 1;
