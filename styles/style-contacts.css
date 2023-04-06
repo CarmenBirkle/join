@@ -679,6 +679,11 @@ above 1070 from the right. */
     animation: fadeInRight 0.8s ease-in-out 0s 1 normal forwards;
     opacity: 0;
   }
+
+  .fadeInBottomAlways {
+    opacity: 0;
+    animation: slide-top 0.8s ease-in-out forwards 0s;
+  }
   
   @media (max-width: 1070px) {
     .fadeInBottom {

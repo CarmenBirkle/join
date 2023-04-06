@@ -46,6 +46,7 @@ function getSortListofContacts() {
     });
 
     sortContacts = sortedInitialsMap;
+    console.log(sortContacts);
   }
 
 
@@ -127,47 +128,47 @@ function getInitials(name) {
 
 //TODO kürzen!
 
-async function saveContact() {
-try{
-    const button = document.getElementById('contacts-save');
-    button.disabled = true;
+// async function saveContact() {
+// try{
+//     const button = document.getElementById('contacts-save');
+//     button.disabled = true;
 
-        let name = document.getElementById('contact-name').value;
-        let email = document.getElementById('contact-email').value;
-        let phone = document.getElementById('contact-tel').value;
-        let initials = getInitials(name);        
+//         let name = document.getElementById('contact-name').value;
+//         let email = document.getElementById('contact-email').value;
+//         let phone = document.getElementById('contact-tel').value;
+//         let initials = getInitials(name);        
 
-        let contact = {
-            'initals': initials,
-            'number': contacts.length + 1,
-            'fullname':name,
-            'email': email,
-            'phone': phone,
-            'bgcolor': randomRGBColor(),
-            'password': '',
-            'image': ''
-        };
+//         let contact = {
+//             'initals': initials,
+//             'number': contacts.length + 1,
+//             'fullname':name,
+//             'email': email,
+//             'phone': phone,
+//             'bgcolor': randomRGBColor(),
+//             'password': '',
+//             'image': ''
+//         };
 
-        contacts.push(contact);
-        await backend.setItem('contacts', JSON.stringify(contacts));
+//         contacts.push(contact);
+//         await backend.setItem('contacts', JSON.stringify(contacts));
 
-// showSuccessfullAlert();
-    const div = document.getElementById('contacts-success')
-    div.classList.add('fadeInBottom')
-    div.classList.remove('d-none');
-    setTimeout(() => {
-        contactsCloseOverlayNew();
-        contacsResetNewContact()
-        div.classList.remove('fadeInBottom');
-        div.classList.add('d-none');
-    }, 2000);
-    } catch (error){
-        console.log(error);
-    } finally {
-        const button = document.getElementById('contacts-save');
-        button.disabled = false;
-    }
-}
+// // showSuccessfullAlert();
+//     const div = document.getElementById('contacts-success')
+//     div.classList.add('fadeInBottom')
+//     div.classList.remove('d-none');
+//     setTimeout(() => {
+//         contactsCloseOverlayNew();
+//         contacsResetNewContact()
+//         div.classList.remove('fadeInBottom');
+//         div.classList.add('d-none');
+//     }, 2000);
+//     } catch (error){
+//         console.log(error);
+//     } finally {
+//         const button = document.getElementById('contacts-save');
+//         button.disabled = false;
+//     }
+// }
 
 // function showSuccessfullAlert(){
 //     const div = document.getElementById('contacts-success')
@@ -181,6 +182,59 @@ try{
 //     }, 2000);
 // }
 
+// Find the highest number in the array
+function getHighestNumber(){
+    let highestNumber = 0;
+    contacts.forEach(contact => {
+        if (contact.number > highestNumber) {
+          highestNumber = contact.number;
+        }
+      });
+      return highestNumber;
+  }
+
+
+
+async function saveContact() {
+    try{
+        const button = document.getElementById('contacts-save');
+        button.disabled = true;
+    
+            let name = document.getElementById('contact-name').value;
+            let email = document.getElementById('contact-email').value;
+            let phone = document.getElementById('contact-tel').value;
+            let initials = getInitials(name);        
+    
+            let contact = {
+                'initals': initials,
+                'number': getHighestNumber() + 1,
+                'fullname':name,
+                'email': email,
+                'phone': phone,
+                'bgcolor': randomRGBColor(),
+                'password': '',
+                'image': ''
+            };
+    
+            contacts.push(contact);
+            await backend.setItem('contacts', JSON.stringify(contacts));
+    
+        const div = document.getElementById('contacts-success')
+        div.classList.add('fadeInBottomAlways')
+        div.classList.remove('d-none');
+        setTimeout(() => {
+            contactsCloseOverlayNew();
+            contacsResetNewContact()
+            div.classList.remove('fadeInBottomAlways');
+            div.classList.add('d-none');
+        }, 2000);
+        } catch (error){
+            console.log(error);
+        } finally {
+            const button = document.getElementById('contacts-save');
+            button.disabled = false;
+        }
+    }
 
 function contactsCloseMobileContacts() {
     document.getElementById('contacts-container-right-mobile').classList.add('d-none');
@@ -188,9 +242,10 @@ function contactsCloseMobileContacts() {
 }
 
 async function editContact(contact){
-    updateContacts(contact);
-    await backend.setItem('contacts', JSON.stringify(contacts));
+    updateContacts(contact); // holt die werte und pusht in das contacts array die richtigen werte
+    await backend.setItem('contacts', JSON.stringify(contacts)); // läd das ganze auf den server hoch
 
+    getSortListofContacts();
     contactsShowContactlist(sortContacts);
     contactsShowUser(contacts, contact);
     contactsCloseOverlayEdit();
