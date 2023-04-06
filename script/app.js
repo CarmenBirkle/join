@@ -68,6 +68,39 @@ function getElement() {
     }
 }
 
+/**
+ * Function that returns the current time plus 24 h as value
+ * @returns {now} time - the current date + time + 24 h 
+ */
+function getCookieExpireTime(){
+    let now = new Date();
+    let time = now.getTime();
+    let expireTime = time + (24 * 60 * 60 * 1000); //Calculates the miliseconds 24 h * 60 min * 60 sec * 1000 ms
+    now.setTime(expireTime); // sets the time to the expiration date
+    return now;
+  }
+
+// document.cookie ="user = carmen; + now.toUTCString() + "; path=/";
+
+function setCookie(){
+    let now =  getCookieExpireTime();
+    document.cookie = "isCalled=1;expires=" + now.toUTCString() + "; path=/";
+ }
+ 
+ function getcookie(){
+     if (document.cookie.includes("user=carmen")) {
+         console.log("yeah");
+       }
+     console.log(document.cookie); // TODO - final rausnehmen
+ }
+ 
+ function deleteCoockie(){
+     document.cookie ="isCalled = 1; expires= Thu, 01 Jan 1970 00:00:00 UTC;"
+     document.cookie ="user = carmen; expires= Thu, 01 Jan 1970 00:00:00 UTC;"
+ }
+ 
+  
+
 
 
 
