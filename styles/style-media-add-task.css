@@ -144,7 +144,7 @@
         width: 124px;
         height: 51px;
 
-        background: #2A3647;
+        background: var(--dark-grey);
         border-radius: 10px;
 
         font-style: normal;
@@ -165,8 +165,8 @@
     }
 
     .add-task-create-media:hover {
-        background: #29ABE2;
-        border: #29ABE2;
+        background: var(--light-blue);
+        border: var(--light-blue);
 
         color: #FFFFFF;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -174,7 +174,6 @@
 
     /* --- Added Task --- */
     .add-task-added {
-        left: 50%;
         transform: translate(-50%, -50%);
     }
 }

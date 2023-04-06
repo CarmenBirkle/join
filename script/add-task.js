@@ -78,11 +78,11 @@ function renderNewCategoryDots() {
 }
 
 /*-- Category add new Category --*/
-function saveNewColor(dotColor, d) {
+function saveNewColor(dotColor, i) {
     chosenCategoryColor = [];
     chosenCategoryColor.push(dotColor);
     renderNewCategoryDots();
-    document.getElementById(`selected-dot-active${d}`).classList.add('dropdown-option-dots-selected');
+    document.getElementById(`selected-dot-active${i}`).classList.add('dropdown-option-dots-selected');
 }
 
 function saveNewCategoryEnter(event) {
@@ -244,7 +244,7 @@ function renderAssignedUsers() {
     for (let i = 0; i < assignedToUsers.length; i++) {
         let bgColor = assignedToUsers[i].bgColor;
         let initals = assignedToUsers[i].initals;
-        document.getElementById('add-task-assigned-users').innerHTML += openrenderAssignedUser(bgColor, initals);
+        document.getElementById('add-task-assigned-users').innerHTML += openAssignedUserHTML(bgColor, initals);
     }
 }
 
@@ -258,7 +258,7 @@ function renderAssignedToError() {
 function initDueDate() {
     document.getElementById('add-task-due-date').innerHTML = '';
     const today = new Date().toISOString().split('T')[0];
-    document.getElementById('add-task-due-date').innerHTML = renderDueDate(today);
+    document.getElementById('add-task-due-date').innerHTML = loadDueDateHTML(today);
 }
 
 
@@ -271,7 +271,7 @@ function initPrioButtons() {
     for (let i = 0; i < prioButtons.length; i++) {
         let prioName = prioButtons[i];
         let prioNameFormatted = prioName.charAt(0).toUpperCase() + prioName.slice(1).toLowerCase();
-        document.getElementById('add-task-priobutton-render').innerHTML += openPrioButtonsHTML(prioName, prioNameFormatted);
+        document.getElementById('add-task-priobutton-render').innerHTML += loadPrioButtonsHTML(prioName, prioNameFormatted);
     }
 }
 
@@ -304,7 +304,7 @@ function initSubtask() {
 
 function changeSubtask() {
     document.getElementById('add-task-subtask-render').innerHTML = '';
-    document.getElementById('add-task-subtask-render').innerHTML = openSubtaskInput();
+    document.getElementById('add-task-subtask-render').innerHTML = openSubtaskInputHTML();
     document.getElementById('add-task-subtask-input').focus();
 }
 
@@ -426,8 +426,8 @@ async function sendFormToBackend() {
         }
 
         tasks.push(task);
-        console.log(tasks); // Test
-        //sendTaskToUsers(task); // Test
+        //await backend.setItem('tasks', JSON.stringify(tasks));
+        console.log(tasks); // Test !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         let clearButton = document.getElementById('add-task-clear-button');
         clearButton.click();
