@@ -127,7 +127,7 @@ function openNewContactSelectHTML() {
     `;
 }
 
-function openrenderAssignedUser(bgColor, initals) {
+function openAssignedUserHTML(bgColor, initals) {
     return`
     <div style="background: rgb(${bgColor});" class="add-task-assigned-user">
         <div>${initals}</div>
@@ -136,7 +136,7 @@ function openrenderAssignedUser(bgColor, initals) {
 }
 
 /*-- Due Date Template-HTML --*/
-function renderDueDate(today) {
+function loadDueDateHTML(today) {
     return /*html*/`
     <label for="add-task-input-due-date">Due date</label>
     <input style="font-family: Inter, sans-serif;" id="add-task-input-due-date" type="date" min="${today}" required>
@@ -144,7 +144,7 @@ function renderDueDate(today) {
 }
 
 /*-- Prio-Buttons-HTML --*/
-function openPrioButtonsHTML(prioName, prioNameFormatted) {
+function loadPrioButtonsHTML(prioName, prioNameFormatted) {
     return /*html*/`
     <button type="button" id="prio-${prioName}" onclick="setAddTaskPrioButton('prio-${prioName}')">
         ${prioNameFormatted}
@@ -164,7 +164,7 @@ function loadSubtaskHTML() {
     `;
 }
 
-function openSubtaskInput() {
+function openSubtaskInputHTML() {
     return /*html*/`
     <div class="add-task-subtask-main-placeholder">
         <input id="add-task-subtask-input" type="text" placeholder="Create new icons" onkeypress="addNewSubtaskEnter(event)">

@@ -92,12 +92,12 @@
 
     background: #FFFFFF;
 
-    border: 1px solid #D1D1D1;
+    border: 1px solid var(--grey);
     border-radius: 10px;
 }
 
 .add-task-title input::placeholder {
-    color: #D1D1D1;
+    color: var(--grey);
 }
 
 .add-task-description {
@@ -124,7 +124,7 @@
 
     border-radius: 10px;
     padding: 18px 21px 18px 21px;
-    border: 1px solid #D1D1D1;
+    border: 1px solid var(--grey);
     background: #FFFFFF;
     font-family: 'Inter';
     resize: none;
@@ -137,7 +137,7 @@
 }
 
 .add-task-description textarea::placeholder {
-    color: #D1D1D1;
+    color: var(--grey);
 }
 
 /* --- Form-Left-Side-Category-And-AssignedTo --- */
@@ -174,7 +174,7 @@
 
     background: #FFFFFF;
 
-    border: 1px solid #D1D1D1;
+    border: 1px solid var(--grey);
     border-radius: 10px;
 
     color: #000000;
@@ -201,7 +201,7 @@
 }
 
 .add-task-dropdown-new-category:hover {
-    background-color: lightgrey;
+    background-color: var(--grey);
 }
 
 .add-task-category-plus {
@@ -218,7 +218,7 @@
 }
 
 .add-task-dropdown-option:hover {
-    background-color: lightgrey;
+    background-color: var(--grey);
 }
 
 .dropdown-option-dots {
@@ -246,7 +246,7 @@
 }
 
 .add-task-new-categroy-input::placeholder {
-    color: #D1D1D1;
+    color: var(--grey);
 }
 
 .add-task-new-categroy-input:focus {
@@ -265,7 +265,7 @@
 .add-task-category-greyline {
     height: 23px;
 
-    border: 1px solid #D1D1D1;
+    border: 1px solid var(--grey);
 }
 
 .add-task-new-category-dots {
@@ -312,7 +312,7 @@
 
     background: #FFFFFF;
 
-    border: 1px solid #D1D1D1;
+    border: 1px solid var(--grey);
     border-radius: 10px;
 
     color: #000000;
@@ -328,7 +328,7 @@
 }
 
 .add-task-dropdown-new-contact:hover {
-    background-color: lightgrey;
+    background-color: var(--grey);
 }
 
 .add-task-dropdown-new-contact img {
@@ -348,7 +348,7 @@
 }
 
 .add-task-new-contact-input::placeholder {
-    color: #D1D1D1;
+    color: var(--grey);
 }
 
 .add-task-new-contact-input:focus {
@@ -386,7 +386,7 @@
 .add-task-greyline {
     box-sizing: border-box;
     height: 551px;
-    border: 1px solid #D1D1D1;
+    border: 1px solid var(--grey);
     align-self: flex-start;
     margin-left: 30px;
     margin-right: 30px;
@@ -434,10 +434,9 @@
 
     background: #FFFFFF;
 
-    border: 1px solid #D1D1D1;
+    border: 1px solid var(--grey);
     border-radius: 10px;
 
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
     font-size: 21px;
@@ -556,7 +555,7 @@
 
     background: #FFFFFF;
 
-    border: 1px solid #D1D1D1;
+    border: 1px solid var(--grey);
 
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
@@ -581,7 +580,7 @@
 }
 
 .add-task-subtask-placeholder::placeholder {
-    color: #D1D1D1;
+    color: var(--grey);
 }
 
 .add-task-subtask-main-placeholder img {
@@ -647,7 +646,7 @@
     width: 136px;
     height: 61px;
 
-    border: 1px solid #2A3647;
+    border: 1px solid var(--dark-grey);
     border-radius: 10px;
 
     font-style: normal;
@@ -655,14 +654,14 @@
     font-size: 21px;
     line-height: 120%;
 
-    color: #2A3647;
+    color: var(--dark-grey);
     cursor: pointer;
 }
 
 .add-task-clear:hover {
-    border: 2px solid #29ABE2;
+    border: 2px solid var(--light-blue);
 
-    color: #29ABE2;
+    color: var(--light-blue);
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
@@ -685,7 +684,7 @@
     width: 185px;
     height: 61px;
 
-    background: #2A3647;
+    background: var(--dark-grey);
     border-radius: 10px;
 
     font-style: normal;
@@ -698,8 +697,8 @@
 }
 
 .add-task-create:hover {
-    background: #29ABE2;
-    border: #29ABE2;
+    background: var(--light-blue);
+    border: var(--light-blue);
 
     color: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -726,9 +725,8 @@
     position: absolute;
     width: 326px;
     height: 74px;
-    top: 90%;
-    left: 37%;
-    z-index: 100;
+    transform: translate(-50%, -50%);
+    z-index: 10;
 
     filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.1));
     opacity: 0;
@@ -744,7 +742,7 @@
     width: 100%;
     height: 100%;
 
-    background: #2A3647;
+    background: var(--dark-grey);
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
     border-radius: 20px;
 }
@@ -759,7 +757,7 @@
 }
 
 .add-task-added-animation {
-    animation: bottomToTop 0.8s ease-in-out forwards 0.5s;
+    animation: bottomToTop 0.8s ease-in-out forwards 0.2s;
 }
 
 @keyframes bottomToTop {
