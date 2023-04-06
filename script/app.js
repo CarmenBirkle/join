@@ -80,6 +80,7 @@ function getCookieExpireTime(){
     return now;
   }
 
+// weiteres Beispiel: 
 // document.cookie ="user = carmen; + now.toUTCString() + "; path=/";
 
 function setCookie(){

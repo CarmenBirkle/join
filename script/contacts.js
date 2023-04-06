@@ -1,19 +1,94 @@
 'use strict';
 /**
- * contains all functions that are relevant for the contacts.html. 
+ * contact.js contains all functions that are relevant for the contacts.html. 
  * Windows behavior, saving, modifying and deleting records, as well as helper functions. 
  * @author Carmen Birkle
  * @version 1.0
  */
 
 /**
- * @param {Array.<Contacts>} contacts - Contains an Array of Contacts
- * @param {Array.<sortContacts>} sortContacts - Contains an Array of Contactsdata, sort by Initial char
+ * @param {Array} contacts - Array of contacts
  */
 let contacts = [];
+/**
+  * @param {Array} sortContacts - Array for sortet contacts, sort by Initial char
+ */
 let sortContacts = [];
 
 
+/**
+ * Function so Display the Overlay to create an new Contact
+ */
+function contactsShowOverlayNew() {
+    let overlay = document.getElementById('contacts-popup-add-contact');
+    overlay.style.display = "flex";
+}
+
+/**
+ * Function to Close the Overlay for create an new Contact
+ */
+function contactsCloseOverlayNew() {
+    let overlay = document.getElementById('contacts-popup-add-contact');
+    overlay.style.display = "none";
+}
+
+/**
+ * Function to cancel a contact creation. closes the overlay and calls the 
+ * funktion to resets the fields
+ */
+function contactsCancelNewContact() {
+    contactsCloseOverlayNew();
+    contacsResetNewContact();
+}
+
+/**
+ * Function to clear the input fields
+ */
+function contacsResetNewContact() {
+    document.getElementById('contact-name').value = '';
+    document.getElementById('contact-email').value = '';
+    document.getElementById('contact-tel').value = '';
+}
+
+
+/**
+ * Function to display the overlay to edit a contact
+ */
+function contactsCloseOverlayEdit() {
+    document.getElementById('contacts-popup-edit-Contact').classList.add('d-none');
+}
+
+/**
+ * Function to display the overlay to add a new task
+ */
+function contactsOpenAddTask() {
+    document.getElementById('contacts-add-task').classList.remove('d-none');
+}
+
+/**
+ * Funktion to close the overlay from new task
+ */
+function contactsCloseAddTask() {
+    document.getElementById('contacts-add-task').classList.add('d-none');
+}
+
+/**
+ * Function to close all Popup-Windows and Overlays. It'll be called by click on the background
+ * in combination with doNotClose();
+ */
+function closeAllPopups(){
+    contactsCancelNewContact();
+    contactsCloseOverlayEdit();
+    contactsCloseAddTask();
+}
+
+/**
+ * Function to avoid to call the closeAllPopup() Function for close all Popup Windows and Overlays. 
+ * @param {event} event - clickevent on a specific overlay element
+ */
+function doNotClose(event){
+    event.stopPropagation();
+}
 
 
 /**
@@ -50,9 +125,9 @@ function getSortListofContacts() {
   }
 
 
-  
-
-//Render Function for ContactList Left
+/**
+ * Render Function for Dynamic ContactList Left
+ */
 function contactsShowContactlist(sortContacts) {
     document.getElementById('contacts-list').innerHTML ='';
     for (let [key, value] of sortContacts) {
@@ -65,11 +140,21 @@ function contactsShowContactlist(sortContacts) {
     }
 }
 
+/**
+ * Displays the rendered overlay for editing contact
+ * @param {Array} contacts - Array of contacts
+ * @param {integer} contactNumber - unique contact number
+ */
 function contactsShowOverlayEdit(contacts, contactNumber) {
     contactsShowContactToEdit(contacts, contactNumber);
     document.getElementById('contacts-popup-edit-Contact').classList.remove('d-none');
 }
 
+/**
+ * Displays the rendered userdatas for editing from the selected contact
+ * @param {Array} contacts - Array of contacts
+ * @param {integer} contactNumber - unique contact number
+ */
 function contactsShowContactToEdit(contacts, contactNumber) {
     const selectedContact = contacts.find(contact => contact.number === contactNumber);
     document.getElementById('contacts-popup-edit-Contact').innerHTML =  contactsShowContactToEditTemplate(selectedContact);
@@ -83,7 +168,6 @@ function contactsShowContactToEdit(contacts, contactNumber) {
 * @param {Object} contacts - Array of all Contacts
 * @param {integer} contactNumber - specific contact number
  */
-
 function contactsShowUser(contacts, contactNumber) {
     const selectedContact = contacts.find(contact => contact.number === contactNumber);
     document.getElementById('contacts-user').innerHTML = getUserLeftTemplate(selectedContact);
@@ -98,8 +182,14 @@ function contactsShowUser(contacts, contactNumber) {
     }
 }
 
+/**
+ * Function that continuously monitors the window size and hides and displays elements depending on the size. 
+ */
 window.onresize = handleWindowResizeContacs;
 
+/**
+ * Is called from the window.onresize event and displays different elements depending on the window size
+ */
 function handleWindowResizeContacs() {
     if (window.innerWidth > 1170) {
         document.getElementById('contacts-container-right-mobile').classList.add('d-none');
@@ -109,7 +199,11 @@ function handleWindowResizeContacs() {
         document.getElementById('contacts-container-right').classList.add('d-none');
     }
 }
-
+/**
+ * Generates a random RGB string. 
+ * Only colors up to the middle color spectrum are generated so that the white font color remains visible.
+ * @returns {String} randomRGBColor - random RGB String
+ */
 function randomRGBColor(){
     let r = Math.floor(Math.random() * 156);
     let g = Math.floor(Math.random() * 156);
@@ -124,9 +218,6 @@ function getInitials(name) {
     .map(word => word.charAt(0).toUpperCase());
     return firstLetters.join('');
   }
-
-
-//TODO kürzen!
 
 // Find the highest number in the array
 function getHighestNumber(){
@@ -143,8 +234,7 @@ function getHighestNumber(){
 
 async function saveContact() {
     try{
-        const button = document.getElementById('contacts-save');
-        button.disabled = true;
+        document.getElementById('contacts-save').disabled = true;
     
             let name = document.getElementById('contact-name').value;
             let email = document.getElementById('contact-email').value;
@@ -181,8 +271,7 @@ async function saveContact() {
         } catch (error){
             console.log(error);
         } finally {
-            const button = document.getElementById('contacts-save');
-            button.disabled = false;
+            document.getElementById('contacts-save').disabled = false;
         }
     }
 
@@ -228,7 +317,6 @@ function updateContacts(contact){
  * 
  * 
  */
-
 async function deleteContacts(contact) {
     const index = contacts.findIndex(c => c.number === contact);
     contacts.splice(index, 1);
@@ -237,68 +325,3 @@ async function deleteContacts(contact) {
     location.reload();
   }
 
-/**
- * Function so Display the Overlay to create an new Contact
- */
-function contactsShowOverlayNew() {
-    let overlay = document.getElementById('contacts-popup-add-contact');
-    overlay.style.display = "flex";
-}
-
-/**
- * Function to Close the Overlay for create an new Contact
- */
-function contactsCloseOverlayNew() {
-    let overlay = document.getElementById('contacts-popup-add-contact');
-    overlay.style.display = "none";
-}
-
-/**
- * Function to cancel a contact creation. closes the overlay and calls the 
- * funktion to resets the fields
- */
-function contactsCancelNewContact() {
-    contactsCloseOverlayNew();
-    contacsResetNewContact();
-}
-
-/**
- * function to clear the input fields
- */
-function contacsResetNewContact() {
-    document.getElementById('contact-name').value = '';
-    document.getElementById('contact-email').value = '';
-    document.getElementById('contact-tel').value = '';
-}
-
-
-/**
- * function to display the overlay to edit a contact
- */
-function contactsCloseOverlayEdit() {
-    document.getElementById('contacts-popup-edit-Contact').classList.add('d-none');
-}
-
-/**
- * function to display the overlay to add a new task
- */
-function contactsOpenAddTask() {
-    document.getElementById('contacts-add-task').classList.remove('d-none');
-}
-
-/**
- * funktion to close the overlay from new task
- */
-function contactsCloseAddTask() {
-    document.getElementById('contacts-add-task').classList.add('d-none');
-}
-
-function closeAllPopups(){
-    contactsCancelNewContact();
-    contactsCloseOverlayEdit();
-    contactsCloseAddTask();
-}
-
-function doNotClose(event){
-    event.stopPropagation();
-}
