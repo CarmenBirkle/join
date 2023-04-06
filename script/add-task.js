@@ -100,12 +100,12 @@ function saveNewCategory() {
         defaultCategoryColor = defaultCategoryColor.concat(chosenCategoryColor);
         defaultCategoryType.push(newType.value);
         initCategory();
-        openTopSetNewCategory();
+        renderTopNewCategory();
         addedNewCategoryMessage();
     }
 }
 
-function openTopSetNewCategory() {
+function renderTopNewCategory() {
     let newColor = defaultCategoryColor[defaultCategoryColor.length - 1];
     let newType = defaultCategoryType[defaultCategoryType.length - 1];
 
@@ -206,7 +206,7 @@ function searchNewContactPushUser(emailInput) {
     const selectedContact = contacts.find(contact => contact.email === emailInput);
     let bgColor = selectedContact.bgcolor;
     let initals = selectedContact.initals;
-    let index = assignedToUsers.findIndex(info => info.bgColor === bgColor && info.initals === initals);
+    let index = assignedToUsers.findIndex(userInfo => userInfo.bgColor === bgColor && userInfo.initals === initals);
     // prevent multi generate
     if (index === -1) {
         assignedToUsers.push({ bgColor: bgColor, initals: initals });
@@ -221,25 +221,24 @@ function toggleCheckboxAssigned(event, bgColor, initals) {
         // Wenn das DIV-Element geklickt wurde, toggle den Zustand der Checkbox
         checkboxAssigned.checked = !checkboxAssigned.checked;
     }
-    // Suchen Sie die Zuweisungsinfo für die aktuelle onclick-Funktion
-    let index = assignedToUsers.findIndex(info => info.bgColor === bgColor && info.initals === initals);
+
+    updateAssignedToUsers(checkboxAssigned, bgColor, initals);
+    console.log(assignedToUsers); // TEST !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    renderAssignedUsers();
+}
+
+function updateAssignedToUsers(checkboxAssigned, bgColor, initals) {
+    let index = assignedToUsers.findIndex(userInfo => userInfo.bgColor === bgColor && userInfo.initals === initals);
 
     if (checkboxAssigned.checked) {
-        // Wenn die Checkbox jetzt ausgewählt ist, füge eine neue Zuweisungsinfo hinzu, wenn es noch keine gibt
         if (index === -1) {
             assignedToUsers.push({ bgColor: bgColor, initals: initals });
         }
     } else {
-        // Wenn die Checkbox jetzt nicht ausgewählt ist, entferne die entsprechende Zuweisungsinfo
         if (index !== -1) {
             assignedToUsers.splice(index, 1);
         }
     }
-
-    bgColor = assignedToUsers.map(info => info.bgColor);
-    initals = assignedToUsers.map(info => info.initals);
-    console.log(assignedToUsers); // TEST !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    renderAssignedUsers();
 }
 
 function renderAssignedUsers() {
