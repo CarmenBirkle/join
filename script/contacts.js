@@ -160,6 +160,14 @@ function contactsShowContactToEdit(contacts, contactNumber) {
     document.getElementById('contacts-popup-edit-Contact').innerHTML =  contactsShowContactToEditTemplate(selectedContact);
 }
 
+/**
+ * This Funktion closed the contacts view in the mobile view 
+ */
+function contactsCloseMobileContacts() {
+    document.getElementById('contacts-container-right-mobile').classList.add('d-none');
+    document.getElementById('contacts-container-left').classList.remove('d-none');
+}
+
 
 /**
  * render-function to see the individual user data  on the left side in detail an render it.
@@ -212,14 +220,21 @@ function randomRGBColor(){
     return randomRGBColor;
 }
 
-
+/**
+ * Takes the user name and generates two initial from the two partial words
+ * @param {String} name  - Username includes due to the html5 validation 2 words ( first and last name) 
+ * @returns {String} firstLetter - two letters representing first and last name
+ */
 function getInitials(name) {
     const firstLetters = name.split(' ')
     .map(word => word.charAt(0).toUpperCase());
     return firstLetters.join('');
   }
 
-// Find the highest number in the array
+/**
+ * Find the highest number for contacts-numbers in the contact-array.
+ * @returns {integer} - highest contacts-number
+ */
 function getHighestNumber(){
     let highestNumber = 0;
     contacts.forEach(contact => {
@@ -229,67 +244,92 @@ function getHighestNumber(){
       });
       return highestNumber;
   }
+/**
+ * Generates a contact according to a given schema. the input fields are read and stored in a contact, which is returned.
+ * - initials: The initials of the name as a string.
+ * - number: A unique number as an integer higher than the number of all existing contacts.
+ * - fullname: The full name of the contact as a string.
+ * - email: The email address of the contact as a string.
+ * - phone: The phone number of the contact as a string.
+ * - bgcolor: A randomly generated RGB color as a string.
+ * @returns {Array} contact  - new generate contact
+ * 
+ */
+function createContact(){
+    let name = document.getElementById('contact-name').value;
+    let email = document.getElementById('contact-email').value;
+    let phone = document.getElementById('contact-tel').value;
+    let initials = getInitials(name);        
+    
+    let contact = {
+        'initals': initials,
+        'number': getHighestNumber() + 1,
+        'fullname':name,
+        'email': email,
+        'phone': phone,
+        'bgcolor': randomRGBColor(),
+    };
+    console.log(contact); // TODO raus!
+    return contact; 
+}
 
+/**
+ * Shows the success message that the contact was saved
+ * with a time delay of 2s 
+ */
+function showSuccessInfo(){
+    const div = document.getElementById('contacts-success')
+    div.classList.add('fadeInBottomAlways')
+    div.classList.remove('d-none');
+    setTimeout(() => {
+        contactsCloseOverlayNew();
+        contacsResetNewContact();
+        div.classList.remove('fadeInBottomAlways');
+        div.classList.add('d-none');
+    }, 2000);
 
+}
 
+/** Generates and saves a new contact. Stores the data in backend. Avoiding that the save button can 
+ *  be pressed more than once and all necessary data is updated and re-rendered
+ * @async
+ */
 async function saveContact() {
     try{
         document.getElementById('contacts-save').disabled = true;
-    
-            let name = document.getElementById('contact-name').value;
-            let email = document.getElementById('contact-email').value;
-            let phone = document.getElementById('contact-tel').value;
-            let initials = getInitials(name);        
-    
-            let contact = {
-                'initals': initials,
-                'number': getHighestNumber() + 1,
-                'fullname':name,
-                'email': email,
-                'phone': phone,
-                'bgcolor': randomRGBColor(),
-                'password': '',
-                'image': ''
-            };
-    
-            contacts.push(contact);
-            await backend.setItem('contacts', JSON.stringify(contacts));
-    
-        const div = document.getElementById('contacts-success')
-        div.classList.add('fadeInBottomAlways')
-        div.classList.remove('d-none');
-        setTimeout(() => {
-            contactsCloseOverlayNew();
-            contacsResetNewContact();
-            div.classList.remove('fadeInBottomAlways');
-            div.classList.add('d-none');
-        }, 2000);
-
+        const contact = createContact(); // neu
+        contacts.push(contact);
+        await backend.setItem('contacts', JSON.stringify(contacts));
+        showSuccessInfo();
         getSortListofContacts();
         contactsShowContactlist(sortContacts);
-
-        } catch (error){
-            console.log(error);
-        } finally {
-            document.getElementById('contacts-save').disabled = false;
-        }
+    } catch (error){
+        console.log(error);
+    } finally {
+        document.getElementById('contacts-save').disabled = false;
     }
-
-function contactsCloseMobileContacts() {
-    document.getElementById('contacts-container-right-mobile').classList.add('d-none');
-    document.getElementById('contacts-container-left').classList.remove('d-none');
 }
 
+/**
+ * @async
+ * the function dates the user data in the contacts array up and updates this to the backend. 
+all views are updated and re-rendered and the window is closed
+ * @param {integer} contact  contact-number
+ */
 async function editContact(contact){
-    updateContacts(contact); // holt die werte und pusht in das contacts array die richtigen werte
-    await backend.setItem('contacts', JSON.stringify(contacts)); // läd das ganze auf den server hoch
-
+    updateContacts(contact); 
+    await backend.setItem('contacts', JSON.stringify(contacts)); 
     getSortListofContacts();
     contactsShowContactlist(sortContacts);
     contactsShowUser(contacts, contact);
     contactsCloseOverlayEdit();
 }
 
+/**
+ * the function fetches the data from the input fields filters 
+ * the matching contact and index and updates the user data to the matching index
+ * @param {integer} contact - contact-number
+ */
 function updateContacts(contact){
     let name = document.getElementById('contacts-edit-fullname').value;
     let email = document.getElementById('contacts-edit-email').value;
