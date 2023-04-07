@@ -425,7 +425,7 @@ async function sendFormToBackend() {
         }
 
         tasks.push(task);
-        //await backend.setItem('tasks', JSON.stringify(tasks));
+        await backend.setItem('tasks', JSON.stringify(tasks));
         console.log(tasks); // Test !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         let clearButton = document.getElementById('add-task-clear-button');
@@ -450,7 +450,6 @@ async function sendFormToBackend() {
 
 function dateFormattedMilliseconds() {
     let date = document.getElementById('add-task-input-due-date').value;
-    console.log(date);
     let milliseconds = Date.parse(date);
     return milliseconds;
 }

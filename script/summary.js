@@ -1,3 +1,13 @@
+async function initSummary() {
+    await init();
+    summaryGreetings();
+    countUrgent();
+    findDeadline();
+    countTaskCategory();
+}
+
+
+
 /**
  * Automatic greetings based on time
  * 
@@ -17,28 +27,22 @@ function summaryGreetings() {
     document.getElementById('summary-greeting').innerHTML = greeting;
 }
 
-
-
-
-
-
-/////////////////////// TEST FUNCTION //////////////////////////////////
-
 function countUrgent() {
     let urgentCount = 0;
-    for (let i = 0; i < testTasks.length; i++) {
-        let taskPrio = testTasks[i].prio;
-        if (taskPrio === 'prio-urgent') {
+    for (let i = 0; i < tasks.length; i++) {
+        let taskPrio = tasks[i].prio;
+        if (taskPrio === 'urgent') {
             urgentCount++;
         }
     }
     console.log('Anzahl der Aufgaben mit prio "Urgent": ' + urgentCount);
+    document.getElementById('summary-urgent-count').innerHTML = urgentCount;
 }
 
 function findDeadline() {
     let lowestDate = Infinity;
-    for (let i = 0; i < testTasks.length; i++) {
-        let milliseconds = testTasks[i].date;
+    for (let i = 0; i < tasks.length; i++) {
+        let milliseconds = tasks[i].date;
         if (milliseconds < lowestDate) {
             lowestDate = milliseconds;
         }
@@ -46,7 +50,33 @@ function findDeadline() {
     const date = new Date(lowestDate);
     const formattedDate = date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
     console.log(formattedDate);
+    document.getElementById('summary-find-deadline').innerHTML = formattedDate;
 }
+
+function countTaskCategory() {
+    let toDoCount = 0;
+    let doneCount = 0;
+    let taskBoardCount = tasks.length;
+
+    for (let i = 0; i < tasks.length; i++) {
+        let taskToDo = tasks[i].category;
+        if (taskToDo === 'to-do' || taskToDo === 'in-progress' || taskToDo === 'awaiting-feedback') {
+            toDoCount++;
+        } 
+        if(taskToDo === 'done') {
+            doneCount++;
+        }
+    }
+    
+    document.getElementById('summary-to-do-count').innerHTML = toDoCount;
+    document.getElementById('summary-done-count').innerHTML = doneCount;
+    document.getElementById('summary-task-in-borad').innerHTML = taskBoardCount;
+}
+
+
+
+
+/////////////////////// TEST FUNCTION //////////////////////////////////
 
 let testTasks = [{
     'number': 1,
