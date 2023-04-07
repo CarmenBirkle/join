@@ -64,6 +64,10 @@
         margin-bottom: 8px;
     }
 
+    .add-task-category-dropdown {
+        font-size: 16px;
+    }
+
     .add-task-new-categroy-input {
         font-size: 16px;
     }
@@ -142,7 +146,7 @@
 
     .add-task-create-media {
         width: 124px;
-        height: 51px;
+        height: 55px;
 
         background: var(--dark-grey);
         border-radius: 10px;

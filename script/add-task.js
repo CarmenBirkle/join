@@ -28,11 +28,19 @@ let chosenSubtasks = []; // not a required field
 let tasks = [];
 
 /**
- * To initialize all functions on the add task.html and task-template.html file that are required for building the page.
+ * Load content from backend (contacts, users, tasks).
  * @async
  */
 async function initAddTask() {
     await init();
+    initAddTaskTemplates();
+}
+
+/**
+ * To initialize all functions on the add task.html and task-template.html file that are required for building the page.
+ * 
+ */
+function initAddTaskTemplates() {
     initCategory();
     initAssignedTo();
     initDueDate();
@@ -503,7 +511,7 @@ function clearAddTask() {
     document.getElementById('add-task-subtask-addtask-render').innerHTML = '';
     document.getElementById('add-task-assigned-users').innerHTML = '';
 
-    initAddTask();
+    initAddTaskTemplates();
 }
 
 /*-- Form / Create Button --*/
@@ -556,8 +564,8 @@ async function sendFormToBackend() {
         document.getElementById('add-task-create-button-media').disabled = true;
 
         await pushTaskIntoBackend();
-        
-        document.getElementById('add-task-clear-button').click();
+
+        document.getElementById('add-task-clear-button').click(); // reset form
         showsAddedTaskAnimation();
     } catch (error) {
         console.log('An error has occurred!' + error);
@@ -608,8 +616,8 @@ function dateFormattedMilliseconds() {
 
 function showsAddedTaskAnimation() {
     const addedContainer = document.getElementById('add-task-added');
-    addedContainer.classList.add('add-task-added-animation');
     addedContainer.classList.remove('d-none');
+    addedContainer.classList.add('add-task-added-animation');
     setTimeout(() => {
         addedContainer.classList.remove('add-task-added-animation');
         addedContainer.classList.add('d-none');
