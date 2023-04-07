@@ -76,3 +76,7 @@ header > div {
 .header-d-none{
     display:none;
   }
+
+#header-profile-img{
+    background: var(--grey);
+}

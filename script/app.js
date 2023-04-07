@@ -10,9 +10,14 @@ async function init() {
     contacts = JSON.parse(backend.getItem('contacts')) || [];
     users = JSON.parse(backend.getItem('users')) || [];
     tasks = JSON.parse(backend.getItem('tasks')) || [];
-    handleWindowResize(); // TODO Final info rausnehmen    
+    handleWindowResize();   
+    changeProfileImage();
 }
-
+/**
+ * Handles the window resize event by calling the appropriate functions to adjust the contacts display.
+ * If the necessary functions are not available on the page, no action is taken.
+ * @returns {void}
+ */
 function handleWindowResize() {
     try {
         handleWindowResizeContacs()
@@ -22,7 +27,12 @@ function handleWindowResize() {
         //do nothing, then the corresponding js file is not included, because not relevant an this page
     }
 }
-
+/**
+ * Includes HTML content into a webpage by replacing elements that have the "w3-include-html" attribute 
+ * with the content of the specified file.
+ * @async
+ * @param {string} currentPage - The name of the current page.
+ */
 async function includeHTML(currentPage) {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
@@ -37,15 +47,23 @@ async function includeHTML(currentPage) {
         }
     }
 }
-
+/**
+* Shows the logout button in the header by removing the 'header-d-none' class from its corresponding HTML element.
+*/
 function showLogOut() {
     document.getElementById('header-log-out').classList.remove('header-d-none');
 }
 
+/**
+ * Redirects the user to the login page.
+ */
 function logout() {
     window.location.href = 'index.html';
 }
 
+/**
+ * Toggles the display of the log out area and hides/shows the "New Contact" button accordingly.
+ */
 function toggleShowLogOutArea() {
     if (activLogOutArea) {
         document.getElementById('header-log-out').classList.add('header-d-none');
@@ -58,7 +76,11 @@ function toggleShowLogOutArea() {
     }
 }
 
-// is called in includeHTML-function. gets the current window-location as ID and added the blue focus
+/**
+ * Sets the current active page element on the side bar by adding the 'side-bar-position' class to it. (blue focus/active)
+ * Uses the activePage variable to determine the current page and creates an ID for the corresponding element in the side bar.
+ * Is called in includeHTML-function. 
+ */
 function getElement() {
     let tempTrimmed = activePage.replace(/^\/|\.html$/g, "");
     let activePageAsID = "side-bar-" + tempTrimmed;
@@ -81,14 +103,66 @@ function getCookieExpireTime(){
     return now;
   }
 
-// weiteres Beispiel: 
-// document.cookie ="user = carmen; + now.toUTCString() + "; path=/";
+  ////<--------- Funktion for Image Changing ---------> 
+//TODO setCookieUser(user);  sollte noch von Pascal eingebaut werden. 
 
+/**
+ * Sets a cookie, 
+ * with an expiration time calculated by the function 'getCookieExpireTime'.
+ */
+ function setCookieUser(user){ // übergeben wird der Vor und Nachname z.B. Carmen Birkle z.B. bei der Einlog Funktion
+    let now =  getCookieExpireTime();
+    const lowercaseName = user.toLowerCase().replace(" ", "");
+    document.cookie ="user = " + lowercaseName + "; expires=" + now.toUTCString() + "; path=/";
+ }
+
+/**
+ * Changes the profile image based on the value of the "user" cookie.
+ */
+ function changeProfileImage() {
+    const img = document.getElementById('header-profile-img'); 
+    switch (true) {
+        case document.cookie.includes("user=carmenbirkle"):
+          img.src = "./assets/img/profile-images/carmenbirkle.jpg"
+          break;
+        case document.cookie.includes("user=pascalgajewski"):
+          img.src = "./assets/img/profile-images/pascalgajewski.jpg"
+          break;
+        case document.cookie.includes("user=danielhartmann"):
+          img.src = "./assets/img/profile-images/danielhartmann.jpg"
+          break;
+        default:
+          console.log("Der Benutzer konnte nicht ermittelt werden");
+          img.src = "./assets/img/profile-images/guest.svg"
+      }
+  }
+
+//Todo Delete Funktion noch anpassen und mit dem Logout Button verknüpfen wie final die Cookies genau aussehen. 
+
+  /**
+  * Deletes the cookies from the current document. 
+  */
+ function deleteCoockie(){
+    document.cookie ="isCalled = 1; expires= Thu, 01 Jan 1970 00:00:00 UTC;"
+    document.cookie ="user = carmenbirkle; expires= Thu, 01 Jan 1970 00:00:00 UTC;"
+}
+    
+
+
+//#############       Beispielfunktionen können später raus  ! 
+
+/**
+ * Sets a cookie, 
+ * with an expiration time calculated by the function 'getCookieExpireTime'.
+ */
 function setCookie(){
     let now =  getCookieExpireTime();
-    document.cookie = "isCalled=1;expires=" + now.toUTCString() + "; path=/";
+    document.cookie = "isCalled=1; expires=" + now.toUTCString() + "; path=/";
+    document.cookie ="user = carmen; expires=" + now.toUTCString() + "; path=/";
  }
+
  
+ // Beispielfunktion um auf ein Cookie zuzugreifen, kannst später raus!  TODO
  function getcookie(){
      if (document.cookie.includes("user=carmen")) {
          console.log("yeah");
@@ -96,14 +170,11 @@ function setCookie(){
      console.log(document.cookie); // TODO - final rausnehmen
  }
  
- function deleteCoockie(){
-     document.cookie ="isCalled = 1; expires= Thu, 01 Jan 1970 00:00:00 UTC;"
-     document.cookie ="user = carmen; expires= Thu, 01 Jan 1970 00:00:00 UTC;"
- }
+
  
+ 
+
   
-
-
 
 
 

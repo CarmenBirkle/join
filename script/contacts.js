@@ -90,41 +90,56 @@ function doNotClose(event){
     event.stopPropagation();
 }
 
-
 /**
- * Funktion to creat a map with sorted data by first letter and associated contact list.
- * a map is used so that the initial letters are unique.
- * then all contacts for this letter are listed alphabetically sorted by first name.
- * This sorted list is stored in the global array sortContacts
+ * Groups an array of contacts by their initials
+ * @param {Array} contacts - An array of contact objects, each with a 'fullname' property
+ * @returns {Map} A Map object with keys being the first letters of the fullnames (in uppercase), 
+ * and values being an array of contact objects with corresponding initials
  */
-
-function getSortListofContacts() {
+function groupContactsByInitials(contacts) {
     let initialsMap = new Map();
     contacts.forEach(contact => {
-      let name = contact.fullname.trim(); // removes blank charactor
+      let name = contact.fullname.trim(); // removes blank character
       let initials = name.charAt(0).toUpperCase();
       if (!initialsMap.has(initials)) {
         initialsMap.set(initials, []);
       }
       initialsMap.get(initials).push(contact);
     });
-  
-    let sortedInitialsMap = new Map([...initialsMap.entries()].sort());   // sort initials alphabetically
-  
-    // sort contacts by fullname
-    sortedInitialsMap.forEach((contacts, initials) => {
+    return initialsMap;
+  }
+
+/**
+ * Sorts the contacts alphabetically within each group of initials in the initialsMap.
+ * @param {Map} initialsMap - The map of contacts grouped by their initials.
+ * @returns {Map} The sorted map of contacts grouped by their initials.
+ */
+  function sortContactsAlphabetically(initialsMap) {
+    initialsMap.forEach((contacts, initials) => {
       contacts.sort((a, b) => {
         if (a.fullname < b.fullname) { return -1; }
         if (a.fullname > b.fullname) { return 1; }
         return 0;
       });
     });
-
-    sortContacts = sortedInitialsMap;
-    console.log(sortContacts);
+    return initialsMap;
   }
 
-
+  /**
+   * Groups the list of contacts by initials, sorts the groups alphabetically,
+   * and sorts the contacts within each group by fullname.
+   * @function
+   * @name getSortListofContacts
+   * @param {Array} contacts - The list of contacts to be sorted
+   * @returns {Map} A map object containing the sorted list of contacts grouped by initials
+    */
+  function getSortListofContacts() {
+    let initialsMap = groupContactsByInitials(contacts);
+    let sortedInitialsMap = new Map([...initialsMap.entries()].sort());   // sort initials alphabetically
+    sortContacts = sortContactsAlphabetically(sortedInitialsMap);
+  }
+  
+  
 /**
  * Render Function for Dynamic ContactList Left
  */
