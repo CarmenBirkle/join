@@ -29,7 +29,7 @@ let tasks = [];
 
 /**
  * To initialize all functions on the add task.html and task-template.html file that are required for building the page.
- * 
+ * @async
  */
 async function initAddTask() {
     await init();
@@ -312,7 +312,7 @@ function renderTopAssigendToAfterNewContact() {
 
 /**
  * Searches for a contact in the `contacts` array with the specified email address and 
- * pushes the contact's initials and background color into the `assignedToUsers` array, if not already present.
+ * pushes the contact's initials and bgColor into the `assignedToUsers` array, if not already present.
  * @param {String} emailInput - the value form the assigned-new-contact input field.
  */
 function searchNewContactPushUser(emailInput) {
@@ -391,7 +391,7 @@ function renderAssignedToError() {
 /*-- Due Date --*/
 /**
  * Generate the due-date input field.
- * 
+ * min date = current date
  */
 function initDueDate() {
     document.getElementById('add-task-due-date').innerHTML = '';
@@ -401,7 +401,7 @@ function initDueDate() {
 
 /*-- Prio --*/
 /**
- * Generate the prio buttons.
+ * Generate the prio buttons from array prioButtons.
  * 
  */
 function initPrioButtons() {
@@ -416,6 +416,10 @@ function initPrioButtons() {
     }
 }
 
+/**
+ * Save the selected prio button Id. (validate form)
+ * @param {String} prioId - (Id) from prio button (urgent, medium, low).
+ */
 function setAddTaskPrioButton(prioId) {
     initPrioButtons();
 
@@ -425,12 +429,20 @@ function setAddTaskPrioButton(prioId) {
     setPrioButtonDesign(prioId);
 }
 
+/**
+ * Generate a new design for the selected prio button.
+ * @param {String} prioId - (Id) from prio button (urgent, medium, low).
+ */
 function setPrioButtonDesign(prioId) {
     document.getElementById(`prio-${prioId}`).classList.add(`bg-prio-${prioId}`, 'add-task-font-color');
     document.getElementById(`img-prio-${prioId}`).classList.add('d-none');
     document.getElementById(`img-prio-${prioId}-white`).classList.remove('d-none');
 }
 
+/**
+ * Shows an error if no prio button was selected. (form validation)
+ * 
+ */
 function renderPrioButtonError() {
     document.getElementById('add-task-prio-button-error').innerHTML = '';
     document.getElementById('add-task-prio-button-error').innerHTML = addTaskErrorHTML('Please select a Priority');
@@ -540,60 +552,68 @@ function pushChosenSubtasks() {
 
 async function sendFormToBackend() {
     try {
-        const button = document.getElementById('add-task-create-button');
-        const buttonMedia = document.getElementById('add-task-create-button-media');
-        button.disabled = true;
-        buttonMedia.disabled = true;
+        document.getElementById('add-task-create-button').disabled = true;
+        document.getElementById('add-task-create-button-media').disabled = true;
 
-        let title = document.getElementById('add-task-input-title').value;
-        let description = document.getElementById('add-task-input-description').value;
-        let categoryColor = chosenCategoryColor[0];
-        let categoryType = chosenCategoryType[0];
-        let contact = chosenAssignedTo;
-        let prio = chosenPrioButton[0];
-        let subtask = chosenSubtasks;
-
-        let task = {
-            'number': tasks.length + 1,
-            'title': title,
-            'description': description,
-            'categoryColor': categoryColor,
-            'categoryType': categoryType,
-            'category': 'to-do',
-            'contact': contact,
-            'date': dateFormattedMilliseconds(),
-            'prio': prio,
-            'subtask': subtask
-        }
-
-        tasks.push(task);
-        await backend.setItem('tasks', JSON.stringify(tasks));
-        console.log(tasks); // Test !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-        let clearButton = document.getElementById('add-task-clear-button');
-        clearButton.click();
-
-        const addedContainer = document.getElementById('add-task-added');
-        addedContainer.classList.add('add-task-added-animation');
-        addedContainer.classList.remove('d-none');
-        setTimeout(() => {
-            addedContainer.classList.remove('add-task-added-animation');
-            addedContainer.classList.add('d-none');
-        }, 2000);
+        await pushTaskIntoBackend();
+        
+        document.getElementById('add-task-clear-button').click();
+        showsAddedTaskAnimation();
     } catch (error) {
         console.log('An error has occurred!' + error);
     } finally {
-        const button = document.getElementById('add-task-create-button');
-        const buttonMedia = document.getElementById('add-task-create-button-media');
-        button.disabled = false;
-        buttonMedia.disabled = false;
+        document.getElementById('add-task-create-button').disabled = false;
+        document.getElementById('add-task-create-button-media').disabled = false;
     }
+}
+
+async function pushTaskIntoBackend() {
+    let title = document.getElementById('add-task-input-title').value;
+    let description = document.getElementById('add-task-input-description').value;
+    let categoryColor = chosenCategoryColor[0];
+    let categoryType = chosenCategoryType[0];
+    let contact = chosenAssignedTo;
+    let prio = chosenPrioButton[0];
+    let subtask = chosenSubtasks;
+
+    let task = {
+        'number': tasks.length + 1,
+        'title': title,
+        'description': description,
+        'categoryColor': categoryColor,
+        'categoryType': categoryType,
+        'category': 'to-do',
+        'contact': contact,
+        'date': dateFormattedMilliseconds(),
+        'prio': prio,
+        'subtask': subtask
+    }
+
+    tasks.push(task);
+    //await backend.setItem('tasks', JSON.stringify(tasks));
+    console.log(tasks); // Test !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 }
 
 function dateFormattedMilliseconds() {
     let date = document.getElementById('add-task-input-due-date').value;
+    console.log(date); // Test !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     let milliseconds = Date.parse(date);
+    // TEST
+    const Testdate = new Date(milliseconds);
+    const formattedDate = Testdate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    console.log(formattedDate);
+    //TEST
     return milliseconds;
+}
+
+function showsAddedTaskAnimation() {
+    const addedContainer = document.getElementById('add-task-added');
+    addedContainer.classList.add('add-task-added-animation');
+    addedContainer.classList.remove('d-none');
+    setTimeout(() => {
+        addedContainer.classList.remove('add-task-added-animation');
+        addedContainer.classList.add('d-none');
+    }, 2000);
 }
 
 

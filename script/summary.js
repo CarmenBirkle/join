@@ -6,7 +6,7 @@
 
 /**
  * To initialize all functions on the summary.html that are required for building the page.
- * 
+ * @async
  */
 async function initSummary() {
     await init();
@@ -18,8 +18,8 @@ async function initSummary() {
 
 
 /**
- * Automatic greetings based on time.
- * 
+ * Generates a greeting message based on the current time of day and 
+ * displays it on the HTML element with id 'summary-greeting'.
  */
 function summaryGreetings() {
     let currentHour = new Date().getHours();
@@ -37,8 +37,8 @@ function summaryGreetings() {
 }
 
 /**
- * Count how many urgent prios are in tasks.
- * 
+ * Counts how many tasks with priority "urgent" are in the tasks array, 
+ * updates the urgent tasks count display.
  */
 function countUrgent() {
     let urgentCount = 0;
@@ -53,7 +53,7 @@ function countUrgent() {
 }
 
 /**
- * Find the lowest date in tasks.
+ * Find the lowest date in the tasks array.
  * Converts milliseconds to: 'en-US', {month: 'long', day: 'numeric', year: 'numeric'}.
  */
 function findDeadline() {
@@ -79,8 +79,8 @@ function countTaskCategory() {
         let taskToDo = tasks[i].category;
         if (taskToDo === 'to-do' || taskToDo === 'in-progress' || taskToDo === 'awaiting-feedback') {
             toDoCount++;
-        } 
-        if(taskToDo === 'done') {
+        }
+        if (taskToDo === 'done') {
             doneCount++;
         }
     }
@@ -128,4 +128,4 @@ let testTasks = [{
     'date': 1167644800000,
     'prio': 'prio-urgent',
     'subtask': ''
-} ]
+}]
