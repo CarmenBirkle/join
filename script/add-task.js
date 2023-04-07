@@ -1,19 +1,36 @@
+/**
+ * add-task.js contains all functions that are relevant for the add-task.html and task-template.html
+ * @author Daniel Hartmann
+ * @version 1.0
+ */
+
+/**
+ * All global variables in add task.
+ * @param {Array}
+ */
 const allCategoryColor = ['#FC71FF', '#1FD7C1', '#FF8A00', '#8AA4FF', '#FF0000', '#2AD300', '#E200BE', '#0038FF'];
 let defaultCategoryColor = ['#FC71FF', '#1FD7C1', '#FF8A00', '#8AA4FF'];
 let defaultCategoryType = ['Sale', 'Backoffice', 'Design', 'Marketing'];
 let addSubtasks = [];
 let assignedToUsers = [];
-
-let chosenCategoryColor = []; // validate form
-let chosenCategoryType = []; // validate form
-let chosenAssignedTo = []; // validate form
-let chosenPrioButton = []; // validate form
-let chosenSubtasks = []; // validate form
-
+/**
+ * All global validation variables for form validation.
+ *  @param {Array}
+ */
+let chosenCategoryColor = [];
+let chosenCategoryType = [];
+let chosenAssignedTo = [];
+let chosenPrioButton = [];
+let chosenSubtasks = []; // not a required field
+/**
+ * @param {Array} tasks - Array of tasks (for backend).
+ */
 let tasks = [];
 
-
-/*-- Init All Elements --*/
+/**
+ * To initialize all functions on the add task.html and task-template.html file that are required for building the page.
+ * 
+ */
 async function initAddTask() {
     await init();
     initCategory();
@@ -23,13 +40,22 @@ async function initAddTask() {
     initSubtask();
 }
 
+
 /*-- Category --*/
+/**
+ * Generate the CategoryHTML.
+ * 
+ */
 function initCategory() {
     document.getElementById('add-task-category-render').innerHTML = loadCategoryHTML();
     document.getElementById('add-task-new-category-dots').innerHTML = '';
     document.getElementById('add-task-new-category-error').innerHTML = '';
 }
 
+/**
+ * Render the dropdown menu and render the top section from the category.
+ * 
+ */
 function openCategoryDropdown() {
     document.getElementById('add-task-category-dropdown').classList.toggle('d-none');
     document.getElementById('add-task-assignedto-dropdown').classList.add('d-none');
@@ -38,11 +64,19 @@ function openCategoryDropdown() {
     renderCategorySelection();
 }
 
+/**
+ * Render the top section from the category and open the placeholder.
+ * 
+ */
 function renderTopCategory() {
     document.getElementById('add-task-category-dropdown-top').innerHTML = '';
     document.getElementById('add-task-category-dropdown-top').innerHTML = openTopPlaceholderHTML('Select task category');
 }
 
+/**
+ * Render the new category field in the dropdown.
+ * Render the category selection in the category dropdown using the global array defaultCategoryColor.
+ */
 function renderCategorySelection() {
     document.getElementById('add-task-category-dropdown').innerHTML = '';
     document.getElementById('add-task-category-dropdown').innerHTML = openNewCategoryHTML();
@@ -55,6 +89,12 @@ function renderCategorySelection() {
     }
 }
 
+/**
+ * Renders the selected section and shows them int the category top.
+ * Dropdown will be closed.
+ * @param {String} color -The color of the defaultCategoryColor, represented as a hexadecimal string.
+ * @param {String} type - The type of the defaultCategoryType, represented as a string.
+ */
 function setCategory(color, type) {
     choseCategory(color, type);
     document.getElementById('add-task-category-dropdown-top').innerHTML = openTopSetCategoryHTML(color, type);
@@ -62,12 +102,20 @@ function setCategory(color, type) {
     document.getElementById('add-task-category-dropdown').classList.add('d-none');
 }
 
+/**
+ * Render the new-category inputfield in the top section in category.
+ * Renders a selection of colorful dots.
+ */
 function renderNewCategory() {
     document.getElementById('add-task-category-render').innerHTML = '';
     document.getElementById('add-task-category-render').innerHTML = openNewCategorySelectHTML();
     renderNewCategoryDots();
 }
 
+/**
+ * Renders a selection of colorful dots for the new-category.
+ * 
+ */
 function renderNewCategoryDots() {
     document.getElementById('add-task-new-category-dots').innerHTML = '';
 
@@ -78,6 +126,11 @@ function renderNewCategoryDots() {
 }
 
 /*-- Category add new Category --*/
+/**
+ * push the selected dot, from the new-category selection in the chosenCategoryColor array (for form validation).
+ * @param {String} dotColor - The color of the celected color dot, represented as a hexadecimal string.
+ * @param {Number} i - The index of the current iteration in the loop that generates the color dots.
+ */
 function saveNewColor(dotColor, i) {
     chosenCategoryColor = [];
     chosenCategoryColor.push(dotColor);
@@ -85,6 +138,11 @@ function saveNewColor(dotColor, i) {
     document.getElementById(`selected-dot-active${i}`).classList.add('dropdown-option-dots-selected');
 }
 
+/**
+ * Handles the keydown event for the "Add New Category" input field. 
+ * @param {event} event - This parameter is used to detect if the user has pressed the "Enter" key, and if so,
+ *                      to prevent the default form submission behavior.
+ */
 function saveNewCategoryEnter(event) {
     if (event.key == "Enter") {
         event.preventDefault();
@@ -92,6 +150,13 @@ function saveNewCategoryEnter(event) {
     }
 }
 
+/**
+ * 1. Validate the new-category input field and selected dot-color.
+ * 2. Pushes the input value from the 'New Category' input field
+ * into an array(defaultCategoryType) and saves it when a new option is selected in this section.
+ * 2. Pushes the selected dot-color from the 'New Category'
+ * into an array(defaultCategoryColor) and saves it when a new option is selected in this section.
+ */
 function saveNewCategory() {
     let newType = document.getElementById('new-category-type-name');
 
@@ -106,6 +171,9 @@ function saveNewCategory() {
     }
 }
 
+/**
+ * Shows the value from the new-category input field and the selected dot-color.
+ */
 function renderTopNewCategory() {
     let newColor = defaultCategoryColor[defaultCategoryColor.length - 1];
     let newType = defaultCategoryType[defaultCategoryType.length - 1];
@@ -114,11 +182,17 @@ function renderTopNewCategory() {
     document.getElementById('add-task-category-dropdown-top').innerHTML = openTopSetCategoryHTML(newColor, newType);
 }
 
+/**
+ * Shows an error if no category was selected. (form validation)
+ */
 function renderCategoryError() {
     document.getElementById('add-task-new-category-error').innerHTML = '';
     document.getElementById('add-task-new-category-error').innerHTML = addTaskErrorHTML('Please select a category name and pick a color');
 }
 
+/**
+ * Shows a message when a new category is added to the category dropdown menu.
+ */
 function addedNewCategoryMessage() {
     document.getElementById('add-task-new-category-error').innerHTML = '';
     document.getElementById('add-task-new-category-error').innerHTML = addTaskErrorHTML('Added new category');
@@ -128,6 +202,10 @@ function addedNewCategoryMessage() {
 }
 
 /*-- Assigned-To --*/
+/**
+ * Generate the loadAssignedToHTML.
+ * Executes the functions that renders the names and the new-contact field.
+ */
 function initAssignedTo() {
     document.getElementById('add-task-assignedto-render').innerHTML = '';
     document.getElementById('add-task-assigned-error').innerHTML = '';
@@ -136,23 +214,38 @@ function initAssignedTo() {
     renderInviteNewContact();
 }
 
+/**
+ * Open the dropdown form the assigned to section.
+ * 
+ */
 function openAssignedToDropdown() {
     document.getElementById('add-task-assignedto-dropdown').classList.toggle('d-none');
     document.getElementById('add-task-category-dropdown').classList.add('d-none');
     renderTopAssigendTo();
 }
 
+/**
+ * Render the top section from the Assigned to and open the placeholder.
+ * 
+ */
 function renderTopAssigendTo() {
     document.getElementById('add-task-assigendto-dropdown-top').innerHTML = '';
     document.getElementById('add-task-assigned-error').innerHTML = '';
     document.getElementById('add-task-assigendto-dropdown-top').innerHTML = openTopPlaceholderHTML('Select contacts to assign');
 }
 
+/**
+ * Render the new-contact field.
+ * 
+ */
 function renderInviteNewContact() {
     document.getElementById('add-task-assignedto-dropdown').innerHTML += openInviteNewContactHTML();
 }
 
-
+/**
+ * Render the fullname / email / bgColor / initals from the contacts (backend).
+ * The fullname will be show in the dropdown assigned section.
+ */
 function renderAssignedToSelection() {
     document.getElementById('add-task-assignedto-dropdown').innerHTML = '';
 
@@ -165,12 +258,21 @@ function renderAssignedToSelection() {
     }
 }
 
+/**
+ * Render the input field from the new-contact that allows searching by email.
+ * 
+ */
 function renderAssignedToNewContact() {
     document.getElementById('add-task-assignedto-dropdown').classList.toggle('d-none');
     document.getElementById('add-task-assigendto-dropdown-top').innerHTML = '';
     document.getElementById('add-task-add-new-contact-section').innerHTML = openNewContactSelectHTML();
 }
 
+/**
+ * Handles the keydown event for the "Serach New Contact" input field. 
+ * @param {event} event - This parameter is used to detect if the user has pressed the "Enter" key, and if so,
+ *                      to prevent the default form submission behavior.
+ */
 function searchNewContactEnter(event) {
     if (event.key == "Enter") {
         event.preventDefault();
@@ -178,6 +280,10 @@ function searchNewContactEnter(event) {
     }
 }
 
+/**
+ * Searches the dropdown section for the entered email(assigned-new-contact-input).
+ * Validate the value from the assigned-new-contact-input.
+ */
 function searchNewContact() {
     let emailInput = document.getElementById('assigned-new-contact-input').value;
     let checkEmail = document.querySelector(`input[type="checkbox"][name="${emailInput}"]`);
@@ -195,11 +301,20 @@ function searchNewContact() {
     }, 2000);
 }
 
+/**
+ * If you click on the cross, the assigned-new-contact-input will be closed.
+ * 
+ */
 function renderTopAssigendToAfterNewContact() {
     document.getElementById('add-task-add-new-contact-section').innerHTML = '';
     document.getElementById('add-task-add-new-contact-section').innerHTML = openTopAssignedToHTML();
 }
 
+/**
+ * Searches for a contact in the `contacts` array with the specified email address and 
+ * pushes the contact's initials and background color into the `assignedToUsers` array, if not already present.
+ * @param {String} emailInput - the value form the assigned-new-contact input field.
+ */
 function searchNewContactPushUser(emailInput) {
     const selectedContact = contacts.find(contact => contact.email === emailInput);
     let bgColor = selectedContact.bgcolor;
@@ -211,12 +326,18 @@ function searchNewContactPushUser(emailInput) {
     }
 }
 
+/**
+ * Toggles the checkbox state of the assigned-to user and 
+ * updates the assignedToUsers array with the user's background color and initials.
+ * @param {event} event - The event object.
+ * @param {String} bgColor - The background color of the user in the contacts array as rgb.
+ * @param {String} initals - The initials of the user in the contacts array.
+ */
 function toggleCheckboxAssigned(event, bgColor, initals) {
     let divContainerAssigned = event.target.closest('.add-task-dropdown-option');
     let checkboxAssigned = divContainerAssigned.querySelector('.validate-assignedto-checkbox');
 
     if (divContainerAssigned === event.target) {
-        // Wenn das DIV-Element geklickt wurde, toggle den Zustand der Checkbox
         checkboxAssigned.checked = !checkboxAssigned.checked;
     }
 
@@ -224,9 +345,15 @@ function toggleCheckboxAssigned(event, bgColor, initals) {
     renderAssignedUsers();
 }
 
+/**
+ * Updates the assignedToUsers array based on the checkbox state of the assigned user.
+ * @param {Object} checkboxAssigned - The HTML checkbox element representing the assigned user.
+ * @param {String} bgColor - The background color of the user in the contacts array as rgb.
+ * @param {String} initals - The initials of the user in the contacts array.
+ */
 function updateAssignedToUsers(checkboxAssigned, bgColor, initals) {
     let index = assignedToUsers.findIndex(userInfo => userInfo.bgColor === bgColor && userInfo.initals === initals);
-
+    // prevent multi generate
     if (checkboxAssigned.checked) {
         if (index === -1) {
             assignedToUsers.push({ bgColor: bgColor, initals: initals });
@@ -238,6 +365,10 @@ function updateAssignedToUsers(checkboxAssigned, bgColor, initals) {
     }
 }
 
+/**
+ * Render the user icons, after selected them.
+ * 
+ */
 function renderAssignedUsers() {
     document.getElementById('add-task-assigned-users').innerHTML = '';
     for (let i = 0; i < assignedToUsers.length; i++) {
@@ -247,6 +378,10 @@ function renderAssignedUsers() {
     }
 }
 
+/**
+ * Shows an error if no user was selected. (form validation)
+ * 
+ */
 function renderAssignedToError() {
     document.getElementById('add-task-assigned-error').innerHTML = '';
     document.getElementById('add-task-assigned-error').innerHTML = addTaskErrorHTML('Please select a Contact');
@@ -254,14 +389,21 @@ function renderAssignedToError() {
 
 
 /*-- Due Date --*/
+/**
+ * Generate the due-date input field.
+ * 
+ */
 function initDueDate() {
     document.getElementById('add-task-due-date').innerHTML = '';
     const today = new Date().toISOString().split('T')[0];
     document.getElementById('add-task-due-date').innerHTML = loadDueDateHTML(today);
 }
 
-
 /*-- Prio --*/
+/**
+ * Generate the prio buttons.
+ * 
+ */
 function initPrioButtons() {
     const prioButtons = ['urgent', 'medium', 'low'];
     document.getElementById('add-task-priobutton-render').innerHTML = '';

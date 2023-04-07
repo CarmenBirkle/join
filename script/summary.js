@@ -1,3 +1,13 @@
+/**
+ * summary.js contains all functions that are relevant for the summary.html.
+ * @author Daniel Hartmann
+ * @version 1.0
+ */
+
+/**
+ * To initialize all functions on the summary.html that are required for building the page.
+ * 
+ */
 async function initSummary() {
     await init();
     summaryGreetings();
@@ -7,9 +17,8 @@ async function initSummary() {
 }
 
 
-
 /**
- * Automatic greetings based on time
+ * Automatic greetings based on time.
  * 
  */
 function summaryGreetings() {
@@ -27,6 +36,10 @@ function summaryGreetings() {
     document.getElementById('summary-greeting').innerHTML = greeting;
 }
 
+/**
+ * Count how many urgent prios are in tasks.
+ * 
+ */
 function countUrgent() {
     let urgentCount = 0;
     for (let i = 0; i < tasks.length; i++) {
@@ -39,6 +52,10 @@ function countUrgent() {
     document.getElementById('summary-urgent-count').innerHTML = urgentCount;
 }
 
+/**
+ * Find the lowest date in tasks.
+ * Converts milliseconds to: 'en-US', {month: 'long', day: 'numeric', year: 'numeric'}.
+ */
 function findDeadline() {
     let lowestDate = Infinity;
     for (let i = 0; i < tasks.length; i++) {
@@ -67,7 +84,7 @@ function countTaskCategory() {
             doneCount++;
         }
     }
-    
+
     document.getElementById('summary-to-do-count').innerHTML = toDoCount;
     document.getElementById('summary-done-count').innerHTML = doneCount;
     document.getElementById('summary-task-in-borad').innerHTML = taskBoardCount;
