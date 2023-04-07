@@ -146,7 +146,7 @@ function loadDueDateHTML(today) {
 /*-- Prio-Buttons-HTML --*/
 function loadPrioButtonsHTML(prioName, prioNameFormatted) {
     return /*html*/`
-    <button type="button" id="prio-${prioName}" onclick="setAddTaskPrioButton('prio-${prioName}')">
+    <button type="button" id="prio-${prioName}" onclick="setAddTaskPrioButton('${prioName}')">
         ${prioNameFormatted}
         <img id="img-prio-${prioName}" src="./assets/img/icons/add-task-${prioName}.svg" alt="${prioName}">
         <img id="img-prio-${prioName}-white" class="d-none" src="./assets/img/icons/add-task-${prioName}-white.svg" alt="${prioName}">

@@ -221,7 +221,6 @@ function toggleCheckboxAssigned(event, bgColor, initals) {
     }
 
     updateAssignedToUsers(checkboxAssigned, bgColor, initals);
-    console.log(assignedToUsers); // TEST !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     renderAssignedUsers();
 }
 
@@ -285,9 +284,9 @@ function setAddTaskPrioButton(prioId) {
 }
 
 function setPrioButtonDesign(prioId) {
-    document.getElementById(`${prioId}`).classList.add(`bg-${prioId}`, 'add-task-font-color');
-    document.getElementById(`img-${prioId}`).classList.add('d-none');
-    document.getElementById(`img-${prioId}-white`).classList.remove('d-none');
+    document.getElementById(`prio-${prioId}`).classList.add(`bg-prio-${prioId}`, 'add-task-font-color');
+    document.getElementById(`img-prio-${prioId}`).classList.add('d-none');
+    document.getElementById(`img-prio-${prioId}-white`).classList.remove('d-none');
 }
 
 function renderPrioButtonError() {
@@ -451,8 +450,8 @@ async function sendFormToBackend() {
 
 function dateFormattedMilliseconds() {
     let date = document.getElementById('add-task-input-due-date').value;
-    let isoDate = date.split('-').reverse().join('-');
-    let milliseconds = Date.parse(isoDate);
+    console.log(date);
+    let milliseconds = Date.parse(date);
     return milliseconds;
 }
 
