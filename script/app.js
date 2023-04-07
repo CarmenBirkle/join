@@ -9,6 +9,7 @@ async function init() {
     await downloadFromServer();
     contacts = JSON.parse(backend.getItem('contacts')) || [];
     users = JSON.parse(backend.getItem('users')) || [];
+    tasks = JSON.parse(backend.getItem('tasks')) || [];
     handleWindowResize(); // TODO Final info rausnehmen    
 }
 

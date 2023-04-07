@@ -20,7 +20,7 @@
     <title>Summary | Join</title>
 </head>
 
-<body onload="init(); summaryGreetings(); findDeadline(); countUrgent()">
+<body onload="initSummary()">
     <div w3-include-html="./assets/templates/header-template.html"></div>
     <div w3-include-html="./assets/templates/side-bar-template.html"></div>
 
@@ -40,7 +40,7 @@
                 <div class="summary-tasks-general">
                     <div class="summary-tasks-info">
                         <div class="summary-tasks">
-                            <div>0</div>
+                            <div id="summary-task-in-borad">0</div>
                             <span>Tasks in<br>Board</span>
                         </div>
                         <div class="summary-tasks">
@@ -56,13 +56,13 @@
                         <div class="summary-urgency">
                             <img src="./assets/img/icons/summary-urgency.svg" alt="summary urgent">
                             <div class="summary-urgency-info">
-                                <div class="summary-urgency-number">0</div>
+                                <div class="summary-urgency-number" id="summary-urgent-count">0</div>
                                 <div class="summary-urgency-name">Urgent</div>
                             </div>
                         </div>
                         <div class="grey-line"></div>
                         <div class="summary-date-deadline ">
-                            <div class="summary-date">October 16, 2022</div>
+                            <div class="summary-date" id="summary-find-deadline">October 16, 2022</div>
                             <div class="summary-deadline">Upcoming Deadline</div>
                         </div>
                     </div>
@@ -72,7 +72,7 @@
                                 alt="summary pencil">
                             <img class="d-none" src="./assets/img/icons/summary-pencil-white.svg" alt="summary pencil">
                             <div class="summary-to-do-done-sub">
-                                <div class="summary-to-do-done-sub-number">1</div>
+                                <div class="summary-to-do-done-sub-number" id="summary-to-do-count">1</div>
                                 <div class="summary-to-do-done-sub-name">To-do</div>
                             </div>
                         </div>
@@ -81,7 +81,7 @@
                                 alt="summary check">
                             <img class="d-none" src="./assets/img/icons/summary-check-white.svg" alt="summary check">
                             <div class="summary-to-do-done-sub">
-                                <div class="summary-to-do-done-sub-number">1</div>
+                                <div class="summary-to-do-done-sub-number" id="summary-done-count">1</div>
                                 <div class="summary-to-do-done-sub-name">Done</div>
                             </div>
                         </div>
