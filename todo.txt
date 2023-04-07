@@ -31,6 +31,7 @@ Contacts html, css, (desktop + responsive) - Carmen
 Contacts js - Carmen
 Add Task html css responsive - Daniel
 Add Task js - Daniel
+Cookies - Carmen
 
 Referenzen 
 -> für Tash Icon: 

@@ -118,6 +118,7 @@ function getCookieExpireTime(){
 
 /**
  * Changes the profile image based on the value of the "user" cookie.
+ * note: since there is no image upload option, this has been fixed.
  */
  function changeProfileImage() {
     const img = document.getElementById('header-profile-img'); 
