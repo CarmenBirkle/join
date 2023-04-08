@@ -51,7 +51,7 @@ function initAddTaskTemplates() {
 
 /*-- Category --*/
 /**
- * Generate the CategoryHTML.
+ * Generate the CategoryHTML from the add-task-template.js.
  * 
  */
 function initCategory() {
@@ -211,7 +211,7 @@ function addedNewCategoryMessage() {
 
 /*-- Assigned-To --*/
 /**
- * Generate the loadAssignedToHTML.
+ * Generate the loadAssignedToHTML from the add-task-template.js.
  * Executes the functions that renders the names and the new-contact field.
  */
 function initAssignedTo() {
@@ -398,7 +398,7 @@ function renderAssignedToError() {
 
 /*-- Due Date --*/
 /**
- * Generate the due-date input field.
+ * Generate the due-date input field from the add-task-template.js.
  * min date = current date
  */
 function initDueDate() {
@@ -425,7 +425,7 @@ function initPrioButtons() {
 }
 
 /**
- * Save the selected prio button Id. (validate form)
+ * Save the selected prio button id by pushing the id into the chosenPrioButton array. (validate form)
  * @param {String} prioId - (Id) from prio button (urgent, medium, low).
  */
 function setAddTaskPrioButton(prioId) {
@@ -457,18 +457,31 @@ function renderPrioButtonError() {
 }
 
 /*-- Subtask --*/
+/**
+ * Generate the subtask section from the add-task-template.js.
+ * 
+ */
 function initSubtask() {
     document.getElementById('add-task-subtask-render').innerHTML = '';
     document.getElementById('add-task-subtask-error').innerHTML = '';
     document.getElementById('add-task-subtask-render').innerHTML = loadSubtaskHTML();
 }
 
+/**
+ * When the user click on the subtask section 
+ * then the subtask input field will be generated and the input field is automatically focused.
+ */
 function changeSubtask() {
     document.getElementById('add-task-subtask-render').innerHTML = '';
     document.getElementById('add-task-subtask-render').innerHTML = openSubtaskInputHTML();
     document.getElementById('add-task-subtask-input').focus();
 }
 
+/**
+ * Handles the keydown event for the "Subtask" input field. 
+ * @param {event} event - This parameter is used to detect if the user has pressed the "Enter" key, and if so,
+ *                      to prevent the default form submission behavior.
+ */
 function addNewSubtaskEnter(event) {
     if (event.key == "Enter") {
         event.preventDefault();
@@ -476,6 +489,11 @@ function addNewSubtaskEnter(event) {
     }
 }
 
+/**
+ * Validates the value from the subtask input field.
+ * If the input is incorrect, a error will be generate.
+ * If the input is correct, the input is pushed into the addSubtasks array and start the renderSubtaskCheckbox() function.
+ */
 function addNewSubtask() {
     document.getElementById('add-task-subtask-error').innerHTML = '';
     let subtaskInput = document.getElementById('add-task-subtask-input');
@@ -492,6 +510,10 @@ function addNewSubtask() {
     }
 }
 
+/**
+ * Generates the subtask checkboxes after correct input from the addSubtasks array.
+ * 
+ */
 function renderSubtaskCheckbox() {
     for (let i = 0; i < addSubtasks.length; i++) {
         let subTaskCheckbox = addSubtasks[i];
@@ -500,6 +522,10 @@ function renderSubtaskCheckbox() {
 }
 
 /*-- Clear Button --*/
+/**
+ * After pressing the clear button, all input fields and arrays will be reset.
+ * 
+ */
 function clearAddTask() {
     chosenCategoryColor = [];
     chosenCategoryType = [];
@@ -515,6 +541,11 @@ function clearAddTask() {
 }
 
 /*-- Form / Create Button --*/
+/**
+ * Push the selected color and type from category section in the chosenCategoryColor and chosenCategoryType array. (form validate)
+ * @param {String} color - The color of the defaultCategoryColor, represented as a hexadecimal string.
+ * @param {String} type - The type of the defaultCategoryType, represented as a string.
+ */
 function choseCategory(color, type) {
     chosenCategoryColor = [];
     chosenCategoryType = [];
@@ -523,6 +554,11 @@ function choseCategory(color, type) {
     chosenCategoryType.push(type);
 }
 
+/**
+ * After click on the create task button the form will be checked and if everything has been filled in correctly, the sendFormToBackend function will be executed.
+ * @returns - Check the selected category, elected prio button and assigned user and if nothing has been selected, the function is aborted.
+ *            If no category, prio burron or assigned user was selected a error will be created.
+ */
 function validateForm() {
     if (chosenCategoryType.length === 0 || chosenCategoryColor.length === 0) {
         renderCategoryError();
@@ -540,6 +576,10 @@ function validateForm() {
     sendFormToBackend();
 }
 
+/**
+ * Push the selected assigned user into the chosenAssignedTo array to validate the form.
+ * 
+ */
 function pushChosenAssignedTo() {
     let contactsCheckboxes = document.querySelectorAll('.validate-assignedto-checkbox');
     for (let i = 0; i < contactsCheckboxes.length; i++) {
@@ -549,6 +589,10 @@ function pushChosenAssignedTo() {
     }
 }
 
+/**
+ * Push the selected subtask checkbox into the chosenSubtasks. (not required for the form validation)
+ * 
+ */
 function pushChosenSubtasks() {
     let subtaskCheckboxes = document.querySelectorAll('input[name=subtasks]');
     for (let i = 0; i < subtaskCheckboxes.length; i++) {
@@ -558,6 +602,15 @@ function pushChosenSubtasks() {
     }
 }
 
+
+/**
+ * 1. Disabled the create task button to prevent multible submitting of the form element.
+ * 2. Start pushTaskIntoBackend() function.
+ * 3. Reset the form by automatic trigger the clear button.
+ * 4. Shows the showsAddedTaskAnimation.
+ * 5. After sending the form into the backend the create task button will be activated again.
+ * @async - pushTaskIntoBackend()
+ */
 async function sendFormToBackend() {
     try {
         document.getElementById('add-task-create-button').disabled = true;
@@ -575,6 +628,10 @@ async function sendFormToBackend() {
     }
 }
 
+/**
+ * Pushes a new task into the tasks array and sends it to the backend for storage.
+ * @async - 
+ */
 async function pushTaskIntoBackend() {
     let title = document.getElementById('add-task-input-title').value;
     let description = document.getElementById('add-task-input-description').value;
@@ -602,6 +659,10 @@ async function pushTaskIntoBackend() {
     console.log(tasks); // Test !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 }
 
+/**
+ * Converts the selected date from the due-date input field to milliseconds
+ * @returns - date in milliseconds.
+ */
 function dateFormattedMilliseconds() {
     let date = document.getElementById('add-task-input-due-date').value;
     console.log(date); // Test !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -614,6 +675,11 @@ function dateFormattedMilliseconds() {
     return milliseconds;
 }
 
+/**
+ * Displays an animation to indicate that a task has been added to the tasks array.
+ * Adds a CSS class to the "add-task-added" container to trigger the animation, 
+ * then removes the class after a specified timeout to reset the animation.
+ */
 function showsAddedTaskAnimation() {
     const addedContainer = document.getElementById('add-task-added');
     addedContainer.classList.remove('d-none');
