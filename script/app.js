@@ -121,7 +121,6 @@ function getCookieExpireTime(){
  * note: since there is no image upload option, this has been fixed.
  */
  function checkProfileImage() {
-   
         console.log('ausgeführt');
         const img = document.getElementById('header-profile-img'); 
         switch (true) {
@@ -146,6 +145,7 @@ function changeProfileImage(){
         }
 }
   
+
 
 
 //Todo Delete Funktion noch anpassen und mit dem Logout Button verknüpfen wie final die Cookies genau aussehen. 
