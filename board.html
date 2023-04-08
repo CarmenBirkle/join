@@ -11,6 +11,10 @@
     <link rel="stylesheet" href="./styles/side-bar.css">
     <link rel="stylesheet" href="./styles/style-media-header.css">
     <link rel="stylesheet" href="./styles/style-media-side-bar.css">
+    <link rel="stylesheet" href="./styles/style-media-add-task.css">
+    <link rel="stylesheet" href="./styles/style-media-contacts.css">
+    <link rel="stylesheet" href="./styles/style-add-task.css">
+    <link rel="stylesheet" href="./styles/style-contacts.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="shortcut icon" type="image/x-icon" href="./assets/img/side-bar-join-logo.svg">
     <title>Board | Join</title>
@@ -18,6 +22,8 @@
     <script src="./script/app.js"></script>
     <script src="./script/add-task.js"></script>
     <script src="./script/contacts.js"></script>
+    <script src="./script/add-task-template.js"></script>
+    <script src="./script/contacts-templates.js"></script>
     <script src="./script/board.js"></script>
 </head>
 
@@ -25,38 +31,56 @@
     <div w3-include-html="./assets/templates/header-template.html"></div>
     <div w3-include-html="./assets/templates/side-bar-template.html"></div>
     <div class="board-main-container">
-        <div class="board-header-bar">
-            <h1>Board</h1>
-            <div class="board-header-input">
-                <input type="text" placeholder="Find task" class="input-field find-task">
-                <a class="w3-button btn-dark-grey w3-round-large w3-hover-blue btn-text-center">Add task +</a>
+        <!-- Include hidden Template Add Task -->
+        <div id="board-add-task" class="d-none">
+            <div class="contacts-overlay" onclick="closeAllPopups()">
+                <div id="contacts-add-contact" class="contacts-add-contact-add-task fadeInRightAlways"
+                    onclick="doNotClose(event)">
+                    <img class="contacts-addTask-close-add-task" onclick="boardCloseAddTask()"
+                        src="./assets/img/icons/contacs-x.svg" onclick="boardCloseAddTask()" alt="X">
+                    <div class="contacts-include-tasks" w3-include-html="./assets/templates/task-template.html"></div>
+                </div>
             </div>
         </div>
-        <div class="board-content-container">
-            <div class="board-box">
-                <div class="board-box-header">
-                    <h4>To do</h4><img src="./assets/img/icons/board-plus.svg">
-                </div>
-                <div class="box-content" id="to-do" ondrop="moveTo('to-do')" ondragover="allowDrop(event)"></div>
-            </div>
-            <div class="board-box">
-                <div class="board-box-header">
-                    <h4>In progress</h4><img src="./assets/img/icons/board-plus.svg">
-                </div>
-                <div class="box-content" id="in-progress" ondrop="moveTo('in-progress')" ondragover="allowDrop(event)"></div>
-            </div>
-            <div class="board-box">
-                <div class="board-box-header">
-                    <h4>Awaiting Feedback</h4><img src="./assets/img/icons/board-plus.svg">
-                </div>
-                <div class="box-content" id="awaiting-feedback" ondrop="moveTo('awaiting-feedback')" ondragover="allowDrop(event)">
+        <!--Visible Content of Board-->
+        <div class="board-content" id="board-content">
+            <div class="board-header-bar">
+                <h1>Board</h1>
+                <div class="board-header-input">
+                    <input type="text" placeholder="Find task" class="input-field find-task">
+                    <a onclick="boardOpenAddTask()"
+                        class="w3-button btn-dark-grey w3-round-large w3-hover-blue btn-text-center">Add task +</a>
                 </div>
             </div>
-            <div class="board-box">
-                <div class="board-box-header">
-                    <h4>Done</h4><img src="./assets/img/icons/board-plus.svg">
+            <div class="board-content-container">
+                <div class="board-box">
+                    <div class="board-box-header">
+                        <h4>To do</h4><img src="./assets/img/icons/board-plus.svg">
+                    </div>
+                    <div class="box-content" id="to-do" ondrop="moveTo('to-do')" ondragover="allowDrop(event)"></div>
                 </div>
-                <div class="box-content" id="done" ondrop="moveTo('done')" ondragover="allowDrop(event)"></div>
+                <div class="board-box">
+                    <div class="board-box-header">
+                        <h4>In progress</h4><img src="./assets/img/icons/board-plus.svg">
+                    </div>
+                    <div class="box-content" id="in-progress" ondrop="moveTo('in-progress')"
+                        ondragover="allowDrop(event)">
+                    </div>
+                </div>
+                <div class="board-box">
+                    <div class="board-box-header">
+                        <h4>Awaiting Feedback</h4><img src="./assets/img/icons/board-plus.svg">
+                    </div>
+                    <div class="box-content" id="awaiting-feedback" ondrop="moveTo('awaiting-feedback')"
+                        ondragover="allowDrop(event)">
+                    </div>
+                </div>
+                <div class="board-box">
+                    <div class="board-box-header">
+                        <h4>Done</h4><img src="./assets/img/icons/board-plus.svg">
+                    </div>
+                    <div class="box-content" id="done" ondrop="moveTo('done')" ondragover="allowDrop(event)"></div>
+                </div>
             </div>
         </div>
     </div>

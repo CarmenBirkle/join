@@ -8,7 +8,6 @@ async function renderTasks() {
     await includeHTML();
     await downloadFromServer();
     tasks = JSON.parse(backend.getItem('tasks')) || [];
-    console.log(tasks);
     renderTasksToDo();
     renderTasksInProgress();
     renderTasksAwaitingFeedback();
@@ -25,7 +24,7 @@ function renderTasksToDo() {
         }
     }
 }
-    
+
 
 function renderTasksInProgress() {
     let inProgress = tasks.filter(t => t['category'] == 'in-progress');
@@ -78,7 +77,6 @@ function generateTaskHTML(currentTask) {
 
 function startDragging(currentTaskIndex) {
     currentDraggedElement = currentTaskIndex;
-    console.log(currentDraggedElement);
 }
 
 function allowDrop(ev) {
@@ -88,7 +86,16 @@ function allowDrop(ev) {
 
 async function moveTo(category) {
     tasks[currentDraggedElement]['category'] = category;
-    console.log(tasks[currentDraggedElement]);
     await backend.setItem('tasks', JSON.stringify(tasks));
     renderTasks();
-    }
+}
+
+function boardOpenAddTask() {
+    document.getElementById('board-add-task').classList.remove('d-none');
+    document.getElementById('board-content').classList.add('d-none');
+}
+
+function boardCloseAddTask() {
+    document.getElementById('board-add-task').classList.add('d-none');
+    document.getElementById('board-content').classList.remove('d-none');
+}
