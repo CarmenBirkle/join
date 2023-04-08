@@ -57,10 +57,11 @@ function loginUser(){
     let password = document.getElementById('userpassword');
     let user = users.find( u => u.email == email.value && u.password == password.value) 
     if (user){
-        alert('Form has been submitted. You have been loged in successfully!');
+        console.log('Form has been submitted. You have been loged in successfully!');
+        setCookieUser(user['name']);
         window.location.replace("summary.html");}
     else{
-        alert('Uupps! You are not registered. Please sign in first.');
+        console.log('Uupps! You are not registered. Please sign in first.');
         window.location.replace("index.html");
     }
 }
@@ -74,7 +75,8 @@ function addNewUser(){
     let name = document.getElementById('newusername');
     let email = document.getElementById('newuseremail');
     let password = document.getElementById('newuserpassword');
-    users.push({name: name.value, email: email.value, password: password.value, 'profile-image': 'assets\img\icons\contacts-empty-icon.svg'});
-    alert('Form has been submitted. You are registered right now!');
+    users.push({name: name.value, email: email.value, password: password.value});
+    backend.setItem('users', JSON.stringify(users));
+    console.log('Form has been submitted. You are registered right now!');
     window.location.replace("index.html")
 }

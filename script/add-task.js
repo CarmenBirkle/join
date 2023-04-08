@@ -25,6 +25,7 @@ let chosenSubtasks = []; // not a required field
 /**
  * @param {Array} tasks - Array of tasks (for backend).
  */
+
 let tasks = [];
 
 /**

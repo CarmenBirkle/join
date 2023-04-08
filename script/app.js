@@ -1,4 +1,5 @@
 let users = [];
+
 // main java-script file , side behavior an all pages, menue
 let activLogOutArea = false;
 const activePage = window.location.pathname; // get the current pathname from window.location
