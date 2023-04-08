@@ -6,7 +6,7 @@
 
 /**
  * To initialize all functions on the summary.html that are required for building the page.
- * @async
+ * @async - await init();
  */
 async function initSummary() {
     await init();
@@ -15,12 +15,12 @@ async function initSummary() {
     findDeadline();
     countTaskTodoAndDone();
     countBoardTopSection();
+    changeGreetingName();
 }
 
 
 /**
- * Generates a greeting message based on the current time of day and 
- * displays it on the HTML element with id 'summary-greeting'.
+ * Generates a greeting message based on the current time of day and displays it on the HTML element with id 'summary-greeting'.
  */
 function summaryGreetings() {
     let currentHour = new Date().getHours();
@@ -38,8 +38,24 @@ function summaryGreetings() {
 }
 
 /**
- * Counts how many tasks with priority "urgent" are in the tasks array, 
- * updates the urgent tasks count display.
+ * Generates a personalized greeting by retrieving the user's name from a cookie and searching for a matching user in the "users" array.
+ * 
+ */
+function changeGreetingName() {
+    let nameFromCookie = document.cookie;
+    let nameCookieFormatted = nameFromCookie.substring(5);
+
+    for (let i = 0; i < users.length; i++) {
+        let userName = users[i].name;
+        let formattedName = userName.toLowerCase().replace(/ /g, '');
+        if (formattedName.includes(nameCookieFormatted)) {
+            document.getElementById('summary-greeting-name').innerHTML = userName;
+        }
+    }
+}
+
+/**
+ * Counts how many tasks with priority "urgent" are in the tasks array, updates the urgent tasks count display.
  */
 function countUrgent() {
     let urgentCount = 0;
@@ -70,8 +86,7 @@ function findDeadline() {
 }
 
 /**
- * Counts how many tasks in the category section with "to-do" or "done" are in the tasks array, 
- * updates the urgent tasks count display.
+ * Counts how many tasks in the category section with "to-do" or "done" are in the tasks array, updates the urgent tasks count display.
  */
 function countTaskTodoAndDone() {
     let toDoCount = 0;
@@ -79,7 +94,7 @@ function countTaskTodoAndDone() {
 
     for (let i = 0; i < tasks.length; i++) {
         let taskToDo = tasks[i].category;
-        if (taskToDo === 'to-do' || taskToDo === 'in-progress' || taskToDo === 'awaiting-feedback') {
+        if (taskToDo === 'to-do') {
             toDoCount++;
         }
         if (taskToDo === 'done') {
@@ -92,8 +107,7 @@ function countTaskTodoAndDone() {
 }
 
 /**
- * Counts how many tasks in the category section with "in-progress" or "feedback" are in the tasks array, 
- * updates the urgent tasks count display.
+ * Counts how many tasks in the category section with "in-progress" or "feedback" are in the tasks array, updates the urgent tasks count display.
  * Count and displays how many tasks are in the Board.
  */
 function countBoardTopSection() {
@@ -103,14 +117,14 @@ function countBoardTopSection() {
 
     for (let i = 0; i < tasks.length; i++) {
         let taskBoard = tasks[i].category;
-        if(taskBoard === 'in-progress') {
+        if (taskBoard === 'in-progress') {
             inProgress++;
         }
-        if(taskBoard === 'feedback') {
+        if (taskBoard === 'awaiting-feedback') {
             feedback++;
         }
     }
-    
+
     document.getElementById('summary-count-progress').innerHTML = inProgress;
     document.getElementById('summary-count-feedback').innerHTML = feedback;
     document.getElementById('summary-task-in-borad').innerHTML = taskBoardCount;
