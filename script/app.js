@@ -120,23 +120,33 @@ function getCookieExpireTime(){
  * Changes the profile image based on the value of the "user" cookie.
  * note: since there is no image upload option, this has been fixed.
  */
- function changeProfileImage() {
-    const img = document.getElementById('header-profile-img'); 
-    switch (true) {
-        case document.cookie.includes("user=carmenbirkle"):
-          img.src = "./assets/img/profile-images/carmenbirkle.jpg"
-          break;
-        case document.cookie.includes("user=pascalgajewski"):
-          img.src = "./assets/img/profile-images/pascalgajewski.jpg"
-          break;
-        case document.cookie.includes("user=danielhartmann"):
-          img.src = "./assets/img/profile-images/danielhartmann.jpg"
-          break;
-        default:
-          console.log("Der Benutzer konnte nicht ermittelt werden");
-          img.src = "./assets/img/profile-images/guest.svg"
-      }
-  }
+ function checkProfileImage() {
+   
+        console.log('ausgeführt');
+        const img = document.getElementById('header-profile-img'); 
+        switch (true) {
+            case document.cookie.includes("user=carmenbirkle"):
+              img.src = "./assets/img/profile-images/carmenbirkle.jpg"
+              break;
+            case document.cookie.includes("user=pascalgajewski"):
+              img.src = "./assets/img/profile-images/pascalgajewski.jpg"
+              break;
+            case document.cookie.includes("user=danielhartmann"):
+              img.src = "./assets/img/profile-images/danielhartmann.jpg"
+              break;
+            default:
+              console.log("Der Benutzer konnte nicht ermittelt werden");
+              img.src = "./assets/img/profile-images/guest.svg"
+    }      
+}
+
+function changeProfileImage(){
+    if(!['/signup.html', '/forgotten-password.html', '/index.html', '/reset-password.html'].includes(window.location.pathname)) {
+        checkProfileImage();
+        }
+}
+  
+
 
 //Todo Delete Funktion noch anpassen und mit dem Logout Button verknüpfen wie final die Cookies genau aussehen. 
 
