@@ -86,11 +86,9 @@ function allowDrop(ev) {
 
 }
 
-function moveTo(category) {
-    if (category != undefined){
+async function moveTo(category) {
     tasks[currentDraggedElement]['category'] = category;
     console.log(tasks[currentDraggedElement]);
-    backend.setItem('tasks', JSON.stringify(tasks));
+    await backend.setItem('tasks', JSON.stringify(tasks));
     renderTasks();
     }
-}
