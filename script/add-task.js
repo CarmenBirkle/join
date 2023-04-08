@@ -25,12 +25,11 @@ let chosenSubtasks = []; // not a required field
 /**
  * @param {Array} tasks - Array of tasks (for backend).
  */
-
 let tasks = [];
 
 /**
- * Load content from backend (contacts, users, tasks).
- * @async
+ * Load content from backend (contacts, users, tasks) and start the initAddTaskTemplates() function.
+ * @async - await init();
  */
 async function initAddTask() {
     await init();
@@ -48,7 +47,6 @@ function initAddTaskTemplates() {
     initPrioButtons();
     initSubtask();
 }
-
 
 /*-- Category --*/
 /**
@@ -631,7 +629,7 @@ async function sendFormToBackend() {
 
 /**
  * Pushes a new task into the tasks array and sends it to the backend for storage.
- * @async - 
+ * @async - await backend.setItem('tasks', JSON.stringify(tasks));
  */
 async function pushTaskIntoBackend() {
     let title = document.getElementById('add-task-input-title').value;
