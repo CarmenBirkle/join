@@ -60,6 +60,8 @@ function showLogOut() {
  */
 function logout() {
     window.location.href = 'index.html';
+    deleteAllCookies();
+
 }
 
 /**
@@ -99,19 +101,19 @@ function getElement() {
 }
 
 /**
- * Function that returns the current time plus 24 h as value
- * @returns {now} time - the current date + time + 24 h 
+ * Function that returns the current time plus 1h as value
+ * @returns {now} time - the current date + time + 1h 
  */
 function getCookieExpireTime(){
     let now = new Date();
     let time = now.getTime();
-    let expireTime = time + (24 * 60 * 60 * 1000); //Calculates the miliseconds 24 h * 60 min * 60 sec * 1000 ms
+    // let expireTime = time + (24 * 60 * 60 * 1000); //Calculates the miliseconds 24 h * 60 min * 60 sec * 1000 ms
+    let expireTime = time + (1 * 60 * 60 * 1000); //Calculates the miliseconds for 1h  -> 1h * 60 min * 60 sec * 1000 ms
     now.setTime(expireTime); // sets the time to the expiration date
     return now;
   }
 
   ////<--------- Funktion for Image Changing ---------> 
-//TODO setCookieUser(user);  sollte noch von Pascal eingebaut werden. 
 
 /**
  * Sets a cookie, 
@@ -151,28 +153,26 @@ function changeProfileImage(){
         checkProfileImage();
         }
 }
+
+/**
+* Deletes the cookies from the current document. 
+*/
+function deleteAllCookies() {
+    const cookies = document.cookie.split(";");
   
-
-
-
-//Todo Delete Funktion noch anpassen und mit dem Logout Button verknüpfen wie final die Cookies genau aussehen. 
-
-  /**
-  * Deletes the cookies from the current document. 
-  */
- function deleteCoockie(){
-    document.cookie ="isCalled = 1; expires= Thu, 01 Jan 1970 00:00:00 UTC;"
-    document.cookie ="user = carmenbirkle; expires= Thu, 01 Jan 1970 00:00:00 UTC;"
-}
+    for (let i = 0; i < cookies.length; i++) {
+      let cookie = cookies[i].trim();
+      if (cookie.indexOf("user=") == 0) {
+          document.cookie = cookie + "; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+      }
+    }
+  }
     
 
 
 //#############       Beispielfunktionen können später raus  ! 
 
-/**
- * Sets a cookie, 
- * with an expiration time calculated by the function 'getCookieExpireTime'.
- */
+//Achtung nur Bespielfunktion wird später gelöscht
 function setCookie(){
     let now =  getCookieExpireTime();
     document.cookie = "isCalled=1; expires=" + now.toUTCString() + "; path=/";
