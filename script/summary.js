@@ -13,7 +13,8 @@ async function initSummary() {
     summaryGreetings();
     countUrgent();
     findDeadline();
-    countTaskCategory();
+    countTaskTodoAndDone();
+    countBoardTopSection();
 }
 
 
@@ -48,7 +49,6 @@ function countUrgent() {
             urgentCount++;
         }
     }
-    console.log('Anzahl der Aufgaben mit prio "Urgent": ' + urgentCount);
     document.getElementById('summary-urgent-count').innerHTML = urgentCount;
 }
 
@@ -66,14 +66,16 @@ function findDeadline() {
     }
     const date = new Date(lowestDate);
     const formattedDate = date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-    console.log(formattedDate);
     document.getElementById('summary-find-deadline').innerHTML = formattedDate;
 }
 
-function countTaskCategory() {
+/**
+ * Counts how many tasks in the category section with "to-do" or "done" are in the tasks array, 
+ * updates the urgent tasks count display.
+ */
+function countTaskTodoAndDone() {
     let toDoCount = 0;
     let doneCount = 0;
-    let taskBoardCount = tasks.length;
 
     for (let i = 0; i < tasks.length; i++) {
         let taskToDo = tasks[i].category;
@@ -87,6 +89,30 @@ function countTaskCategory() {
 
     document.getElementById('summary-to-do-count').innerHTML = toDoCount;
     document.getElementById('summary-done-count').innerHTML = doneCount;
+}
+
+/**
+ * Counts how many tasks in the category section with "in-progress" or "feedback" are in the tasks array, 
+ * updates the urgent tasks count display.
+ * Count and displays how many tasks are in the Board.
+ */
+function countBoardTopSection() {
+    let inProgress = 0;
+    let feedback = 0;
+    let taskBoardCount = tasks.length;
+
+    for (let i = 0; i < tasks.length; i++) {
+        let taskBoard = tasks[i].category;
+        if(taskBoard === 'in-progress') {
+            inProgress++;
+        }
+        if(taskBoard === 'feedback') {
+            feedback++;
+        }
+    }
+    
+    document.getElementById('summary-count-progress').innerHTML = inProgress;
+    document.getElementById('summary-count-feedback').innerHTML = feedback;
     document.getElementById('summary-task-in-borad').innerHTML = taskBoardCount;
 }
 
