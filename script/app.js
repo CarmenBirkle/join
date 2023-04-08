@@ -65,21 +65,23 @@ function logout() {
 /**
  * Toggles the display of the log out area and hides/shows the "New Contact" button accordingly.
  */
+
 function toggleShowLogOutArea() {
-    if (activLogOutArea) {
-        document.getElementById('header-log-out').classList.add('header-d-none');
-        if(window.location.pathname = '/contacts.html'){
+    try{
+        if (activLogOutArea) {
+            activLogOutArea = false;
+            document.getElementById('header-log-out').classList.add('header-d-none');
             document.getElementById('contacts-newcontact-btn-resp').classList.remove('d-none');
-        }
-        activLogOutArea = false;
-    } else {
-        document.getElementById('header-log-out').classList.remove('header-d-none');
-        if(window.location.pathname = '/contacts.html'){
-        document.getElementById('contacts-newcontact-btn-resp').classList.add('d-none');
-        }
-        activLogOutArea = true;
-    }
+     
+        } else {
+            activLogOutArea = true;
+            document.getElementById('header-log-out').classList.remove('header-d-none');
+            document.getElementById('contacts-newcontact-btn-resp').classList.add('d-none');
+            }  
+        } catch (error){}
 }
+
+
 
 /**
  * Sets the current active page element on the side bar by adding the 'side-bar-position' class to it. (blue focus/active)

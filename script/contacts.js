@@ -214,6 +214,7 @@ window.onresize = handleWindowResizeContacs;
  * Is called from the window.onresize event and displays different elements depending on the window size
  */
 function handleWindowResizeContacs() {
+    try{
     if (window.innerWidth > 1170) {
         document.getElementById('contacts-container-right-mobile').classList.add('d-none');
         document.getElementById('contacts-container-right').classList.remove('d-none');
@@ -221,6 +222,7 @@ function handleWindowResizeContacs() {
     } else {
         document.getElementById('contacts-container-right').classList.add('d-none');
     }
+} catch(error){}
 }
 /**
  * Generates a random RGB string. 
