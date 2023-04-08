@@ -44,6 +44,7 @@
     padding: 13px 21px;
     border: 1px solid #D1D1D1;
     border-radius: 10px;
+    height: 100%;
   }
 
 .btn-dark-grey {
@@ -58,6 +59,7 @@
 .find-task{
     background: url(../assets/img/icons/board-search.svg) no-repeat;
     background-position: 95% 50%;
+    background-color: #FFFFFF;
 }
 
 .board-content-container{
@@ -91,6 +93,12 @@
     flex-direction: column;
     gap: 35px;
     height: -webkit-fill-available;
+}
+
+.box-contact-prio{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .box-category{
