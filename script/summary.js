@@ -44,8 +44,7 @@ function summaryGreetings() {
 function changeGreetingName() {
     let cookieValue  = document.cookie;
     let nameFromCookie = cookieValue.split(';').find(cookie => cookie.includes('user='));
-    //let nameCookieFormatted = nameCookie.split('=')[1];
-    let nameCookieFormatted = nameFromCookie.substring(5);
+    let nameCookieFormatted = nameFromCookie.split('=')[1];
 
     const selectedUser = users.find(user => user.name.toLowerCase().replace(' ', '') === nameCookieFormatted);
 
@@ -73,10 +72,9 @@ function summaryGreetingResponsive() {
         console.log('Zu groß');
         return;
     }
-    // Überprüfen, ob das Cookie bereits gesetzt ist und ob die Validierung durchgeführt wurde
     if (checkGreetingResponsiveCookie()) {
         console.log("Greeting wurde bereits durchgeführt.");
-        return; // Verlassen Sie die Funktion, um eine erneute Validierung zu verhindern
+        return;
     }
 
     console.log("Greeting wird durchgeführt...");
