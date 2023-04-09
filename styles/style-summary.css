@@ -344,3 +344,8 @@
 
     color: var(--light-blue);
 }
+
+/* --- Summary-Welcome-Responsive --- */
+.summary-welcome-responsive {
+    display: none;
+}

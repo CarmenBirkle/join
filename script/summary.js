@@ -40,16 +40,28 @@ function summaryGreetings() {
  * Generates a personalized greeting by retrieving the user's name from a cookie and searching for a matching user in the "users" array.
  */
 function changeGreetingName() {
-    let nameFromCookie = document.cookie;
+    let cookieValue  = document.cookie;
+    let nameFromCookie = cookieValue.split(';').find(cookie => cookie.includes('user='));
+    //let nameCookieFormatted = nameCookie.split('=')[1];
     let nameCookieFormatted = nameFromCookie.substring(5);
 
-    for (let i = 0; i < users.length; i++) {
+    const selectedUser = users.find(user => user.name.toLowerCase().replace(' ', '') === nameCookieFormatted);
+
+    if (selectedUser === undefined) {
+        document.getElementById('summary-greeting-name').innerHTML = 'Guest';
+    } else {
+        document.getElementById('summary-greeting-name').innerHTML = selectedUser.name;
+    }
+
+    /*for (let i = 0; i < users.length; i++) {
         let userName = users[i].name;
         let formattedName = userName.toLowerCase().replace(/ /g, '');
         if (formattedName.includes(nameCookieFormatted)) {
             document.getElementById('summary-greeting-name').innerHTML = userName;
+        } else {
+            document.getElementById('summary-greeting-name').innerHTML = 'Guest';
         }
-    }
+    }*/
 }
 
 /**
@@ -130,30 +142,35 @@ function countBoardTopSection() {
 
 
 /////////// TEST ////////////////////
-  function summaryGreetingResponsive() {
-    if (window.innerWidth < 1250) { 
+
+function summaryGreetingResponsive() {
+    if (window.innerWidth > 1350) {
+        console.log('Zu groß');
         return;
     }
     // Überprüfen, ob das Cookie bereits gesetzt ist und ob die Validierung durchgeführt wurde
     if (checkGreetingResponsiveCookie()) {
-      console.log("Greeting wurde bereits durchgeführt.");
-      return; // Verlassen Sie die Funktion, um eine erneute Validierung zu verhindern
+        console.log("Greeting wurde bereits durchgeführt.");
+        return; // Verlassen Sie die Funktion, um eine erneute Validierung zu verhindern
     }
-  
-    // Validierung durchführen
+
     console.log("Greeting wird durchgeführt...");
     setGreetingResponsiveCookie();
-  }
+}
 
-  function checkGreetingResponsiveCookie() {
-    let cookieValue = "; " + document.cookie;
-    let parts = cookieValue.split("; greetingsDone=");
-    return (parts.length === 2 && parts.pop().split(";").shift() === "true");
-  }
+function checkGreetingResponsiveCookie() {
+    let cookieValue = document.cookie;
+    let validateGreetingCookie = cookieValue.split(';').find(cookie => cookie.includes('validationDone='));
+    if (validateGreetingCookie) {
+        let validateGreetingValue = validateGreetingCookie.split('=')[1];
+        if (validateGreetingValue === 'true') {
+            return true;
+        }
+    }
+    return false;
+}
 
-  function setGreetingResponsiveCookie() {
-    let now =  getCookieExpireTime();
-    document.cookie ="user = " + lowercaseName + "; expires=" + now.toUTCString() + "; path=/";
-    document.cookie = "greetingsDone=true; expires=" + new Date(expirationTime).toUTCString() + "; path=/";
-  }
-  
+function setGreetingResponsiveCookie() {
+    let now = getCookieExpireTime();
+    document.cookie = "validationDone=true; expires=" + now.toUTCString() + "; path=/";
+}

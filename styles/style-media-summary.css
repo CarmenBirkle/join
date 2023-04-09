@@ -1,5 +1,11 @@
 @media (max-width: 1350px) {
+    /* --- Summary-Welcome --- */
     .summary-welcome {
+        display: none;
+    }
+
+    /* --- Summary-Welcome-Responsive --- */
+    .summary-welcome-responsive {
         display: none;
     }
 }
