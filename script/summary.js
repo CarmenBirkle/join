@@ -18,7 +18,6 @@ async function initSummary() {
     changeGreetingName();
 }
 
-
 /**
  * Generates a greeting message based on the current time of day and displays it on the HTML element with id 'summary-greeting'.
  */
@@ -39,7 +38,6 @@ function summaryGreetings() {
 
 /**
  * Generates a personalized greeting by retrieving the user's name from a cookie and searching for a matching user in the "users" array.
- * 
  */
 function changeGreetingName() {
     let nameFromCookie = document.cookie;
@@ -131,41 +129,31 @@ function countBoardTopSection() {
 }
 
 
+/////////// TEST ////////////////////
+  function summaryGreetingResponsive() {
+    if (window.innerWidth < 1250) { 
+        return;
+    }
+    // Überprüfen, ob das Cookie bereits gesetzt ist und ob die Validierung durchgeführt wurde
+    if (checkGreetingResponsiveCookie()) {
+      console.log("Greeting wurde bereits durchgeführt.");
+      return; // Verlassen Sie die Funktion, um eine erneute Validierung zu verhindern
+    }
+  
+    // Validierung durchführen
+    console.log("Greeting wird durchgeführt...");
+    setGreetingResponsiveCookie();
+  }
 
+  function checkGreetingResponsiveCookie() {
+    let cookieValue = "; " + document.cookie;
+    let parts = cookieValue.split("; greetingsDone=");
+    return (parts.length === 2 && parts.pop().split(";").shift() === "true");
+  }
 
-/////////////////////// TEST FUNCTION //////////////////////////////////
-
-let testTasks = [{
-    'number': 1,
-    'title': 'Call potential clients',
-    'description': 'Make the product presentation to prospective buyers',
-    'categoryColor': '#FC71FF',
-    'categoryType': 'Sales',
-    'category': 'to-do',
-    'contact': ['David Eisenberg', 'Benedikt Ziegler', 'Marcel Bauer', 'Stefanie Farber'],
-    'date': 1367644800000,
-    'prio': 'prio-urgent',
-    'subtask': ''
-}, {
-    'number': 2,
-    'title': 'Call potential clients',
-    'description': 'Make the product presentation to prospective buyers',
-    'categoryColor': '#FC71FF',
-    'categoryType': 'Sales',
-    'category': 'in-progress',
-    'contact': ['David Eisenberg', 'Benedikt Ziegler', 'Marcel Bauer', 'Stefanie Farber'],
-    'date': 1667644800000,
-    'prio': 'prio-medium',
-    'subtask': ''
-}, {
-    'number': 2,
-    'title': 'Call potential clients',
-    'description': 'Make the product presentation to prospective buyers',
-    'categoryColor': '#FC71FF',
-    'categoryType': 'Sales',
-    'category': 'in-progress',
-    'contact': ['David Eisenberg', 'Benedikt Ziegler', 'Marcel Bauer', 'Stefanie Farber'],
-    'date': 1167644800000,
-    'prio': 'prio-urgent',
-    'subtask': ''
-}]
+  function setGreetingResponsiveCookie() {
+    let now =  getCookieExpireTime();
+    document.cookie ="user = " + lowercaseName + "; expires=" + now.toUTCString() + "; path=/";
+    document.cookie = "greetingsDone=true; expires=" + new Date(expirationTime).toUTCString() + "; path=/";
+  }
+  
