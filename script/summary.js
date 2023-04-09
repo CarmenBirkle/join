@@ -11,11 +11,12 @@
 async function initSummary() {
     await init();
     summaryGreetings();
+    changeGreetingName();
+    summaryGreetingResponsive();
     countUrgent();
     findDeadline();
     countTaskTodoAndDone();
     countBoardTopSection();
-    changeGreetingName();
 }
 
 /**
@@ -34,6 +35,7 @@ function summaryGreetings() {
     }
 
     document.getElementById('summary-greeting').innerHTML = greeting;
+    document.getElementById('summary-greeting-responsive').innerHTML = greeting;
 }
 
 /**
@@ -49,8 +51,10 @@ function changeGreetingName() {
 
     if (selectedUser === undefined) {
         document.getElementById('summary-greeting-name').innerHTML = 'Guest';
+        document.getElementById('summary-greeting-name-responsive').innerHTML = 'Guest';
     } else {
         document.getElementById('summary-greeting-name').innerHTML = selectedUser.name;
+        document.getElementById('summary-greeting-name-responsive').innerHTML = selectedUser.name;
     }
 
     /*for (let i = 0; i < users.length; i++) {
@@ -62,6 +66,45 @@ function changeGreetingName() {
             document.getElementById('summary-greeting-name').innerHTML = 'Guest';
         }
     }*/
+}
+
+function summaryGreetingResponsive() {
+    if (window.innerWidth > 1350) {
+        console.log('Zu groß');
+        return;
+    }
+    // Überprüfen, ob das Cookie bereits gesetzt ist und ob die Validierung durchgeführt wurde
+    if (checkGreetingResponsiveCookie()) {
+        console.log("Greeting wurde bereits durchgeführt.");
+        return; // Verlassen Sie die Funktion, um eine erneute Validierung zu verhindern
+    }
+
+    console.log("Greeting wird durchgeführt...");
+    document.getElementById('summary-welcome-responsive').classList.remove('d-none');
+    setTimeout(() => {
+        document.getElementById('summary-welcome-responsive').classList.add('summary-welcome-animation');
+    }, 2000);
+    setTimeout(() => {
+        document.getElementById('summary-welcome-responsive').classList.add('d-none');
+    }, 3000);
+    setGreetingResponsiveCookie();
+}
+
+function checkGreetingResponsiveCookie() {
+    let cookieValue = document.cookie;
+    let validateGreetingCookie = cookieValue.split(';').find(cookie => cookie.includes('validationDone='));
+    if (validateGreetingCookie) {
+        let validateGreetingValue = validateGreetingCookie.split('=')[1];
+        if (validateGreetingValue === 'true') {
+            return true;
+        }
+    }
+    return false;
+}
+
+function setGreetingResponsiveCookie() {
+    let now = getCookieExpireTime();
+    document.cookie = "validationDone=true; expires=" + now.toUTCString() + "; path=/";
 }
 
 /**
@@ -140,37 +183,3 @@ function countBoardTopSection() {
     document.getElementById('summary-task-in-borad').innerHTML = taskBoardCount;
 }
 
-
-/////////// TEST ////////////////////
-
-function summaryGreetingResponsive() {
-    if (window.innerWidth > 1350) {
-        console.log('Zu groß');
-        return;
-    }
-    // Überprüfen, ob das Cookie bereits gesetzt ist und ob die Validierung durchgeführt wurde
-    if (checkGreetingResponsiveCookie()) {
-        console.log("Greeting wurde bereits durchgeführt.");
-        return; // Verlassen Sie die Funktion, um eine erneute Validierung zu verhindern
-    }
-
-    console.log("Greeting wird durchgeführt...");
-    setGreetingResponsiveCookie();
-}
-
-function checkGreetingResponsiveCookie() {
-    let cookieValue = document.cookie;
-    let validateGreetingCookie = cookieValue.split(';').find(cookie => cookie.includes('validationDone='));
-    if (validateGreetingCookie) {
-        let validateGreetingValue = validateGreetingCookie.split('=')[1];
-        if (validateGreetingValue === 'true') {
-            return true;
-        }
-    }
-    return false;
-}
-
-function setGreetingResponsiveCookie() {
-    let now = getCookieExpireTime();
-    document.cookie = "validationDone=true; expires=" + now.toUTCString() + "; path=/";
-}

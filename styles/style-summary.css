@@ -346,6 +346,7 @@
 }
 
 /* --- Summary-Welcome-Responsive --- */
-.summary-welcome-responsive {
-    display: none;
+.summary-welcome-center {
+    display: flex;
+    text-align: center;
 }
