@@ -88,6 +88,10 @@
     font-weight: 700 !important;
 }
 
+.board-box-header img{
+    cursor: pointer;
+}
+
 .box-content{
     display: flex;
     flex-direction: column;
@@ -114,7 +118,7 @@
     background-color: white;
     border-radius: 30px;
     padding: 18px 19px;
-    overflow: auto;
+    overflow: visible;
     white-space: normal;
 }
 
