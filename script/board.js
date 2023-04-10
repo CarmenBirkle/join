@@ -256,7 +256,7 @@ function boardShowTask(currentTaskIndex) {
     document.getElementById('board-open-task').classList.remove('d-none');
     document.getElementById('board-open-task').innerHTML = generateBoardOpenTaskHTML(currentTaskIndex);
     generatePrioInOpenTask(currentTaskIndex);
-    generateContactsInOpenTask();
+    generateContactsInOpenTask(currentTaskIndex);
 }
 
 
@@ -264,14 +264,15 @@ function generateBoardOpenTaskHTML(currentTaskIndex) {
     let currentTask = tasks[currentTaskIndex];
     return `
     <div onclick="doNotClose(event)" class="open-task-card">
+        <img class="board-close-button" src="./assets/img/icons/board-task-close.svg" onclick="closeOpenTaskPopup()">
         <span class="box-category" style="background-color: ${currentTask['categoryColor']}">${currentTask['categoryType']}</span>
         <h1>${currentTask['title']}</h1>
         <p>${currentTask['description']}</p>
-        <p><b>Due date:</b>${currentTask['date']}</p>
+        <p><b>Due date:</b><span style="margin-left: 25px">${currentTask['date']}</span></p>
         <div style="display: flex; align-items: center"><span><b>Priority:</b></span><div class="board-prio-button" id="open-task-priority"><img class="board-prio-img" id="open-task-priority-img"></div></div>
         <p><b>Assigned to:</b></p>
         <div id="open-task-contacts"></div>
-        <img class="board-edit-button" src="./assets/img/icons/board-edit-button-white.svg">
+        <div class="board-edit-button"><img style="object-fit: contain; color: white" src="./assets/img/icons/board-edit-button-white.svg"></div>
     </div>
     `;
 }
@@ -295,8 +296,21 @@ function generatePrioInOpenTask(currentTaskIndex) {
     }
 }
 
-function generateContactsInOpenTask(){
-
+function generateContactsInOpenTask(currentTaskIndex){
+        document.getElementById('open-task-contacts').innerHTML = ``;
+        currentContacts = [];
+        for (let index = 0; index < tasks[currentTaskIndex]['contact'].length; index++) {
+            const currentContact = tasks[currentTaskIndex]['contact'][index];
+            let currentContactFromBackend = contacts.filter(c => c['fullname'] == currentContact);
+            currentContacts.push(currentContactFromBackend);
+        }
+        console.log(currentContacts)
+        for (let j = 0; j < currentContacts.length; j++) {
+            const element = currentContacts[j][0];
+            document.getElementById('open-task-contacts').innerHTML += `
+            <div style="display: flex; align-items: center; gap: 25px; margin-bottom: 25px"><div style="color: white; background-color:rgb(${element['bgcolor']}); border-radius: 100%; padding: 10px">${element['initals']}</div><span>${element['fullname']}</span></div>
+            `;
+        }
 }
 
 
