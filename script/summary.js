@@ -45,21 +45,22 @@ function summaryGreetings() {
 function changeGreetingName() {
     let cookieValue = document.cookie;
     let nameFromCookie = cookieValue.split(';').find(cookie => cookie.includes('user='));
-    let nameCookieFormatted = nameFromCookie.split('=')[1];
-
-    const selectedUser = users.find(user => user.name.toLowerCase().replace(' ', '') === nameCookieFormatted);
-    showsGreetingName(selectedUser);
+    
+    showsGreetingName(nameFromCookie);
 }
 
 /**
- * Shows the greeting name or guest if no name found.
- * @param {Object} selectedUser - Name from the user that was found in the users array.
+ * Shows the greeting name or guest if no name found in the cookie.
+ * @param {String} nameFromCookie - Name from the user that was found in the cookie.
  */
-function showsGreetingName(selectedUser) {
-    if (selectedUser === undefined) {
+function showsGreetingName(nameFromCookie) {
+    if(nameFromCookie === undefined) {
         document.getElementById('summary-greeting-name').innerHTML = 'Guest';
         document.getElementById('summary-greeting-name-responsive').innerHTML = 'Guest';
     } else {
+        let nameCookieFormatted = nameFromCookie.split('=')[1];
+        const selectedUser = users.find(user => user.name.toLowerCase().replace(' ', '') === nameCookieFormatted);
+        
         document.getElementById('summary-greeting-name').innerHTML = selectedUser.name;
         document.getElementById('summary-greeting-name-responsive').innerHTML = selectedUser.name;
     }
