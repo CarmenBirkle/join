@@ -91,7 +91,7 @@ function renderTasksDone() {
 function generateTaskHTML(currentTask) {
     filterContactsFromTask(currentTask);
     return `
-    <div id="board-task-${tasks.indexOf(currentTask)}" draggable="true" onclick="boardShowTask()" ondragstart="startDragging(${tasks.indexOf(currentTask)})" class="task-card">
+    <div id="board-task-${tasks.indexOf(currentTask)}" draggable="true" onclick="boardShowTask(${currentTask})" ondragstart="startDragging(${tasks.indexOf(currentTask)})" class="task-card">
         <span class="box-category" style="background-color: ${currentTask['categoryColor']}">${currentTask['categoryType']}</span>
         <h6>${currentTask['title']}</h6>
         <p>${currentTask['description']}</p>
@@ -105,7 +105,6 @@ function generateTaskHTML(currentTask) {
 
 /**
  * This function generates the contacts icons with initals in the tasks
- * @param {*} index 
  */
 
 function generateContactsInTask(index) {
@@ -114,15 +113,12 @@ function generateContactsInTask(index) {
     for (let i = 0; i < currentContacts.length; i++) {
         let bgColor = currentContacts[i][0]['bgcolor'];
         let initals = currentContacts[i][0]['initals'];
-        console.log(bgColor, initals);
         contactField.innerHTML += openAssignedUserHTML(bgColor, initals);
     }
 }
 
 /**
  * This function generates the prio logos in the tasks 
- * @param {*} index 
- * @param {*} currentTask 
  */
 
 function generatePrioInTask(index, currentTask) {
@@ -147,12 +143,9 @@ function filterContactsFromTask(currentTask) {
     currentContacts = [];
     for (let index = 0; index < currentTask['contact'].length; index++) {
         const currentContact = currentTask['contact'][index];
-        console.log(currentContact);
         let currentContactFromBackend = contacts.filter(c => c['fullname'] == currentContact);
-        console.log(currentContactFromBackend);
         currentContacts.push(currentContactFromBackend);
     }
-    console.log('Current Contacts', currentContacts);
 }
 
 
@@ -238,6 +231,9 @@ async function furtherFunctionsToValidate(){
     window.location.reload();
 }
 
+/**
+ * This functions filters the rendered tasks on board
+ */
 
 function boardFilterTasks() {
     let search = document.getElementById('board-task-search').value;
@@ -250,4 +246,12 @@ function boardFilterTasks() {
             document.getElementById(`board-task-${i}`).classList.remove('d-none');
         }
     }
-};
+}
+
+/**
+ * This function opens a popup with the current selected task
+ */
+
+function boardShowTask(currentTask){
+    document.getElementById('board-open-task').classList.remove('d-none')
+}

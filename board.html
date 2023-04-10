@@ -42,12 +42,24 @@
                 </div>
             </div>
         </div>
+        <!-- Include hidden Template Open Task -->
+        <div id="board-open-task" class="board-open-task d-none">
+            <div class="contacts-overlay" onclick="closeAllPopups()">
+                <div id="contacts-add-contact" class="contacts-add-contact-add-task fadeInRightAlways"
+                    onclick="doNotClose(event)">
+                    <img class="contacts-addTask-close-add-task" onclick="boardCloseAddTask()"
+                        src="./assets/img/icons/contacs-x.svg" onclick="boardCloseAddTask()" alt="X">
+                    <div class="contacts-include-tasks" w3-include-html="./assets/templates/task-template.html"></div>
+                </div>
+            </div>
+        </div>
         <!--Visible Content of Board-->
         <div class="board-content" id="board-content">
             <div class="board-header-bar">
                 <h1>Board</h1>
                 <div class="board-header-input">
-                    <input id="board-task-search" onkeyup="boardFilterTasks()" type="text" placeholder="Find task" class="input-field find-task">
+                    <input id="board-task-search" onkeyup="boardFilterTasks()" type="text" placeholder="Find task"
+                        class="input-field find-task">
                     <a onclick="boardOpenAddTask(), initAddTask()"
                         class="w3-button btn-dark-grey w3-round-large w3-hover-blue btn-text-center">Add task +</a>
                 </div>
@@ -55,13 +67,15 @@
             <div class="board-content-container">
                 <div class="board-box">
                     <div class="board-box-header">
-                        <h4>To do</h4><img onclick="boardOpenAddTask(), initAddTask()" src="./assets/img/icons/board-plus.svg">
+                        <h4>To do</h4><img onclick="boardOpenAddTask(), initAddTask()"
+                            src="./assets/img/icons/board-plus.svg">
                     </div>
                     <div class="box-content" id="to-do" ondrop="moveTo('to-do')" ondragover="allowDrop(event)"></div>
                 </div>
                 <div class="board-box">
                     <div class="board-box-header">
-                        <h4>In progress</h4><img onclick="boardOpenAddTask('in-progress'), initAddTask()" src="./assets/img/icons/board-plus.svg">
+                        <h4>In progress</h4><img onclick="boardOpenAddTask('in-progress'), initAddTask()"
+                            src="./assets/img/icons/board-plus.svg">
                     </div>
                     <div class="box-content" id="in-progress" ondrop="moveTo('in-progress')"
                         ondragover="allowDrop(event)">
@@ -69,7 +83,8 @@
                 </div>
                 <div class="board-box">
                     <div class="board-box-header">
-                        <h4>Awaiting Feedback</h4><img onclick="boardOpenAddTask('awaiting-feedback'), initAddTask()" src="./assets/img/icons/board-plus.svg">
+                        <h4>Awaiting Feedback</h4><img onclick="boardOpenAddTask('awaiting-feedback'), initAddTask()"
+                            src="./assets/img/icons/board-plus.svg">
                     </div>
                     <div class="box-content" id="awaiting-feedback" ondrop="moveTo('awaiting-feedback')"
                         ondragover="allowDrop(event)">
@@ -77,7 +92,8 @@
                 </div>
                 <div class="board-box">
                     <div class="board-box-header">
-                        <h4>Done</h4><img onclick="boardOpenAddTask('done'), initAddTask()" src="./assets/img/icons/board-plus.svg">
+                        <h4>Done</h4><img onclick="boardOpenAddTask('done'), initAddTask()"
+                            src="./assets/img/icons/board-plus.svg">
                     </div>
                     <div class="box-content" id="done" ondrop="moveTo('done')" ondragover="allowDrop(event)"></div>
                 </div>
