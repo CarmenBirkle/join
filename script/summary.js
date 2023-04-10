@@ -138,7 +138,6 @@ function countUrgent() {
 
 /**
  * Find the lowest date in the tasks array.
- * Converts milliseconds to: 'en-US', {month: 'long', day: 'numeric', year: 'numeric'}.
  */
 function findDeadline() {
     let lowestDate = Infinity;
@@ -150,6 +149,15 @@ function findDeadline() {
         }
     }
 
+    showDeadline(lowestDate);
+}
+
+/**
+ * Converts milliseconds to: 'en-US', {month: 'long', day: 'numeric', year: 'numeric'}.
+ * Show deadline datum.
+ * @param {Number} lowestDate - (Date) in milliseconds
+ */
+function showDeadline(lowestDate) {
     const date = new Date(lowestDate);
     const formattedDate = date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
     document.getElementById('summary-find-deadline').innerHTML = formattedDate;
