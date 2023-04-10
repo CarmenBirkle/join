@@ -50,7 +50,7 @@
     .summary-media-kanban {
         display: flex;
 
-        margin: 0px 0px 23px 3px;
+        margin: 0px 0px 23px 0px;
 
         color: #000000;
     }
@@ -58,7 +58,7 @@
     /* --- Summary-Header --- */
     .summary-header {
         margin-top: 0px;
-        gap: 20px;
+        gap: 10px;
         width: 100%;
     }
 
@@ -70,17 +70,17 @@
 
 @media (max-width: 800px) {
     .summary-main-container {
-        margin: 119px 33px 0px 33px;
+        margin: 119px 0px 0px 0px;
         align-items: center;
         font-size: 16px;
     }
 
     .summary-media {
-        width: 363px;
+        width: 323px;
     }
 
     .summary-media-kanban {
-        margin: 0px 0px 30px 3px;
+        margin: 0px 0px 20px 0px;
     }
 
     /* --- Summary-Header --- */
@@ -110,7 +110,7 @@
 
         border: 2px solid var(--light-blue);
 
-        margin-top: 40px;
+        margin-top: 20px;
     }
 
     /* --- Summary-Content-General --- */
@@ -182,7 +182,6 @@
     .summary-date-deadline {
         gap: 8px;
 
-        width: 135px;
         height: 44px;
     }
 
@@ -218,14 +217,12 @@
     }
 
     .summary-to-do-done-sub-number {
-        width: 23px;
         height: 56px;
 
         font-size: 47px;
     }
 
     .summary-to-do-done-sub-name {
-        width: 40px;
         height: 17px;
 
         font-size: 14px;

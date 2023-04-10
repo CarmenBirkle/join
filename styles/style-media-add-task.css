@@ -1,12 +1,13 @@
 @media (max-width: 1170px) {
     .add-task-main-content {
         margin: 119px 30px 80px 30px;
+        padding: 0px;
         align-items: center;
         font-size: 16px;
     }
 
     .add-task-media {
-        width: 363px;
+        width: 323px;
     }
 
     .add-task-media-kanban {
@@ -18,7 +19,7 @@
     }
 
     .add-task-headline {
-        width: 363px;
+        width: 100%;
         height: 56px;
         font-size: 47px;
         margin-left: 3px;
@@ -34,7 +35,7 @@
 
     /* --- Form-Left-Side --- */
     .add-task-leftside {
-        width: 363px;
+        width: 100%;
 
         gap: 9px;
     }
@@ -97,7 +98,7 @@
 
     /* --- Form-Right-Side --- */
     .add-task-rightside {
-        width: 363px;
+        width: 100%;
 
         gap: 9px;
     }

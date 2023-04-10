@@ -50,7 +50,8 @@ function changeGreetingName() {
 }
 
 /**
- * Shows the greeting name or guest if no name found in the cookie.
+ * Looks in the users array for a match with the cookie name and displayed it.
+ * If no name found in the cookie, Guest will be displayed.
  * @param {String} nameFromCookie - Name from the user that was found in the cookie.
  */
 function showsGreetingName(nameFromCookie) {
