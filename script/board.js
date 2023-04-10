@@ -91,7 +91,7 @@ function renderTasksDone() {
 function generateTaskHTML(currentTask) {
     filterContactsFromTask(currentTask);
     return `
-    <div id="board-task-${tasks.indexOf(currentTask)}" draggable="true" onclick="boardShowTask(${currentTask})" ondragstart="startDragging(${tasks.indexOf(currentTask)})" class="task-card">
+    <div id="board-task-${tasks.indexOf(currentTask)}" draggable="true" onclick="boardShowTask(${tasks.indexOf(currentTask)})" ondragstart="startDragging(${tasks.indexOf(currentTask)})" class="task-card">
         <span class="box-category" style="background-color: ${currentTask['categoryColor']}">${currentTask['categoryType']}</span>
         <h6>${currentTask['title']}</h6>
         <p>${currentTask['description']}</p>
@@ -124,14 +124,14 @@ function generateContactsInTask(index) {
 function generatePrioInTask(index, currentTask) {
     let prioIcon = document.getElementById(`box-prio-${index}`);
     prioIcon.innerHTML = ``;
-    if(currentTask['prio'] == 'urgent'){
-        prioIcon.setAttribute("src", "./assets/img/icons/add-task-urgent.svg"); 
+    if (currentTask['prio'] == 'urgent') {
+        prioIcon.setAttribute("src", "./assets/img/icons/add-task-urgent.svg");
     };
-    if(currentTask['prio'] == 'medium'){
-        prioIcon.setAttribute("src", "./assets/img/icons/add-task-medium.svg"); 
+    if (currentTask['prio'] == 'medium') {
+        prioIcon.setAttribute("src", "./assets/img/icons/add-task-medium.svg");
     };
-    if(currentTask['prio'] == 'low'){
-        prioIcon.setAttribute("src", "./assets/img/icons/add-task-low.svg"); 
+    if (currentTask['prio'] == 'low') {
+        prioIcon.setAttribute("src", "./assets/img/icons/add-task-low.svg");
     }
 }
 
@@ -218,10 +218,10 @@ async function boardValidateForm(category) {
         renderAssignedToError();
         return;
     }
-    furtherFunctionsToValidate();
+    furtherFunctionsToValidate(category);
 }
 
-async function furtherFunctionsToValidate(){
+async function furtherFunctionsToValidate(category) {
     pushChosenSubtasks(); // not a required field
     sendFormToBackend();
     await includeHTML();
@@ -252,6 +252,59 @@ function boardFilterTasks() {
  * This function opens a popup with the current selected task
  */
 
-function boardShowTask(currentTask){
-    document.getElementById('board-open-task').classList.remove('d-none')
+function boardShowTask(currentTaskIndex) {
+    document.getElementById('board-open-task').classList.remove('d-none');
+    document.getElementById('board-open-task').innerHTML = generateBoardOpenTaskHTML(currentTaskIndex);
+    generatePrioInOpenTask(currentTaskIndex);
+    generateContactsInOpenTask();
+}
+
+
+function generateBoardOpenTaskHTML(currentTaskIndex) {
+    let currentTask = tasks[currentTaskIndex];
+    return `
+    <div onclick="doNotClose(event)" class="open-task-card">
+        <span class="box-category" style="background-color: ${currentTask['categoryColor']}">${currentTask['categoryType']}</span>
+        <h1>${currentTask['title']}</h1>
+        <p>${currentTask['description']}</p>
+        <p><b>Due date:</b>${currentTask['date']}</p>
+        <div style="display: flex; align-items: center"><span><b>Priority:</b></span><div class="board-prio-button" id="open-task-priority"><img class="board-prio-img" id="open-task-priority-img"></div></div>
+        <p><b>Assigned to:</b></p>
+        <div id="open-task-contacts"></div>
+        <img class="board-edit-button" src="./assets/img/icons/board-edit-button-white.svg">
+    </div>
+    `;
+}
+
+function generatePrioInOpenTask(currentTaskIndex) {
+    let prioIcon = document.getElementById('open-task-priority-img');
+    if (tasks[currentTaskIndex]['prio'] == 'urgent') {
+        document.getElementById(`open-task-priority`).innerHTML = "Urgent";
+        document.getElementById(`open-task-priority`).setAttribute("style", "background-color: #FF3D00");
+        prioIcon.setAttribute("src", "./assets/img/icons/add-task-urgent-white.svg");
+    };
+    if (tasks[currentTaskIndex]['prio'] == 'medium') {
+        document.getElementById(`open-task-priority`).innerHTML = "Medium";
+        document.getElementById(`open-task-priority`).setAttribute("style", "background-color: #FFA800");
+        prioIcon.setAttribute("src", "./assets/img/icons/add-task-medium-white.svg");
+    };
+    if (tasks[currentTaskIndex]['prio'] == 'low') {
+        document.getElementById(`open-task-priority`).innerHTML = "Low";
+        document.getElementById(`open-task-priority`).setAttribute("style", "background-color: #7AE229");
+        prioIcon.setAttribute("src", "./assets/img/icons/add-task-low-white.svg");
+    }
+}
+
+function generateContactsInOpenTask(){
+
+}
+
+
+function closeOpenTaskPopup() {
+    document.getElementById('board-open-task').classList.add('d-none');
+}
+
+function closeAddTaskPopup() {
+    document.getElementById('board-add-task').classList.add('d-none');
+    window.location.reload();
 }

@@ -33,7 +33,7 @@
     <div class="board-main-container">
         <!-- Include hidden Template Add Task -->
         <div id="board-add-task" class="d-none">
-            <div class="contacts-overlay" onclick="closeAllPopups()">
+            <div class="contacts-overlay" onclick="closeAddTaskPopup()">
                 <div id="contacts-add-contact" class="contacts-add-contact-add-task fadeInRightAlways"
                     onclick="doNotClose(event)">
                     <img class="contacts-addTask-close-add-task" onclick="boardCloseAddTask()"
@@ -43,15 +43,7 @@
             </div>
         </div>
         <!-- Include hidden Template Open Task -->
-        <div id="board-open-task" class="board-open-task d-none">
-            <div class="contacts-overlay" onclick="closeAllPopups()">
-                <div id="contacts-add-contact" class="contacts-add-contact-add-task fadeInRightAlways"
-                    onclick="doNotClose(event)">
-                    <img class="contacts-addTask-close-add-task" onclick="boardCloseAddTask()"
-                        src="./assets/img/icons/contacs-x.svg" onclick="boardCloseAddTask()" alt="X">
-                    <div class="contacts-include-tasks" w3-include-html="./assets/templates/task-template.html"></div>
-                </div>
-            </div>
+        <div id="board-open-task" class="board-open-task d-none" onclick="closeOpenTaskPopup()">
         </div>
         <!--Visible Content of Board-->
         <div class="board-content" id="board-content">

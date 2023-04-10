@@ -138,12 +138,46 @@
 
 .board-open-task{
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100vw;
     height: 100vh;
     z-index: 99;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.open-task-card{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 50px;
+    gap: 25px;
+    isolation: isolate; 
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    min-width: 35%;
+}
+
+.board-edit-button{
+    align-self: flex-end;
+    justify-content: end;
+    object-fit: contain;
+}
+
+.board-prio-button{
+    border-radius: 10px;
+    color: white;
+    padding: 4px 18px;
+    gap: 10px;
+    margin-left: 25px;
+}
+
+.board-prio-img{
+    object-fit: contain;
 }
 
   @media screen and (max-width: 1170px){
