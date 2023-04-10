@@ -27,6 +27,7 @@ function renderTasksToDo() {
         if (element) {
             document.getElementById('to-do').innerHTML += generateTaskHTML(element);
             generateContactsInTask(tasks.indexOf(element));
+            generatePrioInTask(tasks.indexOf(element), element);
         }
     }
 }
@@ -43,6 +44,7 @@ function renderTasksInProgress() {
         if (element) {
             document.getElementById('in-progress').innerHTML += generateTaskHTML(element);
             generateContactsInTask(tasks.indexOf(element));
+            generatePrioInTask(tasks.indexOf(element), element);
         }
     }
 }
@@ -59,6 +61,7 @@ function renderTasksAwaitingFeedback() {
         if (element) {
             document.getElementById('awaiting-feedback').innerHTML += generateTaskHTML(element);
             generateContactsInTask(tasks.indexOf(element));
+            generatePrioInTask(tasks.indexOf(element), element);
         }
     }
 }
@@ -75,6 +78,7 @@ function renderTasksDone() {
         if (element) {
             document.getElementById('done').innerHTML += generateTaskHTML(element);
             generateContactsInTask(tasks.indexOf(element));
+            generatePrioInTask(tasks.indexOf(element), element);
         }
     }
 }
@@ -91,7 +95,10 @@ function generateTaskHTML(currentTask) {
         <span class="box-category" style="background-color: ${currentTask['categoryColor']}">${currentTask['categoryType']}</span>
         <h6>${currentTask['title']}</h6>
         <p>${currentTask['description']}</p>
-        <div style="display: flex; justify-content: space-between"><div style="display: flex; padding-left: 8px" id="box-contacts-${tasks.indexOf(currentTask)}"></div><span>${currentTask['prio']}</span></div>
+        <div style="display: flex; justify-content: space-between">
+        <div style="display: flex; padding-left: 8px" id="box-contacts-${tasks.indexOf(currentTask)}"></div>
+        <img style="object-fit: contain" id="box-prio-${tasks.indexOf(currentTask)}">
+        </div>
     </div>
     `;
 }
@@ -104,6 +111,20 @@ function generateContactsInTask(index) {
         let initals = currentContacts[i][0]['initals'];
         console.log(bgColor, initals);
         contactField.innerHTML += openAssignedUserHTML(bgColor, initals);
+    }
+}
+
+function generatePrioInTask(index, currentTask) {
+    let prioIcon = document.getElementById(`box-prio-${index}`);
+    prioIcon.innerHTML = ``;
+    if(currentTask['prio'] == 'urgent'){
+        prioIcon.setAttribute("src", "./assets/img/icons/add-task-urgent.svg"); 
+    };
+    if(currentTask['prio'] == 'medium'){
+        prioIcon.setAttribute("src", "./assets/img/icons/add-task-medium.svg"); 
+    };
+    if(currentTask['prio'] == 'low'){
+        prioIcon.setAttribute("src", "./assets/img/icons/add-task-low.svg"); 
     }
 }
 

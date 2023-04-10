@@ -122,13 +122,18 @@
     white-space: normal;
 }
 
+.task-card:hover {
+    cursor: pointer;
+    box-shadow: 0 4px 4px 0 rgb(0 0 0 / 0.3);
+    transform: scale(1.05);
+}
+
 .task-card h6{
     font-weight: 700;
 }
 
 .task-card p{
     color: #A8A8A8;
-    ;
 }
 
   @media screen and (max-width: 1170px){
