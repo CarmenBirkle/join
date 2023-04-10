@@ -91,7 +91,7 @@ function renderTasksDone() {
 function generateTaskHTML(currentTask) {
     filterContactsFromTask(currentTask);
     return `
-    <div draggable="true" ondragstart="startDragging(${tasks.indexOf(currentTask)})" class="task-card">
+    <div id="board-task-${tasks.indexOf(currentTask)}" draggable="true" onclick="boardShowTask()" ondragstart="startDragging(${tasks.indexOf(currentTask)})" class="task-card">
         <span class="box-category" style="background-color: ${currentTask['categoryColor']}">${currentTask['categoryType']}</span>
         <h6>${currentTask['title']}</h6>
         <p>${currentTask['description']}</p>
@@ -103,6 +103,11 @@ function generateTaskHTML(currentTask) {
     `;
 }
 
+/**
+ * This function generates the contacts icons with initals in the tasks
+ * @param {*} index 
+ */
+
 function generateContactsInTask(index) {
     let contactField = document.getElementById(`box-contacts-${index}`);
     contactField.innerHTML = ``;
@@ -113,6 +118,12 @@ function generateContactsInTask(index) {
         contactField.innerHTML += openAssignedUserHTML(bgColor, initals);
     }
 }
+
+/**
+ * This function generates the prio logos in the tasks 
+ * @param {*} index 
+ * @param {*} currentTask 
+ */
 
 function generatePrioInTask(index, currentTask) {
     let prioIcon = document.getElementById(`box-prio-${index}`);
@@ -127,6 +138,10 @@ function generatePrioInTask(index, currentTask) {
         prioIcon.setAttribute("src", "./assets/img/icons/add-task-low.svg"); 
     }
 }
+
+/**
+ * This function filters the whole contacts to only that ones, that accure in the current task
+ */
 
 function filterContactsFromTask(currentTask) {
     currentContacts = [];
@@ -210,6 +225,10 @@ async function boardValidateForm(category) {
         renderAssignedToError();
         return;
     }
+    furtherFunctionsToValidate();
+}
+
+async function furtherFunctionsToValidate(){
     pushChosenSubtasks(); // not a required field
     sendFormToBackend();
     await includeHTML();
@@ -218,3 +237,17 @@ async function boardValidateForm(category) {
     setStartCategory(category);
     window.location.reload();
 }
+
+
+function boardFilterTasks() {
+    let search = document.getElementById('board-task-search').value;
+    search = search.toLowerCase();
+    for (let i = 0; i < tasks.length; i++) {
+        if (!tasks[i]['title'].toLowerCase().includes(search) && !document.getElementById(`board-task-${i}`).classList.contains('d-none')) {
+            document.getElementById(`board-task-${i}`).classList.add('d-none')
+        };
+        if (tasks[i]['title'].toLowerCase().includes(search) && document.getElementById(`board-task-${i}`).classList.contains('d-none')) {
+            document.getElementById(`board-task-${i}`).classList.remove('d-none');
+        }
+    }
+};

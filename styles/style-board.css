@@ -136,6 +136,10 @@
     color: #A8A8A8;
 }
 
+.d-none{
+    display: none !important;
+}
+
   @media screen and (max-width: 1170px){
     .board-main-container {
         margin-left: 0;
