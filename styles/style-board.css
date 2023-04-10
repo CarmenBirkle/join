@@ -155,7 +155,7 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 50px;
-    gap: 20px;
+    gap: 10px;
     isolation: isolate; 
     background-color: #FFFFFF;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
@@ -169,11 +169,12 @@
     right: 25px;
     background: #2A3647;
     border-radius: 10px;
-    height: 50px;
-    width: 50px;
+    padding: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: white;
+    border: none !important;
 }
 
 .board-close-button{
@@ -200,6 +201,7 @@
 
 .board-prio-img{
     object-fit: contain;
+    margin-left: 10px;
 }
 
   @media screen and (max-width: 1170px){

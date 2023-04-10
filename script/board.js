@@ -255,71 +255,143 @@ function boardFilterTasks() {
 function boardShowTask(currentTaskIndex) {
     document.getElementById('board-open-task').classList.remove('d-none');
     document.getElementById('board-open-task').innerHTML = generateBoardOpenTaskHTML(currentTaskIndex);
-    generatePrioInOpenTask(currentTaskIndex);
-    generateContactsInOpenTask(currentTaskIndex);
+    generatePrioInOpenTaskHTML(currentTaskIndex);
+    generateContactsInOpenTaskHTML(currentTaskIndex);
 }
 
+/**
+ * This function writes the HTML code into a new opened task
+ */
 
 function generateBoardOpenTaskHTML(currentTaskIndex) {
     let currentTask = tasks[currentTaskIndex];
     let dueDate = new Date(currentTask['date']);
     return `
     <div onclick="doNotClose(event)" class="open-task-card">
-        <img class="board-close-button" src="./assets/img/icons/board-task-close.svg" onclick="closeOpenTaskPopup()">
-        <span class="box-category" style="background-color: ${currentTask['categoryColor']}">${currentTask['categoryType']}</span>
+        <img class="board-close-button" src="./assets/img/icons/board-task-close.svg" 
+        onclick="closeOpenTaskPopup()">
+        <span class="box-category" style="background-color: ${currentTask['categoryColor']}">
+        ${currentTask['categoryType']}</span>
         <h1>${currentTask['title']}</h1>
         <p>${currentTask['description']}</p>
-        <p><b>Due date:</b><span style="margin-left: 25px">${dueDate.getDate().toString().padStart(2,0)}-${dueDate.getMonth().toString().padStart(2,0)}-${dueDate.getFullYear()}</span></p>
-        <div style="display: flex; align-items: center"><span><b>Priority:</b></span><div class="board-prio-button" id="open-task-priority"><img class="board-prio-img" id="open-task-priority-img"></div></div>
+        <p><b>Due date:</b><span style="margin-left: 25px">
+        ${dueDate.getDate().toString().padStart(2, 0)}-${dueDate.getMonth().toString().padStart(2, 0)}-${dueDate.getFullYear()}</span></p>
+        <div style="display: flex; align-items: center"><span><b>Priority:</b></span>
+        <div class="board-prio-button" id="open-task-priority"></div></div>
         <p><b>Assigned to:</b></p>
         <div id="open-task-contacts"></div>
-        <div class="board-edit-button"><img style="object-fit: contain; color: white" src="./assets/img/icons/board-edit-button-white.svg"></div>
+        <div class="board-edit-button" onclick="openSecondTaskPage(${currentTaskIndex})"><img style="object-fit: contain; 
+        color: white" src="./assets/img/icons/board-edit-button-white.svg"></div>
     </div>
     `;
 }
 
-function generatePrioInOpenTask(currentTaskIndex) {
-    let prioIcon = document.getElementById('open-task-priority-img');
+/**
+ * This function generates the Priority section in the opened task
+ */
+
+function generatePrioInOpenTaskHTML(currentTaskIndex) {
     if (tasks[currentTaskIndex]['prio'] == 'urgent') {
-        document.getElementById(`open-task-priority`).innerHTML = "Urgent";
+        document.getElementById(`open-task-priority`).innerHTML = `Urgent<img class="board-prio-img" id="open-task-priority-img">`;
         document.getElementById(`open-task-priority`).setAttribute("style", "background-color: #FF3D00");
-        prioIcon.setAttribute("src", "./assets/img/icons/add-task-urgent-white.svg");
+        document.getElementById('open-task-priority-img').setAttribute("src", "./assets/img/icons/add-task-urgent-white.svg");
     };
     if (tasks[currentTaskIndex]['prio'] == 'medium') {
-        document.getElementById(`open-task-priority`).innerHTML = "Medium";
+        document.getElementById(`open-task-priority`).innerHTML = `Medium<img class="board-prio-img" id="open-task-priority-img">`;
         document.getElementById(`open-task-priority`).setAttribute("style", "background-color: #FFA800");
-        prioIcon.setAttribute("src", "./assets/img/icons/add-task-medium-white.svg");
+        document.getElementById('open-task-priority-img').setAttribute("src", "./assets/img/icons/add-task-medium-white.svg");
     };
     if (tasks[currentTaskIndex]['prio'] == 'low') {
-        document.getElementById(`open-task-priority`).innerHTML = "Low";
+        document.getElementById(`open-task-priority`).innerHTML = `Low<img class="board-prio-img" id="open-task-priority-img">`;
         document.getElementById(`open-task-priority`).setAttribute("style", "background-color: #7AE229");
-        prioIcon.setAttribute("src", "./assets/img/icons/add-task-low-white.svg");
+        document.getElementById('open-task-priority-img').setAttribute("src", "./assets/img/icons/add-task-low-white.svg");
     }
 }
 
-function generateContactsInOpenTask(currentTaskIndex){
-        document.getElementById('open-task-contacts').innerHTML = ``;
-        currentContacts = [];
-        for (let index = 0; index < tasks[currentTaskIndex]['contact'].length; index++) {
-            const currentContact = tasks[currentTaskIndex]['contact'][index];
-            let currentContactFromBackend = contacts.filter(c => c['fullname'] == currentContact);
-            currentContacts.push(currentContactFromBackend);
-        }
-        console.log(currentContacts)
-        for (let j = 0; j < currentContacts.length; j++) {
-            const element = currentContacts[j][0];
-            document.getElementById('open-task-contacts').innerHTML += `
-            <div style="display: flex; align-items: center; gap: 25px; margin-bottom: 25px"><div style="color: white; background-color:rgb(${element['bgcolor']}); border-radius: 100%; padding: 10px">${element['initals']}</div><span>${element['fullname']}</span></div>
+/**
+ * This function generates the Contacts section in the opned task
+ */
+
+function generateContactsInOpenTaskHTML(currentTaskIndex) {
+    document.getElementById('open-task-contacts').innerHTML = ``;
+    currentContacts = [];
+    for (let index = 0; index < tasks[currentTaskIndex]['contact'].length; index++) {
+        const currentContact = tasks[currentTaskIndex]['contact'][index];
+        let currentContactFromBackend = contacts.filter(c => c['fullname'] == currentContact);
+        currentContacts.push(currentContactFromBackend);
+    }
+    for (let j = 0; j < currentContacts.length; j++) {
+        const element = currentContacts[j][0];
+        document.getElementById('open-task-contacts').innerHTML += `
+            <div style="display: flex; align-items: center; gap: 25px; margin-bottom: 25px"><div style="color: white; 
+            background-color:rgb(${element['bgcolor']}); border-radius: 100%; padding: 10px">${element['initals']}</div>
+            <span>${element['fullname']}</span></div>
             `;
-        }
+    }
 }
 
+/**
+ *  This function closes a opened task
+ */
 
 function closeOpenTaskPopup() {
     document.getElementById('board-open-task').classList.add('d-none');
 }
 
+/**
+ *  This function closes a opened Add Task Popup
+ */
+
 function closeAddTaskPopup() {
     document.getElementById('board-add-task').classList.add('d-none');
     window.location.reload();
+}
+
+
+
+function openSecondTaskPage(currentTaskIndex) {
+    document.getElementById('board-open-task').innerHTML = ``;
+    document.getElementById('board-open-task').innerHTML = generateSecondTaskPageHTML(currentTaskIndex);
+    initAddTask(); // funktioniert nicht !!! Daniel fragen 
+}
+
+function generateSecondTaskPageHTML(currentTaskIndex) {
+    return `
+    <div onclick="doNotClose(event)" class="open-task-card">
+    <img class="board-close-button" src="./assets/img/icons/board-task-close.svg" 
+    onclick="closeOpenTaskPopup()">
+    
+    <div class="add-task-title">
+        <label for="add-task-input-title">Title</label>
+        <input id="add-task-input-title" type="text" placeholder="${tasks[currentTaskIndex]['title']}" required>
+    </div>
+
+    <div class="add-task-description">
+        <label for="add-task-input-description">Description</label>
+        <textarea style="font-family: Inter, sans-serif;" id="add-task-input-description"
+        placeholder="${tasks[currentTaskIndex]['description']}" required></textarea>
+    </div>
+
+    <div class="add-task-due-date" id="add-task-due-date">
+    <label>Due date</label>
+    </div>
+
+    <div class="add-task-prio">
+        <label>Prio</label>
+        <div class="add-task-prio-button-container" id="add-task-priobutton-render"></div>
+        <span id="add-task-prio-button-error"></span>
+    </div>
+
+    <div class="add-task-assigned">
+    <label>Assigned to</label>
+    <div class="add-task-assigned-dropdown" id="add-task-assignedto-render"></div>
+    <span id="add-task-assigned-error"></span>
+    <div class="add-task-assigned-users-main" id="add-task-assigned-users"></div>
+    </div>
+
+
+    <button class="board-edit-button" onclick="saveChanges()">OK<img style="object-fit: contain; 
+    color: white; margin-left: 10px" src="./assets/img/icons/board-ok-white.svg"></button>
+    </div>
+    `;
 }
