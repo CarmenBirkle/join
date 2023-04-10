@@ -6,13 +6,13 @@
 
 /**
  * To initialize all functions on the summary.html that are required for building the page.
- * @async - await init();
+ * @async - await init(); Load content from backend (contacts, users, tasks).
  */
 async function initSummary() {
     await init();
+    summaryGreetingResponsive();
     summaryGreetings();
     changeGreetingName();
-    summaryGreetingResponsive();
     countUrgent();
     findDeadline();
     countTaskTodoAndDone();
@@ -20,7 +20,7 @@ async function initSummary() {
 }
 
 /**
- * Generates a greeting message based on the current time of day and displays it on the HTML element with id 'summary-greeting'.
+ * Generates a greeting message based on the current time of day and displays it.
  */
 function summaryGreetings() {
     let currentHour = new Date().getHours();
@@ -40,14 +40,22 @@ function summaryGreetings() {
 
 /**
  * Generates a personalized greeting by retrieving the user's name from a cookie and searching for a matching user in the "users" array.
+ * If no match was found, Guest will be displayed.
  */
 function changeGreetingName() {
-    let cookieValue  = document.cookie;
+    let cookieValue = document.cookie;
     let nameFromCookie = cookieValue.split(';').find(cookie => cookie.includes('user='));
     let nameCookieFormatted = nameFromCookie.split('=')[1];
 
     const selectedUser = users.find(user => user.name.toLowerCase().replace(' ', '') === nameCookieFormatted);
+    showsGreetingName(selectedUser);
+}
 
+/**
+ * Shows the greeting name or guest if no name found.
+ * @param {Object} selectedUser - Name from the user that was found in the users array.
+ */
+function showsGreetingName(selectedUser) {
     if (selectedUser === undefined) {
         document.getElementById('summary-greeting-name').innerHTML = 'Guest';
         document.getElementById('summary-greeting-name-responsive').innerHTML = 'Guest';
@@ -55,41 +63,45 @@ function changeGreetingName() {
         document.getElementById('summary-greeting-name').innerHTML = selectedUser.name;
         document.getElementById('summary-greeting-name-responsive').innerHTML = selectedUser.name;
     }
-
-    /*for (let i = 0; i < users.length; i++) {
-        let userName = users[i].name;
-        let formattedName = userName.toLowerCase().replace(/ /g, '');
-        if (formattedName.includes(nameCookieFormatted)) {
-            document.getElementById('summary-greeting-name').innerHTML = userName;
-        } else {
-            document.getElementById('summary-greeting-name').innerHTML = 'Guest';
-        }
-    }*/
 }
 
+/**
+ * Plays a welcome animation after logging in. 
+ * @returns - If the screen is larger than 1350 or the welcome responsive animation has already played, the function will be aborted.
+ */
 function summaryGreetingResponsive() {
-    if (window.innerWidth > 1350) {
-        console.log('Zu groß');
-        return;
-    }
-    if (checkGreetingResponsiveCookie()) {
-        console.log("Greeting wurde bereits durchgeführt.");
+    if (window.innerWidth > 1350 || checkGreetingResponsiveCookie()) {
+        document.getElementById('summary-welcome-responsive').classList.add('d-none');
+        console.log('Zu groß oder Greeting wurde bereits durchgeführt.'); // TEST !!!!!!!!!!!
         return;
     }
 
-    console.log("Greeting wird durchgeführt...");
-    document.getElementById('summary-welcome-responsive').classList.remove('d-none');
-    setTimeout(() => {
-        document.getElementById('summary-welcome-responsive').classList.add('summary-welcome-animation');
-    }, 2000);
-    setTimeout(() => {
-        document.getElementById('summary-welcome-responsive').classList.add('d-none');
-    }, 3000);
+    showsGreetingResponsiveAnimation();
     setGreetingResponsiveCookie();
 }
 
+/**
+ * Runs the welcome animation after logging in.
+ */
+function showsGreetingResponsiveAnimation() {
+    console.log("Greeting wird durchgeführt..."); // TEST !!!!!!!!!!!!!!!!!!!
+    document.getElementById('summary-welcome-responsive').classList.remove('d-none');
+    setTimeout(() => {
+        document.getElementById('summary-welcome-responsive').classList.add('summary-welcome-animation');
+        setTimeout(() => {
+            document.getElementById('summary-welcome-responsive').classList.add('d-none');
+        }, 1000);
+    }, 2000);
+}
+
+/**
+ * Looks for 'validationDone=true' in the cookie.
+ * @returns - true or false
+ */
 function checkGreetingResponsiveCookie() {
-    let cookieValue = document.cookie;
+    const cookieValue = document.cookie;
+    return cookieValue.includes('validationDone=true');
+    /*let cookieValue = document.cookie;
     let validateGreetingCookie = cookieValue.split(';').find(cookie => cookie.includes('validationDone='));
     if (validateGreetingCookie) {
         let validateGreetingValue = validateGreetingCookie.split('=')[1];
@@ -97,9 +109,13 @@ function checkGreetingResponsiveCookie() {
             return true;
         }
     }
-    return false;
+    return false;*/
 }
 
+/**
+ * Sets a cookie with a lifetime of one hour.
+ * getCookieExpireTime() = calculates the lifetime.
+ */
 function setGreetingResponsiveCookie() {
     let now = getCookieExpireTime();
     document.cookie = "validationDone=true; expires=" + now.toUTCString() + "; path=/";
@@ -110,6 +126,7 @@ function setGreetingResponsiveCookie() {
  */
 function countUrgent() {
     let urgentCount = 0;
+
     for (let i = 0; i < tasks.length; i++) {
         let taskPrio = tasks[i].prio;
         if (taskPrio === 'urgent') {
@@ -125,12 +142,14 @@ function countUrgent() {
  */
 function findDeadline() {
     let lowestDate = Infinity;
+
     for (let i = 0; i < tasks.length; i++) {
         let milliseconds = tasks[i].date;
         if (milliseconds < lowestDate) {
             lowestDate = milliseconds;
         }
     }
+
     const date = new Date(lowestDate);
     const formattedDate = date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
     document.getElementById('summary-find-deadline').innerHTML = formattedDate;
@@ -180,4 +199,3 @@ function countBoardTopSection() {
     document.getElementById('summary-count-feedback').innerHTML = feedback;
     document.getElementById('summary-task-in-borad').innerHTML = taskBoardCount;
 }
-

@@ -29,7 +29,7 @@ let tasks = [];
 
 /**
  * Load content from backend (contacts, users, tasks) and start the initAddTaskTemplates() function.
- * @async - await init();
+ * @async - await init(); (backend connection)
  */
 async function initAddTask() {
     await init();
