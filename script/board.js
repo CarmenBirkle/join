@@ -262,13 +262,14 @@ function boardShowTask(currentTaskIndex) {
 
 function generateBoardOpenTaskHTML(currentTaskIndex) {
     let currentTask = tasks[currentTaskIndex];
+    let dueDate = new Date(currentTask['date']);
     return `
     <div onclick="doNotClose(event)" class="open-task-card">
         <img class="board-close-button" src="./assets/img/icons/board-task-close.svg" onclick="closeOpenTaskPopup()">
         <span class="box-category" style="background-color: ${currentTask['categoryColor']}">${currentTask['categoryType']}</span>
         <h1>${currentTask['title']}</h1>
         <p>${currentTask['description']}</p>
-        <p><b>Due date:</b><span style="margin-left: 25px">${currentTask['date']}</span></p>
+        <p><b>Due date:</b><span style="margin-left: 25px">${dueDate.getDate().toString().padStart(2,0)}-${dueDate.getMonth().toString().padStart(2,0)}-${dueDate.getFullYear()}</span></p>
         <div style="display: flex; align-items: center"><span><b>Priority:</b></span><div class="board-prio-button" id="open-task-priority"><img class="board-prio-img" id="open-task-priority-img"></div></div>
         <p><b>Assigned to:</b></p>
         <div id="open-task-contacts"></div>
