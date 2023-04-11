@@ -352,7 +352,11 @@ function closeAddTaskPopup() {
 function openSecondTaskPage(currentTaskIndex) {
     document.getElementById('board-open-task').innerHTML = ``;
     document.getElementById('board-open-task').innerHTML = generateSecondTaskPageHTML(currentTaskIndex);
-    initAddTask(); // funktioniert nicht !!! Daniel fragen 
+    initChangeDueDate(currentTaskIndex);
+    initChangePrioButtons();
+    setChangePrioButtonDesign(tasks[currentTaskIndex]['prio']);
+    initChangeAssignedTo();
+    generateContactsInOpenTaskHTML(currentTaskIndex);
 }
 
 function generateSecondTaskPageHTML(currentTaskIndex) {
@@ -363,35 +367,378 @@ function generateSecondTaskPageHTML(currentTaskIndex) {
     
     <div class="add-task-title">
         <label for="add-task-input-title">Title</label>
-        <input id="add-task-input-title" type="text" placeholder="${tasks[currentTaskIndex]['title']}" required>
+        <input id="change-task-input-title" type="text" placeholder="Title" value="${tasks[currentTaskIndex]['title']}" required>
     </div>
 
     <div class="add-task-description">
-        <label for="add-task-input-description">Description</label>
-        <textarea style="font-family: Inter, sans-serif;" id="add-task-input-description"
-        placeholder="${tasks[currentTaskIndex]['description']}" required></textarea>
+        <label for="change-task-input-description">Description</label>
+        <textarea style="font-family: Inter, sans-serif;" id="change-task-input-description"
+        placeholder="Description" required>${tasks[currentTaskIndex]['description']}</textarea>
     </div>
 
-    <div class="add-task-due-date" id="add-task-due-date">
+    <div class="add-task-due-date" id="change-task-due-date">
     <label>Due date</label>
     </div>
 
     <div class="add-task-prio">
         <label>Prio</label>
-        <div class="add-task-prio-button-container" id="add-task-priobutton-render"></div>
-        <span id="add-task-prio-button-error"></span>
+        <div class="add-task-prio-button-container" id="change-task-prio-button-render"></div>
+        <span id="change-task-prio-button-error"></span>
     </div>
 
     <div class="add-task-assigned">
     <label>Assigned to</label>
-    <div class="add-task-assigned-dropdown" id="add-task-assignedto-render"></div>
-    <span id="add-task-assigned-error"></span>
-    <div class="add-task-assigned-users-main" id="add-task-assigned-users"></div>
+    <div class="add-task-assigned-dropdown" id="change-task-assignedto-render"></div>
+    <span id="change-task-assigned-error"></span>
+    <div class="add-task-assigned-users-main" id="change-task-assigned-users"></div>
     </div>
 
+    <div id="open-task-contacts"></div>
 
     <button class="board-edit-button" onclick="saveChanges()">OK<img style="object-fit: contain; 
     color: white; margin-left: 10px" src="./assets/img/icons/board-ok-white.svg"></button>
+    </div>
+    `;
+}
+
+
+/*-- Due Date --*/
+/**
+ * Generate the due-date input field from the add-task-template.js.
+ * min date = current date
+ */
+function initChangeDueDate(currentTaskIndex) {
+    document.getElementById('change-task-due-date').innerHTML = '';
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('change-task-due-date').innerHTML = loadChangeDueDateHTML(today, currentTaskIndex);
+}
+
+/*-- Due Date Template-HTML --*/
+function loadChangeDueDateHTML(today, currentTaskIndex) {
+    let currentTask = tasks[currentTaskIndex];
+    let dueDate = new Date(currentTask['date']);
+    return /*html*/`
+    <label for="change-task-input-due-date">Due date</label>
+    <input style="font-family: Inter, sans-serif;" value="${dueDate.getFullYear()}-${dueDate.getMonth().toString().padStart(2, 0)}-${dueDate.getDate().toString().padStart(2, 0)}" id="change-task-input-due-date" type="date" min="${today}" required>
+    `;
+}
+
+
+/*-- Prio --*/
+/**
+ * Generate the prio buttons from array prioButtons.
+ * 
+ */
+function initChangePrioButtons() {
+    const prioButtons = ['urgent', 'medium', 'low'];
+    document.getElementById('change-task-prio-button-render').innerHTML = '';
+    document.getElementById('change-task-prio-button-error').innerHTML = '';
+
+    for (let i = 0; i < prioButtons.length; i++) {
+        let prioName = prioButtons[i];
+        let prioNameFormatted = prioName.charAt(0).toUpperCase() + prioName.slice(1).toLowerCase();
+        document.getElementById('change-task-prio-button-render').innerHTML += loadChangePrioButtonsHTML(prioName, prioNameFormatted);
+    }
+}
+
+/*-- Prio-Buttons-HTML --*/
+function loadChangePrioButtonsHTML(prioName, prioNameFormatted) {
+    return /*html*/`
+    <button type="button" id="change-prio-${prioName}" onclick="setChangeAddTaskPrioButton('${prioName}')">
+        ${prioNameFormatted}
+        <img id="change-img-prio-${prioName}" src="./assets/img/icons/add-task-${prioName}.svg" alt="${prioName}">
+        <img id="change-img-prio-${prioName}-white" class="d-none" src="./assets/img/icons/add-task-${prioName}-white.svg" alt="${prioName}">
+    </button>
+    `;
+}
+
+/**
+ * Save the selected prio button id by pushing the id into the chosenPrioButton array. (validate form)
+ * @param {String} prioId - (Id) from prio button (urgent, medium, low).
+ */
+function setChangeAddTaskPrioButton(prioId) {
+    initChangePrioButtons();
+
+    chosenPrioButton = [];
+    chosenPrioButton.push(prioId);
+
+    setChangePrioButtonDesign(prioId);
+}
+
+/**
+ * Generate a new design for the selected prio button.
+ * @param {String} prioId - (Id) from prio button (urgent, medium, low).
+ */
+function setChangePrioButtonDesign(prioId) {
+    document.getElementById(`change-prio-${prioId}`).classList.add(`bg-prio-${prioId}`, 'add-task-font-color');
+    document.getElementById(`change-img-prio-${prioId}`).classList.add('d-none');
+    document.getElementById(`change-img-prio-${prioId}-white`).classList.remove('d-none');
+}
+
+/**
+ * Shows an error if no prio button was selected. (form validation)
+ * 
+ */
+function renderChangePrioButtonError() {
+    document.getElementById('add-task-prio-button-error').innerHTML = '';
+    document.getElementById('add-task-prio-button-error').innerHTML = addTaskErrorHTML('Please select a Priority');
+}
+
+
+
+
+
+
+
+
+
+
+/*-- Assigned-To --*/
+/**
+ * Generate the loadAssignedToHTML from the add-task-template.js.
+ * Executes the functions that renders the names and the new-contact field.
+ */
+function initChangeAssignedTo() {
+    document.getElementById('change-task-assignedto-render').innerHTML = '';
+    document.getElementById('change-task-assigned-error').innerHTML = '';
+    document.getElementById('change-task-assignedto-render').innerHTML = loadChangeAssignedToHTML();
+    renderChangeAssignedToSelection();
+    renderChangeInviteNewContact();
+}
+
+/**
+ * Open the dropdown form the assigned to section.
+ * 
+ */
+function openChangeAssignedToDropdown() {
+    document.getElementById('change-task-assignedto-dropdown').classList.toggle('d-none');
+    document.getElementById('change-task-category-dropdown').classList.add('d-none');
+    renderChangeTopAssigendTo();
+}
+
+/**
+ * Render the top section from the Assigned to and open the placeholder.
+ * 
+ */
+function renderChangeTopAssigendTo() {
+    document.getElementById('change-task-assigendto-dropdown-top').innerHTML = '';
+    document.getElementById('change-task-assigned-error').innerHTML = '';
+    document.getElementById('change-task-assigendto-dropdown-top').innerHTML = openChangeTopPlaceholderHTML('Select contacts to assign');
+}
+
+/**
+ * Render the new-contact field.
+ * 
+ */
+function renderChangeInviteNewContact() {
+    document.getElementById('change-task-assignedto-dropdown').innerHTML += openChangeInviteNewContactHTML();
+}
+
+/**
+ * Render the fullname / email / bgColor / initals from the contacts (backend).
+ * The fullname will be show in the dropdown assigned section.
+ */
+function renderChangeAssignedToSelection() {
+    document.getElementById('change-task-assignedto-dropdown').innerHTML = '';
+
+    for (let i = 0; i < contacts.length; i++) {
+        const name = contacts[i].fullname;
+        const email = contacts[i].email;
+        const bgColor = contacts[i].bgcolor;
+        const initals = contacts[i].initals;
+        document.getElementById('change-task-assignedto-dropdown').innerHTML += openChangeAssignedListHTML(name, email, bgColor, initals);
+    }
+}
+
+/**
+ * Render the input field from the new-contact that allows searching by email.
+ * 
+ */
+function renderChangeAssignedToNewContact() {
+    document.getElementById('change-task-assignedto-dropdown').classList.toggle('d-none');
+    document.getElementById('change-task-assigendto-dropdown-top').innerHTML = '';
+    document.getElementById('change-task-add-new-contact-section').innerHTML = openChangeNewContactSelectHTML();
+}
+
+/**
+ * Handles the keydown event for the "Serach New Contact" input field. 
+ * @param {event} event - This parameter is used to detect if the user has pressed the "Enter" key, and if so,
+ *                      to prevent the default form submission behavior.
+ */
+function searchChangeNewContactEnter(event) {
+    if (event.key == "Enter") {
+        event.preventDefault();
+        searchChangeNewContact();
+    }
+}
+
+/**
+ * Searches the dropdown section for the entered email(assigned-new-contact-input).
+ * Validate the value from the assigned-new-contact-input.
+ */
+function searchChangeNewContact() {
+    let emailInput = document.getElementById('change-assigned-new-contact-input').value;
+    let checkEmail = document.querySelector(`input[type="checkbox"][name="${emailInput}"]`);
+    if (checkEmail) {
+        checkEmail.checked = true;
+        renderChangeTopAssigendToAfterNewContact();
+        searchChangeNewContactPushUser(emailInput);
+        renderChangeAssignedUsers();
+    } else {
+        document.getElementById('change-task-assigned-error').innerHTML = addTaskErrorHTML(`${emailInput} email not found!`);
+        document.getElementById('change-assigned-new-contact-input').focus();
+    }
+    setTimeout(() => {
+        document.getElementById('change-task-assigned-error').innerHTML = '';
+    }, 2000);
+}
+
+/**
+ * If you click on the cross, the assigned-new-contact-input will be closed.
+ * 
+ */
+function renderChangeTopAssigendToAfterNewContact() {
+    document.getElementById('change-task-add-new-contact-section').innerHTML = '';
+    document.getElementById('change-task-add-new-contact-section').innerHTML = openChangeTopAssignedToHTML();
+}
+
+/**
+ * Searches for a contact in the `contacts` array with the specified email address and 
+ * pushes the contact's initials and bgColor into the `assignedToUsers` array, if not already present.
+ * @param {String} emailInput - the value form the assigned-new-contact input field.
+ */
+function searchChangeNewContactPushUser(emailInput) {
+    const selectedContact = contacts.find(contact => contact.email === emailInput);
+    let bgColor = selectedContact.bgcolor;
+    let initals = selectedContact.initals;
+    let index = assignedToUsers.findIndex(userInfo => userInfo.bgColor === bgColor && userInfo.initals === initals);
+    // prevent multi generate
+    if (index === -1) {
+        assignedToUsers.push({ bgColor: bgColor, initals: initals });
+    }
+}
+
+/**
+ * Toggles the checkbox state of the assigned-to user and 
+ * updates the assignedToUsers array with the user's background color and initials.
+ * @param {event} event - The event object.
+ * @param {String} bgColor - The background color of the user in the contacts array as rgb.
+ * @param {String} initals - The initials of the user in the contacts array.
+ */
+function toggleChangeCheckboxAssigned(event, bgColor, initals) {
+    let divContainerAssigned = event.target.closest('.add-task-dropdown-option');
+    let checkboxAssigned = divContainerAssigned.querySelector('.validate-assignedto-checkbox');
+
+    if (divContainerAssigned === event.target) {
+        checkboxAssigned.checked = !checkboxAssigned.checked;
+    }
+
+    updateChangeAssignedToUsers(checkboxAssigned, bgColor, initals);
+    renderChangeAssignedUsers();
+}
+
+/**
+ * Updates the assignedToUsers array based on the checkbox state of the assigned user.
+ * @param {Object} checkboxAssigned - The HTML checkbox element representing the assigned user.
+ * @param {String} bgColor - The background color of the user in the contacts array as rgb.
+ * @param {String} initals - The initials of the user in the contacts array.
+ */
+function updateChangeAssignedToUsers(checkboxAssigned, bgColor, initals) {
+    let index = assignedToUsers.findIndex(userInfo => userInfo.bgColor === bgColor && userInfo.initals === initals);
+    // prevent multi generate
+    if (checkboxAssigned.checked) {
+        if (index === -1) {
+            assignedToUsers.push({ bgColor: bgColor, initals: initals });
+        }
+    } else {
+        if (index !== -1) {
+            assignedToUsers.splice(index, 1);
+        }
+    }
+}
+
+
+/**
+ * Render the user icons, after selected them.
+ * 
+ */
+function renderChangeAssignedUsers() {
+    document.getElementById('change-task-assigned-users').innerHTML = '';
+    for (let i = 0; i < assignedToUsers.length; i++) {
+        let bgColor = assignedToUsers[i].bgColor;
+        let initals = assignedToUsers[i].initals;
+        document.getElementById('change-task-assigned-users').innerHTML += openChangeAssignedUserHTML(bgColor, initals);
+    }
+}
+
+/**
+ * Shows an error if no user was selected. (form validation)
+ * 
+ */
+function renderChangeAssignedToError() {
+    document.getElementById('change-task-assigned-error').innerHTML = '';
+    document.getElementById('change-task-assigned-error').innerHTML = addTaskErrorHTML('Please select a Contact');
+}
+
+
+/*-- Assigned to Template-HTML --*/
+function loadChangeAssignedToHTML() {
+    return /*html*/`
+    <div id="change-task-add-new-contact-section">
+        <div class="add-task-dropdown-top" id="change-task-assigendto-dropdown-top" onclick="openChangeAssignedToDropdown()">
+            <span>Select contacts to assign</span>
+            <img src="assets/img/icons/add-task-dropdown-arrow.svg" alt="arrow">
+        </div>
+    </div>
+    <div id="change-task-assignedto-dropdown" class="add-task-dropdown-open d-none">                          
+    </div>
+    `;
+}
+
+function openChangeTopAssignedToHTML() {
+    return /*html*/`
+    <div class="add-task-dropdown-top" id="change-task-assigendto-dropdown-top" onclick="openChangeAssignedToDropdown()">
+        <span>Select contacts to assign</span>
+        <img src="assets/img/icons/add-task-dropdown-arrow.svg" alt="arrow">
+    </div>
+    `;
+}
+
+function openChangeAssignedListHTML(name, email, bgColor, initals) {
+    return /*html*/`
+    <div style="justify-content: space-between;" class="add-task-dropdown-option"  onclick="toggleChangeCheckboxAssigned(event,'${bgColor}','${initals}')">
+        ${name}
+        <input type="checkbox" name="${email}" value="${name}" class="validate-assignedto-checkbox">
+    </div>
+     `;
+}
+
+function openChangeInviteNewContactHTML() {
+    return /*html*/`
+    <div class="add-task-dropdown-new-contact" onclick="renderChangeAssignedToNewContact()">
+        Invite new Contact
+        <img src="./assets/img/icons/add-task-new-contact.svg" alt="contact">
+    </div>
+    `;
+}
+
+function openChangeNewContactSelectHTML() {
+    return /*html*/`
+    <div class="add-task-dropdown-top">
+        <input id="chnge-assigned-new-contact-input" class="add-task-new-contact-input" type="email" placeholder="Contact email" onkeypress="searchChangeNewContactEnter(event)">
+        <div class="add-task-new-categroy-buttons">
+            <img src="./assets/img/icons/add-task-button-cross.svg" onclick="renderChangeTopAssigendToAfterNewContact()" alt="cross">
+            <div class="add-task-category-greyline"></div>
+            <img src="./assets/img/icons/add-task-button-check.svg" onclick="searchChangeNewContact()" alt="check">
+        </div>
+    </div>
+    `;
+}
+
+function openChangeAssignedUserHTML(bgColor, initals) {
+    return`
+    <div style="background: rgb(${bgColor});" class="add-task-assigned-user">
+        <div>${initals}</div>
     </div>
     `;
 }
