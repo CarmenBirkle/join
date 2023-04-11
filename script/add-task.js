@@ -202,7 +202,7 @@ function renderCategoryError() {
  */
 function addedNewCategoryMessage() {
     document.getElementById('add-task-new-category-error').innerHTML = '';
-    document.getElementById('add-task-new-category-error').innerHTML = addTaskErrorHTML('Added new category');
+    document.getElementById('add-task-new-category-error').innerHTML = addTaskMessageHTML('Added new category');
     setTimeout(() => {
         document.getElementById('add-task-new-category-error').innerHTML = '';
     }, 2000)

@@ -6,6 +6,12 @@ function addTaskErrorHTML(error) {
     `;
 }
 
+function addTaskMessageHTML(message) {
+    return /*html*/ `
+    <span class="add-task-message">${message}</span>
+    `;
+}
+
 /*-- Category and AssignedTo Template-HTML --*/
 function openTopPlaceholderHTML(placeholder) {
     return /*html*/`

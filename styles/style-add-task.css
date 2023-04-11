@@ -286,6 +286,12 @@
     font-weight: bold;
 }
 
+.add-task-message {
+    color: var(--dark-grey);
+    font-size: 12px;
+    font-weight: bold;
+}
+
 
 /* --- Form-Left-Side-Assigned --- */
 .add-task-assigned {
