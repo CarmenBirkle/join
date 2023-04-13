@@ -97,13 +97,13 @@ function showsGreetingResponsiveAnimation() {
 }
 
 /**
- * Looks for 'validationDone=true' in the cookie.
+ * Look if a cookie name "greetingResponsiveDone=true" exists.
  * @returns - true or false
  */
 function checkGreetingResponsiveCookie() {
     const cookieValue = document.cookie;
-    return cookieValue.includes('validationDone=true');
-    /*let cookieValue = document.cookie;
+    return cookieValue.includes('greetingResponsiveDone=true');
+    /*let cookieValue = document.cookie; // TEST !!!!!!!!!!!!!!!!!!!!!!!!
     let validateGreetingCookie = cookieValue.split(';').find(cookie => cookie.includes('validationDone='));
     if (validateGreetingCookie) {
         let validateGreetingValue = validateGreetingCookie.split('=')[1];
@@ -120,7 +120,7 @@ function checkGreetingResponsiveCookie() {
  */
 function setGreetingResponsiveCookie() {
     let now = getCookieExpireTime();
-    document.cookie = "validationDone=true; expires=" + now.toUTCString() + "; path=/";
+    document.cookie = "greetingResponsiveDone=true; expires=" + now.toUTCString() + "; path=/";
 }
 
 /**
