@@ -38,7 +38,6 @@ async function initAddTask() {
 
 /**
  * To initialize all functions on the add task.html and task-template.html file that are required for building the page.
- * 
  */
 function initAddTaskTemplates() {
     initCategory();
@@ -51,7 +50,6 @@ function initAddTaskTemplates() {
 /*-- Category --*/
 /**
  * Generate the CategoryHTML from the add-task-template.js.
- * 
  */
 function initCategory() {
     document.getElementById('add-task-category-render').innerHTML = loadCategoryHTML();
@@ -61,7 +59,6 @@ function initCategory() {
 
 /**
  * Render the dropdown menu and render the top section from the category.
- * 
  */
 function openCategoryDropdown() {
     document.getElementById('add-task-category-dropdown').classList.toggle('d-none');
@@ -73,7 +70,6 @@ function openCategoryDropdown() {
 
 /**
  * Render the top section from the category and open the placeholder.
- * 
  */
 function renderTopCategory() {
     document.getElementById('add-task-category-dropdown-top').innerHTML = '';
@@ -121,7 +117,6 @@ function renderNewCategory() {
 
 /**
  * Renders a selection of colorful dots for the new-category.
- * 
  */
 function renderNewCategoryDots() {
     document.getElementById('add-task-new-category-dots').innerHTML = '';
@@ -223,7 +218,6 @@ function initAssignedTo() {
 
 /**
  * Open the dropdown form the assigned to section.
- * 
  */
 function openAssignedToDropdown() {
     document.getElementById('add-task-assignedto-dropdown').classList.toggle('d-none');
@@ -233,7 +227,6 @@ function openAssignedToDropdown() {
 
 /**
  * Render the top section from the Assigned to and open the placeholder.
- * 
  */
 function renderTopAssigendTo() {
     document.getElementById('add-task-assigendto-dropdown-top').innerHTML = '';
@@ -243,7 +236,6 @@ function renderTopAssigendTo() {
 
 /**
  * Render the new-contact field.
- * 
  */
 function renderInviteNewContact() {
     document.getElementById('add-task-assignedto-dropdown').innerHTML += openInviteNewContactHTML();
@@ -267,7 +259,6 @@ function renderAssignedToSelection() {
 
 /**
  * Render the input field from the new-contact that allows searching by email.
- * 
  */
 function renderAssignedToNewContact() {
     document.getElementById('add-task-assignedto-dropdown').classList.toggle('d-none');
@@ -310,7 +301,6 @@ function searchNewContact() {
 
 /**
  * If you click on the cross, the assigned-new-contact-input will be closed.
- * 
  */
 function renderTopAssigendToAfterNewContact() {
     document.getElementById('add-task-add-new-contact-section').innerHTML = '';
@@ -374,7 +364,6 @@ function updateAssignedToUsers(checkboxAssigned, bgColor, initals) {
 
 /**
  * Render the user icons, after selected them.
- * 
  */
 function renderAssignedUsers() {
     document.getElementById('add-task-assigned-users').innerHTML = '';
@@ -387,7 +376,6 @@ function renderAssignedUsers() {
 
 /**
  * Shows an error if no user was selected. (form validation)
- * 
  */
 function renderAssignedToError() {
     document.getElementById('add-task-assigned-error').innerHTML = '';
@@ -409,7 +397,6 @@ function initDueDate() {
 /*-- Prio --*/
 /**
  * Generate the prio buttons from array prioButtons.
- * 
  */
 function initPrioButtons() {
     const prioButtons = ['urgent', 'medium', 'low'];
@@ -448,7 +435,6 @@ function setPrioButtonDesign(prioId) {
 
 /**
  * Shows an error if no prio button was selected. (form validation)
- * 
  */
 function renderPrioButtonError() {
     document.getElementById('add-task-prio-button-error').innerHTML = '';
@@ -458,7 +444,6 @@ function renderPrioButtonError() {
 /*-- Subtask --*/
 /**
  * Generate the subtask section from the add-task-template.js.
- * 
  */
 function initSubtask() {
     document.getElementById('add-task-subtask-render').innerHTML = '';
@@ -511,7 +496,6 @@ function addNewSubtask() {
 
 /**
  * Generates the subtask checkboxes after correct input from the addSubtasks array.
- * 
  */
 function renderSubtaskCheckbox() {
     for (let i = 0; i < addSubtasks.length; i++) {
@@ -523,7 +507,6 @@ function renderSubtaskCheckbox() {
 /*-- Clear Button --*/
 /**
  * After pressing the clear button, all input fields and arrays will be reset.
- * 
  */
 function clearAddTask() {
     chosenCategoryColor = [];
@@ -577,7 +560,6 @@ function validateForm() {
 
 /**
  * Push the selected assigned user into the chosenAssignedTo array to validate the form.
- * 
  */
 function pushChosenAssignedTo() {
     let contactsCheckboxes = document.querySelectorAll('.validate-assignedto-checkbox');
@@ -590,7 +572,6 @@ function pushChosenAssignedTo() {
 
 /**
  * Push the selected subtask checkbox into the chosenSubtasks. (not required for the form validation)
- * 
  */
 function pushChosenSubtasks() {
     let subtaskCheckboxes = document.querySelectorAll('input[name=subtasks]');

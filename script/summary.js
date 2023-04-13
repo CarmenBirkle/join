@@ -45,7 +45,7 @@ function summaryGreetings() {
 function changeGreetingName() {
     let cookieValue = document.cookie;
     let nameFromCookie = cookieValue.split(';').find(cookie => cookie.includes('user='));
-    
+
     showsGreetingName(nameFromCookie);
 }
 
@@ -55,13 +55,13 @@ function changeGreetingName() {
  * @param {String} nameFromCookie - Name from the user that was found in the cookie.
  */
 function showsGreetingName(nameFromCookie) {
-    if(nameFromCookie === undefined) {
+    if (nameFromCookie === undefined) {
         document.getElementById('summary-greeting-name').innerHTML = 'Guest';
         document.getElementById('summary-greeting-name-responsive').innerHTML = 'Guest';
     } else {
         let nameCookieFormatted = nameFromCookie.split('=')[1];
         const selectedUser = users.find(user => user.name.toLowerCase().replace(' ', '') === nameCookieFormatted);
-        
+
         document.getElementById('summary-greeting-name').innerHTML = selectedUser.name;
         document.getElementById('summary-greeting-name-responsive').innerHTML = selectedUser.name;
     }
@@ -169,18 +169,9 @@ function showDeadline(lowestDate) {
  * Counts how many tasks in the category section with "to-do" or "done" are in the tasks array, updates the urgent tasks count display.
  */
 function countTaskTodoAndDone() {
-    let toDoCount = 0;
-    let doneCount = 0;
+    let toDoCount = countLoopCategory('to-do');
+    let doneCount = countLoopCategory('done');
 
-    for (let i = 0; i < tasks.length; i++) {
-        let taskToDo = tasks[i].category;
-        if (taskToDo === 'to-do') {
-            toDoCount++;
-        }
-        if (taskToDo === 'done') {
-            doneCount++;
-        }
-    }
 
     document.getElementById('summary-to-do-count').innerHTML = toDoCount;
     document.getElementById('summary-done-count').innerHTML = doneCount;
@@ -191,21 +182,30 @@ function countTaskTodoAndDone() {
  * Count and displays how many tasks are in the Board.
  */
 function countBoardTopSection() {
-    let inProgress = 0;
-    let feedback = 0;
     let taskBoardCount = tasks.length;
+    let inProgress = countLoopCategory('in-progress');
+    let feedback = countLoopCategory('awaiting-feedback');
 
-    for (let i = 0; i < tasks.length; i++) {
-        let taskBoard = tasks[i].category;
-        if (taskBoard === 'in-progress') {
-            inProgress++;
-        }
-        if (taskBoard === 'awaiting-feedback') {
-            feedback++;
-        }
-    }
 
     document.getElementById('summary-count-progress').innerHTML = inProgress;
     document.getElementById('summary-count-feedback').innerHTML = feedback;
     document.getElementById('summary-task-in-borad').innerHTML = taskBoardCount;
+}
+
+/**
+ * Loop for counting the number of individual categories.
+ * @param {String} nameCategory - Name of the corresponding category in the tasks.category array.
+ * @returns - Number of (to-do, done, in-progress or awaiting-feedback)
+ */
+function countLoopCategory(nameCategory) {
+    let countNumber = 0;
+
+    for (let i = 0; i < tasks.length; i++) {
+        let category = tasks[i].category;
+        if (category === nameCategory) {
+            countNumber++;
+        }
+    }
+    
+    return countNumber;
 }
