@@ -59,6 +59,7 @@ function initCategory() {
 
 /**
  * Render the dropdown menu and render the top section from the category.
+ * If assigned-to dropdown is opened, it will be closed.
  */
 function openCategoryDropdown() {
     document.getElementById('add-task-category-dropdown').classList.toggle('d-none');
@@ -218,6 +219,7 @@ function initAssignedTo() {
 
 /**
  * Open the dropdown form the assigned to section.
+ * If category dropdown is opened, it will be closed.
  */
 function openAssignedToDropdown() {
     document.getElementById('add-task-assignedto-dropdown').classList.toggle('d-none');
