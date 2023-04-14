@@ -111,8 +111,9 @@ function setCategory(color, type) {
  * Renders a selection of colorful dots.
  */
 function renderNewCategory() {
-    document.getElementById('add-task-category-render').innerHTML = '';
-    document.getElementById('add-task-category-render').innerHTML = openNewCategorySelectHTML();
+    document.getElementById('add-task-category-dropdown-top').innerHTML = '';
+    document.getElementById('add-task-category-dropdown').innerHTML = '';
+    document.getElementById('add-task-add-new-category-section').innerHTML = openNewCategorySelectHTML();
     renderNewCategoryDots();
 }
 

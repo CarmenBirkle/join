@@ -23,12 +23,14 @@ function openTopPlaceholderHTML(placeholder) {
 /*-- Category Template-HTML --*/
 function loadCategoryHTML() {
     return /*html*/`
-    <div class="add-task-dropdown-top" id="add-task-category-dropdown-top" onclick="openCategoryDropdown()">
-        <span>Select task category</span>
-        <img src="assets/img/icons/add-task-dropdown-arrow.svg" alt="arrow">
+    <div id="add-task-add-new-category-section">
+        <div class="add-task-dropdown-top" id="add-task-category-dropdown-top" onclick="openCategoryDropdown()">
+            <span>Select task category</span>
+            <img src="assets/img/icons/add-task-dropdown-arrow.svg" alt="arrow">
+        </div>
     </div>
     <div id="add-task-category-dropdown" class="add-task-dropdown-open d-none">                          
-     </div>
+    </div>
     `;
 }
 
