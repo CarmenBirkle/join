@@ -15,7 +15,7 @@
     <script src="./script/login.js"></script>
 </head>
 
-<body onload="init(), startAnimation()">
+<body onload="init(), startAnimation(), writeRememberedUserMail()">
     <div class="login-animation-container" id="login-animation-container"><img id="login-logo"
             src="./assets/img/icons/join-login.svg"><img id="login-logo-responsive"
             src="./assets/img/icons/join-logo-responsive.svg" class="d-none"></div>
@@ -28,7 +28,7 @@
                 <input required type="email" class="input-field email w3-round-large" id="useremail" placeholder="Email">
                 <input required type="password" class="input-field password w3-round-large" id="userpassword" placeholder="Password">
                 <div class="detail-bar">
-                    <input type="checkbox" id="remember-login" value="false">
+                    <input type="checkbox" id="remember-login" defaultValue="false">
                     <label for="remember-login"> Remember me</label><br>
                     <a href="./forgotten-password.html"> Forgot my password</a>
                 </div>

@@ -59,6 +59,8 @@ function loginUser(){
     if (user){
         console.log('Form has been submitted. You have been loged in successfully!');
         setCookieUser(user['name']);
+        if(document.getElementById("remember-login").checked){
+            setCookieRememberUser(user['email'])};
         window.location.replace("summary.html");}
     else{
         console.log('Uupps! You are not registered. Please sign in first.');
@@ -80,3 +82,22 @@ function addNewUser(){
     console.log('Form has been submitted. You are registered right now!');
     window.location.replace("index.html")
 }
+
+function setCookieRememberUser(currentUser){
+    let now =  getCookieUserExpireTime();
+    document.cookie ="email = " + currentUser + "; expires=" + now.toUTCString() + "; path=/";
+ }
+
+ function getCookieUserExpireTime(){
+    let now = new Date();
+    let time = now.getTime();
+    let expireTime = time + (24*1 * 60 * 60 * 1000); //Calculates the miliseconds for 24h  -> 24* 1h * 60 min * 60 sec * 1000 ms
+    now.setTime(expireTime); // sets the time to the expiration date
+    return now;
+  }
+
+  function writeRememberedUserMail(){
+    if(document.cookie.includes('@')){
+        document.getElementById('useremail').setAttribute("value", `${getcookie(document.cookie.includes('@'))}`);
+    }
+  }

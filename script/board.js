@@ -364,7 +364,7 @@ function generateSecondTaskPageHTML(currentTaskIndex) {
     <div onclick="doNotClose(event)" class="open-task-card">
     <img class="board-close-button" src="./assets/img/icons/board-task-close.svg" 
     onclick="closeOpenTaskPopup()">
-    
+    <form  class="input-bar" onsubmit="saveChangedTasks(); return false" autocomplete="on">
     <div class="add-task-title">
         <label for="add-task-input-title">Title</label>
         <input id="change-task-input-title" type="text" placeholder="Title" value="${tasks[currentTaskIndex]['title']}" required>
@@ -395,9 +395,10 @@ function generateSecondTaskPageHTML(currentTaskIndex) {
 
     <div id="open-task-contacts"></div>
 
-    <button class="board-edit-button" onclick="saveChanges()">OK<img style="object-fit: contain; 
+    <button type="button" class="board-edit-button"">OK<img style="object-fit: contain; 
     color: white; margin-left: 10px" src="./assets/img/icons/board-ok-white.svg"></button>
     </div>
+    </form>
     `;
 }
 

@@ -5,8 +5,10 @@
     margin-left: 232px;
     margin-right: 0;
     padding: 50px;
-    height: 90vh;
+    min-height: 90vh;
     padding-bottom: 0;
+    overflow: scroll;
+    margin-bottom: 80px;
 }
 
 .board-content{
