@@ -58,7 +58,7 @@ function loginUser(){
     let user = users.find( u => u.email == email.value && u.password == password.value) 
     if (user){
         console.log('Form has been submitted. You have been loged in successfully!');
-        setCookieUser(user['name']);
+            setCookieUser(user['name']);
         if(document.getElementById("remember-login").checked){
             setCookieRememberUser(user['email'])};
         window.location.replace("summary.html");}

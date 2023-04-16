@@ -149,8 +149,9 @@ function getCookieExpireTime(){
 }
 
 function changeProfileImage(){
-    if(![window.location.pathname.includes('signup.html'||'forgotten-password.html'||'index.html'||'/reset-password.html')]) {
+    if(window.location.pathname.includes('summary') ||window.location.pathname.includes('legal-notice') ||window.location.pathname.includes('help') ||window.location.pathname.includes('contacts') ||window.location.pathname.includes('board') || window.location.pathname.includes('add-task')){
         checkProfileImage();
+        console.log('after login')
         }
 }
 
