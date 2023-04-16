@@ -355,8 +355,9 @@ function openSecondTaskPage(currentTaskIndex) {
     initChangeDueDate(currentTaskIndex);
     initChangePrioButtons();
     setChangePrioButtonDesign(tasks[currentTaskIndex]['prio']);
+    pushAlreadySelectedContacts();
     initChangeAssignedTo();
-    generateContactsInOpenTaskHTML(currentTaskIndex);
+    renderChangeAssignedUsers();
 }
 
 function generateSecondTaskPageHTML(currentTaskIndex) {
@@ -364,7 +365,7 @@ function generateSecondTaskPageHTML(currentTaskIndex) {
     <div onclick="doNotClose(event)" class="open-task-card">
     <img class="board-close-button" src="./assets/img/icons/board-task-close.svg" 
     onclick="closeOpenTaskPopup()">
-    <form  class="input-bar" onsubmit="saveChangedTasks(); return false" autocomplete="on">
+    <form  class="input-bar" onsubmit="saveChangedTask(${tasks[currentTaskIndex]}); return false" autocomplete="on">
     <div class="add-task-title">
         <label for="add-task-input-title">Title</label>
         <input id="change-task-input-title" type="text" placeholder="Title" value="${tasks[currentTaskIndex]['title']}" required>
@@ -393,9 +394,7 @@ function generateSecondTaskPageHTML(currentTaskIndex) {
     <div class="add-task-assigned-users-main" id="change-task-assigned-users"></div>
     </div>
 
-    <div id="open-task-contacts"></div>
-
-    <button type="button" class="board-edit-button"">OK<img style="object-fit: contain; 
+    <button type="submit" class="board-edit-button"">OK<img style="object-fit: contain; 
     color: white; margin-left: 10px" src="./assets/img/icons/board-ok-white.svg"></button>
     </div>
     </form>
@@ -513,7 +512,6 @@ function initChangeAssignedTo() {
  */
 function openChangeAssignedToDropdown() {
     document.getElementById('change-task-assignedto-dropdown').classList.toggle('d-none');
-    document.getElementById('change-task-category-dropdown').classList.add('d-none');
     renderChangeTopAssigendTo();
 }
 
@@ -524,7 +522,7 @@ function openChangeAssignedToDropdown() {
 function renderChangeTopAssigendTo() {
     document.getElementById('change-task-assigendto-dropdown-top').innerHTML = '';
     document.getElementById('change-task-assigned-error').innerHTML = '';
-    document.getElementById('change-task-assigendto-dropdown-top').innerHTML = openChangeTopPlaceholderHTML('Select contacts to assign');
+    document.getElementById('change-task-assigendto-dropdown-top').innerHTML = openTopPlaceholderHTML('Select contacts to assign');
 }
 
 /**
@@ -541,7 +539,6 @@ function renderChangeInviteNewContact() {
  */
 function renderChangeAssignedToSelection() {
     document.getElementById('change-task-assignedto-dropdown').innerHTML = '';
-
     for (let i = 0; i < contacts.length; i++) {
         const name = contacts[i].fullname;
         const email = contacts[i].email;
@@ -610,12 +607,12 @@ function renderChangeTopAssigendToAfterNewContact() {
  */
 function searchChangeNewContactPushUser(emailInput) {
     const selectedContact = contacts.find(contact => contact.email === emailInput);
-    let bgColor = selectedContact.bgcolor;
+    let bgcolor = selectedContact.bgcolor;
     let initals = selectedContact.initals;
-    let index = assignedToUsers.findIndex(userInfo => userInfo.bgColor === bgColor && userInfo.initals === initals);
+    let index = assignedToUsers.findIndex(userInfo => userInfo.bgcolor === bgcolor && userInfo.initals === initals);
     // prevent multi generate
     if (index === -1) {
-        assignedToUsers.push({ bgColor: bgColor, initals: initals });
+        assignedToUsers.push({ bgcolor: bgColor, initals: initals });
     }
 }
 
@@ -623,10 +620,10 @@ function searchChangeNewContactPushUser(emailInput) {
  * Toggles the checkbox state of the assigned-to user and 
  * updates the assignedToUsers array with the user's background color and initials.
  * @param {event} event - The event object.
- * @param {String} bgColor - The background color of the user in the contacts array as rgb.
+ * @param {String} bgcolor - The background color of the user in the contacts array as rgb.
  * @param {String} initals - The initials of the user in the contacts array.
  */
-function toggleChangeCheckboxAssigned(event, bgColor, initals) {
+function toggleChangeCheckboxAssigned(event, bgcolor, initals) {
     let divContainerAssigned = event.target.closest('.add-task-dropdown-option');
     let checkboxAssigned = divContainerAssigned.querySelector('.validate-assignedto-checkbox');
 
@@ -634,22 +631,22 @@ function toggleChangeCheckboxAssigned(event, bgColor, initals) {
         checkboxAssigned.checked = !checkboxAssigned.checked;
     }
 
-    updateChangeAssignedToUsers(checkboxAssigned, bgColor, initals);
+    updateChangeAssignedToUsers(checkboxAssigned, bgcolor, initals);
     renderChangeAssignedUsers();
 }
 
 /**
  * Updates the assignedToUsers array based on the checkbox state of the assigned user.
  * @param {Object} checkboxAssigned - The HTML checkbox element representing the assigned user.
- * @param {String} bgColor - The background color of the user in the contacts array as rgb.
+ * @param {String} bgcolor - The background color of the user in the contacts array as rgb.
  * @param {String} initals - The initials of the user in the contacts array.
  */
-function updateChangeAssignedToUsers(checkboxAssigned, bgColor, initals) {
-    let index = assignedToUsers.findIndex(userInfo => userInfo.bgColor === bgColor && userInfo.initals === initals);
+function updateChangeAssignedToUsers(checkboxAssigned, bgcolor, initals) {
+    let index = assignedToUsers.findIndex(userInfo => userInfo.bgcolor === bgcolor && userInfo.initals === initals);
     // prevent multi generate
     if (checkboxAssigned.checked) {
         if (index === -1) {
-            assignedToUsers.push({ bgColor: bgColor, initals: initals });
+            assignedToUsers.push({ bgcolor: bgcolor, initals: initals });
         }
     } else {
         if (index !== -1) {
@@ -666,9 +663,9 @@ function updateChangeAssignedToUsers(checkboxAssigned, bgColor, initals) {
 function renderChangeAssignedUsers() {
     document.getElementById('change-task-assigned-users').innerHTML = '';
     for (let i = 0; i < assignedToUsers.length; i++) {
-        let bgColor = assignedToUsers[i].bgColor;
+        let bgcolor = assignedToUsers[i].bgcolor;
         let initals = assignedToUsers[i].initals;
-        document.getElementById('change-task-assigned-users').innerHTML += openChangeAssignedUserHTML(bgColor, initals);
+        document.getElementById('change-task-assigned-users').innerHTML += openChangeAssignedUserHTML(bgcolor, initals);
     }
 }
 
@@ -705,9 +702,9 @@ function openChangeTopAssignedToHTML() {
     `;
 }
 
-function openChangeAssignedListHTML(name, email, bgColor, initals) {
+function openChangeAssignedListHTML(name, email, bgcolor, initals) {
     return /*html*/`
-    <div style="justify-content: space-between;" class="add-task-dropdown-option"  onclick="toggleChangeCheckboxAssigned(event,'${bgColor}','${initals}')">
+    <div style="justify-content: space-between;" class="add-task-dropdown-option"  onclick="toggleChangeCheckboxAssigned(event,'${bgcolor}','${initals}')">
         ${name}
         <input type="checkbox" name="${email}" value="${name}" class="validate-assignedto-checkbox">
     </div>
@@ -736,10 +733,34 @@ function openChangeNewContactSelectHTML() {
     `;
 }
 
-function openChangeAssignedUserHTML(bgColor, initals) {
+function openChangeAssignedUserHTML(bgcolor, initals) {
     return`
-    <div style="background: rgb(${bgColor});" class="add-task-assigned-user">
+    <div style="background: rgb(${bgcolor});" class="add-task-assigned-user">
         <div>${initals}</div>
     </div>
     `;
 }
+
+function saveChangedTask(currentTask){
+    pushChangeTaskIntoBackend(currentTask);
+    location.reload();
+    return false;
+}
+
+function pushAlreadySelectedContacts(){
+    for (let j = 0; j < currentContacts.length; j++) {
+        const element = currentContacts[j][0];
+        assignedToUsers.push(element);
+    }
+    
+}
+
+async function pushChangeTaskIntoBackend(currentTask) {
+    currentTask['title'] = document.getElementById('change-task-input-title').value;
+    currentTask['description'] = document.getElementById('change-task-input-description').value;
+    currentTask['date'] = document.getElementById('change-task-input-due-date').value;
+    currentTask['prio'] = chosenPrioButton;
+    currentTask['contact'] = assignedToUsers;
+    await backend.setItem('tasks', JSON.stringify(tasks));
+}
+

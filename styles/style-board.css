@@ -5,10 +5,10 @@
     margin-left: 232px;
     margin-right: 0;
     padding: 50px;
-    min-height: 90vh;
+    height: 100%;
+    min-height: 88vh;
     padding-bottom: 0;
     overflow: scroll;
-    margin-bottom: 80px;
 }
 
 .board-content{
@@ -47,6 +47,7 @@
     border: 1px solid #D1D1D1;
     border-radius: 10px;
     height: 100%;
+    width: unset!important;
   }
 
 .btn-dark-grey {
@@ -68,8 +69,7 @@
     display: flex;
     white-space: nowrap;
     width: 100%;
-    padding: 8px;
-    height: 100%;
+    min-height: 100%;
 }
 
 .board-box{
@@ -82,7 +82,7 @@
 .board-box-header{
     display: flex;
     justify-content: space-between;
-    padding: 8px 16px;
+    padding: 8px 0px;
     margin-bottom: 24px;
 }
 
@@ -206,8 +206,67 @@
     margin-left: 10px;
 }
 
+.btn-mobile {
+    display: none !important;
+}
+
   @media screen and (max-width: 1170px){
     .board-main-container {
         margin-left: 0;
+        padding-bottom: 80px;
+    }
+
+    .contacts-overlay {
+        margin-top: 89px;
+        background: #F5F5F5;
+        margin-bottom: 80px;
+        z-index: unset;
+    }
+  }
+
+  @media screen and (max-width: 1000px){
+    .board-header-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+        margin-bottom: unset;
+        margin-bottom: 3vh;
+    }
+
+    .btn-normal {
+       display: none !important;
+    }
+
+    .btn-mobile {
+        display: flex !important;
+        justify-content: center;
+        padding: 10px 15px!important;
+        width: fit-content !important;
+        height: fit-content !important;
+        font-size: large;
+    }
+
+    .board-responsive-headline {
+        width: 100%;
+        display: flex;
+        flex-direction: row !important;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .board-content-container{
+        flex-direction: column;
+    }
+
+    .board-box{
+        width: 100%;
+        padding: 0;
+    }
+
+    .contacts-overlay{
+        margin-top: 89px;
+        background-color: unset;
+        margin-bottom: 80px;
+        z-index: unset;
     }
   }

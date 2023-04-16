@@ -48,12 +48,16 @@
         <!--Visible Content of Board-->
         <div class="board-content" id="board-content">
             <div class="board-header-bar">
+                <div class="board-responsive-headline">
                 <h1>Board</h1>
+                <a onclick="boardOpenAddTask(), initAddTask()"
+                        class="w3-button btn-dark-grey w3-round-large w3-hover-blue btn-text-center btn-mobile">+</a>
+                </div>
                 <div class="board-header-input">
                     <input id="board-task-search" onkeyup="boardFilterTasks()" type="text" placeholder="Find task"
                         class="input-field find-task">
                     <a onclick="boardOpenAddTask(), initAddTask()"
-                        class="w3-button btn-dark-grey w3-round-large w3-hover-blue btn-text-center">Add task +</a>
+                        class="w3-button btn-dark-grey w3-round-large w3-hover-blue btn-text-center btn-normal">Add task +</a>
                 </div>
             </div>
             <div class="board-content-container">
