@@ -83,10 +83,10 @@ function addNewUser(){
     window.location.replace("index.html")
 }
 
-function setCookieRememberUser(currentUser){
+function setCookieRememberUser(currentUserMail){
     let now =  getCookieUserExpireTime();
-    document.cookie ="email = " + currentUser + "; expires=" + now.toUTCString() + "; path=/";
- }
+    document.cookie = "email =" + currentUserMail + "; expires=" + now.toUTCString() + ";path=/";
+}
 
  function getCookieUserExpireTime(){
     let now = new Date();
@@ -96,8 +96,24 @@ function setCookieRememberUser(currentUser){
     return now;
   }
 
-  function writeRememberedUserMail(){
-    if(document.cookie.includes('@')){
-        document.getElementById('useremail').setAttribute("value", `${getcookie(document.cookie.includes('@'))}`);
+  function writeRememberUserMail(){
+    if(getRememberUserCookie("email")){
+        document.getElementById('useremail').setAttribute("value", `${getRememberUserCookie("email")}`);
     }
+  }
+
+  function getRememberUserCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
   }
