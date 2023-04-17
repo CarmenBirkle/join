@@ -7,7 +7,7 @@
     }
 
     .add-task-media {
-        width: 323px;
+        width: 513px;
     }
 
     .add-task-media-kanban {
@@ -37,7 +37,7 @@
     .add-task-leftside {
         width: 100%;
 
-        gap: 9px;
+        gap: 14px;
     }
 
     .add-task-title {
@@ -49,6 +49,7 @@
     }
 
     .add-task-description {
+        margin-top: 2px;
         height: 120px;
     }
 
@@ -100,7 +101,7 @@
     .add-task-rightside {
         width: 100%;
 
-        gap: 9px;
+        gap: 14px;
     }
 
     /* --- Form Rightside Due-Date --- */
@@ -114,6 +115,7 @@
 
     /* --- Form Rightside Due-Date --- */
     .add-task-prio {
+        margin-top: 4px;
         height: 78px;
     }
 
@@ -180,5 +182,11 @@
     /* --- Added Task --- */
     .add-task-added {
         transform: translate(-50%, -50%);
+    }
+}
+
+@media (max-width: 800px) {
+    .add-task-media {
+        width: 313px;
     }
 }

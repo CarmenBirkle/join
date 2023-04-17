@@ -73,8 +73,6 @@
 }
 
 .add-task-title label {
-    width: 65px;
-
     color: #000000;
 }
 
@@ -112,8 +110,6 @@
 }
 
 .add-task-description label {
-    width: 154px;
-
     color: #000000;
 }
 
@@ -161,8 +157,6 @@
 }
 
 .add-task-category label {
-    width: 93px;
-
     color: #000000;
 }
 
@@ -305,8 +299,6 @@
 }
 
 .add-task-assigned label {
-    width: 118px;
-
     color: #000000;
 }
 
@@ -422,8 +414,6 @@
 }
 
 .add-task-due-date label {
-    width: 91px;
-
     color: #000000;
 }
 
@@ -462,7 +452,7 @@
     gap: 8px;
 
     width: 100%;
-    height: 113px;
+    height: 110px;
 }
 
 .add-task-prio label {
