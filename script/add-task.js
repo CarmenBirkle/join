@@ -638,7 +638,7 @@ async function pushTaskIntoBackend() {
     }
 
     tasks.push(task);
-    //await backend.setItem('tasks', JSON.stringify(tasks));
+    await backend.setItem('tasks', JSON.stringify(tasks));
     console.log(tasks); // Test !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 }
 
