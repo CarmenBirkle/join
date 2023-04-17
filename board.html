@@ -33,10 +33,10 @@
     <div class="board-main-container">
         <!-- Include hidden Template Add Task -->
         <div id="board-add-task" class="d-none">
-            <div class="contacts-overlay" onclick="closeAddTaskPopup()">
-                <div class="contacts-add-contact-add-task fadeInRightAlways"
+            <div class="board-add-task-overlay" onclick="closeAddTaskPopup()">
+                <div class="board-add-task fadeInRightAlways"
                     onclick="doNotClose(event)">
-                    <img class="contacts-addTask-close-add-task" onclick="boardCloseAddTask()"
+                    <img class="board-add-task-close" onclick="boardCloseAddTask()"
                         src="./assets/img/icons/contacs-x.svg" onclick="boardCloseAddTask()" alt="X">
                     <div class="contacts-include-tasks" w3-include-html="./assets/templates/task-template.html"></div>
                 </div>
