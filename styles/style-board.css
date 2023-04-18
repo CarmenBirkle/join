@@ -250,11 +250,11 @@
 
 @media screen and (max-width: 1170px) {
 
-    header{
+    header {
         z-index: 1;
     }
 
-    .side-bar-container{
+    .side-bar-container {
         z-index: 1;
     }
 
@@ -274,14 +274,27 @@
         z-index: unset;
     }
 
-    .board-add-task{
+    .board-add-task {
         background: none;
         position: inherit;
         height: inherit;
     }
 
-    .add-task-media{
+    .add-task-media {
         width: inherit !important;
+    }
+
+    /*TEST*/
+    .board-main-container {
+        margin: 74px 0px 0px 0px;
+        padding: 0px;
+    }
+
+    /*TEST*/
+    .board-content {
+        padding: 50px;
+        margin-top: 15px;
+        margin-bottom: 89px;
     }
 }
 
@@ -334,21 +347,44 @@
 
 @media screen and (max-width: 550px) {
 
-    .board-add-task{
+    /*TEST von*/
+    .board-add-task {
         padding: unset;
-        scale: 0.9;
+        scale: 0.95;
     }
 
+    .contacts-include-tasks {
+        padding: 0px !important;
+    }
+
+    .board-add-task {
+        border-radius: 0px;
+    }
+
+    .board-main-container {
+        margin: 49px 0px 0px 0px;
+        padding: 0px;
+    }
+
+    .board-content {
+        padding: 50px;
+        margin-top: 40px;
+        margin-bottom: 89px;
+    }
+
+    /*TEST bis*/
     .add-task-leftside {
-        width: unset !important;
+        /*width: unset !important;*/
+        width: 376px !important;
     }
 
     .add-task-rightside {
-        width: unset !important;
+        /*width: unset !important;*/
+        width: 376px !important;
     }
 
     .add-task-headline {
-        margin-left: 30px !important;
+        /*margin-left: 30px !important;*/
         font-size: 45px !important;
     }
 
