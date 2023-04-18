@@ -136,7 +136,6 @@ function setCookieUser(user) {
  * note: since there is no image upload option, this has been fixed.
  */
 function checkProfileImage() {
-  console.log('ausgeführt');
   const img = document.getElementById('header-profile-img');
   switch (true) {
     case document.cookie.includes('user=carmenbirkle'):
@@ -164,7 +163,6 @@ function changeProfileImage() {
     window.location.pathname.includes('add-task')
   ) {
     checkProfileImage();
-    console.log('after login');
   }
 }
 

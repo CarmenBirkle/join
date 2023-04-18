@@ -322,7 +322,6 @@ function createContact() {
     phone: phone,
     bgcolor: randomRGBColor(),
   };
-  console.log(contact); // TODO raus!
   return contact;
 }
 
