@@ -8,7 +8,7 @@ let currentContacts;
 async function renderTasks() {
     await includeHTML();
     await downloadFromServer();
-    tasks = JSON.parse(backend.getItem('tasks')) || [];
+    tasks = await JSON.parse(backend.getItem('tasks')) || [];
     renderTasksToDo();
     renderTasksInProgress();
     renderTasksAwaitingFeedback();
