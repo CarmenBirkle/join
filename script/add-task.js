@@ -591,8 +591,9 @@ function pushChosenSubtasks() {
  * 2. Start pushTaskIntoBackend() function.
  * 3. Reset the form by automatic trigger the clear button.
  * 4. Shows the showsAddedTaskAnimation.
- * 5. After sending the form into the backend the create task button will be activated again.
- * @async - pushTaskIntoBackend()
+ * 5. Forwards to the board.html.
+ * 6. After sending the form into the backend the create task button will be activated again.
+ * @async - pushTaskIntoBackend() / Pushed the task into the backend.
  */
 async function sendFormToBackend() {
     try {
@@ -603,6 +604,9 @@ async function sendFormToBackend() {
 
         document.getElementById('add-task-clear-button').click(); // reset form
         showsAddedTaskAnimation();
+        setTimeout(() => {
+            window.location.href = 'board.html';
+        }, 2000);
     } catch (error) {
         console.log('An error has occurred!' + error);
     } finally {
@@ -650,11 +654,6 @@ function dateFormattedMilliseconds() {
     let date = document.getElementById('add-task-input-due-date').value;
     console.log(date); // Test !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     let milliseconds = Date.parse(date);
-    // TEST
-    const Testdate = new Date(milliseconds);
-    const formattedDate = Testdate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-    console.log(formattedDate);
-    //TEST
     return milliseconds;
 }
 
