@@ -248,6 +248,10 @@
     align-items: center;
 }
 
+input[type=checkbox]:checked::before {
+    top: -5px !important;
+}
+
 @media screen and (max-width: 1170px) {
 
     header {
