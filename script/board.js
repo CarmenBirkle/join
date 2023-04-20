@@ -159,13 +159,20 @@ function startDragging(currentTaskIndex) {
 
 function allowDrop(ev) {
     ev.preventDefault();
-
 }
 
 async function moveTo(category) {
     tasks[currentDraggedElement]['category'] = category;
     await backend.setItem('tasks', JSON.stringify(tasks));
     window.location.reload();
+}
+
+function highlight(category){
+    document.getElementById(category).classList.add('drag-area-highlight')
+}
+
+function removeHighlight(category){
+    document.getElementById(category).classList.remove('drag-area-highlight')
 }
 
 /**
@@ -237,12 +244,4 @@ function boardFilterTasks() {
             document.getElementById(`board-task-${i}`).classList.remove('d-none');
         }
     }
-}
-
-function highlight(category){
-    document.getElementById(category).classList.add('drag-area-highlight')
-}
-
-function removeHighlight(category){
-    document.getElementById(category).classList.remove('drag-area-highlight')
 }
