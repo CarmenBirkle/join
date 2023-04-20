@@ -10,9 +10,9 @@ setURL(
 async function init() {
   await includeHTML();
   await downloadFromServer();
-  contacts = JSON.parse(backend.getItem('contacts')) || [];
-  users = JSON.parse(backend.getItem('users')) || [];
-  tasks = JSON.parse(backend.getItem('tasks')) || [];
+  contacts = await JSON.parse(backend.getItem('contacts')) || [];
+  users = await JSON.parse(backend.getItem('users')) || [];
+  tasks = await JSON.parse(backend.getItem('tasks')) || [];
   handleWindowResize();
   changeProfileImage();
 }

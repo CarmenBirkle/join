@@ -1,14 +1,13 @@
 Aktuelle Todos:
-Daniel: Add Task js / Summary js
-Carmen: Logik Header
-Pascal: Animationen bei Login, Board html
+Daniel: -
+Carmen: -
+Pascal: -
 
 
 
 Allgemein: 
 Scrollbalken design (https://www.w3schools.com/howto/howto_css_custom_scrollbar.asp)
-Scrollbalken weg Contacts
-Account-Namen merken beim einloggen (cookie oder anders)
+
 
 
 Generelle Infos/Arbeitsanweisung:
@@ -24,6 +23,11 @@ Fonts definiert und eingebunden - Carmen
 GitHub Account erstellt - Carmen
 Summary html css responsive - Daniel
 Login Prozess html und css - Pascal
+Login js - Pascal
+Board html und css - Pascal
+Board Open Task templates und css - Pascal
+Board Logik - Pascal 
+Integration Add-Task in Board - Pascal, Daniel  
 Templates (side-bar + header) responsive  - Carmen
 Help + Legal Notice incl. responsive - Carmen 
 Logik Sidebar - Carmen

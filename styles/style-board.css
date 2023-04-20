@@ -252,6 +252,16 @@ input[type=checkbox]:checked::before {
     top: -5px !important;
 }
 
+.board-open-task-input {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+
+
+/* BOARD RESPONSIVE CSS */ 
+
 @media screen and (max-width: 1170px) {
 
     header {
@@ -267,6 +277,7 @@ input[type=checkbox]:checked::before {
         min-height: auto;
         margin-left: 0;
         margin-bottom: 130px;
+        margin-top: 74px;
     }
 
     .board-add-task-overlay {
@@ -288,13 +299,6 @@ input[type=checkbox]:checked::before {
         width: inherit !important;
     }
 
-    /*TEST*/
-    .board-main-container {
-        margin: 74px 0px 0px 0px;
-        padding: 0px;
-    }
-
-    /*TEST*/
     .board-content {
         padding: 50px;
         margin-top: 15px;
@@ -351,7 +355,6 @@ input[type=checkbox]:checked::before {
 
 @media screen and (max-width: 550px) {
 
-    /*TEST von*/
     .board-add-task {
         padding: unset;
         scale: 0.95;
@@ -376,19 +379,16 @@ input[type=checkbox]:checked::before {
         margin-bottom: 89px;
     }
 
-    /*TEST bis*/
+
     .add-task-leftside {
-        /*width: unset !important;*/
         width: 376px !important;
     }
 
     .add-task-rightside {
-        /*width: unset !important;*/
         width: 376px !important;
     }
 
     .add-task-headline {
-        /*margin-left: 30px !important;*/
         font-size: 45px !important;
     }
 
