@@ -36,8 +36,7 @@
         <!-- Include hidden Template Add Task -->
         <div id="board-add-task" class="d-none">
             <div class="board-add-task-overlay" onclick="closeAddTaskPopup()">
-                <div class="board-add-task fadeInRightAlways"
-                    onclick="doNotClose(event)">
+                <div class="board-add-task fadeInRightAlways" onclick="doNotClose(event)">
                     <img class="board-add-task-close" onclick="boardCloseAddTask()"
                         src="./assets/img/icons/contacs-x.svg" onclick="boardCloseAddTask()" alt="X">
                     <div class="contacts-include-tasks" w3-include-html="./assets/templates/task-template.html"></div>
@@ -51,15 +50,16 @@
         <div class="board-content" id="board-content">
             <div class="board-header-bar">
                 <div class="board-responsive-headline">
-                <h1>Board</h1>
-                <a onclick="boardOpenAddTask(), initAddTask()"
+                    <h1>Board</h1>
+                    <a onclick="boardOpenAddTask(), initAddTask()"
                         class="w3-button btn-dark-grey w3-round-large w3-hover-blue btn-text-center btn-mobile">+</a>
                 </div>
                 <div class="board-header-input">
                     <input id="board-task-search" onkeyup="boardFilterTasks()" type="text" placeholder="Find task"
                         class="input-field find-task">
                     <a onclick="boardOpenAddTask(), initAddTask()"
-                        class="w3-button btn-dark-grey w3-round-large w3-hover-blue btn-text-center btn-normal">Add task +</a>
+                        class="w3-button btn-dark-grey w3-round-large w3-hover-blue btn-text-center btn-normal">Add task
+                        +</a>
                 </div>
             </div>
             <div class="board-content-container">
@@ -68,7 +68,8 @@
                         <h4>To do</h4><img onclick="boardOpenAddTask(), initAddTask()"
                             src="./assets/img/icons/board-plus.svg">
                     </div>
-                    <div class="box-content" id="to-do" ondrop="moveTo('to-do')" ondragover="allowDrop(event)"></div>
+                    <div class="box-content" id="to-do" ondrop="moveTo('to-do')" ondragleave="removeHighlight('to-do')"
+                        ondragover="allowDrop(event); highlight('to-do')"></div>
                 </div>
                 <div class="board-box">
                     <div class="board-box-header">
@@ -76,7 +77,7 @@
                             src="./assets/img/icons/board-plus.svg">
                     </div>
                     <div class="box-content" id="in-progress" ondrop="moveTo('in-progress')"
-                        ondragover="allowDrop(event)">
+                        ondragleave="removeHighlight('in-progress')" ondragover="allowDrop(event); highlight('in-progress')">
                     </div>
                 </div>
                 <div class="board-box">
@@ -85,7 +86,7 @@
                             src="./assets/img/icons/board-plus.svg">
                     </div>
                     <div class="box-content" id="awaiting-feedback" ondrop="moveTo('awaiting-feedback')"
-                        ondragover="allowDrop(event)">
+                        ondragleave="removeHighlight('awaiting-feedback')" ondragover="allowDrop(event); highlight('awaiting-feedback')">
                     </div>
                 </div>
                 <div class="board-box">
@@ -93,7 +94,8 @@
                         <h4>Done</h4><img onclick="boardOpenAddTask('done'), initAddTask()"
                             src="./assets/img/icons/board-plus.svg">
                     </div>
-                    <div class="box-content" id="done" ondrop="moveTo('done')" ondragover="allowDrop(event)"></div>
+                    <div class="box-content" id="done" ondrop="moveTo('done')" ondragleave="removeHighlight('done')"
+                        ondragover="allowDrop(event); highlight('done')"></div>
                 </div>
             </div>
         </div>

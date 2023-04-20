@@ -111,9 +111,9 @@ function generateContactsInTask(index) {
     let contactField = document.getElementById(`box-contacts-${index}`);
     contactField.innerHTML = ``;
     for (let i = 0; i < currentContacts.length; i++) {
-        let bgColor = currentContacts[i][0]['bgcolor'];
+        let bgcolor = currentContacts[i][0]['bgcolor'];
         let initals = currentContacts[i][0]['initals'];
-        contactField.innerHTML += openAssignedUserHTML(bgColor, initals);
+        contactField.innerHTML += openAssignedUserHTML(bgcolor, initals);
     }
 }
 
@@ -165,7 +165,7 @@ function allowDrop(ev) {
 async function moveTo(category) {
     tasks[currentDraggedElement]['category'] = category;
     await backend.setItem('tasks', JSON.stringify(tasks));
-    renderTasks();
+    window.location.reload();
 }
 
 /**
@@ -176,7 +176,7 @@ async function moveTo(category) {
 async function setStartCategory(category) {
     tasks[tasks.length - 1]['category'] = category;
     await backend.setItem('tasks', JSON.stringify(tasks));
-    renderTasks();
+    await renderTasks();
 }
 
 /**
@@ -217,7 +217,7 @@ async function furtherFunctionsToValidate(category) {
     sendFormToBackend();
     await includeHTML();
     await downloadFromServer();
-    tasks = JSON.parse(backend.getItem('tasks')) || [];
+    tasks = await JSON.parse(backend.getItem('tasks')) || [];
     setStartCategory(category);
     window.location.reload();
 }
@@ -237,4 +237,12 @@ function boardFilterTasks() {
             document.getElementById(`board-task-${i}`).classList.remove('d-none');
         }
     }
+}
+
+function highlight(category){
+    document.getElementById(category).classList.add('drag-area-highlight')
+}
+
+function removeHighlight(category){
+    document.getElementById(category).classList.remove('drag-area-highlight')
 }
