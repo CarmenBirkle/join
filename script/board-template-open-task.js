@@ -232,8 +232,7 @@ function renderChangePrioButtonError() {
 
 /*-- Assigned-To --*/
 /**
- * Generate the loadAssignedToHTML from the add-task-template.js.
- * Executes the functions that renders the names and the new-contact field.
+ * Executes the functions that renders the assigned to field.
  */
 function initChangeAssignedTo() {
     document.getElementById('change-task-assignedto-render').innerHTML = '';
@@ -244,8 +243,7 @@ function initChangeAssignedTo() {
 }
 
 /**
- * Open the dropdown form the assigned to section.
- * 
+ * Open the dropdown form in the assigned to section.
  */
 function openChangeAssignedToDropdown() {
     document.getElementById('change-task-assignedto-dropdown').classList.toggle('d-none');
@@ -271,7 +269,7 @@ function renderChangeInviteNewContact() {
 }
 
 /**
- * Render the fullname / email / bgColor / initals from the contacts (backend).
+ * Render the fullname / email / bgcolor / initals from the contacts (backend).
  * The fullname will be show in the dropdown assigned section.
  */
 function renderChangeAssignedToSelection() {
@@ -279,9 +277,9 @@ function renderChangeAssignedToSelection() {
     for (let i = 0; i < contacts.length; i++) {
         const name = contacts[i].fullname;
         const email = contacts[i].email;
-        const bgColor = contacts[i].bgcolor;
+        const bgcolor = contacts[i].bgcolor;
         const initals = contacts[i].initals;
-        document.getElementById('change-task-assignedto-dropdown').innerHTML += openChangeAssignedListHTML(name, email, bgColor, initals);
+        document.getElementById('change-task-assignedto-dropdown').innerHTML += openChangeAssignedListHTML(name, email, bgcolor, initals);
     }
 }
 
@@ -339,7 +337,7 @@ function renderChangeTopAssigendToAfterNewContact() {
 
 /**
  * Searches for a contact in the `contacts` array with the specified email address and 
- * pushes the contact's initials and bgColor into the `assignedToUsers` array, if not already present.
+ * pushes the contact's initials and bgcolor into the `assignedToUsers` array, if not already present.
  * @param {String} emailInput - the value form the assigned-new-contact input field.
  */
 function searchChangeNewContactPushUser(emailInput) {
@@ -349,7 +347,7 @@ function searchChangeNewContactPushUser(emailInput) {
     let index = assignedToUsers.findIndex(userInfo => userInfo.bgcolor === bgcolor && userInfo.initals === initals);
     // prevent multi generate
     if (index === -1) {
-        assignedToUsers.push({ bgcolor: bgColor, initals: initals });
+        assignedToUsers.push({ bgcolor: bgcolor, initals: initals });
     }
 }
 
@@ -395,7 +393,6 @@ function updateChangeAssignedToUsers(checkboxAssigned, bgcolor, initals) {
 
 /**
  * Render the user icons, after selected them.
- * 
  */
 function renderChangeAssignedUsers() {
     document.getElementById('change-task-assigned-users').innerHTML = '';
@@ -408,7 +405,6 @@ function renderChangeAssignedUsers() {
 
 /**
  * Shows an error if no user was selected. (form validation)
- * 
  */
 function renderChangeAssignedToError() {
     document.getElementById('change-task-assigned-error').innerHTML = '';
@@ -417,6 +413,11 @@ function renderChangeAssignedToError() {
 
 
 /*-- Assigned to Template-HTML --*/
+
+/**
+ * Generates the general HTML of the assigned to field
+ */
+  
 function loadChangeAssignedToHTML() {
     return /*html*/`
     <div id="change-task-add-new-contact-section">

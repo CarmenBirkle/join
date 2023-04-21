@@ -1,3 +1,7 @@
+/**
+ * The global variables only for board
+ */
+
 let currentDraggedElement;
 let currentContacts;
 
@@ -216,7 +220,7 @@ async function boardValidateForm(category) {
         renderAssignedToError();
         return;
     }
-    furtherFunctionsToValidate(category);
+    await furtherFunctionsToValidate(category);
 }
 
 async function furtherFunctionsToValidate(category) {
