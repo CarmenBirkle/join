@@ -1,5 +1,5 @@
 function getUserLeftTemplate(contact) {
-    return `
+  return `
             <div class="contacts-information-top">
                 <div class="contact-icon" style="background-color: rgb(${contact.bgcolor})";>
                     <div class="contact-initals-big">${contact.initals}</div>
@@ -53,7 +53,7 @@ function getUserLeftTemplate(contact) {
 }
 
 function mobileLeftTemplate(contact) {
-    return `
+  return `
     <div id="mobileLeftTemplate" class="">
 
         <div class="contacts-titel-mobile">
@@ -117,7 +117,7 @@ function mobileLeftTemplate(contact) {
 }
 
 function contactListLetterTemplate(letter) {
-    return `
+  return `
         <div id="contacts-letter-container-${letter}" class="contacts-letter-container">
             <div class="contacts-first-letter">
                 ${letter}
@@ -129,8 +129,8 @@ function contactListLetterTemplate(letter) {
     `;
 }
 
-function contactListContactTemplate(contact){
-    return `
+function contactListContactTemplate(contact) {
+  return `
         <div id="contacs-singele-data${contact.number}" class="contacts-single-data" onclick="contactsShowUser(contacts, ${contact.number})">
             <div class="contacts-initals" style="background-color: rgb(${contact.bgcolor});">
                 <div class="contacts-initals"> ${contact.initals} </div>
@@ -144,7 +144,7 @@ function contactListContactTemplate(contact){
 }
 
 function contactsShowContactToEditTemplate(contact) {
-    return `
+  return `
             <div id="render-popup-edit-Contact" class="contacts-overlay" onclick="closeAllPopups()">
                 <div class="contacts-add-contact fadeInRight fadeInBottom" onclick="doNotClose(event)">
                     <div class="contacts-add-contact-left">
@@ -162,19 +162,19 @@ function contactsShowContactToEditTemplate(contact) {
                     </div>
                         <form class="form-mobile" action="" onsubmit="editContact(${contact.number}); return false">
                             <div class="contacts-input-with-icon">
-                                <input id="contacts-edit-fullname" type="text" 
+                                <input id="contacts-edit-fullname" class="contact-input" type="text" 
                                     placeholder="First- and Lastname"  value="${contact.fullname}" 
                                     title="Gebe Deinen Vor- und Nachnamen an (2 Wörter)">
                                 <span class="contacts-icon-name"></span>
                             </div>
                             <div class="contacts-input-with-icon">
-                                <input id="contacts-edit-email" class="contacts-email" type="email" required placeholder="Email"
+                                <input id="contacts-edit-email" class="contacts-email contact-input" type="email" required placeholder="Email"
                                     value="${contact.email}">
                                 <span class="contacts-icon-email"></span>
                             </div>
 
                             <div class="contacts-input-with-icon">
-                                <input id="contacts-edit-phone" type="tel" required placeholder="Phone" pattern="[0-9]+-[0-9]+"
+                                <input id="contacts-edit-phone" class="contact-input" type="tel" required placeholder="Phone" pattern="[0-9]+-[0-9]+"
                                     value="${contact.phone}" title="Das Format sollte diesem Schema entsprechen: 0123-456789">
                                 <span class="contacts-icon-phone"></span>
                             </div>
@@ -209,7 +209,7 @@ function contactsShowContactToEditTemplate(contact) {
 //                         <form class="form-mobile" action="" onsubmit="editContact(${contact.number}); return false">
 //                             <div class="contacts-input-with-icon">
 //                                 <input id="contacts-edit-fullname" type="text" required pattern="[a-zA-ZäöüÄÖÜß]+\s[a-zA-ZäöüÄÖÜß]+"
-//                                     placeholder="First- and Lastname"  value="${contact.fullname}" 
+//                                     placeholder="First- and Lastname"  value="${contact.fullname}"
 //                                     title="Gebe Deinen Vor- und Nachnamen an (2 Wörter)">
 //                                 <span class="contacts-icon-name"></span>
 //                             </div>
