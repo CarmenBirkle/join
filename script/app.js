@@ -10,9 +10,9 @@ setURL(
 async function init() {
   await includeHTML();
   await downloadFromServer();
-  contacts = await JSON.parse(backend.getItem('contacts')) || [];
-  users = await JSON.parse(backend.getItem('users')) || [];
-  tasks = await JSON.parse(backend.getItem('tasks')) || [];
+  contacts = (await JSON.parse(backend.getItem('contacts'))) || [];
+  users = (await JSON.parse(backend.getItem('users'))) || [];
+  tasks = (await JSON.parse(backend.getItem('tasks'))) || [];
   handleWindowResize();
   changeProfileImage();
 }
@@ -148,7 +148,6 @@ function checkProfileImage() {
       img.src = './assets/img/profile-images/danielhartmann.jpg';
       break;
     default:
-      console.log('Der Benutzer konnte nicht ermittelt werden');
       img.src = './assets/img/profile-images/guest.svg';
   }
 }
