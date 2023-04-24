@@ -74,7 +74,6 @@ function showsGreetingName(nameFromCookie) {
 function summaryGreetingResponsive() {
     if (window.innerWidth > 1350 || checkGreetingResponsiveCookie()) {
         document.getElementById('summary-welcome-responsive').classList.add('d-none');
-        console.log('Zu groß oder Greeting wurde bereits durchgeführt.'); // TEST !!!!!!!!!!!
         return;
     }
 
@@ -86,7 +85,6 @@ function summaryGreetingResponsive() {
  * Runs the welcome animation after logging in.
  */
 function showsGreetingResponsiveAnimation() {
-    console.log("Greeting wird durchgeführt..."); // TEST !!!!!!!!!!!!!!!!!!!
     document.getElementById('summary-welcome-responsive').classList.remove('d-none');
     setTimeout(() => {
         document.getElementById('summary-welcome-responsive').classList.add('summary-welcome-animation');
@@ -103,15 +101,6 @@ function showsGreetingResponsiveAnimation() {
 function checkGreetingResponsiveCookie() {
     const cookieValue = document.cookie;
     return cookieValue.includes('greetingResponsiveDone=true');
-    /*let cookieValue = document.cookie; // TEST !!!!!!!!!!!!!!!!!!!!!!!!
-    let validateGreetingCookie = cookieValue.split(';').find(cookie => cookie.includes('validationDone='));
-    if (validateGreetingCookie) {
-        let validateGreetingValue = validateGreetingCookie.split('=')[1];
-        if (validateGreetingValue === 'true') {
-            return true;
-        }
-    }
-    return false;*/
 }
 
 /**

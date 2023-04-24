@@ -643,7 +643,6 @@ async function pushTaskIntoBackend() {
 
     tasks.push(task);
     await backend.setItem('tasks', JSON.stringify(tasks));
-    console.log(tasks); // Test !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 }
 
 /**
@@ -652,7 +651,6 @@ async function pushTaskIntoBackend() {
  */
 function dateFormattedMilliseconds() {
     let date = document.getElementById('add-task-input-due-date').value;
-    console.log(date); // Test !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     let milliseconds = Date.parse(date);
     return milliseconds;
 }
@@ -671,42 +669,3 @@ function showsAddedTaskAnimation() {
         addedContainer.classList.add('d-none');
     }, 2000);
 }
-
-
-
-
-/////////////////////// TEST FUNCTION //////////////////////////////////
-/*
-async function sendTaskToUsers(task) {
-    for (let i = 0; i < users.length; i++) {
-        const user = users[i];
-        for (let j = 0; j < task.contact.length; j++) {
-            if (task.contact.includes(user.name) && task.contact[j] === user.name) {
-                user.tasks.push(task);
-                console.log(`Task added to user "${user.name}"`, users);
-            }
-        }
-    }
-}*/
-
-/*
-async function sendTaskToUsers(task) {
-    let usersWithTask = []; // leeres Array für User, die den Task erhalten sollen
-
-    for (let i = 0; i < users.length; i++) {
-        const user = users[i];
-        for (let j = 0; j < task.contact.length; j++) {
-            if (task.contact.includes(user.name) && task.contact[j] === user.name) {
-                usersWithTask.push(user); // User zum Array hinzufügen
-                console.log(`Task added to user "${user.name}"`, users);
-            }
-        }
-    }
-
-    // Schleife über das Array mit den Usern, die den Task erhalten sollen
-    for (let i = 0; i < usersWithTask.length; i++) {
-        const user = usersWithTask[i];
-        user.tasks.push(task);
-    }
-}
-*/
