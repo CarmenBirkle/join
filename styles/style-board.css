@@ -164,18 +164,54 @@
     min-width: 35%;
 }
 
-.board-edit-button {
+.board-button-box {
     position: absolute;
     bottom: 25px;
     right: 25px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    color: white;
+    border: none !important;
+    scale: 0.75;
+}
+
+.board-edit-button {
     background: #2A3647;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 12.5px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border: none !important;
+}
+
+.board-delete-button {
+    background: white;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #2A3647;
+}
+
+.board-save-button {
+    position: absolute;
     border-radius: 10px;
+    bottom: 25px;
+    right: 25px;
     padding: 15px 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
     border: none !important;
+    background-color: #2A3647;
+    scale: 0.75;
 }
 
 .board-close-button {
@@ -188,6 +224,16 @@
 }
 
 .board-edit-button:hover {
+    background-color: #29ABE2;
+    cursor: pointer;
+}
+
+.board-delete-button:hover {
+    background-color: #29ABE2;
+    cursor: pointer;
+}
+
+.board-save-button:hover {
     background-color: #29ABE2;
     cursor: pointer;
 }

@@ -38,8 +38,10 @@ function generateBoardOpenTaskHTML(currentTaskIndex) {
         <div class="board-prio-button" id="open-task-priority"></div></div>
         <p><b>Assigned to:</b></p>
         <div id="open-task-contacts"></div>
-        <div class="board-edit-button" onclick="openSecondTaskPage(${currentTaskIndex})"><img style="object-fit: contain; 
-        color: white" src="./assets/img/icons/board-edit-button-white.svg"></div>
+        <div class="board-button-box">
+        <div class="board-delete-button" onclick="boardDeleteTask(${currentTaskIndex})"><img style="object-fit: contain" src="./assets/img/icons/board-delete-button-black.svg"></div>
+        <div class="board-edit-button" onclick="openSecondTaskPage(${currentTaskIndex})"><img style="object-fit: contain" src="./assets/img/icons/board-edit-button-white.svg"></div>
+        </div>
     </div>
     `;
 }
@@ -141,7 +143,7 @@ function generateSecondTaskPageHTML(currentTaskIndex) {
     <div class="add-task-assigned-users-main" id="change-task-assigned-users"></div>
     </div>
 
-    <button type="submit" class="board-edit-button"">OK<img style="object-fit: contain; 
+    <button type="submit" class="board-save-button"">OK<img style="object-fit: contain; 
     color: white; margin-left: 10px" src="./assets/img/icons/board-ok-white.svg"></button>
     </div>
     </form>
@@ -500,4 +502,10 @@ async function pushChangeTaskIntoBackend(currentTask) {
     currentTask['prio'] = chosenPrioButton;
     currentTask['contact'] = assignedToUsers;
     await backend.setItem('tasks', JSON.stringify(tasks));
+}
+
+async function boardDeleteTask(currentTaskIndex){
+    tasks.splice(currentTaskIndex, 1);
+    await backend.setItem('tasks', JSON.stringify(tasks));
+    window.location.reload();
 }
