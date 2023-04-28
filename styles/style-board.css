@@ -304,7 +304,7 @@ input[type=checkbox]:checked::before {
     width: 100%;
 }
 
-.drag-area-highlight{
+.drag-area-highlight {
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: 30px;
     transform: scale(1.05);
@@ -312,7 +312,7 @@ input[type=checkbox]:checked::before {
 
 
 
-/* BOARD RESPONSIVE CSS */ 
+/* BOARD RESPONSIVE CSS */
 
 @media screen and (max-width: 1170px) {
 
@@ -431,13 +431,36 @@ input[type=checkbox]:checked::before {
         margin-bottom: 89px;
     }
 
+    .add-task-subtask-main-placeholder input {
+        font-size: 16px !important;
+    }
+
+    .add-task-new-categroy-input {
+        font-size: 16px !important;
+    }
+
+    .add-task-description textarea {
+        font-size: 16px !important;
+    }
+
+    .add-task-title input {
+        font-size: 16px !important;
+    }
+
+    .add-task-prio-button-container button {
+        font-size: 16px !important;
+    }
+
+    .add-task-due-date input {
+        font-size: 16px !important;
+    }
 
     .add-task-leftside {
-        width: 376px !important;
+        width: 315px !important;
     }
 
     .add-task-rightside {
-        width: 376px !important;
+        width: 315px !important;
     }
 
     .add-task-headline {
@@ -446,5 +469,17 @@ input[type=checkbox]:checked::before {
 
     .contacts-include-tasks {
         padding: 0;
+    }
+
+    .add-task-clear {
+        font-size: 20px !important;
+        width: 106px !important;
+        height: 61px !important;
+    }
+
+    .add-task-create {
+        font-size: 20px !important;
+        width: 146px !important;
+        height: 61px !important;
     }
 }
