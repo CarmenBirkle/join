@@ -419,9 +419,6 @@
 
 .add-task-due-date input {
     box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
 
     padding: 18px 21px;
 
