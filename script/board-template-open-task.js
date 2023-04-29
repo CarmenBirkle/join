@@ -110,11 +110,11 @@ function openSecondTaskPage(currentTaskIndex) {
  */
 
 function generateSecondTaskPageHTML(currentTaskIndex) {
-    return `
+    return html`
     <div onclick="doNotClose(event)" class="open-task-card">
     <img class="board-close-button" src="./assets/img/icons/board-task-close.svg" 
     onclick="closeOpenTaskPopup()">
-    <form  class="board-open-task-input input-bar" onsubmit="saveChangedTask(${tasks[currentTaskIndex]}); return false" autocomplete="on">
+    <form  class="board-open-task-input input-bar" onsubmit="saveChangedTask(${tasks[currentTaskIndex]}), return false" autocomplete="on">
     <div class="add-task-title">
         <label for="add-task-input-title">Title</label>
         <input id="change-task-input-title" type="text" placeholder="Title" value="${tasks[currentTaskIndex]['title']}" required>
@@ -282,6 +282,9 @@ function renderChangeAssignedToSelection() {
         const bgcolor = contacts[i].bgcolor;
         const initals = contacts[i].initals;
         document.getElementById('change-task-assignedto-dropdown').innerHTML += openChangeAssignedListHTML(name, email, bgcolor, initals);
+        if(assignedToUsers.contains(name)){
+            document.getElementById(`checkbox-${name}`).checked = true;
+        }
     }
 }
 
@@ -443,22 +446,12 @@ function openChangeTopAssignedToHTML() {
 }
 
 function openChangeAssignedListHTML(name, email, bgcolor, initals) {
-    if (assignedToUsers.includes(name)) {
         return /*html*/`
     <div style="justify-content: space-between;" class="add-task-dropdown-option"  onclick="toggleChangeCheckboxAssigned(event,'${bgcolor}','${initals}')">
         ${name}
-        <input type="checkbox" name="${email}" value="${name}" defaultValue="true" checked class="validate-assignedto-checkbox">
+        <input type="checkbox" name="${email}" value="${name}" id="checkbox-${name}" class="validate-assignedto-checkbox">
     </div>
      `;
-    }
-    else {
-        return /*html*/`
-    <div style="justify-content: space-between;" class="add-task-dropdown-option"  onclick="toggleChangeCheckboxAssigned(event,'${bgcolor}','${initals}')">
-        ${name}
-        <input type="checkbox" name="${email}" value="${name}" defaultValue="false" class="validate-assignedto-checkbox">
-    </div>
-     `;
-    }
 }
 
 function openChangeInviteNewContactHTML() {
@@ -491,8 +484,11 @@ function openChangeAssignedUserHTML(bgcolor, initals) {
     `;
 }
 
-function saveChangedTask(currentTask) {
-    pushChangeTaskIntoBackend(currentTask);
+async function saveChangedTask(currentTaskIndex) {
+    let currentTask = tasks[currentTaskIndex];
+    console.log(currentTask);
+    await pushChangeTaskIntoBackend(currentTask);
+    console.log(currentTask);
     window.location.reload();
 }
 

@@ -84,11 +84,12 @@
     justify-content: space-between;
     padding: 8px 0px;
     margin-bottom: 24px;
+    gap:5px;
 }
 
 .board-box-header h4 {
     font-weight: 700 !important;
-    font-size: large;
+    font-size: medium;
 }
 
 .board-box-header img {
