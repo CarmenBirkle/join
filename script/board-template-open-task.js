@@ -110,7 +110,7 @@ function openSecondTaskPage(currentTaskIndex) {
  */
 
 function generateSecondTaskPageHTML(currentTaskIndex) {
-    console.log(${tasks[currentTaskIndex]});
+    console.log(tasks[currentTaskIndex]);
     return `
     <div onclick="doNotClose(event)" class="open-task-card">
     <img class="board-close-button" src="./assets/img/icons/board-task-close.svg" 
