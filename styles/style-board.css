@@ -88,6 +88,7 @@
 
 .board-box-header h4 {
     font-weight: 700 !important;
+    font-size: large;
 }
 
 .board-box-header img {
@@ -97,7 +98,7 @@
 .box-content {
     display: flex;
     flex-direction: column;
-    gap: 35px;
+    gap: 15px;
     min-height: 100%;
 }
 
@@ -356,7 +357,7 @@ input[type=checkbox]:checked::before {
     }
 
     .board-content {
-        padding: 50px;
+        padding: 30px;
         margin-top: 15px;
         margin-bottom: 89px;
     }
