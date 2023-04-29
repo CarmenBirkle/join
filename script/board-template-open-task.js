@@ -443,7 +443,6 @@ function openChangeTopAssignedToHTML() {
 }
 
 function openChangeAssignedListHTML(name, email, bgcolor, initals) {
-    console.log(name);
     if (assignedToUsers.includes(name)) {
         return /*html*/`
     <div style="justify-content: space-between;" class="add-task-dropdown-option"  onclick="toggleChangeCheckboxAssigned(event,'${bgcolor}','${initals}')">
