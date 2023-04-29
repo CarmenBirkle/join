@@ -315,6 +315,9 @@ input[type=checkbox]:checked::before {
 /* BOARD RESPONSIVE CSS */
 
 @media screen and (max-width: 1170px) {
+    .header-block {
+        display: none !important;
+    }
 
     header {
         z-index: 1;
@@ -329,7 +332,7 @@ input[type=checkbox]:checked::before {
         min-height: auto;
         margin-left: 0;
         margin-bottom: 130px;
-        margin-top: 74px;
+        margin-top: 34px;
     }
 
     .board-add-task-overlay {

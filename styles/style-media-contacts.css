@@ -37,6 +37,21 @@
 }
 
 @media only screen and (max-width: 1170px) {
+  .header-block {
+    display: block;
+  }
+
+  .contacts-add-contact-add-task {
+    height: 100%;
+    width: 100%;
+    border-radius: 0px;
+  }
+
+  .contacts-include-tasks {
+    padding: 40px;
+  }
+
+
   .contact-list-container {
     margin-bottom: 80px;
   }
@@ -54,7 +69,7 @@
     height: 21.65px;
     /* left: 1050.82px; */
     right: 20px;
-    top: 90px;
+    top: 110px;
     cursor: pointer;
   }
 

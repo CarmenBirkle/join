@@ -30,6 +30,10 @@ hr {
   font-size: 21px;
 } */
 
+.header-block {
+  display: none;
+}
+
 .contact-input {
   padding-left: 21px;
   height: 25px;
@@ -105,7 +109,7 @@ hr {
   position: absolute;
   height: 21.65px;
   /* left: 1050.82px; */
-  right: 20px;
+  right: 40px;
   top: 49.11px;
   cursor: pointer;
 }
