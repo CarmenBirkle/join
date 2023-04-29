@@ -110,6 +110,7 @@ function openSecondTaskPage(currentTaskIndex) {
  */
 
 function generateSecondTaskPageHTML(currentTaskIndex) {
+    console.log(${tasks[currentTaskIndex]});
     return `
     <div onclick="doNotClose(event)" class="open-task-card">
     <img class="board-close-button" src="./assets/img/icons/board-task-close.svg" 
@@ -483,8 +484,7 @@ function openChangeAssignedUserHTML(bgcolor, initals) {
 
 function saveChangedTask(currentTask){
     pushChangeTaskIntoBackend(currentTask);
-    location.reload();
-    return false;
+    window.location.reload();
 }
 
 function pushAlreadySelectedContacts(){
