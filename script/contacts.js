@@ -62,11 +62,7 @@ function contactsCloseOverlayEdit() {
  * Function to display the overlay to add a new task
  */
 function contactsOpenAddTask() {
-  if (window.innerWidth > 1170) {
-    document.getElementById('contacts-add-task').classList.remove('d-none');
-  } else {
-    window.location.href = 'add-task.html';
-  }
+  document.getElementById('contacts-add-task').classList.remove('d-none');
 }
 
 /**
