@@ -580,7 +580,11 @@ function pushChosenSubtasks() {
     let subtaskCheckboxes = document.querySelectorAll('input[name=subtasks]');
     for (let i = 0; i < subtaskCheckboxes.length; i++) {
         if (subtaskCheckboxes[i].checked) {
-            chosenSubtasks.push(subtaskCheckboxes[i].value);
+            let subtask = {
+                'subtask': subtaskCheckboxes[i].value,
+                'status': 'false'
+            };
+            chosenSubtasks.push(subtask);
         }
     }
 }
