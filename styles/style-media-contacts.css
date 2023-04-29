@@ -49,6 +49,14 @@
     min-width: unset;
     width: 100vw;
   }
+  .contacts-addTask-close-add-task {
+    position: absolute;
+    height: 21.65px;
+    /* left: 1050.82px; */
+    right: 20px;
+    top: 90px;
+    cursor: pointer;
+  }
 
   .contacts-letter-container {
     margin: 0;

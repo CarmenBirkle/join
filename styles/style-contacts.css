@@ -104,7 +104,8 @@ hr {
 .contacts-addTask-close-add-task {
   position: absolute;
   height: 21.65px;
-  left: 1050.82px;
+  /* left: 1050.82px; */
+  right: 20px;
   top: 49.11px;
   cursor: pointer;
 }
