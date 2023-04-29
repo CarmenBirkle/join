@@ -116,6 +116,11 @@ hr {
 
 .contacts-include-tasks {
   padding: 20px;
+  overflow-y: auto;
+}
+
+.contacts-include-tasks::-webkit-scrollbar {
+  width: 0px;
 }
 
 .contacts-white-edit {
