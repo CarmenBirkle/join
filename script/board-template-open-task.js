@@ -110,7 +110,6 @@ function openSecondTaskPage(currentTaskIndex) {
  */
 
 function generateSecondTaskPageHTML(currentTaskIndex) {
-    console.log(tasks[currentTaskIndex]);
     return `
     <div onclick="doNotClose(event)" class="open-task-card">
     <img class="board-close-button" src="./assets/img/icons/board-task-close.svg" 
@@ -420,7 +419,7 @@ function renderChangeAssignedToError() {
 /**
  * Generates the general HTML of the assigned to field
  */
-  
+
 function loadChangeAssignedToHTML() {
     return /*html*/`
     <div id="change-task-add-new-contact-section">
@@ -444,12 +443,23 @@ function openChangeTopAssignedToHTML() {
 }
 
 function openChangeAssignedListHTML(name, email, bgcolor, initals) {
-    return /*html*/`
+    console.log(name);
+    if (assignedToUsers.includes(name)) {
+        return /*html*/`
     <div style="justify-content: space-between;" class="add-task-dropdown-option"  onclick="toggleChangeCheckboxAssigned(event,'${bgcolor}','${initals}')">
         ${name}
-        <input type="checkbox" name="${email}" value="${name}" class="validate-assignedto-checkbox">
+        <input type="checkbox" name="${email}" value="${name}" defaultValue="true" checked class="validate-assignedto-checkbox">
     </div>
      `;
+    }
+    else {
+        return /*html*/`
+    <div style="justify-content: space-between;" class="add-task-dropdown-option"  onclick="toggleChangeCheckboxAssigned(event,'${bgcolor}','${initals}')">
+        ${name}
+        <input type="checkbox" name="${email}" value="${name}" defaultValue="false" class="validate-assignedto-checkbox">
+    </div>
+     `;
+    }
 }
 
 function openChangeInviteNewContactHTML() {
@@ -475,24 +485,25 @@ function openChangeNewContactSelectHTML() {
 }
 
 function openChangeAssignedUserHTML(bgcolor, initals) {
-    return`
+    return `
     <div style="background: rgb(${bgcolor});" class="add-task-assigned-user">
         <div>${initals}</div>
     </div>
     `;
 }
 
-function saveChangedTask(currentTask){
+function saveChangedTask(currentTask) {
     pushChangeTaskIntoBackend(currentTask);
     window.location.reload();
 }
 
-function pushAlreadySelectedContacts(){
+function pushAlreadySelectedContacts() {
+    assignedToUsers = [];
     for (let j = 0; j < currentContacts.length; j++) {
         const element = currentContacts[j][0];
         assignedToUsers.push(element);
     }
-    
+
 }
 
 async function pushChangeTaskIntoBackend(currentTask) {
@@ -504,7 +515,7 @@ async function pushChangeTaskIntoBackend(currentTask) {
     await backend.setItem('tasks', JSON.stringify(tasks));
 }
 
-async function boardDeleteTask(currentTaskIndex){
+async function boardDeleteTask(currentTaskIndex) {
     tasks.splice(currentTaskIndex, 1);
     await backend.setItem('tasks', JSON.stringify(tasks));
     window.location.reload();
