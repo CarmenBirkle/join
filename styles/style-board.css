@@ -407,6 +407,14 @@ input[type=checkbox]:checked::before {
         margin-bottom: 80px;
         z-index: unset;
     }
+
+    .add-task-leftside {
+        width: 370px !important;
+    }
+
+    .add-task-rightside {
+        width: 370px !important;
+    }
 }
 
 @media screen and (max-width: 550px) {
