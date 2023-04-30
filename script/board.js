@@ -49,7 +49,7 @@ function renderTasksInProgress() {
     const element = inProgress[index];
     if (element) {
       filterContactsFromTask(element);
-      document.getElementById('in-progress').innerHTML +=generateTaskHTML(element);
+      document.getElementById('in-progress').innerHTML += generateTaskHTML(element);
       calculateSubtaskProgress(element);
       generateContactsInTask(tasks.indexOf(element));
       generatePrioInTask(tasks.indexOf(element), element);
@@ -124,22 +124,23 @@ function generateTaskHTML(currentTask) {
 }
 
 
-function calculateSubtaskProgress(currentTask){
+function calculateSubtaskProgress(currentTask) {
   let progress = 0;
   let subtaskAmount = currentTask.subtask.length;
-  if(currentTask.subtask.length > 0){
+  if (currentTask.subtask.length > 0) {
     for (let i = 0; i < currentTask.subtask.length; i++) {
       const subtask = currentTask.subtask[i];
-      if(subtask['status'] == true){
-        progress ++;
-      }}
-      let progressInPercent = ((progress/subtaskAmount)*100);
-  document.getElementById(`progress-bar-${tasks.indexOf(currentTask)}`).style.width = progressInPercent + '%';
-  document.getElementById(`progress-text-${tasks.indexOf(currentTask)}`).innerHTML = progress + '/' + subtaskAmount + ' Done';
+      if (subtask['status'] == true) {
+        progress++;
+      }
     }
-    else{
-      document.getElementById(`subtask-progress-${tasks.indexOf(currentTask)}`).classList.add('d-none');
-    }
+    let progressInPercent = ((progress / subtaskAmount) * 100);
+    document.getElementById(`progress-bar-${tasks.indexOf(currentTask)}`).style.width = progressInPercent + '%';
+    document.getElementById(`progress-text-${tasks.indexOf(currentTask)}`).innerHTML = progress + '/' + subtaskAmount + ' Done';
+  }
+  else {
+    document.getElementById(`subtask-progress-${tasks.indexOf(currentTask)}`).classList.add('d-none');
+  }
 }
 
 /**
@@ -332,10 +333,7 @@ function generateBoardOpenTaskHTML(currentTaskIndex) {
         <h1>${currentTask['title']}</h1>
         <p>${currentTask['description']}</p>
         <p><b>Due date:</b><span style="margin-left: 25px">
-        ${dueDate.getDate().toString().padStart(2, 0)}-${dueDate
-      .getMonth()
-      .toString()
-      .padStart(2, 0)}-${dueDate.getFullYear()}</span></p>
+        ${dueDate.getDate().toString().padStart(2, 0)}-${dueDate.getMonth().toString().padStart(2, 0)}-${dueDate.getFullYear()}</span></p>
         <div style="display: flex; align-items: center"><span><b>Priority:</b></span>
         <div class="board-prio-button" id="open-task-priority"></div></div>
         <p><b>Assigned to:</b></p>
@@ -430,6 +428,7 @@ async function openSecondTaskPage(currentTaskIndex) {
   pushAlreadySelectedContacts();
   initChangeAssignedTo();
   renderChangeAssignedUsers();
+  calculateOpenSubtaskProgress(currentTaskIndex);
 }
 
 /**
@@ -470,11 +469,44 @@ function generateSecondTaskPageHTML(currentTaskIndex) {
     <div class="add-task-assigned-users-main" id="change-task-assigned-users"></div>
     </div>
 
+
+    <div class="add-task-assigned">
+    <label>Subtasks</label>
+    <div class="subtask-progress" id="open-subtask-progress-${currentTaskIndex}">
+                <div class="progress-bar">
+                    <div class="progress" id="open-progress-bar-${currentTaskIndex}"></div>
+                </div>
+                <div id="open-progress-text-${currentTaskIndex}"></div>
+          </div>
+    </div>
+    
+
     <button type="submit" class="board-save-button"">OK<img style="object-fit: contain; 
     color: white; margin-left: 10px" src="./assets/img/icons/board-ok-white.svg"></button>
     </div>
     </form>
     `;
+}
+
+
+
+function calculateOpenSubtaskProgress(currentTaskIndex) {
+  let progress = 0;
+  let subtaskAmount = tasks[currentTaskIndex].subtask.length;
+  if (tasks[currentTaskIndex].subtask.length > 0) {
+    for (let i = 0; i < tasks[currentTaskIndex].subtask.length; i++) {
+      const subtask = tasks[currentTaskIndex].subtask[i];
+      if (subtask['status'] == true) {
+        progress++;
+      }
+    }
+    let progressInPercent = ((progress / subtaskAmount) * 100);
+    document.getElementById(`open-progress-bar-${currentTaskIndex}`).style.width = progressInPercent + '%';
+    document.getElementById(`open-progress-text-${currentTaskIndex}`).innerHTML = progress + '/' + subtaskAmount + ' Done';
+  }
+  else {
+    document.getElementById(`open-subtask-progress-${currentTaskIndex}`).classList.add('d-none');
+  }
 }
 
 /*-- Due Date --*/
@@ -485,8 +517,7 @@ function generateSecondTaskPageHTML(currentTaskIndex) {
 function initChangeDueDate(currentTaskIndex) {
   document.getElementById('change-task-due-date').innerHTML = '';
   const today = new Date().toISOString().split('T')[0];
-  document.getElementById('change-task-due-date').innerHTML =
-    loadChangeDueDateHTML(today, currentTaskIndex);
+  document.getElementById('change-task-due-date').innerHTML = loadChangeDueDateHTML(today, currentTaskIndex);
 }
 
 /*-- Due Date Template-HTML --*/
@@ -495,16 +526,8 @@ function loadChangeDueDateHTML(today, currentTaskIndex) {
   let dueDate = new Date(currentTask['date']);
   return /*html*/ `
     <label for="change-task-input-due-date">Due date</label>
-    <input style="font-family: Inter, sans-serif;" value="${dueDate.getFullYear()}-${dueDate
-      .getMonth()
-      .toString()
-      .padStart(2, 0)}-${dueDate
-        .getDate()
-        .toString()
-        .padStart(
-          2,
-          0
-        )}" id="change-task-input-due-date" type="date" min="${today}" required>
+    <input style="font-family: Inter, sans-serif;" 
+    value="${dueDate.getFullYear()}-${dueDate.getMonth().toString().padStart(2, 0)}-${dueDate.getDate().toString().padStart(2,0)}" id="change-task-input-due-date" type="date" min="${today}" required>
     `;
 }
 
@@ -555,13 +578,9 @@ function setChangeAddTaskPrioButton(prioId) {
  * @param {String} prioId - (Id) from prio button (urgent, medium, low).
  */
 function setChangePrioButtonDesign(prioId) {
-  document
-    .getElementById(`change-prio-${prioId}`)
-    .classList.add(`bg-prio-${prioId}`, 'add-task-font-color');
+  document.getElementById(`change-prio-${prioId}`).classList.add(`bg-prio-${prioId}`, 'add-task-font-color');
   document.getElementById(`change-img-prio-${prioId}`).classList.add('d-none');
-  document
-    .getElementById(`change-img-prio-${prioId}-white`)
-    .classList.remove('d-none');
+  document.getElementById(`change-img-prio-${prioId}-white`).classList.remove('d-none');
 }
 
 /**
@@ -581,7 +600,7 @@ function initChangeAssignedTo() {
   document.getElementById('change-task-assignedto-render').innerHTML = '';
   document.getElementById('change-task-assigned-error').innerHTML = '';
   document.getElementById('change-task-assignedto-render').innerHTML =
-    loadChangeAssignedToHTML();
+  loadChangeAssignedToHTML();
   renderChangeAssignedToSelection();
   renderChangeInviteNewContact();
 }
@@ -887,6 +906,7 @@ async function pushChangeTaskIntoBackend(currentTask) {
   currentTask['description'] = document.getElementById('change-task-input-description').value;
   currentTask['date'] = document.getElementById('change-task-input-due-date').value;
   currentTask['prio'] = chosenPrioButton;
+  console.log(chosenPrioButton);
   currentTask['contact'] = '';
   for (let i = 0; i < assignedToUsers.length; i++) {
     const newContactName = assignedToUsers[i].fullname;
