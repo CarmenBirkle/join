@@ -10,13 +10,13 @@ let currentContacts;
  */
 
 async function renderTasks() {
-    await includeHTML();
-    await downloadFromServer();
-    tasks = await JSON.parse(backend.getItem('tasks')) || [];
-    renderTasksToDo();
-    renderTasksInProgress();
-    renderTasksAwaitingFeedback();
-    renderTasksDone();
+  await includeHTML();
+  await downloadFromServer();
+  tasks = (await JSON.parse(backend.getItem('tasks'))) || [];
+  renderTasksToDo();
+  renderTasksInProgress();
+  renderTasksAwaitingFeedback();
+  renderTasksDone();
 }
 
 /**
@@ -24,17 +24,17 @@ async function renderTasks() {
  */
 
 function renderTasksToDo() {
-    let toDo = tasks.filter(t => t['category'] == 'to-do');
-    document.getElementById('to-do').innerHTML = ``;
-    for (let index = 0; index < toDo.length; index++) {
-        const element = toDo[index];
-        if (element) {
-            filterContactsFromTask(element);
-            document.getElementById('to-do').innerHTML += generateTaskHTML(element);
-            generateContactsInTask(tasks.indexOf(element));
-            generatePrioInTask(tasks.indexOf(element), element);
-        }
+  let toDo = tasks.filter((t) => t['category'] == 'to-do');
+  document.getElementById('to-do').innerHTML = ``;
+  for (let index = 0; index < toDo.length; index++) {
+    const element = toDo[index];
+    if (element) {
+      filterContactsFromTask(element);
+      document.getElementById('to-do').innerHTML += generateTaskHTML(element);
+      generateContactsInTask(tasks.indexOf(element));
+      generatePrioInTask(tasks.indexOf(element), element);
     }
+  }
 }
 
 /**
@@ -42,17 +42,18 @@ function renderTasksToDo() {
  */
 
 function renderTasksInProgress() {
-    let inProgress = tasks.filter(t => t['category'] == 'in-progress');
-    document.getElementById('in-progress').innerHTML = ``;
-    for (let index = 0; index < inProgress.length; index++) {
-        const element = inProgress[index];
-        if (element) {
-            filterContactsFromTask(element);
-            document.getElementById('in-progress').innerHTML += generateTaskHTML(element);
-            generateContactsInTask(tasks.indexOf(element));
-            generatePrioInTask(tasks.indexOf(element), element);
-        }
+  let inProgress = tasks.filter((t) => t['category'] == 'in-progress');
+  document.getElementById('in-progress').innerHTML = ``;
+  for (let index = 0; index < inProgress.length; index++) {
+    const element = inProgress[index];
+    if (element) {
+      filterContactsFromTask(element);
+      document.getElementById('in-progress').innerHTML +=
+        generateTaskHTML(element);
+      generateContactsInTask(tasks.indexOf(element));
+      generatePrioInTask(tasks.indexOf(element), element);
     }
+  }
 }
 
 /**
@@ -60,17 +61,20 @@ function renderTasksInProgress() {
  */
 
 function renderTasksAwaitingFeedback() {
-    let awaitingFeedback = tasks.filter(t => t['category'] == 'awaiting-feedback');
-    document.getElementById('awaiting-feedback').innerHTML = ``;
-    for (let index = 0; index < awaitingFeedback.length; index++) {
-        const element = awaitingFeedback[index];
-        if (element) {
-            filterContactsFromTask(element);
-            document.getElementById('awaiting-feedback').innerHTML += generateTaskHTML(element);
-            generateContactsInTask(tasks.indexOf(element));
-            generatePrioInTask(tasks.indexOf(element), element);
-        }
+  let awaitingFeedback = tasks.filter(
+    (t) => t['category'] == 'awaiting-feedback'
+  );
+  document.getElementById('awaiting-feedback').innerHTML = ``;
+  for (let index = 0; index < awaitingFeedback.length; index++) {
+    const element = awaitingFeedback[index];
+    if (element) {
+      filterContactsFromTask(element);
+      document.getElementById('awaiting-feedback').innerHTML +=
+        generateTaskHTML(element);
+      generateContactsInTask(tasks.indexOf(element));
+      generatePrioInTask(tasks.indexOf(element), element);
     }
+  }
 }
 
 /**
@@ -78,82 +82,92 @@ function renderTasksAwaitingFeedback() {
  */
 
 function renderTasksDone() {
-    let done = tasks.filter(t => t['category'] == 'done');
-    document.getElementById('done').innerHTML = ``;
-    for (let index = 0; index < done.length; index++) {
-        const element = done[index];
-        if (element) {
-            filterContactsFromTask(element);
-            console.log(currentContacts);
-            document.getElementById('done').innerHTML += generateTaskHTML(element);
-            generateContactsInTask(tasks.indexOf(element));
-            generatePrioInTask(tasks.indexOf(element), element);
-        }
+  let done = tasks.filter((t) => t['category'] == 'done');
+  document.getElementById('done').innerHTML = ``;
+  for (let index = 0; index < done.length; index++) {
+    const element = done[index];
+    if (element) {
+      filterContactsFromTask(element);
+      console.log(currentContacts);
+      document.getElementById('done').innerHTML += generateTaskHTML(element);
+      generateContactsInTask(tasks.indexOf(element));
+      generatePrioInTask(tasks.indexOf(element), element);
     }
+  }
 }
-
 
 /**
  *  This function generates the HTML Code for a Task Card, task variables are given by parent function
  * (Design is not completed yet!!!)
  */
 function generateTaskHTML(currentTask) {
-    return `
-    <div id="board-task-${tasks.indexOf(currentTask)}" draggable="true" onclick="boardShowTask(${tasks.indexOf(currentTask)})" ondragstart="startDragging(${tasks.indexOf(currentTask)})" class="task-card">
-        <span class="box-category" style="background-color: ${currentTask['categoryColor']}">${currentTask['categoryType']}</span>
+  return `
+    <div id="board-task-${tasks.indexOf(
+      currentTask
+    )}" draggable="true" onclick="boardShowTask(${tasks.indexOf(
+    currentTask
+  )})" ondragstart="startDragging(${tasks.indexOf(
+    currentTask
+  )})" class="task-card">
+        <span class="box-category" style="background-color: ${
+          currentTask['categoryColor']
+        }">${currentTask['categoryType']}</span>
         <h6>${currentTask['title']}</h6>
         <p>${currentTask['description']}</p>
         <div style="display: flex; justify-content: space-between">
-        <div style="display: flex; padding-left: 8px" id="box-contacts-${tasks.indexOf(currentTask)}"></div>
-        <img style="object-fit: contain" id="box-prio-${tasks.indexOf(currentTask)}">
+        <div style="display: flex; padding-left: 8px" id="box-contacts-${tasks.indexOf(
+          currentTask
+        )}"></div>
+        <img style="object-fit: contain" id="box-prio-${tasks.indexOf(
+          currentTask
+        )}">
         </div>
     </div>
     `;
 }
-
 
 /**
  * This function opens a popup with the current selected task
  */
 
 function boardShowTask(currentTaskIndex) {
-    document.getElementById('board-open-task').classList.remove('d-none');
-    document.getElementById('board-open-task').innerHTML = generateBoardOpenTaskHTML(currentTaskIndex);
-    generatePrioInOpenTaskHTML(currentTaskIndex);
-    generateContactsInOpenTaskHTML(currentTaskIndex);
+  document.getElementById('board-open-task').classList.remove('d-none');
+  document.getElementById('board-open-task').innerHTML =
+    generateBoardOpenTaskHTML(currentTaskIndex);
+  generatePrioInOpenTaskHTML(currentTaskIndex);
+  generateContactsInOpenTaskHTML(currentTaskIndex);
 }
-
 
 /**
  * This function generates the contacts icons with initals in the tasks
  */
 
 function generateContactsInTask(index) {
-    let contactField = document.getElementById(`box-contacts-${index}`);
-    contactField.innerHTML = ``;
-    for (let i = 0; i < currentContacts.length; i++) {
-        let bgcolor = currentContacts[i][0]['bgcolor'];
-        let initals = currentContacts[i][0]['initals'];
-        contactField.innerHTML += openAssignedUserHTML(bgcolor, initals);
-    }
+  let contactField = document.getElementById(`box-contacts-${index}`);
+  contactField.innerHTML = ``;
+  for (let i = 0; i < currentContacts.length; i++) {
+    let bgcolor = currentContacts[i][0]['bgcolor'];
+    let initals = currentContacts[i][0]['initals'];
+    contactField.innerHTML += openAssignedUserHTML(bgcolor, initals);
+  }
 }
 
 /**
- * This function generates the prio logos in the tasks 
+ * This function generates the prio logos in the tasks
  */
 
 function generatePrioInTask(index, currentTask) {
-    let prioIcon = document.getElementById(`box-prio-${index}`);
-    prioIcon.innerHTML = ``;
-    if (currentTask['prio'] == 'urgent') {
-        prioIcon.setAttribute("src", "./assets/img/icons/add-task-urgent.svg");
-    };
-    if (currentTask['prio'] == 'medium') {
-        prioIcon.setAttribute("src", "./assets/img/icons/add-task-medium.svg");
-    };
-    if (currentTask['prio'] == 'low') {
-        prioIcon.setAttribute("src", "./assets/img/icons/add-task-low.svg");
-    }
+  let prioIcon = document.getElementById(`box-prio-${index}`);
+  prioIcon.innerHTML = ``;
+  if (currentTask['prio'] == 'urgent') {
+    prioIcon.setAttribute('src', './assets/img/icons/add-task-urgent.svg');
+  }
+  if (currentTask['prio'] == 'medium') {
+    prioIcon.setAttribute('src', './assets/img/icons/add-task-medium.svg');
+  }
+  if (currentTask['prio'] == 'low') {
+    prioIcon.setAttribute('src', './assets/img/icons/add-task-low.svg');
+  }
 }
 
 /**
@@ -161,50 +175,51 @@ function generatePrioInTask(index, currentTask) {
  */
 
 function filterContactsFromTask(currentTask) {
-    currentContacts = [];
-    for (let index = 0; index < currentTask['contact'].length; index++) {
-        const currentContact = currentTask['contact'][index];
-        let currentContactFromBackend = contacts.filter(c => c['fullname'] == currentContact);
-        currentContacts.push(currentContactFromBackend);
-    }
+  currentContacts = [];
+  for (let index = 0; index < currentTask['contact'].length; index++) {
+    const currentContact = currentTask['contact'][index];
+    let currentContactFromBackend = contacts.filter(
+      (c) => c['fullname'] == currentContact
+    );
+    currentContacts.push(currentContactFromBackend);
+  }
 }
-
 
 /**
  * This functions all the tasks to be dragged and dropped
  */
 
 function startDragging(currentTaskIndex) {
-    currentDraggedElement = currentTaskIndex;
+  currentDraggedElement = currentTaskIndex;
 }
 
 function allowDrop(ev) {
-    ev.preventDefault();
+  ev.preventDefault();
 }
 
 async function moveTo(category) {
-    tasks[currentDraggedElement]['category'] = category;
-    await backend.setItem('tasks', JSON.stringify(tasks));
-    window.location.reload();
+  tasks[currentDraggedElement]['category'] = category;
+  await backend.setItem('tasks', JSON.stringify(tasks));
+  window.location.reload();
 }
 
 function highlight(category) {
-    document.getElementById(category).classList.add('drag-area-highlight')
+  document.getElementById(category).classList.add('drag-area-highlight');
 }
 
 function removeHighlight(category) {
-    document.getElementById(category).classList.remove('drag-area-highlight')
+  document.getElementById(category).classList.remove('drag-area-highlight');
 }
 
 /**
- * This function sets a fixed category of a given task (to push tasks directly into one of the four 
+ * This function sets a fixed category of a given task (to push tasks directly into one of the four
  * different task containers)
  */
 
 async function setStartCategory(category) {
-    tasks[tasks.length - 1]['category'] = category;
-    await backend.setItem('tasks', JSON.stringify(tasks));
-    await renderTasks();
+  tasks[tasks.length - 1]['category'] = category;
+  await backend.setItem('tasks', JSON.stringify(tasks));
+  await renderTasks();
 }
 
 /**
@@ -212,11 +227,13 @@ async function setStartCategory(category) {
  */
 
 function boardOpenAddTask(category) {
-    document.getElementById('board-add-task').classList.remove('d-none');
-    document.getElementById('board-content').classList.add('d-none');
-    if (category) {
-        document.getElementById('task-form-submit').setAttribute("onsubmit", `boardValidateForm(${category}); return false`);
-    }
+  document.getElementById('board-add-task').classList.remove('d-none');
+  document.getElementById('board-content').classList.add('d-none');
+  if (category) {
+    document
+      .getElementById('task-form-submit')
+      .setAttribute('onsubmit', `boardValidateForm(${category}); return false`);
+  }
 }
 
 /**
@@ -225,29 +242,30 @@ function boardOpenAddTask(category) {
  */
 
 async function boardValidateForm(category) {
-    if (chosenCategoryType.length === 0 || chosenCategoryColor.length === 0) {
-        renderCategoryError();
-        return;
-    } if (chosenPrioButton.length === 0) {
-        renderPrioButtonError();
-        return;
-    }
-    pushChosenAssignedTo();
-    if (chosenAssignedTo.length === 0) {
-        renderAssignedToError();
-        return;
-    }
-    await furtherFunctionsToValidate(category);
+  if (chosenCategoryType.length === 0 || chosenCategoryColor.length === 0) {
+    renderCategoryError();
+    return;
+  }
+  if (chosenPrioButton.length === 0) {
+    renderPrioButtonError();
+    return;
+  }
+  pushChosenAssignedTo();
+  if (chosenAssignedTo.length === 0) {
+    renderAssignedToError();
+    return;
+  }
+  await furtherFunctionsToValidate(category);
 }
 
 async function furtherFunctionsToValidate(category) {
-    pushChosenSubtasks(); // not a required field
-    sendFormToBackend();
-    await includeHTML();
-    await downloadFromServer();
-    tasks = await JSON.parse(backend.getItem('tasks')) || [];
-    setStartCategory(category);
-    window.location.reload();
+  pushChosenSubtasks(); // not a required field
+  sendFormToBackend();
+  await includeHTML();
+  await downloadFromServer();
+  tasks = (await JSON.parse(backend.getItem('tasks'))) || [];
+  setStartCategory(category);
+  window.location.reload();
 }
 
 /**
@@ -255,16 +273,22 @@ async function furtherFunctionsToValidate(category) {
  */
 
 function boardFilterTasks() {
-    let search = document.getElementById('board-task-search').value;
-    search = search.toLowerCase();
-    for (let i = 0; i < tasks.length; i++) {
-        if (!tasks[i]['title'].toLowerCase().includes(search) && !document.getElementById(`board-task-${i}`).classList.contains('d-none')) {
-            document.getElementById(`board-task-${i}`).classList.add('d-none')
-        };
-        if (tasks[i]['title'].toLowerCase().includes(search) && document.getElementById(`board-task-${i}`).classList.contains('d-none')) {
-            document.getElementById(`board-task-${i}`).classList.remove('d-none');
-        }
+  let search = document.getElementById('board-task-search').value;
+  search = search.toLowerCase();
+  for (let i = 0; i < tasks.length; i++) {
+    if (
+      !tasks[i]['title'].toLowerCase().includes(search) &&
+      !document.getElementById(`board-task-${i}`).classList.contains('d-none')
+    ) {
+      document.getElementById(`board-task-${i}`).classList.add('d-none');
     }
+    if (
+      tasks[i]['title'].toLowerCase().includes(search) &&
+      document.getElementById(`board-task-${i}`).classList.contains('d-none')
+    ) {
+      document.getElementById(`board-task-${i}`).classList.remove('d-none');
+    }
+  }
 }
 
 /**
@@ -272,7 +296,7 @@ function boardFilterTasks() {
  */
 
 function closeOpenTaskPopup() {
-    document.getElementById('board-open-task').classList.add('d-none');
+  document.getElementById('board-open-task').classList.add('d-none');
 }
 
 /**
@@ -280,18 +304,23 @@ function closeOpenTaskPopup() {
  */
 
 function generateBoardOpenTaskHTML(currentTaskIndex) {
-    let currentTask = tasks[currentTaskIndex];
-    let dueDate = new Date(currentTask['date']);
-    return `
+  let currentTask = tasks[currentTaskIndex];
+  let dueDate = new Date(currentTask['date']);
+  return `
     <div onclick="doNotClose(event)" class="open-task-card">
         <img class="board-close-button" src="./assets/img/icons/board-task-close.svg" 
         onclick="closeOpenTaskPopup()">
-        <span class="box-category" style="background-color: ${currentTask['categoryColor']}">
+        <span class="box-category" style="background-color: ${
+          currentTask['categoryColor']
+        }">
         ${currentTask['categoryType']}</span>
         <h1>${currentTask['title']}</h1>
         <p>${currentTask['description']}</p>
         <p><b>Due date:</b><span style="margin-left: 25px">
-        ${dueDate.getDate().toString().padStart(2, 0)}-${dueDate.getMonth().toString().padStart(2, 0)}-${dueDate.getFullYear()}</span></p>
+        ${dueDate.getDate().toString().padStart(2, 0)}-${dueDate
+    .getMonth()
+    .toString()
+    .padStart(2, 0)}-${dueDate.getFullYear()}</span></p>
         <div style="display: flex; align-items: center"><span><b>Priority:</b></span>
         <div class="board-prio-button" id="open-task-priority"></div></div>
         <p><b>Assigned to:</b></p>
@@ -309,21 +338,39 @@ function generateBoardOpenTaskHTML(currentTaskIndex) {
  */
 
 function generatePrioInOpenTaskHTML(currentTaskIndex) {
-    if (tasks[currentTaskIndex]['prio'] == 'urgent') {
-        document.getElementById(`open-task-priority`).innerHTML = `Urgent<img class="board-prio-img" id="open-task-priority-img">`;
-        document.getElementById(`open-task-priority`).setAttribute("style", "background-color: #FF3D00");
-        document.getElementById('open-task-priority-img').setAttribute("src", "./assets/img/icons/add-task-urgent-white.svg");
-    };
-    if (tasks[currentTaskIndex]['prio'] == 'medium') {
-        document.getElementById(`open-task-priority`).innerHTML = `Medium<img class="board-prio-img" id="open-task-priority-img">`;
-        document.getElementById(`open-task-priority`).setAttribute("style", "background-color: #FFA800");
-        document.getElementById('open-task-priority-img').setAttribute("src", "./assets/img/icons/add-task-medium-white.svg");
-    };
-    if (tasks[currentTaskIndex]['prio'] == 'low') {
-        document.getElementById(`open-task-priority`).innerHTML = `Low<img class="board-prio-img" id="open-task-priority-img">`;
-        document.getElementById(`open-task-priority`).setAttribute("style", "background-color: #7AE229");
-        document.getElementById('open-task-priority-img').setAttribute("src", "./assets/img/icons/add-task-low-white.svg");
-    }
+  if (tasks[currentTaskIndex]['prio'] == 'urgent') {
+    document.getElementById(
+      `open-task-priority`
+    ).innerHTML = `Urgent<img class="board-prio-img" id="open-task-priority-img">`;
+    document
+      .getElementById(`open-task-priority`)
+      .setAttribute('style', 'background-color: #FF3D00');
+    document
+      .getElementById('open-task-priority-img')
+      .setAttribute('src', './assets/img/icons/add-task-urgent-white.svg');
+  }
+  if (tasks[currentTaskIndex]['prio'] == 'medium') {
+    document.getElementById(
+      `open-task-priority`
+    ).innerHTML = `Medium<img class="board-prio-img" id="open-task-priority-img">`;
+    document
+      .getElementById(`open-task-priority`)
+      .setAttribute('style', 'background-color: #FFA800');
+    document
+      .getElementById('open-task-priority-img')
+      .setAttribute('src', './assets/img/icons/add-task-medium-white.svg');
+  }
+  if (tasks[currentTaskIndex]['prio'] == 'low') {
+    document.getElementById(
+      `open-task-priority`
+    ).innerHTML = `Low<img class="board-prio-img" id="open-task-priority-img">`;
+    document
+      .getElementById(`open-task-priority`)
+      .setAttribute('style', 'background-color: #7AE229');
+    document
+      .getElementById('open-task-priority-img')
+      .setAttribute('src', './assets/img/icons/add-task-low-white.svg');
+  }
 }
 
 /**
@@ -331,21 +378,27 @@ function generatePrioInOpenTaskHTML(currentTaskIndex) {
  */
 
 function generateContactsInOpenTaskHTML(currentTaskIndex) {
-    document.getElementById('open-task-contacts').innerHTML = ``;
-    currentContacts = [];
-    for (let index = 0; index < tasks[currentTaskIndex]['contact'].length; index++) {
-        const currentContact = tasks[currentTaskIndex]['contact'][index];
-        let currentContactFromBackend = contacts.filter(c => c['fullname'] == currentContact);
-        currentContacts.push(currentContactFromBackend);
-    }
-    for (let j = 0; j < currentContacts.length; j++) {
-        const element = currentContacts[j][0];
-        document.getElementById('open-task-contacts').innerHTML += `
+  document.getElementById('open-task-contacts').innerHTML = ``;
+  currentContacts = [];
+  for (
+    let index = 0;
+    index < tasks[currentTaskIndex]['contact'].length;
+    index++
+  ) {
+    const currentContact = tasks[currentTaskIndex]['contact'][index];
+    let currentContactFromBackend = contacts.filter(
+      (c) => c['fullname'] == currentContact
+    );
+    currentContacts.push(currentContactFromBackend);
+  }
+  for (let j = 0; j < currentContacts.length; j++) {
+    const element = currentContacts[j][0];
+    document.getElementById('open-task-contacts').innerHTML += `
             <div style="display: flex; align-items: center; gap: 25px; margin-bottom: 25px"><div style="color: white; 
             background-color:rgb(${element['bgcolor']}); border-radius: 100%; padding: 10px">${element['initals']}</div>
             <span>${element['fullname']}</span></div>
             `;
-    }
+  }
 }
 
 /**
@@ -353,15 +406,16 @@ function generateContactsInOpenTaskHTML(currentTaskIndex) {
  */
 
 async function openSecondTaskPage(currentTaskIndex) {
-    document.getElementById('board-open-task').innerHTML = ``;
-    console.log(currentTaskIndex);
-    document.getElementById('board-open-task').innerHTML = await generateSecondTaskPageHTML(currentTaskIndex);
-    initChangeDueDate(currentTaskIndex);
-    initChangePrioButtons();
-    setChangePrioButtonDesign(tasks[currentTaskIndex]['prio']);
-    pushAlreadySelectedContacts();
-    initChangeAssignedTo();
-    renderChangeAssignedUsers();
+  document.getElementById('board-open-task').innerHTML = ``;
+  console.log(currentTaskIndex);
+  document.getElementById('board-open-task').innerHTML =
+    await generateSecondTaskPageHTML(currentTaskIndex);
+  initChangeDueDate(currentTaskIndex);
+  initChangePrioButtons();
+  setChangePrioButtonDesign(tasks[currentTaskIndex]['prio']);
+  pushAlreadySelectedContacts();
+  initChangeAssignedTo();
+  renderChangeAssignedUsers();
 }
 
 /**
@@ -369,7 +423,7 @@ async function openSecondTaskPage(currentTaskIndex) {
  */
 
 function generateSecondTaskPageHTML(currentTaskIndex) {
-    return /*html*/`
+  return /*html*/ `
     <div onclick="doNotClose(event)" class="open-task-card">
     <img class="board-close-button" src="./assets/img/icons/board-task-close.svg" 
     onclick="closeOpenTaskPopup()">
@@ -409,48 +463,58 @@ function generateSecondTaskPageHTML(currentTaskIndex) {
     `;
 }
 
-
 /*-- Due Date --*/
 /**
  * Generate the due-date input field from the add-task-template.js.
  * min date = current date
  */
 function initChangeDueDate(currentTaskIndex) {
-    document.getElementById('change-task-due-date').innerHTML = '';
-    const today = new Date().toISOString().split('T')[0];
-    document.getElementById('change-task-due-date').innerHTML = loadChangeDueDateHTML(today, currentTaskIndex);
+  document.getElementById('change-task-due-date').innerHTML = '';
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('change-task-due-date').innerHTML =
+    loadChangeDueDateHTML(today, currentTaskIndex);
 }
 
 /*-- Due Date Template-HTML --*/
 function loadChangeDueDateHTML(today, currentTaskIndex) {
-    let currentTask = tasks[currentTaskIndex];
-    let dueDate = new Date(currentTask['date']);
-    return /*html*/`
+  let currentTask = tasks[currentTaskIndex];
+  let dueDate = new Date(currentTask['date']);
+  return /*html*/ `
     <label for="change-task-input-due-date">Due date</label>
-    <input style="font-family: Inter, sans-serif;" value="${dueDate.getFullYear()}-${dueDate.getMonth().toString().padStart(2, 0)}-${dueDate.getDate().toString().padStart(2, 0)}" id="change-task-input-due-date" type="date" min="${today}" required>
+    <input style="font-family: Inter, sans-serif;" value="${dueDate.getFullYear()}-${dueDate
+    .getMonth()
+    .toString()
+    .padStart(2, 0)}-${dueDate
+    .getDate()
+    .toString()
+    .padStart(
+      2,
+      0
+    )}" id="change-task-input-due-date" type="date" min="${today}" required>
     `;
 }
-
 
 /*-- Prio --*/
 /**
  * Generate the prio buttons from array prioButtons.
  */
 function initChangePrioButtons() {
-    const prioButtons = ['urgent', 'medium', 'low'];
-    document.getElementById('change-task-prio-button-render').innerHTML = '';
-    document.getElementById('change-task-prio-button-error').innerHTML = '';
+  const prioButtons = ['urgent', 'medium', 'low'];
+  document.getElementById('change-task-prio-button-render').innerHTML = '';
+  document.getElementById('change-task-prio-button-error').innerHTML = '';
 
-    for (let i = 0; i < prioButtons.length; i++) {
-        let prioName = prioButtons[i];
-        let prioNameFormatted = prioName.charAt(0).toUpperCase() + prioName.slice(1).toLowerCase();
-        document.getElementById('change-task-prio-button-render').innerHTML += loadChangePrioButtonsHTML(prioName, prioNameFormatted);
-    }
+  for (let i = 0; i < prioButtons.length; i++) {
+    let prioName = prioButtons[i];
+    let prioNameFormatted =
+      prioName.charAt(0).toUpperCase() + prioName.slice(1).toLowerCase();
+    document.getElementById('change-task-prio-button-render').innerHTML +=
+      loadChangePrioButtonsHTML(prioName, prioNameFormatted);
+  }
 }
 
 /*-- Prio-Buttons-HTML --*/
 function loadChangePrioButtonsHTML(prioName, prioNameFormatted) {
-    return /*html*/`
+  return /*html*/ `
     <button type="button" id="change-prio-${prioName}" onclick="setChangeAddTaskPrioButton('${prioName}')">
         ${prioNameFormatted}
         <img id="change-img-prio-${prioName}" src="./assets/img/icons/add-task-${prioName}.svg" alt="${prioName}">
@@ -464,12 +528,12 @@ function loadChangePrioButtonsHTML(prioName, prioNameFormatted) {
  * @param {String} prioId - (Id) from prio button (urgent, medium, low).
  */
 function setChangeAddTaskPrioButton(prioId) {
-    initChangePrioButtons();
+  initChangePrioButtons();
 
-    chosenPrioButton = [];
-    chosenPrioButton.push(prioId);
+  chosenPrioButton = [];
+  chosenPrioButton.push(prioId);
 
-    setChangePrioButtonDesign(prioId);
+  setChangePrioButtonDesign(prioId);
 }
 
 /**
@@ -477,70 +541,65 @@ function setChangeAddTaskPrioButton(prioId) {
  * @param {String} prioId - (Id) from prio button (urgent, medium, low).
  */
 function setChangePrioButtonDesign(prioId) {
-    document.getElementById(`change-prio-${prioId}`).classList.add(`bg-prio-${prioId}`, 'add-task-font-color');
-    document.getElementById(`change-img-prio-${prioId}`).classList.add('d-none');
-    document.getElementById(`change-img-prio-${prioId}-white`).classList.remove('d-none');
+  document
+    .getElementById(`change-prio-${prioId}`)
+    .classList.add(`bg-prio-${prioId}`, 'add-task-font-color');
+  document.getElementById(`change-img-prio-${prioId}`).classList.add('d-none');
+  document
+    .getElementById(`change-img-prio-${prioId}-white`)
+    .classList.remove('d-none');
 }
 
 /**
  * Shows an error if no prio button was selected. (form validation)
  */
 function renderChangePrioButtonError() {
-    document.getElementById('add-task-prio-button-error').innerHTML = '';
-    document.getElementById('add-task-prio-button-error').innerHTML = addTaskErrorHTML('Please select a Priority');
+  document.getElementById('add-task-prio-button-error').innerHTML = '';
+  document.getElementById('add-task-prio-button-error').innerHTML =
+    addTaskErrorHTML('Please select a Priority');
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*-- Assigned-To --*/
 /**
  * Executes the functions that renders the assigned to field.
  */
 function initChangeAssignedTo() {
-    document.getElementById('change-task-assignedto-render').innerHTML = '';
-    document.getElementById('change-task-assigned-error').innerHTML = '';
-    document.getElementById('change-task-assignedto-render').innerHTML = loadChangeAssignedToHTML();
-    renderChangeAssignedToSelection();
-    renderChangeInviteNewContact();
+  document.getElementById('change-task-assignedto-render').innerHTML = '';
+  document.getElementById('change-task-assigned-error').innerHTML = '';
+  document.getElementById('change-task-assignedto-render').innerHTML =
+    loadChangeAssignedToHTML();
+  renderChangeAssignedToSelection();
+  renderChangeInviteNewContact();
 }
 
 /**
  * Open the dropdown form in the assigned to section.
  */
 function openChangeAssignedToDropdown() {
-    document.getElementById('change-task-assignedto-dropdown').classList.toggle('d-none');
-    renderChangeTopAssigendTo();
+  document
+    .getElementById('change-task-assignedto-dropdown')
+    .classList.toggle('d-none');
+  renderChangeTopAssigendTo();
 }
 
 /**
  * Render the top section from the Assigned to and open the placeholder.
- * 
+ *
  */
 function renderChangeTopAssigendTo() {
-    document.getElementById('change-task-assigendto-dropdown-top').innerHTML = '';
-    document.getElementById('change-task-assigned-error').innerHTML = '';
-    document.getElementById('change-task-assigendto-dropdown-top').innerHTML = openTopPlaceholderHTML('Select contacts to assign');
+  document.getElementById('change-task-assigendto-dropdown-top').innerHTML = '';
+  document.getElementById('change-task-assigned-error').innerHTML = '';
+  document.getElementById('change-task-assigendto-dropdown-top').innerHTML =
+    openTopPlaceholderHTML('Select contacts to assign');
 }
 
 /**
  * Render the new-contact field.
- * 
+ *
  */
 function renderChangeInviteNewContact() {
-    document.getElementById('change-task-assignedto-dropdown').innerHTML += openChangeInviteNewContactHTML();
+  document.getElementById('change-task-assignedto-dropdown').innerHTML +=
+    openChangeInviteNewContactHTML();
 }
 
 /**
@@ -548,36 +607,39 @@ function renderChangeInviteNewContact() {
  * The fullname will be show in the dropdown assigned section.
  */
 function renderChangeAssignedToSelection() {
-    document.getElementById('change-task-assignedto-dropdown').innerHTML = '';
-    for (let i = 0; i < contacts.length; i++) {
-        let name = contacts[i].fullname;
-        let email = contacts[i].email;
-        let bgcolor = contacts[i].bgcolor;
-        let initals = contacts[i].initals;
-        openChangeAssignedList(name, email, bgcolor, initals);
-    }
+  document.getElementById('change-task-assignedto-dropdown').innerHTML = '';
+  for (let i = 0; i < contacts.length; i++) {
+    let name = contacts[i].fullname;
+    let email = contacts[i].email;
+    let bgcolor = contacts[i].bgcolor;
+    let initals = contacts[i].initals;
+    openChangeAssignedList(name, email, bgcolor, initals);
+  }
 }
 
 /**
  * Render the input field from the new-contact that allows searching by email.
- * 
+ *
  */
 function renderChangeAssignedToNewContact() {
-    document.getElementById('change-task-assignedto-dropdown').classList.toggle('d-none');
-    document.getElementById('change-task-assigendto-dropdown-top').innerHTML = '';
-    document.getElementById('change-task-add-new-contact-section').innerHTML = openChangeNewContactSelectHTML();
+  document
+    .getElementById('change-task-assignedto-dropdown')
+    .classList.toggle('d-none');
+  document.getElementById('change-task-assigendto-dropdown-top').innerHTML = '';
+  document.getElementById('change-task-add-new-contact-section').innerHTML =
+    openChangeNewContactSelectHTML();
 }
 
 /**
- * Handles the keydown event for the "Serach New Contact" input field. 
+ * Handles the keydown event for the "Serach New Contact" input field.
  * @param {event} event - This parameter is used to detect if the user has pressed the "Enter" key, and if so,
  *                      to prevent the default form submission behavior.
  */
 function searchChangeNewContactEnter(event) {
-    if (event.key == "Enter") {
-        event.preventDefault();
-        searchChangeNewContact();
-    }
+  if (event.key == 'Enter') {
+    event.preventDefault();
+    searchChangeNewContact();
+  }
 }
 
 /**
@@ -585,64 +647,76 @@ function searchChangeNewContactEnter(event) {
  * Validate the value from the assigned-new-contact-input.
  */
 function searchChangeNewContact() {
-    let emailInput = document.getElementById('change-assigned-new-contact-input').value;
-    let checkEmail = document.querySelector(`input[type="checkbox"][name="${emailInput}"]`);
-    if (checkEmail) {
-        checkEmail.checked = true;
-        renderChangeTopAssigendToAfterNewContact();
-        searchChangeNewContactPushUser(emailInput);
-        renderChangeAssignedUsers();
-    } else {
-        document.getElementById('change-task-assigned-error').innerHTML = addTaskErrorHTML(`${emailInput} email not found!`);
-        document.getElementById('change-assigned-new-contact-input').focus();
-    }
-    setTimeout(() => {
-        document.getElementById('change-task-assigned-error').innerHTML = '';
-    }, 2000);
+  let emailInput = document.getElementById(
+    'change-assigned-new-contact-input'
+  ).value;
+  let checkEmail = document.querySelector(
+    `input[type="checkbox"][name="${emailInput}"]`
+  );
+  if (checkEmail) {
+    checkEmail.checked = true;
+    renderChangeTopAssigendToAfterNewContact();
+    searchChangeNewContactPushUser(emailInput);
+    renderChangeAssignedUsers();
+  } else {
+    document.getElementById('change-task-assigned-error').innerHTML =
+      addTaskErrorHTML(`${emailInput} email not found!`);
+    document.getElementById('change-assigned-new-contact-input').focus();
+  }
+  setTimeout(() => {
+    document.getElementById('change-task-assigned-error').innerHTML = '';
+  }, 2000);
 }
 
 /**
  * If you click on the cross, the assigned-new-contact-input will be closed.
- * 
+ *
  */
 function renderChangeTopAssigendToAfterNewContact() {
-    document.getElementById('change-task-add-new-contact-section').innerHTML = '';
-    document.getElementById('change-task-add-new-contact-section').innerHTML = openChangeTopAssignedToHTML();
+  document.getElementById('change-task-add-new-contact-section').innerHTML = '';
+  document.getElementById('change-task-add-new-contact-section').innerHTML =
+    openChangeTopAssignedToHTML();
 }
 
 /**
- * Searches for a contact in the `contacts` array with the specified email address and 
+ * Searches for a contact in the `contacts` array with the specified email address and
  * pushes the contact's initials and bgcolor into the `assignedToUsers` array, if not already present.
  * @param {String} emailInput - the value form the assigned-new-contact input field.
  */
 function searchChangeNewContactPushUser(emailInput) {
-    const selectedContact = contacts.find(contact => contact.email === emailInput);
-    let bgcolor = selectedContact.bgcolor;
-    let initals = selectedContact.initals;
-    let index = assignedToUsers.findIndex(userInfo => userInfo.bgcolor === bgcolor && userInfo.initals === initals);
-    // prevent multi generate
-    if (index === -1) {
-        assignedToUsers.push({ bgcolor: bgcolor, initals: initals });
-    }
+  const selectedContact = contacts.find(
+    (contact) => contact.email === emailInput
+  );
+  let bgcolor = selectedContact.bgcolor;
+  let initals = selectedContact.initals;
+  let index = assignedToUsers.findIndex(
+    (userInfo) => userInfo.bgcolor === bgcolor && userInfo.initals === initals
+  );
+  // prevent multi generate
+  if (index === -1) {
+    assignedToUsers.push({ bgcolor: bgcolor, initals: initals });
+  }
 }
 
 /**
- * Toggles the checkbox state of the assigned-to user and 
+ * Toggles the checkbox state of the assigned-to user and
  * updates the assignedToUsers array with the user's background color and initials.
  * @param {event} event - The event object.
  * @param {String} bgcolor - The background color of the user in the contacts array as rgb.
  * @param {String} initals - The initials of the user in the contacts array.
  */
 function toggleChangeCheckboxAssigned(event, bgcolor, initals) {
-    let divContainerAssigned = event.target.closest('.add-task-dropdown-option');
-    let checkboxAssigned = divContainerAssigned.querySelector('.validate-assignedto-checkbox');
+  let divContainerAssigned = event.target.closest('.add-task-dropdown-option');
+  let checkboxAssigned = divContainerAssigned.querySelector(
+    '.validate-assignedto-checkbox'
+  );
 
-    if (divContainerAssigned === event.target) {
-        checkboxAssigned.checked = !checkboxAssigned.checked;
-    }
+  if (divContainerAssigned === event.target) {
+    checkboxAssigned.checked = !checkboxAssigned.checked;
+  }
 
-    updateChangeAssignedToUsers(checkboxAssigned, bgcolor, initals);
-    renderChangeAssignedUsers();
+  updateChangeAssignedToUsers(checkboxAssigned, bgcolor, initals);
+  renderChangeAssignedUsers();
 }
 
 /**
@@ -652,59 +726,42 @@ function toggleChangeCheckboxAssigned(event, bgcolor, initals) {
  * @param {String} initals - The initials of the user in the contacts array.
  */
 function updateChangeAssignedToUsers(checkboxAssigned, bgcolor, initals) {
-    let index = assignedToUsers.findIndex(userInfo => userInfo.bgcolor === bgcolor && userInfo.initals === initals);
-    // prevent multi generate
-    if (checkboxAssigned.checked) {
-        if (index === -1) {
-            assignedToUsers.push({ 'bgcolor': bgcolor, 'initals': initals });
-        }
-    } else {
-        if (index !== -1) {
-            assignedToUsers.splice(index, 1);
-        }
+  let index = assignedToUsers.findIndex(
+    (userInfo) => userInfo.bgcolor === bgcolor && userInfo.initals === initals
+  );
+  // prevent multi generate
+  if (checkboxAssigned.checked) {
+    if (index === -1) {
+      assignedToUsers.push({ bgcolor: bgcolor, initals: initals });
     }
+  } else {
+    if (index !== -1) {
+      assignedToUsers.splice(index, 1);
+    }
+  }
 }
-
 
 /**
  * Render the user icons, after selected them.
  */
 function renderChangeAssignedUsers() {
-    document.getElementById('change-task-assigned-users').innerHTML = '';
-    for (let i = 0; i < assignedToUsers.length; i++) {
-        let bgcolor = assignedToUsers[i].bgcolor;
-        let initals = assignedToUsers[i].initals;
-        document.getElementById('change-task-assigned-users').innerHTML += openChangeAssignedUserHTML(bgcolor, initals);
-    }
+  document.getElementById('change-task-assigned-users').innerHTML = '';
+  for (let i = 0; i < assignedToUsers.length; i++) {
+    let bgcolor = assignedToUsers[i].bgcolor;
+    let initals = assignedToUsers[i].initals;
+    document.getElementById('change-task-assigned-users').innerHTML +=
+      openChangeAssignedUserHTML(bgcolor, initals);
+  }
 }
 
 /**
  * Shows an error if no user was selected. (form validation)
  */
 function renderChangeAssignedToError() {
-    document.getElementById('change-task-assigned-error').innerHTML = '';
-    document.getElementById('change-task-assigned-error').innerHTML = addTaskErrorHTML('Please select a Contact');
+  document.getElementById('change-task-assigned-error').innerHTML = '';
+  document.getElementById('change-task-assigned-error').innerHTML =
+    addTaskErrorHTML('Please select a Contact');
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*-- Assigned to Template-HTML --*/
 
@@ -713,7 +770,7 @@ function renderChangeAssignedToError() {
  */
 
 function loadChangeAssignedToHTML() {
-    return /*html*/`
+  return /*html*/ `
     <div id="change-task-add-new-contact-section">
         <div class="add-task-dropdown-top" id="change-task-assigendto-dropdown-top" onclick="openChangeAssignedToDropdown()">
             <span>Select contacts to assign</span>
@@ -726,7 +783,7 @@ function loadChangeAssignedToHTML() {
 }
 
 function openChangeTopAssignedToHTML() {
-    return /*html*/`
+  return /*html*/ `
     <div class="add-task-dropdown-top" id="change-task-assigendto-dropdown-top" onclick="openChangeAssignedToDropdown()">
         <span>Select contacts to assign</span>
         <img src="assets/img/icons/add-task-dropdown-arrow.svg" alt="arrow">
@@ -735,18 +792,20 @@ function openChangeTopAssignedToHTML() {
 }
 
 function openChangeAssignedList(name, email, bgcolor, initals) {
-    for (let i = 0; i < assignedToUsers.length; i++) {
-        let assignedName = assignedToUsers[i].fullname;
-        if (assignedName == name) {
-            document.getElementById('change-task-assignedto-dropdown').innerHTML += openChangeCheckboxCheckedHTML(name, email, bgcolor, initals);
-            return;
-        }
+  for (let i = 0; i < assignedToUsers.length; i++) {
+    let assignedName = assignedToUsers[i].fullname;
+    if (assignedName == name) {
+      document.getElementById('change-task-assignedto-dropdown').innerHTML +=
+        openChangeCheckboxCheckedHTML(name, email, bgcolor, initals);
+      return;
     }
-    document.getElementById('change-task-assignedto-dropdown').innerHTML += openChangeCheckboxUncheckedHTML(name, email, bgcolor, initals);
+  }
+  document.getElementById('change-task-assignedto-dropdown').innerHTML +=
+    openChangeCheckboxUncheckedHTML(name, email, bgcolor, initals);
 }
 
 function openChangeCheckboxCheckedHTML(name, email, bgcolor, initals) {
-    return /*html*/`
+  return /*html*/ `
     <div style="justify-content: space-between;" class="add-task-dropdown-option"  onclick="toggleChangeCheckboxAssigned(event,'${bgcolor}','${initals}')">
         ${name}
         <input type="checkbox" name="${email}" value="${name}" checked class="validate-assignedto-checkbox">
@@ -755,7 +814,7 @@ function openChangeCheckboxCheckedHTML(name, email, bgcolor, initals) {
 }
 
 function openChangeCheckboxUncheckedHTML(name, email, bgcolor, initals) {
-    return /*html*/`
+  return /*html*/ `
     <div style="justify-content: space-between;" class="add-task-dropdown-option"  onclick="toggleChangeCheckboxAssigned(event,'${bgcolor}','${initals}')">
         ${name}
         <input type="checkbox" name="${email}" value="${name}" class="validate-assignedto-checkbox">
@@ -764,7 +823,7 @@ function openChangeCheckboxUncheckedHTML(name, email, bgcolor, initals) {
 }
 
 function openChangeInviteNewContactHTML() {
-    return /*html*/`
+  return /*html*/ `
     <div class="add-task-dropdown-new-contact" onclick="renderChangeAssignedToNewContact()">
         Invite new Contact
         <img src="./assets/img/icons/add-task-new-contact.svg" alt="contact">
@@ -773,7 +832,7 @@ function openChangeInviteNewContactHTML() {
 }
 
 function openChangeNewContactSelectHTML() {
-    return /*html*/`
+  return /*html*/ `
     <div class="add-task-dropdown-top">
         <input id="chnge-assigned-new-contact-input" class="add-task-new-contact-input" type="email" placeholder="Contact email" onkeypress="searchChangeNewContactEnter(event)">
         <div class="add-task-new-categroy-buttons">
@@ -786,57 +845,45 @@ function openChangeNewContactSelectHTML() {
 }
 
 function openChangeAssignedUserHTML(bgcolor, initals) {
-    return `
+  return `
     <div style="background: rgb(${bgcolor});" class="add-task-assigned-user">
         <div>${initals}</div>
     </div>
     `;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function saveChangedTask(currentTaskIndex) {
-    let currentTask = tasks[currentTaskIndex];
-    pushChangeTaskIntoBackend(currentTask);
-    window.location.reload();
+async function saveChangedTask(currentTaskIndex) {
+  let currentTask = tasks[currentTaskIndex];
+  await pushChangeTaskIntoBackend(currentTask);
+  window.location.reload();
 }
 
 function pushAlreadySelectedContacts() {
-    assignedToUsers = [];
-    for (let j = 0; j < currentContacts.length; j++) {
-        const element = currentContacts[j][0];
-        assignedToUsers.push(element);
-    }
+  assignedToUsers = [];
+  for (let j = 0; j < currentContacts.length; j++) {
+    const element = currentContacts[j][0];
+    assignedToUsers.push(element);
+  }
 }
 
 async function pushChangeTaskIntoBackend(currentTask) {
-    currentTask['title'] = document.getElementById('change-task-input-title').value;
-    currentTask['description'] = document.getElementById('change-task-input-description').value;
-    currentTask['date'] = document.getElementById('change-task-input-due-date').value;
-    currentTask['prio'] = [chosenPrioButton];
-    currentTask['contact'] = [assignedToUsers];
-    console.log(currentTask);
-    // await backend.setItem('tasks', JSON.stringify(tasks));
+  currentTask['title'] = document.getElementById(
+    'change-task-input-title'
+  ).value;
+  currentTask['description'] = document.getElementById(
+    'change-task-input-description'
+  ).value;
+  currentTask['date'] = document.getElementById(
+    'change-task-input-due-date'
+  ).value;
+  currentTask['prio'] = [chosenPrioButton];
+  currentTask['contact'] = [assignedToUsers];
+  console.log(currentTask);
+  await backend.setItem('tasks', JSON.stringify(tasks));
 }
 
 async function boardDeleteTask(currentTaskIndex) {
-    tasks.splice(currentTaskIndex, 1);
-    await backend.setItem('tasks', JSON.stringify(tasks));
-    window.location.reload();
+  tasks.splice(currentTaskIndex, 1);
+  await backend.setItem('tasks', JSON.stringify(tasks));
+  window.location.reload();
 }
