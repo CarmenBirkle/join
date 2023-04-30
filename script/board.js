@@ -352,9 +352,10 @@ function generateContactsInOpenTaskHTML(currentTaskIndex) {
  * This function opens the second Opened Task Page (for changing tasks)
  */
 
-function openSecondTaskPage(currentTaskIndex) {
+async function openSecondTaskPage(currentTaskIndex) {
     document.getElementById('board-open-task').innerHTML = ``;
-    document.getElementById('board-open-task').innerHTML = generateSecondTaskPageHTML(currentTaskIndex);
+    console.log(currentTaskIndex);
+    document.getElementById('board-open-task').innerHTML = await generateSecondTaskPageHTML(currentTaskIndex);
     initChangeDueDate(currentTaskIndex);
     initChangePrioButtons();
     setChangePrioButtonDesign(tasks[currentTaskIndex]['prio']);
@@ -372,7 +373,7 @@ function generateSecondTaskPageHTML(currentTaskIndex) {
     <div onclick="doNotClose(event)" class="open-task-card">
     <img class="board-close-button" src="./assets/img/icons/board-task-close.svg" 
     onclick="closeOpenTaskPopup()">
-    <form  class="board-open-task-input input-bar" onsubmit="saveChangedTask(currentTaskIndex), return false" autocomplete="on">
+    <form  class="board-open-task-input input-bar" onsubmit="saveChangedTask(${currentTaskIndex}), return false" autocomplete="on">
     <div class="add-task-title">
         <label for="add-task-input-title">Title</label>
         <input id="change-task-input-title" type="text" placeholder="Title" value="${tasks[currentTaskIndex]['title']}" required>
@@ -810,12 +811,9 @@ function openChangeAssignedUserHTML(bgcolor, initals) {
 
 
 
-
-async function saveChangedTask(currentTaskIndex) {
+function saveChangedTask(currentTaskIndex) {
     let currentTask = tasks[currentTaskIndex];
-    console.log(currentTask);
-    await pushChangeTaskIntoBackend(currentTask);
-    console.log(currentTask);
+    pushChangeTaskIntoBackend(currentTask);
     window.location.reload();
 }
 
@@ -831,8 +829,8 @@ async function pushChangeTaskIntoBackend(currentTask) {
     currentTask['title'] = document.getElementById('change-task-input-title').value;
     currentTask['description'] = document.getElementById('change-task-input-description').value;
     currentTask['date'] = document.getElementById('change-task-input-due-date').value;
-    currentTask['prio'] = chosenPrioButton;
-    currentTask['contact'] = assignedToUsers;
+    currentTask['prio'] = [chosenPrioButton];
+    currentTask['contact'] = [assignedToUsers];
     await backend.setItem('tasks', JSON.stringify(tasks));
 }
 
