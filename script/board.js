@@ -421,7 +421,7 @@ function generateContactsInOpenTaskHTML(currentTaskIndex) {
 async function openSecondTaskPage(currentTaskIndex) {
   document.getElementById('board-open-task').innerHTML = ``;
   document.getElementById('board-open-task').innerHTML =
-    await generateSecondTaskPageHTML(currentTaskIndex);
+  await generateSecondTaskPageHTML(currentTaskIndex);
   initChangeDueDate(currentTaskIndex);
   initChangePrioButtons();
   setChangePrioButtonDesign(tasks[currentTaskIndex]['prio']);
@@ -429,6 +429,7 @@ async function openSecondTaskPage(currentTaskIndex) {
   initChangeAssignedTo();
   renderChangeAssignedUsers();
   calculateOpenSubtaskProgress(currentTaskIndex);
+  generateOpenSubtaskList(currentTaskIndex);
 }
 
 /**
@@ -448,7 +449,7 @@ function generateSecondTaskPageHTML(currentTaskIndex) {
 
     <div class="add-task-description">
         <label for="change-task-input-description">Description</label>
-        <textarea style="font-family: Inter, sans-serif;" id="change-task-input-description"
+        <textarea style="font-family: Inter, sans-serif; height: 60%" id="change-task-input-description"
         placeholder="Description" required>${tasks[currentTaskIndex]['description']}</textarea>
     </div>
 
@@ -462,7 +463,7 @@ function generateSecondTaskPageHTML(currentTaskIndex) {
         <span id="change-task-prio-button-error"></span>
     </div>
 
-    <div class="add-task-assigned">
+    <div class="add-task-assigned margin-bottom-10">
     <label>Assigned to</label>
     <div class="add-task-assigned-dropdown" id="change-task-assignedto-render"></div>
     <span id="change-task-assigned-error"></span>
@@ -470,18 +471,19 @@ function generateSecondTaskPageHTML(currentTaskIndex) {
     </div>
 
 
-    <div class="add-task-assigned">
-    <label>Subtasks</label>
-    <div class="subtask-progress" id="open-subtask-progress-${currentTaskIndex}">
+    <div class="add-task-assigned" id="open-subtask-progress-${currentTaskIndex}">
+          <label>Subtasks</label>
+          <div class="subtask-progress">
                 <div class="progress-bar">
                     <div class="progress" id="open-progress-bar-${currentTaskIndex}"></div>
                 </div>
                 <div id="open-progress-text-${currentTaskIndex}"></div>
           </div>
+          <div id="open-subtask-list-${currentTaskIndex}"></div>
     </div>
     
 
-    <button type="submit" class="board-save-button"">OK<img style="object-fit: contain; 
+    <button type="submit" class="board-save-button">OK<img style="object-fit: contain; 
     color: white; margin-left: 10px" src="./assets/img/icons/board-ok-white.svg"></button>
     </div>
     </form>
@@ -507,6 +509,43 @@ function calculateOpenSubtaskProgress(currentTaskIndex) {
   else {
     document.getElementById(`open-subtask-progress-${currentTaskIndex}`).classList.add('d-none');
   }
+}
+
+
+function generateOpenSubtaskList(currentTaskIndex){
+  document.getElementById(`open-subtask-list-${currentTaskIndex}`).innerHTML = ``;
+  for (let i = 0; i < tasks[currentTaskIndex].subtask.length; i++) {
+    const subtasks = tasks[currentTaskIndex].subtask[i];
+    boardWriteSubtaskList(subtasks, currentTaskIndex);
+  }
+}
+
+function boardWriteSubtaskList(subtasks, currentTaskIndex){
+  console.log(subtasks);
+  if (subtasks.status = true){
+  document.getElementById(`open-subtask-list-${currentTaskIndex}`).innerHTML += boardWriteCheckedSubtaskListHTML(subtasks);
+  }
+  else{
+  document.getElementById(`open-subtask-list-${currentTaskIndex}`).innerHTML += boardWriteUncheckedSubtaskListHTML(subtasks);
+  }
+}
+  
+function boardWriteCheckedSubtaskListHTML(subtasks){
+  return /*html*/`
+  <div class="add-task-subtask-checkbox-container">
+      <input type="checkbox" name="subtasks" value="${subtasks['subtask']}" checked>
+      <span>${subtasks['subtask']}</span>
+  </div>
+  `;
+}
+
+function boardWriteUncheckedSubtaskListHTML(subtasks){
+  return /*html*/`
+  <div class="add-task-subtask-checkbox-container">
+    <input type="checkbox" name="subtasks" value="${subtasks.subtask}">
+    <span>${subtasks.subtask}</span>
+  </div>
+  `;
 }
 
 /*-- Due Date --*/
