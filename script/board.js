@@ -103,24 +103,23 @@ function renderTasksDone() {
 function generateTaskHTML(currentTask) {
   return `
     <div id="board-task-${tasks.indexOf(
-      currentTask
-    )}" draggable="true" onclick="boardShowTask(${tasks.indexOf(
+    currentTask
+  )}" draggable="true" onclick="boardShowTask(${tasks.indexOf(
     currentTask
   )})" ondragstart="startDragging(${tasks.indexOf(
     currentTask
   )})" class="task-card">
-        <span class="box-category" style="background-color: ${
-          currentTask['categoryColor']
-        }">${currentTask['categoryType']}</span>
+        <span class="box-category" style="background-color: ${currentTask['categoryColor']
+    }">${currentTask['categoryType']}</span>
         <h6>${currentTask['title']}</h6>
         <p>${currentTask['description']}</p>
         <div style="display: flex; justify-content: space-between">
         <div style="display: flex; padding-left: 8px" id="box-contacts-${tasks.indexOf(
-          currentTask
-        )}"></div>
+      currentTask
+    )}"></div>
         <img style="object-fit: contain" id="box-prio-${tasks.indexOf(
-          currentTask
-        )}">
+      currentTask
+    )}">
         </div>
     </div>
     `;
@@ -310,17 +309,16 @@ function generateBoardOpenTaskHTML(currentTaskIndex) {
     <div onclick="doNotClose(event)" class="open-task-card">
         <img class="board-close-button" src="./assets/img/icons/board-task-close.svg" 
         onclick="closeOpenTaskPopup()">
-        <span class="box-category" style="background-color: ${
-          currentTask['categoryColor']
-        }">
+        <span class="box-category" style="background-color: ${currentTask['categoryColor']
+    }">
         ${currentTask['categoryType']}</span>
         <h1>${currentTask['title']}</h1>
         <p>${currentTask['description']}</p>
         <p><b>Due date:</b><span style="margin-left: 25px">
         ${dueDate.getDate().toString().padStart(2, 0)}-${dueDate
-    .getMonth()
-    .toString()
-    .padStart(2, 0)}-${dueDate.getFullYear()}</span></p>
+      .getMonth()
+      .toString()
+      .padStart(2, 0)}-${dueDate.getFullYear()}</span></p>
         <div style="display: flex; align-items: center"><span><b>Priority:</b></span>
         <div class="board-prio-button" id="open-task-priority"></div></div>
         <p><b>Assigned to:</b></p>
@@ -407,9 +405,8 @@ function generateContactsInOpenTaskHTML(currentTaskIndex) {
 
 async function openSecondTaskPage(currentTaskIndex) {
   document.getElementById('board-open-task').innerHTML = ``;
-  console.log(currentTaskIndex);
   document.getElementById('board-open-task').innerHTML =
-    await generateSecondTaskPageHTML(currentTaskIndex);
+  await generateSecondTaskPageHTML(currentTaskIndex);
   initChangeDueDate(currentTaskIndex);
   initChangePrioButtons();
   setChangePrioButtonDesign(tasks[currentTaskIndex]['prio']);
@@ -482,15 +479,15 @@ function loadChangeDueDateHTML(today, currentTaskIndex) {
   return /*html*/ `
     <label for="change-task-input-due-date">Due date</label>
     <input style="font-family: Inter, sans-serif;" value="${dueDate.getFullYear()}-${dueDate
-    .getMonth()
-    .toString()
-    .padStart(2, 0)}-${dueDate
-    .getDate()
-    .toString()
-    .padStart(
-      2,
-      0
-    )}" id="change-task-input-due-date" type="date" min="${today}" required>
+      .getMonth()
+      .toString()
+      .padStart(2, 0)}-${dueDate
+        .getDate()
+        .toString()
+        .padStart(
+          2,
+          0
+        )}" id="change-task-input-due-date" type="date" min="${today}" required>
     `;
 }
 
@@ -689,12 +686,13 @@ function searchChangeNewContactPushUser(emailInput) {
   );
   let bgcolor = selectedContact.bgcolor;
   let initals = selectedContact.initals;
+  let name = selectedContact.fullname;
   let index = assignedToUsers.findIndex(
     (userInfo) => userInfo.bgcolor === bgcolor && userInfo.initals === initals
   );
   // prevent multi generate
   if (index === -1) {
-    assignedToUsers.push({ bgcolor: bgcolor, initals: initals });
+    assignedToUsers.push({ fullname: name, bgcolor: bgcolor, initals: initals });
   }
 }
 
@@ -705,7 +703,7 @@ function searchChangeNewContactPushUser(emailInput) {
  * @param {String} bgcolor - The background color of the user in the contacts array as rgb.
  * @param {String} initals - The initials of the user in the contacts array.
  */
-function toggleChangeCheckboxAssigned(event, bgcolor, initals) {
+function toggleChangeCheckboxAssigned(event, name, bgcolor, initals) {
   let divContainerAssigned = event.target.closest('.add-task-dropdown-option');
   let checkboxAssigned = divContainerAssigned.querySelector(
     '.validate-assignedto-checkbox'
@@ -715,7 +713,7 @@ function toggleChangeCheckboxAssigned(event, bgcolor, initals) {
     checkboxAssigned.checked = !checkboxAssigned.checked;
   }
 
-  updateChangeAssignedToUsers(checkboxAssigned, bgcolor, initals);
+  updateChangeAssignedToUsers(checkboxAssigned, name, bgcolor, initals);
   renderChangeAssignedUsers();
 }
 
@@ -725,14 +723,14 @@ function toggleChangeCheckboxAssigned(event, bgcolor, initals) {
  * @param {String} bgcolor - The background color of the user in the contacts array as rgb.
  * @param {String} initals - The initials of the user in the contacts array.
  */
-function updateChangeAssignedToUsers(checkboxAssigned, bgcolor, initals) {
+function updateChangeAssignedToUsers(checkboxAssigned, name, bgcolor, initals) {
   let index = assignedToUsers.findIndex(
     (userInfo) => userInfo.bgcolor === bgcolor && userInfo.initals === initals
   );
   // prevent multi generate
   if (checkboxAssigned.checked) {
     if (index === -1) {
-      assignedToUsers.push({ bgcolor: bgcolor, initals: initals });
+      assignedToUsers.push({ fullname: name, bgcolor: bgcolor, initals: initals });
     }
   } else {
     if (index !== -1) {
@@ -806,7 +804,7 @@ function openChangeAssignedList(name, email, bgcolor, initals) {
 
 function openChangeCheckboxCheckedHTML(name, email, bgcolor, initals) {
   return /*html*/ `
-    <div style="justify-content: space-between;" class="add-task-dropdown-option"  onclick="toggleChangeCheckboxAssigned(event,'${bgcolor}','${initals}')">
+    <div style="justify-content: space-between;" class="add-task-dropdown-option"  onclick="toggleChangeCheckboxAssigned(event,'${name}','${bgcolor}','${initals}')">
         ${name}
         <input type="checkbox" name="${email}" value="${name}" checked class="validate-assignedto-checkbox">
     </div>
@@ -815,7 +813,7 @@ function openChangeCheckboxCheckedHTML(name, email, bgcolor, initals) {
 
 function openChangeCheckboxUncheckedHTML(name, email, bgcolor, initals) {
   return /*html*/ `
-    <div style="justify-content: space-between;" class="add-task-dropdown-option"  onclick="toggleChangeCheckboxAssigned(event,'${bgcolor}','${initals}')">
+    <div style="justify-content: space-between;" class="add-task-dropdown-option"  onclick="toggleChangeCheckboxAssigned(event,'${name}','${bgcolor}','${initals}')">
         ${name}
         <input type="checkbox" name="${email}" value="${name}" class="validate-assignedto-checkbox">
     </div>
@@ -867,18 +865,18 @@ function pushAlreadySelectedContacts() {
 }
 
 async function pushChangeTaskIntoBackend(currentTask) {
-  currentTask['title'] = document.getElementById(
-    'change-task-input-title'
-  ).value;
-  currentTask['description'] = document.getElementById(
-    'change-task-input-description'
-  ).value;
-  currentTask['date'] = document.getElementById(
-    'change-task-input-due-date'
-  ).value;
-  currentTask['prio'] = [chosenPrioButton];
-  currentTask['contact'] = [assignedToUsers];
-  console.log(currentTask);
+  let newContacts = [];
+  currentTask['title'] = document.getElementById('change-task-input-title').value;
+  currentTask['description'] = document.getElementById('change-task-input-description').value;
+  currentTask['date'] = document.getElementById('change-task-input-due-date').value;
+  currentTask['prio'] = chosenPrioButton;
+  currentTask['contact'] = '';
+  for (let i = 0; i < assignedToUsers.length; i++) {
+    const newContactName = assignedToUsers[i].fullname;
+    let currentContactFromBackend = contacts.filter((c) => c['fullname'] == newContactName)[0].fullname;
+    newContacts.push(currentContactFromBackend);
+  }
+  currentTask['contact'] = newContacts;
   await backend.setItem('tasks', JSON.stringify(tasks));
 }
 
