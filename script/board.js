@@ -126,10 +126,10 @@ function generateTaskHTML(currentTask) {
 
 function calculateSubtaskProgress(currentTask) {
   let progress = 0;
-  let subtaskAmount = currentTask.subtask.length;
-  if (currentTask.subtask.length > 0) {
-    for (let i = 0; i < currentTask.subtask.length; i++) {
-      const subtask = currentTask.subtask[i];
+  let subtaskAmount = currentTask.subtasks.length;
+  if (currentTask.subtasks.length > 0) {
+    for (let i = 0; i < currentTask.subtasks.length; i++) {
+      const subtask = currentTask.subtasks[i];
       if (subtask['status'] == true) {
         progress++;
       }
@@ -473,7 +473,7 @@ function generateSecondTaskPageHTML(currentTaskIndex) {
 
     <div class="add-task-assigned" id="open-subtask-progress-${currentTaskIndex}">
           <label>Subtasks</label>
-          <div class="subtask-progress">
+          <div class="subtask-progress" >
                 <div class="progress-bar">
                     <div class="progress" id="open-progress-bar-${currentTaskIndex}"></div>
                 </div>
@@ -493,59 +493,83 @@ function generateSecondTaskPageHTML(currentTaskIndex) {
 
 
 function calculateOpenSubtaskProgress(currentTaskIndex) {
+  if(document.getElementById(`open-subtask-progress-${currentTaskIndex}`).classList.contains('d-none')){
+    document.getElementById(`open-subtask-progress-${currentTaskIndex}`).classList.remove('d-none');
+    }
   let progress = 0;
-  let subtaskAmount = tasks[currentTaskIndex].subtask.length;
-  if (tasks[currentTaskIndex].subtask.length > 0) {
-    for (let i = 0; i < tasks[currentTaskIndex].subtask.length; i++) {
-      const subtask = tasks[currentTaskIndex].subtask[i];
+  let subtaskAmount = tasks[currentTaskIndex].subtasks.length;
+  if (tasks[currentTaskIndex].subtasks.length > 0) {
+    for (let i = 0; i < tasks[currentTaskIndex].subtasks.length; i++) {
+      let subtask = tasks[currentTaskIndex].subtasks[i];
       if (subtask['status'] == true) {
         progress++;
       }
     }
-    let progressInPercent = ((progress / subtaskAmount) * 100);
+    let progressInPercent = ((progress / subtaskAmount) * 100).toFixed(0);
+    console.log(progress);
+    console.log(progressInPercent);
     document.getElementById(`open-progress-bar-${currentTaskIndex}`).style.width = progressInPercent + '%';
     document.getElementById(`open-progress-text-${currentTaskIndex}`).innerHTML = progress + '/' + subtaskAmount + ' Done';
   }
   else {
+    if(!document.getElementById(`open-subtask-progress-${currentTaskIndex}`).classList.contains('d-none')){
     document.getElementById(`open-subtask-progress-${currentTaskIndex}`).classList.add('d-none');
+    }
   }
 }
 
 
 function generateOpenSubtaskList(currentTaskIndex){
   document.getElementById(`open-subtask-list-${currentTaskIndex}`).innerHTML = ``;
-  for (let i = 0; i < tasks[currentTaskIndex].subtask.length; i++) {
-    const subtasks = tasks[currentTaskIndex].subtask[i];
-    boardWriteSubtaskList(subtasks, currentTaskIndex);
+  for (let i = 0; i < tasks[currentTaskIndex].subtasks.length; i++) {
+    const currentSubtask = tasks[currentTaskIndex].subtasks[i];
+    boardWriteSubtaskList(currentSubtask, currentTaskIndex);
   }
 }
 
-function boardWriteSubtaskList(subtasks, currentTaskIndex){
-  console.log(subtasks);
-  if (subtasks.status = true){
-  document.getElementById(`open-subtask-list-${currentTaskIndex}`).innerHTML += boardWriteCheckedSubtaskListHTML(subtasks);
+function boardWriteSubtaskList(currentSubtask, currentTaskIndex){
+  let indexOfCurrentSubtask = tasks[currentTaskIndex].subtasks.indexOf(currentSubtask);
+  if (currentSubtask['status'] = false){
+  document.getElementById(`open-subtask-list-${currentTaskIndex}`).innerHTML += boardWriteCheckedSubtaskListHTML(indexOfCurrentSubtask, currentSubtask, currentTaskIndex);
   }
   else{
-  document.getElementById(`open-subtask-list-${currentTaskIndex}`).innerHTML += boardWriteUncheckedSubtaskListHTML(subtasks);
+  document.getElementById(`open-subtask-list-${currentTaskIndex}`).innerHTML += boardWriteUncheckedSubtaskListHTML(indexOfCurrentSubtask, currentSubtask, currentTaskIndex);
   }
 }
   
-function boardWriteCheckedSubtaskListHTML(subtasks){
+function boardWriteCheckedSubtaskListHTML(indexOfCurrentSubtask, currentSubtask, currentTaskIndex){
   return /*html*/`
-  <div class="add-task-subtask-checkbox-container">
-      <input type="checkbox" name="subtasks" value="${subtasks['subtask']}" checked>
-      <span>${subtasks['subtask']}</span>
+  <div style="display: flex; gap:10px; align-items: center">
+      <input type="checkbox" name="subtasks" id="subtasks-${indexOfCurrentSubtask}" value="${currentSubtask['status']}" checked onclick="checkSubtasksOnBoard(${indexOfCurrentSubtask}, ${currentTaskIndex})">
+      <span>${currentSubtask['subtask']}</span>
   </div>
   `;
 }
 
-function boardWriteUncheckedSubtaskListHTML(subtasks){
+function boardWriteUncheckedSubtaskListHTML(indexOfCurrentSubtask, currentSubtask, currentTaskIndex){
   return /*html*/`
-  <div class="add-task-subtask-checkbox-container">
-    <input type="checkbox" name="subtasks" value="${subtasks.subtask}">
-    <span>${subtasks.subtask}</span>
+  <div style="display: flex; gap:10px; align-items: center">
+    <input type="checkbox" name="subtasks" id="subtasks-${indexOfCurrentSubtask}" value="${currentSubtask['status']}" onclick="checkSubtasksOnBoard(${indexOfCurrentSubtask}, ${currentTaskIndex})">
+    <span>${currentSubtask['subtask']}</span>
   </div>
   `;
+}
+
+function checkSubtasksOnBoard(indexOfCurrentSubtask, currentTaskIndex){
+  if(document.getElementById(`subtasks-${indexOfCurrentSubtask}`).checked){
+    tasks[currentTaskIndex]['subtasks'][indexOfCurrentSubtask]['status'] = false;
+    document.getElementById(`subtasks-${indexOfCurrentSubtask}`).value = false;
+    document.getElementById(`subtasks-${indexOfCurrentSubtask}`).checked = false;
+    console.log(true);
+  }
+  if(!document.getElementById(`subtasks-${indexOfCurrentSubtask}`).checked){
+    tasks[currentTaskIndex]['subtasks'][indexOfCurrentSubtask]['status'] = true;
+    document.getElementById(`subtasks-${indexOfCurrentSubtask}`).value = true;
+    document.getElementById(`subtasks-${indexOfCurrentSubtask}`).checked = true;
+    console.log(false);
+  }
+  calculateOpenSubtaskProgress(currentTaskIndex);
+  generateOpenSubtaskList(currentTaskIndex);
 }
 
 /*-- Due Date --*/

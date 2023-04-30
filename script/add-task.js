@@ -580,11 +580,11 @@ function pushChosenSubtasks() {
     let subtaskCheckboxes = document.querySelectorAll('input[name=subtasks]');
     for (let i = 0; i < subtaskCheckboxes.length; i++) {
         if (subtaskCheckboxes[i].checked) {
-            let subtask = {
+            let subtasks = {
                 'subtask': subtaskCheckboxes[i].value,
                 'status': 'false'
             };
-            chosenSubtasks.push(subtask);
+            chosenSubtasks.push(subtasks);
         }
     }
 }
@@ -642,7 +642,7 @@ async function pushTaskIntoBackend() {
         'contact': contact,
         'date': dateFormattedMilliseconds(),
         'prio': prio,
-        'subtask': subtask
+        'subtasks': subtask
     }
 
     tasks.push(task);
