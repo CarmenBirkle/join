@@ -32,6 +32,7 @@ function renderTasksToDo() {
       filterContactsFromTask(element);
       document.getElementById('to-do').innerHTML += generateTaskHTML(element);
       generateContactsInTask(tasks.indexOf(element));
+      calculateSubtaskProgress(element);
       generatePrioInTask(tasks.indexOf(element), element);
     }
   }
@@ -48,8 +49,8 @@ function renderTasksInProgress() {
     const element = inProgress[index];
     if (element) {
       filterContactsFromTask(element);
-      document.getElementById('in-progress').innerHTML +=
-        generateTaskHTML(element);
+      document.getElementById('in-progress').innerHTML +=generateTaskHTML(element);
+      calculateSubtaskProgress(element);
       generateContactsInTask(tasks.indexOf(element));
       generatePrioInTask(tasks.indexOf(element), element);
     }
@@ -69,8 +70,8 @@ function renderTasksAwaitingFeedback() {
     const element = awaitingFeedback[index];
     if (element) {
       filterContactsFromTask(element);
-      document.getElementById('awaiting-feedback').innerHTML +=
-        generateTaskHTML(element);
+      document.getElementById('awaiting-feedback').innerHTML += generateTaskHTML(element);
+      calculateSubtaskProgress(element);
       generateContactsInTask(tasks.indexOf(element));
       generatePrioInTask(tasks.indexOf(element), element);
     }
@@ -88,8 +89,8 @@ function renderTasksDone() {
     const element = done[index];
     if (element) {
       filterContactsFromTask(element);
-      console.log(currentContacts);
       document.getElementById('done').innerHTML += generateTaskHTML(element);
+      calculateSubtaskProgress(element);
       generateContactsInTask(tasks.indexOf(element));
       generatePrioInTask(tasks.indexOf(element), element);
     }
@@ -102,27 +103,43 @@ function renderTasksDone() {
  */
 function generateTaskHTML(currentTask) {
   return `
-    <div id="board-task-${tasks.indexOf(
-    currentTask
-  )}" draggable="true" onclick="boardShowTask(${tasks.indexOf(
-    currentTask
-  )})" ondragstart="startDragging(${tasks.indexOf(
-    currentTask
-  )})" class="task-card">
-        <span class="box-category" style="background-color: ${currentTask['categoryColor']
-    }">${currentTask['categoryType']}</span>
+    <div id="board-task-${tasks.indexOf(currentTask)}" draggable="true" 
+    onclick="boardShowTask(${tasks.indexOf(currentTask)})" ondragstart="startDragging(${tasks.indexOf(currentTask)})" 
+    class="task-card">
+        <span class="box-category" style="background-color: ${currentTask['categoryColor']}">${currentTask['categoryType']}</span>
         <h6>${currentTask['title']}</h6>
         <p>${currentTask['description']}</p>
+        <div class="subtask-progress" id="subtask-progress-${tasks.indexOf(currentTask)}">
+                <div class="progress-bar">
+                    <div class="progress" id="progress-bar-${tasks.indexOf(currentTask)}"></div>
+                </div>
+                <div id="progress-text-${tasks.indexOf(currentTask)}"></div>
+          </div>
         <div style="display: flex; justify-content: space-between">
-        <div style="display: flex; padding-left: 8px" id="box-contacts-${tasks.indexOf(
-      currentTask
-    )}"></div>
-        <img style="object-fit: contain" id="box-prio-${tasks.indexOf(
-      currentTask
-    )}">
+        <div style="display: flex; padding-left: 8px" id="box-contacts-${tasks.indexOf(currentTask)}"></div>
+        <img style="object-fit: contain" id="box-prio-${tasks.indexOf(currentTask)}">
         </div>
     </div>
     `;
+}
+
+
+function calculateSubtaskProgress(currentTask){
+  let progress = 0;
+  let subtaskAmount = currentTask.subtask.length;
+  if(currentTask.subtask.length > 0){
+    for (let i = 0; i < currentTask.subtask.length; i++) {
+      const subtask = currentTask.subtask[i];
+      if(subtask['status'] == true){
+        progress ++;
+      }}
+      let progressInPercent = ((progress/subtaskAmount)*100);
+  document.getElementById(`progress-bar-${tasks.indexOf(currentTask)}`).style.width = progressInPercent + '%';
+  document.getElementById(`progress-text-${tasks.indexOf(currentTask)}`).innerHTML = progress + '/' + subtaskAmount + ' Done';
+    }
+    else{
+      document.getElementById(`subtask-progress-${tasks.indexOf(currentTask)}`).classList.add('d-none');
+    }
 }
 
 /**
@@ -406,7 +423,7 @@ function generateContactsInOpenTaskHTML(currentTaskIndex) {
 async function openSecondTaskPage(currentTaskIndex) {
   document.getElementById('board-open-task').innerHTML = ``;
   document.getElementById('board-open-task').innerHTML =
-  await generateSecondTaskPageHTML(currentTaskIndex);
+    await generateSecondTaskPageHTML(currentTaskIndex);
   initChangeDueDate(currentTaskIndex);
   initChangePrioButtons();
   setChangePrioButtonDesign(tasks[currentTaskIndex]['prio']);
