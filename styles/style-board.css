@@ -319,7 +319,12 @@ input[type=checkbox]:checked::before {
 
 @media screen and (max-width: 1170px) {
     .header-block {
-        display: none !important;
+        display: block !important;
+    }
+
+    .add-task-create-media {
+        z-index: 3;
+        display: flex !important;
     }
 
     header {
@@ -338,29 +343,73 @@ input[type=checkbox]:checked::before {
         margin-top: 34px;
     }
 
-    .board-add-task-overlay {
-        background: #F5F5F5;
-        margin-bottom: 80px;
-        position: relative;
-        height: auto;
-        width: auto;
-        z-index: unset;
-    }
-
     .board-add-task {
-        background: none;
-        position: inherit;
-        height: inherit;
+        background: #FFFFFF;
+        border-radius: 0px;
+        padding: 0px;
+        height: 100%;
+        width: 100%;
     }
 
-    .add-task-media {
-        width: inherit !important;
+    .board-add-task-close {
+        top: 110px;
     }
 
     .board-content {
         padding: 30px;
         margin-top: 15px;
         margin-bottom: 89px;
+    }
+
+    .add-task-leftside {
+        width: 370px !important;
+    }
+
+    .add-task-rightside {
+        width: 370px !important;
+    }
+
+    .add-task-media {
+        width: 370px !important;
+    }
+
+    .add-task-clear {
+        display: none !important;
+    }
+
+    .add-task-create {
+        display: none !important;
+    }
+    .add-task-subtask-main-placeholder input {
+        font-size: 16px !important;
+    }
+
+    .add-task-new-categroy-input {
+        font-size: 16px !important;
+    }
+
+    .add-task-description textarea {
+        font-size: 16px !important;
+    }
+
+    .add-task-title input {
+        font-size: 16px !important;
+    }
+
+    .add-task-new-contact-input {
+        font-size: 16px !important;
+    }
+
+    .add-task-prio-button-container button {
+        font-size: 16px !important;
+    }
+
+    .add-task-due-date input {
+        font-size: 16px !important;
+    }
+
+    .contacts-include-tasks {
+        padding: 40px !important;
     }
 }
 
@@ -403,36 +452,12 @@ input[type=checkbox]:checked::before {
         padding: 0;
     }
 
-    .board-add-task-overlay {
-        margin-top: 0;
-        background-color: unset;
-        margin-bottom: 80px;
-        z-index: unset;
-    }
-
-    .add-task-leftside {
-        width: 370px !important;
-    }
-
-    .add-task-rightside {
-        width: 370px !important;
+    .contacts-include-tasks {
+        padding: 0px;
     }
 }
 
 @media screen and (max-width: 550px) {
-
-    .board-add-task {
-        padding: unset;
-        scale: 0.95;
-    }
-
-    .contacts-include-tasks {
-        padding: 0px !important;
-    }
-
-    .board-add-task {
-        border-radius: 0px;
-    }
 
     .board-main-container {
         margin: 49px 0px 0px 0px;
@@ -445,55 +470,24 @@ input[type=checkbox]:checked::before {
         margin-bottom: 89px;
     }
 
-    .add-task-subtask-main-placeholder input {
-        font-size: 16px !important;
-    }
-
-    .add-task-new-categroy-input {
-        font-size: 16px !important;
-    }
-
-    .add-task-description textarea {
-        font-size: 16px !important;
-    }
-
-    .add-task-title input {
-        font-size: 16px !important;
-    }
-
-    .add-task-prio-button-container button {
-        font-size: 16px !important;
-    }
-
-    .add-task-due-date input {
-        font-size: 16px !important;
-    }
-
     .add-task-leftside {
-        width: 315px !important;
+        width: 310px !important;
     }
 
     .add-task-rightside {
-        width: 315px !important;
+        width: 310px !important;
+    }
+
+    .add-task-media {
+        width: 310px !important;
+    }
+
+    .contacts-include-tasks {
+        padding: 4px !important;
     }
 
     .add-task-headline {
         font-size: 45px !important;
-    }
-
-    .contacts-include-tasks {
-        padding: 0;
-    }
-
-    .add-task-clear {
-        font-size: 20px !important;
-        width: 106px !important;
-        height: 61px !important;
-    }
-
-    .add-task-create {
-        font-size: 20px !important;
-        width: 146px !important;
-        height: 61px !important;
+        margin-top: 20px;
     }
 }

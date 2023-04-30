@@ -341,6 +341,11 @@
   .ontacts-add-contact-left {
     position: relative;
   }
+
+  .contacts-include-tasks {
+    margin-top: 40px;
+    padding: 4px;
+}
 }
 
 @media (max-width: 383px) {
