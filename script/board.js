@@ -373,7 +373,7 @@ function generateSecondTaskPageHTML(currentTaskIndex) {
     <div onclick="doNotClose(event)" class="open-task-card">
     <img class="board-close-button" src="./assets/img/icons/board-task-close.svg" 
     onclick="closeOpenTaskPopup()">
-    <form  class="board-open-task-input input-bar" onsubmit="saveChangedTask(${currentTaskIndex}), return false" autocomplete="on">
+    <form  class="board-open-task-input input-bar" onsubmit="saveChangedTask(${currentTaskIndex}); return false" autocomplete="on">
     <div class="add-task-title">
         <label for="add-task-input-title">Title</label>
         <input id="change-task-input-title" type="text" placeholder="Title" value="${tasks[currentTaskIndex]['title']}" required>
@@ -831,7 +831,8 @@ async function pushChangeTaskIntoBackend(currentTask) {
     currentTask['date'] = document.getElementById('change-task-input-due-date').value;
     currentTask['prio'] = [chosenPrioButton];
     currentTask['contact'] = [assignedToUsers];
-    await backend.setItem('tasks', JSON.stringify(tasks));
+    console.log(currentTask);
+    // await backend.setItem('tasks', JSON.stringify(tasks));
 }
 
 async function boardDeleteTask(currentTaskIndex) {
