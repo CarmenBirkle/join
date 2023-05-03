@@ -574,12 +574,18 @@ function pushChosenAssignedTo() {
 }
 
 /**
- * Push the selected subtask checkbox into the chosenSubtasks. (not required for the form validation)
+ * Push subtask checkbox into the chosenSubtasks. (not required for the form validation)
  */
 function pushChosenSubtasks() {
     let subtaskCheckboxes = document.querySelectorAll('input[name=subtasks]');
     for (let i = 0; i < subtaskCheckboxes.length; i++) {
         if (subtaskCheckboxes[i].checked) {
+            let subtasks = {
+                'subtask': subtaskCheckboxes[i].value,
+                'status': 'false'
+            };
+            chosenSubtasks.push(subtasks);
+        } else {
             let subtasks = {
                 'subtask': subtaskCheckboxes[i].value,
                 'status': 'false'
