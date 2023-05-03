@@ -541,9 +541,7 @@ function boardWriteSubtaskListHTML(indexOfCurrentSubtask, currentSubtask, curren
 }
 
 function checkSubtasksOnBoard(indexOfCurrentSubtask, currentTaskIndex){
-  console.log('clicked');
   let checkbox = document.getElementById(`subtasks-${indexOfCurrentSubtask}`);
-  console.log(checkbox.checked);
   tasks[currentTaskIndex].subtasks[indexOfCurrentSubtask]['status'] = checkbox.checked;
   calculateOpenSubtaskProgress(currentTaskIndex);
 }
