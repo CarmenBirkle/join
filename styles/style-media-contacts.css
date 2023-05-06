@@ -40,7 +40,25 @@
   .header-block {
     display: block;
   }
+  h3 {
+    margin: 0;
+  }
 
+  . element.style {
+  }
+  .contacts-info-center-titel {
+    min-width: 200px;
+  }
+  user agent stylesheet div {
+    display: block;
+  }
+  .contacts-information-center {
+    height: unset;
+  }
+
+  .contacts-info-bottom-center {
+    margin-top: 0;
+  }
   .contacts-add-contact-add-task {
     height: 100%;
     width: 100%;
@@ -50,7 +68,6 @@
   .contacts-include-tasks {
     padding: 40px;
   }
-
 
   .contact-list-container {
     margin-bottom: 80px;
@@ -103,7 +120,7 @@
   }
 
   .contacts-mobile-line {
-    margin-top: 32px;
+    margin-top: 10px;
     width: 90px;
     border: 3px solid var(--light-blue);
   }
@@ -345,7 +362,7 @@
   .contacts-include-tasks {
     margin-top: 40px;
     padding: 4px;
-}
+  }
 }
 
 @media (max-width: 383px) {
@@ -380,6 +397,11 @@
     align-items: center;
     max-width: unset;
     width: unset !important;
+    max-height: 300px;
+  }
+  .contacts-white {
+    top: 37px;
+    right: 19px;
   }
 
   .contact-img {
@@ -413,6 +435,12 @@
   .contacts-add-contact {
     /* width: 320px; */
     margin-top: 30px;
-    height: 109vh;
+    /* height: 109vh; */
+  }
+
+  @media only screen and (max-width: 290px) {
+    .contact-name {
+      font-size: 15px;
+    }
   }
 }
