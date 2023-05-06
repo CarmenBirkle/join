@@ -582,7 +582,7 @@ function pushChosenSubtasks() {
         if (subtaskCheckboxes[i].checked) {
             let subtasks = {
                 'subtask': subtaskCheckboxes[i].value,
-                'status': 'false'
+                'status': 'true'
             };
             chosenSubtasks.push(subtasks);
         } else {
