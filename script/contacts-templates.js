@@ -1,7 +1,9 @@
 function getUserLeftTemplate(contact) {
   return `
             <div class="contacts-information-top">
-                <div class="contact-icon" style="background-color: rgb(${contact.bgcolor})";>
+                <div class="contact-icon" style="background-color: rgb(${
+                  contact.bgcolor
+                })";>
                     <div class="contact-initals-big">${contact.initals}</div>
                 </div>
                 <div class="contact-info-top-right">
@@ -16,12 +18,16 @@ function getUserLeftTemplate(contact) {
             <div class="contacts-information-center">
                 <div class="contacts-info-center-titel">Contact information</div> 
                 <div class="contacts-config">
-                    <div class="contacts-edit" onclick="contactsShowOverlayEdit(contacts, ${contact.number})">
+                    <div class="contacts-edit" onclick="contactsShowOverlayEdit(contacts, ${
+                      contact.number
+                    })">
                         <img src="./assets/img/icons/contact-edit.png" alt="edit">
                         <div>Edit Contact</div>
                     </div>
                    
-                    <div  class="contacts-edit" onclick="deleteContacts(${contact.number})"> 
+                    <div  class="contacts-edit" onclick="deleteContacts(${
+                      contact.number
+                    })"> 
                         <img class="contacts-trash" src="./assets/img/icons/contacts-trash-black.png" alt="delete">        
                         <div>Delete Contact</div>
                     </div>
@@ -43,7 +49,7 @@ function getUserLeftTemplate(contact) {
                         Phone
                     </div>
                     <div class="contacts-info-botton-content">
-                    ${contact.phone}
+                    ${contact.phone.slice(0, 4)}-${contact.phone.slice(4)}
                     </div>
                 </div>
 
@@ -65,7 +71,9 @@ function mobileLeftTemplate(contact) {
         </div>
 
             <div class="contacts-information-top">
-                <div  class="contact-icon-mobile" style="background-color: rgb(${contact.bgcolor});">
+                <div  class="contact-icon-mobile" style="background-color: rgb(${
+                  contact.bgcolor
+                });">
                     <div class="contact-initals-big">${contact.initals}</div>
                 </div>
                 <div class="contact-info-top-right">
@@ -79,7 +87,9 @@ function mobileLeftTemplate(contact) {
 
             <div class="contacts-information-center">
                 <div class="contacts-info-center-titel">Contact information</div>
-                    <div class="contacts-edit" onclick="contactsShowOverlayEdit(contacts, ${contact.number})">
+                    <div class="contacts-edit" onclick="contactsShowOverlayEdit(contacts, ${
+                      contact.number
+                    })">
                         <img src="./assets/img/icons/contact-edit.png" alt="edit">
                         <div>Edit Contact</div>
                     </div>
@@ -100,7 +110,7 @@ function mobileLeftTemplate(contact) {
                         Phone
                     </div>
                     <div class="contacts-info-botton-content">
-                        ${contact.phone}
+                        ${contact.phone.slice(0, 4)}-${contact.phone.slice(4)}
                     </div>
                 </div>
             </div>
@@ -109,7 +119,9 @@ function mobileLeftTemplate(contact) {
             </div>
 
 
-            <div class="btn-mobil-edit" onclick="contactsShowOverlayEdit(contacts, ${contact.number})"> 
+            <div class="btn-mobil-edit" onclick="contactsShowOverlayEdit(contacts, ${
+              contact.number
+            })"> 
                 <img src="./assets/img/icons/contacts-edit-mobile.png" alt="edit">
             </div>
     </div>
@@ -174,8 +186,8 @@ function contactsShowContactToEditTemplate(contact) {
                             </div>
 
                             <div class="contacts-input-with-icon">
-                                <input id="contacts-edit-phone" class="contact-input" type="tel" required placeholder="Phone" pattern="[0-9]+-[0-9]+"
-                                    value="${contact.phone}" title="Das Format sollte diesem Schema entsprechen: 0123-456789">
+                                <input id="contacts-edit-phone" class="contact-input" type="number" required placeholder="Phone" pattern="[0-9]+"
+                                    value="${contact.phone}" title="Das Format sollte diesem Schema entsprechen: 012345678">
                                 <span class="contacts-icon-phone"></span>
                             </div>
 
