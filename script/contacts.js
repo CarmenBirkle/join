@@ -294,6 +294,21 @@ function getHighestNumber() {
   return highestNumber;
 }
 /**
+ * Get the name from the input field and capitalize the first letter of each word.
+ * @param {string} name
+ * @returns string with capitalized name
+ */
+function getCapitalizedName(name) {
+  let words = name.split(' '); // teilt den Namen anhand von Leerzeichen auf
+  let capitalizedWords = [];
+  for (let word of words) {
+    capitalizedWords.push(word.charAt(0).toUpperCase() + word.slice(1));
+  }
+  let capitalizedFullName = capitalizedWords.join(' ');
+  return capitalizedFullName;
+}
+
+/**
  * Generates a contact according to a given schema. the input fields are read and stored in a contact, which is returned.
  * - initials: The initials of the name as a string.
  * - number: A unique number as an integer higher than the number of all existing contacts.
@@ -313,7 +328,7 @@ function createContact() {
   let contact = {
     initals: initials,
     number: getHighestNumber() + 1,
-    fullname: name,
+    fullname: getCapitalizedName(name),
     email: email,
     phone: phone,
     bgcolor: randomRGBColor(),
@@ -344,7 +359,7 @@ function showSuccessInfo() {
 async function saveContact() {
   try {
     document.getElementById('contacts-save').disabled = true;
-    const contact = createContact(); // neu
+    const contact = createContact(); // new contact
     contacts.push(contact);
     await backend.setItem('contacts', JSON.stringify(contacts));
     showSuccessInfo();
