@@ -224,7 +224,7 @@ function allowDrop(ev) {
 async function moveTo(category) {
   tasks[currentDraggedElement]['category'] = category;
   await backend.setItem('tasks', JSON.stringify(tasks));
-  window.location.reload();
+  renderTasks();
 }
 
 function highlight(category) {

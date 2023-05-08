@@ -4,7 +4,7 @@
 function startAnimation(){
     if(screen.width >= 768){
     document.getElementById('login-logo').classList.add('animation');
-    setTimeout(showLoginCard, 3000);
+    setTimeout(showLoginCard, 1500);
     }
     if(screen.width < 768){
         responsiveLogin();
@@ -20,7 +20,7 @@ function responsiveLogin(){
     document.getElementById('login-logo').classList.add('d-none');
     document.getElementById('login-logo-responsive').classList.remove('d-none');
     document.getElementById('login-logo-responsive').classList.add('animation-responsive');
-    setTimeout(showLoginCard, 3000);
+    setTimeout(showLoginCard, 1500);
 }
 
 /**
@@ -28,7 +28,7 @@ function responsiveLogin(){
  */
 function sendMailConfirm(){
     document.getElementById('send-mail-confirm').classList.remove('d-none');
-    setTimeout(hideMailConfirm, 3000);
+    setTimeout(hideMailConfirm, 1500);
 }
 
 function hideMailConfirm(){
@@ -40,7 +40,7 @@ function hideMailConfirm(){
  */
 function sendNewPasswordConfirm(){
     document.getElementById('send-new-password-confirm').classList.remove('d-none');
-    setTimeout(hidePasswordConfirm, 3000);
+    setTimeout(hidePasswordConfirm, 1500);
 }
 
 function hidePasswordConfirm(){

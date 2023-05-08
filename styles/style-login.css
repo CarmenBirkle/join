@@ -171,11 +171,11 @@ p {
 }
 
 .animation {
-  animation: animation ease-in-out 3s both;
+  animation: animation ease-in-out 1.5s both;
 }
 
 .animation-responsive {
-  animation: animation-responsive ease-in-out 3s both;
+  animation: animation-responsive ease-in-out 1.5s both;
 }
 
 /**
