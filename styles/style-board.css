@@ -552,6 +552,10 @@ input[type=checkbox]:checked::before {
 
 @media screen and (max-width: 550px) {
 
+    .move-task-btn-container{
+        width: 80%;
+    }
+
     .board-main-container {
         margin: 49px 0px 0px 0px;
         padding: 0px;

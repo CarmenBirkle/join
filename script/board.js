@@ -556,7 +556,6 @@ function generateOpenSubtaskList(currentTaskIndex){
 
 function boardWriteSubtaskList(currentSubtask, currentTaskIndex){
   let indexOfCurrentSubtask = tasks[currentTaskIndex].subtasks.indexOf(currentSubtask);
-  console.log(indexOfCurrentSubtask);
   if(tasks[currentTaskIndex]['subtasks'][indexOfCurrentSubtask]['status'] == 'true'){
     document.getElementById(`open-subtask-list-${currentTaskIndex}`).innerHTML += boardWriteSubtaskCheckedListHTML(indexOfCurrentSubtask, currentSubtask, currentTaskIndex);}
   if(tasks[currentTaskIndex]['subtasks'][indexOfCurrentSubtask]['status'] == 'false'){
