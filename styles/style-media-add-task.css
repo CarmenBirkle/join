@@ -169,6 +169,7 @@
         position: fixed;
         top: 17px;
         right: 10px;
+        z-index: 5;
     }
 
     .add-task-create-media:hover {
