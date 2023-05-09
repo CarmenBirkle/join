@@ -106,26 +106,54 @@ function renderTasksDone() {
  */
 function generateTaskHTML(currentTask) {
   return `
+    <div class="d-none task-card-overlay" id="task-card-overlay-${tasks.indexOf(currentTask)}">
+      <img class="board-close-btn-task-move" src="./assets/img/icons/board-task-close.svg" 
+      onclick="closeTaskCardOverlay(event, ${tasks.indexOf(currentTask)})">
+      <h4><b>Move to</b></h4>
+      <div class="move-task-btn-container">
+        <span onclick="moveTo('to-do')" class="move-task-btn">To-Do</span>
+        <span onclick="moveTo('in-progress')" class="move-task-btn">In Progress</span>
+        <span onclick="moveTo('awaiting-feedback')"class="move-task-btn">Awaiting Feedback</span>
+        <span onclick="moveTo('done')" class="move-task-btn" style="margin-bottom: 25px">Done</span>
+      </div>
+    </div>
     <div id="board-task-${tasks.indexOf(currentTask)}" draggable="true" 
-    onclick="boardShowTask(${tasks.indexOf(currentTask)})" ondragstart="startDragging(${tasks.indexOf(currentTask)})" 
+    onclick="boardShowTask(${tasks.indexOf(currentTask)})" ondragstart="startDragging(${tasks.indexOf(currentTask)})"
     class="task-card">
-        <span class="box-category" style="background-color: ${currentTask['categoryColor']}">${currentTask['categoryType']}</span>
-        <h6>${currentTask['title']}</h6>
-        <p>${currentTask['description']}</p>
-        <div class="subtask-progress" id="subtask-progress-${tasks.indexOf(currentTask)}">
-                <div class="progress-bar">
-                    <div class="progress" id="progress-bar-${tasks.indexOf(currentTask)}"></div>
-                </div>
-                <div id="progress-text-${tasks.indexOf(currentTask)}"></div>
+      <span class="task-move-btn" id="move-to-${tasks.indexOf(currentTask)}" onclick="openTaskCardOverlay(event, ${tasks.indexOf(currentTask)})">Move</span>
+      <span class="box-category" style="background-color: ${currentTask['categoryColor']}">${currentTask['categoryType']}</span>
+      <h6>${currentTask['title']}</h6>
+      <p>${currentTask['description']}</p>
+      <div class="subtask-progress" id="subtask-progress-${tasks.indexOf(currentTask)}">
+          <div class="progress-bar">
+              <div class="progress" id="progress-bar-${tasks.indexOf(currentTask)}"></div>
           </div>
-        <div style="display: flex; justify-content: space-between">
+          <div id="progress-text-${tasks.indexOf(currentTask)}"></div>
+        </div>
+      <div style="display: flex; justify-content: space-between">
         <div style="display: flex; padding-left: 8px" id="box-contacts-${tasks.indexOf(currentTask)}"></div>
         <img style="object-fit: contain" id="box-prio-${tasks.indexOf(currentTask)}">
-        </div>
+      </div>
     </div>
-    `;
+  `;
 }
 
+function openTaskCardOverlay(event, currentTaskIndex){
+  currentDraggedElement = currentTaskIndex;
+if(!document.getElementById(`board-task-${currentTaskIndex}`).classList.contains('d-none')){
+document.getElementById(`board-task-${currentTaskIndex}`).classList.add('d-none');};
+if(document.getElementById(`task-card-overlay-${currentTaskIndex}`).classList.contains('d-none')){
+  document.getElementById(`task-card-overlay-${currentTaskIndex}`).classList.remove('d-none');}
+event.stopPropagation();
+}
+
+function closeTaskCardOverlay(event, currentTaskIndex){
+  if(document.getElementById(`board-task-${currentTaskIndex}`).classList.contains('d-none')){
+    document.getElementById(`board-task-${currentTaskIndex}`).classList.remove('d-none');};
+    if(!document.getElementById(`task-card-overlay-${currentTaskIndex}`).classList.contains('d-none')){
+      document.getElementById(`task-card-overlay-${currentTaskIndex}`).classList.add('d-none');}
+    event.stopPropagation();
+}
 
 function calculateSubtaskProgress(currentTask) {
   if(document.getElementById(`subtask-progress-${tasks.indexOf(currentTask)}`).classList.contains('d-none')){
