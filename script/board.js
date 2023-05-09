@@ -135,7 +135,7 @@ function calculateSubtaskProgress(currentTask) {
   if (currentTask.subtasks.length > 0) {
     for (let i = 0; i < currentTask.subtasks.length; i++) {
       const subtask = currentTask.subtasks[i];
-      if (subtask['status'] == true) {
+      if (subtask['status'] == 'true') {
         progress++;
       }
     }
@@ -502,7 +502,7 @@ function calculateOpenSubtaskProgress(currentTaskIndex) {
   let subtaskAmount = tasks[currentTaskIndex].subtasks.length;
   if (tasks[currentTaskIndex].subtasks.length > 0) {
     for (let i = 0; i < tasks[currentTaskIndex].subtasks.length; i++) {
-      if (document.getElementById(`subtasks-${i}`).checked) {
+      if (tasks[currentTaskIndex].subtasks[i]['status'] == 'true') {
         progress++;
       }
     }
@@ -528,22 +528,41 @@ function generateOpenSubtaskList(currentTaskIndex){
 
 function boardWriteSubtaskList(currentSubtask, currentTaskIndex){
   let indexOfCurrentSubtask = tasks[currentTaskIndex].subtasks.indexOf(currentSubtask);
-  document.getElementById(`open-subtask-list-${currentTaskIndex}`).innerHTML += boardWriteSubtaskListHTML(indexOfCurrentSubtask, currentSubtask, currentTaskIndex);
-  document.getElementById(`subtasks-${indexOfCurrentSubtask}`).checked = tasks[currentTaskIndex]['subtasks'][indexOfCurrentSubtask]['status'];
+  console.log(indexOfCurrentSubtask);
+  if(tasks[currentTaskIndex]['subtasks'][indexOfCurrentSubtask]['status'] == 'true'){
+    document.getElementById(`open-subtask-list-${currentTaskIndex}`).innerHTML += boardWriteSubtaskCheckedListHTML(indexOfCurrentSubtask, currentSubtask, currentTaskIndex);}
+  if(tasks[currentTaskIndex]['subtasks'][indexOfCurrentSubtask]['status'] == 'false'){
+    document.getElementById(`open-subtask-list-${currentTaskIndex}`).innerHTML += boardWriteSubtaskUncheckedListHTML(indexOfCurrentSubtask, currentSubtask, currentTaskIndex);
   }
+  } 
   
-function boardWriteSubtaskListHTML(indexOfCurrentSubtask, currentSubtask, currentTaskIndex){
-  return /*html*/`
+function boardWriteSubtaskCheckedListHTML(indexOfCurrentSubtask, currentSubtask, currentTaskIndex){
+  return `
   <div style="display: flex; gap:10px; align-items: center">
-      <input type="checkbox" id="subtasks-${indexOfCurrentSubtask}" onclick="checkSubtasksOnBoard(${indexOfCurrentSubtask}, ${currentTaskIndex})">
+      <input type="checkbox" id="open-subtask-${indexOfCurrentSubtask}" checked onclick="checkSubtasksOnBoard(${indexOfCurrentSubtask}, ${currentTaskIndex})">
+      <span>${currentSubtask['subtask']}</span>
+  </div>
+  `;
+}
+
+function boardWriteSubtaskUncheckedListHTML(indexOfCurrentSubtask, currentSubtask, currentTaskIndex){
+  return `
+  <div style="display: flex; gap:10px; align-items: center">
+      <input type="checkbox" id="open-subtask-${indexOfCurrentSubtask}" onclick="checkSubtasksOnBoard(${indexOfCurrentSubtask}, ${currentTaskIndex})">
       <span>${currentSubtask['subtask']}</span>
   </div>
   `;
 }
 
 function checkSubtasksOnBoard(indexOfCurrentSubtask, currentTaskIndex){
-  let checkbox = document.getElementById(`subtasks-${indexOfCurrentSubtask}`);
-  tasks[currentTaskIndex].subtasks[indexOfCurrentSubtask]['status'] = checkbox.checked;
+  let checkbox = document.getElementById(`open-subtask-${indexOfCurrentSubtask}`);
+  if(checkbox.checked){
+    tasks[currentTaskIndex].subtasks[indexOfCurrentSubtask]['status'] = 'true';
+    checkbox.checked = true;}
+  else{
+    tasks[currentTaskIndex].subtasks[indexOfCurrentSubtask]['status'] = 'false';
+    checkbox.checked = false;
+  }
   calculateOpenSubtaskProgress(currentTaskIndex);
 }
 
