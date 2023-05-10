@@ -12,10 +12,7 @@ let currentDate;
  */
 
 async function renderTasks() {
-  await initAddTask()
-  /*await includeHTML();
-  await downloadFromServer();
-  tasks = (await JSON.parse(backend.getItem('tasks'))) || [];*/
+  await initAddTask();
   renderTasksToDo();
   renderTasksInProgress();
   renderTasksAwaitingFeedback();
