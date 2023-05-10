@@ -94,8 +94,12 @@ function toggleShowLogOutArea() {
  * Uses the activePage variable to determine the current page and creates an ID for the corresponding element in the side bar.
  * Is called in includeHTML-function.
  */
+
 function getElement() {
-  let tempTrimmed = activePage.replace(/^\/|\.html$/g, '');
+  let lastSegment = activePage.substring(activePage.lastIndexOf('/') + 1);
+  console.log(lastSegment);
+  let tempTrimmed = lastSegment.replace(/^\/|\.html$/g, '');
+  console.log(tempTrimmed);
   let activePageAsID = 'side-bar-' + tempTrimmed;
 
   let currentSideElement = document.getElementById(activePageAsID);
