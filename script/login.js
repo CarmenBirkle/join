@@ -2,11 +2,11 @@
  * This function starts the beginning Join logo animation
  */
 function startAnimation() {
-  if (screen.width >= 768) {
+  if (window.innerWidth >= 768) {
     document.getElementById('login-logo').classList.add('animation');
     setTimeout(showLoginCard, 1500);
   }
-  if (screen.width < 768) {
+  if (window.innerWidth < 768) {
     responsiveLogin();
   }
 }
