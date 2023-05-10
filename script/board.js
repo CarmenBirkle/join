@@ -259,7 +259,6 @@ async function moveTo(category) {
 async function checkMoveToResponsive(currentTaskIndex) {
   let currentTaskCategory = tasks[currentTaskIndex]['category'];
   if(currentTaskCategory == 'to-do'){
-    console.log('to-do')
     document.getElementById(`move-to-responsive-btn-1-of-task-${currentTaskIndex}`).classList.add('same-category-btn');
   }
   if(currentTaskCategory == 'in-progress'){
