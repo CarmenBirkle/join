@@ -73,12 +73,12 @@ function loginUser(){
  * (In this version the users array is reloaded with the original users, so that the array is constant)
  */
 
-function addNewUser(){
+async function addNewUser(){
     let name = document.getElementById('newusername');
     let email = document.getElementById('newuseremail');
     let password = document.getElementById('newuserpassword');
     users.push({name: name.value, email: email.value, password: password.value});
-    backend.setItem('users', JSON.stringify(users));
+    await backend.setItem('users', JSON.stringify(users));
     console.log('Form has been submitted. You are registered right now!');
     window.location.replace("index.html")
 }
