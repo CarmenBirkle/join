@@ -41,9 +41,7 @@ function hideMailConfirm() {
  * This function animates the "New Passord set" confirmatioon
  */
 function sendNewPasswordConfirm() {
-  document
-    .getElementById('send-new-password-confirm')
-    .classList.remove('d-none');
+  document.getElementById('send-new-password-confirm').classList.remove('d-none');
   setTimeout(hidePasswordConfirm, 1500);
 }
 
@@ -117,9 +115,7 @@ function getCookieUserExpireTime() {
 
 function writeRememberUserMail() {
   if (getRememberUserCookie('email')) {
-    document
-      .getElementById('useremail')
-      .setAttribute('value', `${getRememberUserCookie('email')}`);
+    document.getElementById('useremail').setAttribute('value', `${getRememberUserCookie('email')}`);
   }
 }
 
