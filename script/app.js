@@ -97,9 +97,7 @@ function toggleShowLogOutArea() {
 
 function getElement() {
   let lastSegment = activePage.substring(activePage.lastIndexOf('/') + 1);
-  console.log(lastSegment);
   let tempTrimmed = lastSegment.replace(/^\/|\.html$/g, '');
-  console.log(tempTrimmed);
   let activePageAsID = 'side-bar-' + tempTrimmed;
 
   let currentSideElement = document.getElementById(activePageAsID);
