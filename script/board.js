@@ -111,10 +111,10 @@ function generateTaskHTML(currentTask) {
       onclick="closeTaskCardOverlay(event, ${tasks.indexOf(currentTask)})">
       <h4><b>Move to</b></h4>
       <div class="move-task-btn-container">
-        <span onclick="moveTo('to-do')" class="move-task-btn">To-Do</span>
-        <span onclick="moveTo('in-progress')" class="move-task-btn">In Progress</span>
-        <span onclick="moveTo('awaiting-feedback')"class="move-task-btn">Awaiting Feedback</span>
-        <span onclick="moveTo('done')" class="move-task-btn" style="margin-bottom: 25px">Done</span>
+        <span id="move-to-responsive-btn-1-of-task-${tasks.indexOf(currentTask)}" onclick="moveTo('to-do')" class="move-task-btn">To-Do</span>
+        <span id="move-to-responsive-btn-2-of-task-${tasks.indexOf(currentTask)}" onclick="moveTo('in-progress')" class="move-task-btn">In Progress</span>
+        <span id="move-to-responsive-btn-3-of-task-${tasks.indexOf(currentTask)}" onclick="moveTo('awaiting-feedback')"class="move-task-btn">Awaiting Feedback</span>
+        <span id="move-to-responsive-btn-4-of-task-${tasks.indexOf(currentTask)}" onclick="moveTo('done')" class="move-task-btn" style="margin-bottom: 25px">Done</span>
       </div>
     </div>
     <div id="board-task-${tasks.indexOf(currentTask)}" draggable="true" 
@@ -144,6 +144,7 @@ if(!document.getElementById(`board-task-${currentTaskIndex}`).classList.contains
 document.getElementById(`board-task-${currentTaskIndex}`).classList.add('d-none');};
 if(document.getElementById(`task-card-overlay-${currentTaskIndex}`).classList.contains('d-none')){
   document.getElementById(`task-card-overlay-${currentTaskIndex}`).classList.remove('d-none');}
+checkMoveToResponsive(currentTaskIndex);
 event.stopPropagation();
 }
 
@@ -253,6 +254,23 @@ async function moveTo(category) {
   tasks[currentDraggedElement]['category'] = category;
   await backend.setItem('tasks', JSON.stringify(tasks));
   renderTasks();
+}
+
+async function checkMoveToResponsive(currentTaskIndex) {
+  let currentTaskCategory = tasks[currentTaskIndex]['category'];
+  if(currentTaskCategory == 'to-do'){
+    console.log('to-do')
+    document.getElementById(`move-to-responsive-btn-1-of-task-${currentTaskIndex}`).classList.add('same-category-btn');
+  }
+  if(currentTaskCategory == 'in-progress'){
+    document.getElementById(`move-to-responsive-btn-2-of-task-${currentTaskIndex}`).classList.add('same-category-btn');
+  }
+  if(currentTaskCategory == 'awaiting-feedback'){
+    document.getElementById(`move-to-responsive-btn-3-of-task-${currentTaskIndex}`).classList.add('same-category-btn');
+  }
+  if(currentTaskCategory == 'done'){
+    document.getElementById(`move-to-responsive-btn-4-of-task-${currentTaskIndex}`).classList.add('same-category-btn');
+  }
 }
 
 function highlight(category) {

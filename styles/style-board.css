@@ -408,6 +408,10 @@ input[type=checkbox]:checked::before {
     scale: 1.1;
 }
 
+.same-category-btn{
+    opacity: 30%;
+}
+
 
 /* BOARD RESPONSIVE CSS */
 
