@@ -429,7 +429,7 @@ async function deleteContacts(contact) {
     contacts.splice(index, 1);
     await backend.setItem('contacts', JSON.stringify(contacts));
     contactsShowContactlist(sortContacts);
-    location.reload();
+    window.location.replace('contacts.html');
   }
 }
 
