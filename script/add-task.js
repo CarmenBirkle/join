@@ -9,8 +9,8 @@
  * @param {Array}
  */
 const allCategoryColor = ['#FC71FF', '#1FD7C1', '#FF8A00', '#8AA4FF', '#FF0000', '#2AD300', '#E200BE', '#0038FF'];
-let defaultCategoryColor = ['#FC71FF', '#1FD7C1', '#FF8A00', '#8AA4FF'];
-let defaultCategoryType = ['Sale', 'Backoffice', 'Design', 'Marketing'];
+//let defaultCategoryColor = ['#FC71FF', '#1FD7C1', '#FF8A00', '#8AA4FF'];
+//let defaultCategoryType = ['Sale', 'Backoffice', 'Design', 'Marketing'];
 let addSubtasks = [];
 let assignedToUsers = [];
 /**
@@ -24,8 +24,10 @@ let chosenPrioButton = [];
 let chosenSubtasks = []; // not a required field
 /**
  * @param {Array} tasks - Array of tasks (for backend).
+ * @param {Array} categorys - Array of categorys (for backend).
  */
 let tasks = [];
+let categorys = [];
 
 /**
  * Load content from backend (contacts, users, tasks) and start the initAddTaskTemplates() function.
@@ -85,11 +87,13 @@ function renderCategorySelection() {
     document.getElementById('add-task-category-dropdown').innerHTML = '';
     document.getElementById('add-task-category-dropdown').innerHTML = openNewCategoryHTML();
 
-    for (let j = 0; j < defaultCategoryColor.length; j++) {
-        let color = defaultCategoryColor[j];
-        let type = defaultCategoryType[j];
-
-        document.getElementById('add-task-category-dropdown').innerHTML += openCategorysHTML(color, type);
+    if(categorys.length >= 0) {
+        for (let i = 0; i < categorys.length; i++) {
+            let color = categorys[i].color;
+            let type = categorys[i].type;
+    
+            document.getElementById('add-task-category-dropdown').innerHTML += openCategorysHTML(color, type);
+        }
     }
 }
 
@@ -167,8 +171,14 @@ function saveNewCategory() {
     if (newType.value === '' || chosenCategoryColor.length === 0) {
         renderCategoryError();
     } else {
-        defaultCategoryColor = defaultCategoryColor.concat(chosenCategoryColor);
-        defaultCategoryType.push(newType.value);
+        //defaultCategoryColor = defaultCategoryColor.concat(chosenCategoryColor);
+        //defaultCategoryType.push(newType.value);
+        let category = {
+            'type': newType.value,
+            'color': chosenCategoryColor[0]
+        };
+        categorys.push(category);
+        console.log(categorys);
         initCategory();
         renderTopNewCategory();
         addedNewCategoryMessage();
@@ -179,8 +189,10 @@ function saveNewCategory() {
  * Shows the value from the new-category input field and the selected dot-color.
  */
 function renderTopNewCategory() {
-    let newColor = defaultCategoryColor[defaultCategoryColor.length - 1];
-    let newType = defaultCategoryType[defaultCategoryType.length - 1];
+    //let newColor = defaultCategoryColor[defaultCategoryColor.length - 1];
+    //let newType = defaultCategoryType[defaultCategoryType.length - 1];
+    let newColor = categorys[categorys.length - 1].color;
+    let newType = categorys[categorys.length - 1].type;
 
     choseCategory(newColor, newType);
     document.getElementById('add-task-category-dropdown-top').innerHTML = openTopSetCategoryHTML(newColor, newType);
@@ -653,6 +665,7 @@ async function pushTaskIntoBackend() {
 
     tasks.push(task);
     await backend.setItem('tasks', JSON.stringify(tasks));
+    //await backend.setItem('categorys', JSON.stringify(categorys));
 }
 
 /**

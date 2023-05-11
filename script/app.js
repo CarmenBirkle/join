@@ -13,6 +13,7 @@ async function init() {
   contacts = (await JSON.parse(backend.getItem('contacts'))) || [];
   users = (await JSON.parse(backend.getItem('users'))) || [];
   tasks = (await JSON.parse(backend.getItem('tasks'))) || [];
+  //categorys = (await JSON.parse(backend.getItem('categorys'))) || [];
   handleWindowResize();
   changeProfileImage();
 }
