@@ -389,9 +389,8 @@ function openSecondTaskPage(currentTaskIndex) {
    * @param {String} initals - The initials of the user in the contacts array.
    */
   function updateChangeAssignedToUsers(checkboxAssigned, name, bgcolor, initals) {
-    let index = assignedToUsers.findIndex(
-      (userInfo) => userInfo.bgcolor === bgcolor && userInfo.initals === initals
-    );
+    if(assignedToUsers){
+    let index = assignedToUsers.findIndex((userInfo) => userInfo.bgcolor === bgcolor && userInfo.initals === initals);
     // prevent multi generate
     if (checkboxAssigned.checked) {
       if (index === -1) {
@@ -402,7 +401,7 @@ function openSecondTaskPage(currentTaskIndex) {
         assignedToUsers.splice(index, 1);
       }
     }
-  }
+  }}
   
   /**
    * Render the user icons, after selected them.
@@ -410,11 +409,12 @@ function openSecondTaskPage(currentTaskIndex) {
   function renderChangeAssignedUsers() {
     document.getElementById('change-task-assigned-users').innerHTML = '';
     for (let i = 0; i < assignedToUsers.length; i++) {
+      if(assignedToUsers[i]){
       let bgcolor = assignedToUsers[i].bgcolor;
       let initals = assignedToUsers[i].initals;
       document.getElementById('change-task-assigned-users').innerHTML +=
         openChangeAssignedUserHTML(bgcolor, initals);
-    }
+    }}
   }
   
   /**
