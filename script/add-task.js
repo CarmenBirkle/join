@@ -49,6 +49,16 @@ function initAddTaskTemplates() {
     initSubtask();
 }
 
+/**
+ * Renders an error message for a specific element.
+ * @param {String} id - The ID of the element.
+ * @param {String} message - The error message to display.
+ */
+function renderError(id, message) {
+    document.getElementById(id).innerHTML = '';
+    document.getElementById(id).innerHTML = `${addTaskErrorHTML(message)}`;
+}
+
 /*-- Category --*/
 /**
  * Generate the CategoryHTML from the add-task-template.js.
@@ -169,7 +179,7 @@ function saveNewCategory() {
     let newType = document.getElementById('new-category-type-name');
 
     if (newType.value === '' || chosenCategoryColor.length === 0) {
-        renderCategoryError();
+        renderError("add-task-new-category-error", "Please select a category name and pick a color");
     } else {
         //defaultCategoryColor = defaultCategoryColor.concat(chosenCategoryColor);
         //defaultCategoryType.push(newType.value);
@@ -196,14 +206,6 @@ function renderTopNewCategory() {
 
     choseCategory(newColor, newType);
     document.getElementById('add-task-category-dropdown-top').innerHTML = openTopSetCategoryHTML(newColor, newType);
-}
-
-/**
- * Shows an error if no category was selected. (form validation)
- */
-function renderCategoryError() {
-    document.getElementById('add-task-new-category-error').innerHTML = '';
-    document.getElementById('add-task-new-category-error').innerHTML = addTaskErrorHTML('Please select a category name and pick a color');
 }
 
 /**
@@ -314,7 +316,7 @@ function searchNewContact() {
         searchNewContactPushUser(emailInput);
         renderAssignedUsers();
     } else {
-        document.getElementById('add-task-assigned-error').innerHTML = addTaskErrorHTML(`${emailInput} email not found!`);
+        renderError("add-task-assigned-error", `${emailInput} email not found!`);
         document.getElementById('assigned-new-contact-input').focus();
     }
     setTimeout(() => {
@@ -397,15 +399,6 @@ function renderAssignedUsers() {
     }
 }
 
-/**
- * Shows an error if no user was selected. (form validation)
- */
-function renderAssignedToError() {
-    document.getElementById('add-task-assigned-error').innerHTML = '';
-    document.getElementById('add-task-assigned-error').innerHTML = addTaskErrorHTML('Please select a Contact');
-}
-
-
 /*-- Due Date --*/
 /**
  * Generate the due-date input field from the add-task-template.js.
@@ -456,14 +449,6 @@ function setPrioButtonDesign(prioId) {
     document.getElementById(`img-prio-${prioId}-white`).classList.remove('d-none');
 }
 
-/**
- * Shows an error if no prio button was selected. (form validation)
- */
-function renderPrioButtonError() {
-    document.getElementById('add-task-prio-button-error').innerHTML = '';
-    document.getElementById('add-task-prio-button-error').innerHTML = addTaskErrorHTML('Please select a Priority');
-}
-
 /*-- Subtask --*/
 /**
  * Generate the subtask section from the add-task-template.js.
@@ -505,7 +490,7 @@ function addNewSubtask() {
     document.getElementById('add-task-subtask-error').innerHTML = '';
     let subtaskInput = document.getElementById('add-task-subtask-input');
     if (subtaskInput.value === "") {
-        document.getElementById('add-task-subtask-error').innerHTML = addTaskErrorHTML('Please write a subtask');
+        renderError("add-task-subtask-error", "Please write a subtask");
         subtaskInput.focus();
     } else {
         addSubtasks.push(subtaskInput.value);
@@ -566,15 +551,15 @@ function choseCategory(color, type) {
  */
 function validateForm() {
     if (chosenCategoryType.length === 0 || chosenCategoryColor.length === 0) {
-        renderCategoryError();
+        renderError("add-task-new-category-error", "Please select a category name and pick a color");
         return;
     } if (chosenPrioButton.length === 0) {
-        renderPrioButtonError();
+        renderError("add-task-prio-button-error", "Please select a Priority");
         return;
     }
     pushChosenAssignedTo();
     if (chosenAssignedTo.length === 0) {
-        renderAssignedToError();
+        renderError("add-task-assigned-error", "Please select a Contact");
         return;
     }
     pushChosenSubtasks(); // not a required field
