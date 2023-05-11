@@ -21,7 +21,7 @@
 
 .board-main-container h1 {
     font-weight: 700;
-    font-size: 300%;
+    font-size: 61px;
 }
 
 .board-header-bar {
@@ -417,6 +417,12 @@ input[type=checkbox]:checked::before {
 /* BOARD RESPONSIVE CSS */
 
 @media screen and (max-width: 1170px) {
+
+    .board-main-container h1 {
+        font-weight: 700;
+        font-size: 47px;
+    }
+
     .header-block {
         display: block !important;
     }

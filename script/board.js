@@ -437,11 +437,7 @@ function generatePrioInOpenTaskHTML(currentTaskIndex) {
 function generateContactsInOpenTaskHTML(currentTaskIndex) {
   document.getElementById('open-task-contacts').innerHTML = ``;
   currentContacts = [];
-  for (
-    let index = 0;
-    index < tasks[currentTaskIndex]['contact'].length;
-    index++
-  ) {
+  for (let index = 0; index < tasks[currentTaskIndex]['contact'].length; index++) {
     const currentContact = tasks[currentTaskIndex]['contact'][index];
     let currentContactFromBackend = contacts.filter(
       (c) => c['fullname'] == currentContact
