@@ -420,9 +420,29 @@ function updateContacts(contact) {
  *
  */
 async function deleteContacts(contact) {
-  const index = contacts.findIndex((c) => c.number === contact);
-  contacts.splice(index, 1);
-  await backend.setItem('contacts', JSON.stringify(contacts));
-  contactsShowContactlist(sortContacts);
-  location.reload();
+  const deleteContactName = getUserName(contact);
+  if (checkContactInTask(deleteContactName)) {
+    console.log('cant delete - contact is in task');
+    return;
+  } else {
+    const index = contacts.findIndex((c) => c.number === contact);
+    contacts.splice(index, 1);
+    await backend.setItem('contacts', JSON.stringify(contacts));
+    contactsShowContactlist(sortContacts);
+    location.reload();
+  }
+}
+
+function getUserName(contact) {
+  const name = contacts.find((c) => c.number === contact);
+  return name.fullname;
+}
+
+function checkContactInTask() {
+  const tasksWithCarmen = tasks.filter((task) =>
+    task.contact.includes('Carmen Birkle')
+  );
+  const descriptions = tasksWithCarmen.map((task) => task.description);
+  console.log(descriptions);
+  return descriptions.length > 0;
 }
