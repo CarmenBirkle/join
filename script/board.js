@@ -135,6 +135,9 @@ function generateTaskHTML(currentTask) {
   `;
 }
 
+/**This function opens the task card overlay of the responsive move-to card
+ */
+
 function openTaskCardOverlay(event, currentTaskIndex){
   currentDraggedElement = currentTaskIndex;
 if(!document.getElementById(`board-task-${currentTaskIndex}`).classList.contains('d-none')){
@@ -145,6 +148,9 @@ checkMoveToResponsive(currentTaskIndex);
 event.stopPropagation();
 }
 
+/**This function closes the task card overlay of the responsive move-to card
+ */
+
 function closeTaskCardOverlay(event, currentTaskIndex){
   if(document.getElementById(`board-task-${currentTaskIndex}`).classList.contains('d-none')){
     document.getElementById(`board-task-${currentTaskIndex}`).classList.remove('d-none');};
@@ -152,6 +158,9 @@ function closeTaskCardOverlay(event, currentTaskIndex){
       document.getElementById(`task-card-overlay-${currentTaskIndex}`).classList.add('d-none');}
     event.stopPropagation();
 }
+
+/**This function calculates the current progress of the checked subtasks
+ */
 
 function calculateSubtaskProgress(currentTask) {
   if(document.getElementById(`subtask-progress-${tasks.indexOf(currentTask)}`).classList.contains('d-none')){
@@ -161,22 +170,17 @@ function calculateSubtaskProgress(currentTask) {
   if (currentTask.subtasks.length > 0) {
     for (let i = 0; i < currentTask.subtasks.length; i++) {
       const subtask = currentTask.subtasks[i];
-      if (subtask['status'] == 'true') {
-        progress++;
-      }
-    }
+      if (subtask['status'] == 'true'){progress++;}}
     let progressInPercent = ((progress / subtaskAmount) * 100);
     document.getElementById(`progress-bar-${tasks.indexOf(currentTask)}`).style.width = progressInPercent + '%';
-    document.getElementById(`progress-text-${tasks.indexOf(currentTask)}`).innerHTML = progress + '/' + subtaskAmount + ' Done';
-  }
+    document.getElementById(`progress-text-${tasks.indexOf(currentTask)}`).innerHTML = progress + '/' + subtaskAmount + ' Done';}
   else {
     if(!document.getElementById(`subtask-progress-${tasks.indexOf(currentTask)}`).classList.contains('d-none')){
     document.getElementById(`subtask-progress-${tasks.indexOf(currentTask)}`).classList.add('d-none')};
   }
 }
 
-/**
- * This function opens a popup with the current selected task
+/** This function opens a popup with the current selected task
  */
 
 function boardShowTask(currentTaskIndex) {
@@ -188,8 +192,7 @@ function boardShowTask(currentTaskIndex) {
   generateContactsInOpenTaskHTML(currentTaskIndex);
 }
 
-/**
- * This function generates the contacts icons with initals in the tasks
+/** This function generates the contacts icons with initals in the tasks
  */
 
 function generateContactsInTask(index) {
@@ -204,8 +207,7 @@ function generateContactsInTask(index) {
 }
 }
 
-/**
- * This function generates the prio logos in the tasks
+/** This function generates the prio logos in the tasks
  */
 
 function generatePrioInTask(index, currentTask) {
@@ -222,8 +224,7 @@ function generatePrioInTask(index, currentTask) {
   }
 }
 
-/**
- * This function filters the whole contacts to only that ones, that accure in the current task
+/** This function filters the whole contacts to only that ones, that accure in the current task
  */
 
 function filterContactsFromTask(currentTask) {
@@ -237,8 +238,7 @@ function filterContactsFromTask(currentTask) {
   }
 }
 
-/**
- * This functions all the tasks to be dragged and dropped
+/** These functions make the tasks drag- and dropable
  */
 
 function startDragging(currentTaskIndex) {
@@ -255,6 +255,9 @@ async function moveTo(category) {
   renderTasks();
 }
 
+/** This function moves the tasks in the responsive view
+ */
+
 async function checkMoveToResponsive(currentTaskIndex) {
   let currentTaskCategory = tasks[currentTaskIndex]['category'];
   if(currentTaskCategory == 'to-do'){
@@ -270,6 +273,9 @@ async function checkMoveToResponsive(currentTaskIndex) {
     document.getElementById(`move-to-responsive-btn-4-of-task-${currentTaskIndex}`).classList.add('same-category-btn');
   }
 }
+
+/** These functions highlight the current dragged area
+ */
 
 function highlight(category) {
   document.getElementById(category).classList.add('drag-area-highlight');
@@ -320,6 +326,10 @@ async function boardValidateForm(category) {
     return;}
   await furtherFunctionsToValidate(category);
 }
+
+/**
+ * This function validates further functions and reloadds the tasks array 
+ */
 
 async function furtherFunctionsToValidate(category) {
   pushChosenSubtasks(); // not a required field
