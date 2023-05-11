@@ -43,11 +43,16 @@ function openNewCategoryHTML() {
     `;
 }
 
-function openCategorysHTML(color, type) {
+function openCategorysHTML(color, type, i) {
     return /*html*/`
     <div class="add-task-dropdown-option" onclick="setCategory('${color}', '${type}')">
-        <span>${type}</span>
-        <div class="dropdown-option-dots" style="background-color: ${color};"></div>
+        <div>
+            <span>${type}</span>
+            <div class="dropdown-option-dots" style="background-color: ${color};"></div>
+        </div>
+        <div>
+            <img onclick="deleteCatgory('${i}', event)" src="assets/img/icons/contacts-trash-black.png" alt="trash" class="add-task-category-trash">
+        </div>
     </div>
      `;
 }

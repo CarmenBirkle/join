@@ -92,7 +92,7 @@ function renderCategorySelection() {
             let color = categorys[i].color;
             let type = categorys[i].type;
     
-            document.getElementById('add-task-category-dropdown').innerHTML += openCategorysHTML(color, type);
+            document.getElementById('add-task-category-dropdown').innerHTML += openCategorysHTML(color, type, i);
         }
     }
 }
@@ -215,6 +215,14 @@ function addedNewCategoryMessage() {
     setTimeout(() => {
         document.getElementById('add-task-new-category-error').innerHTML = '';
     }, 2000)
+}
+
+function deleteCatgory(i, event) {
+    console.log('Müll', categorys[i]);
+    categorys.splice(i, 1);
+    renderCategorySelection();
+
+    event.stopPropagation();
 }
 
 /*-- Assigned-To --*/
@@ -640,6 +648,7 @@ async function sendFormToBackend() {
 /**
  * Pushes a new task into the tasks array and sends it to the backend for storage.
  * @async - await backend.setItem('tasks', JSON.stringify(tasks));
+ * @async - await backend.setItem('categorys', JSON.stringify(categorys));
  */
 async function pushTaskIntoBackend() {
     let title = document.getElementById('add-task-input-title').value;
@@ -665,7 +674,7 @@ async function pushTaskIntoBackend() {
 
     tasks.push(task);
     await backend.setItem('tasks', JSON.stringify(tasks));
-    //await backend.setItem('categorys', JSON.stringify(categorys));
+    await backend.setItem('categorys', JSON.stringify(categorys));
 }
 
 /**

@@ -208,6 +208,7 @@
 .add-task-dropdown-option {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 11.9px 21px;
 }
 
@@ -272,6 +273,11 @@
 .new-category-dot:hover {
     cursor: pointer;
     transform: scale(1.1);
+}
+
+.add-task-category-trash {
+    width: 20px;
+    height: 20px;
 }
 
 .add-task-error-message {
