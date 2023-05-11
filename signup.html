@@ -16,13 +16,16 @@
 </head>
 
 <body onload="init()">
+    <div class="d-none send-confirm" id="send-new-signup-confirm">
+        <span class="w3-round-large">You signed up successfully.</span>
+    </div>
     <div class="login-content">
         <img src="./assets/img/icons/join-login.svg" class="join-logo" onclick="URL(index.html)">
         <div class="login-card">
             <a href="./index.html"><img src="./assets/img/icons/login-arrow-left.svg" class="login-arrow-left"></a>
             <h1>Sign up</h1>
             <div class="underline-headline"></div>
-            <form class="input-bar" onsubmit="addNewUser(); return false" autocomplete="on">
+            <form class="input-bar" onsubmit="addNewUser(); sendNewSignupConfirm(); return false" autocomplete="on">
                 <input required type="text" id="newusername" class="input-field name w3-round-large" placeholder="Name">
                 <input required type="email" id="newuseremail" class="input-field email w3-round-large" placeholder="Email">
                 <input required type="password" id="newuserpassword" class="input-field password w3-round-large" placeholder="Password">

@@ -310,17 +310,14 @@ function boardOpenAddTask(category) {
 async function boardValidateForm(category) {
   if (chosenCategoryType.length === 0 || chosenCategoryColor.length === 0) {
     renderCategoryError();
-    return;
-  }
+    return;}
   if (chosenPrioButton.length === 0) {
     renderPrioButtonError();
-    return;
-  }
+    return;}
   pushChosenAssignedTo();
   if (chosenAssignedTo.length === 0) {
     renderAssignedToError();
-    return;
-  }
+    return;}
   await furtherFunctionsToValidate(category);
 }
 
@@ -342,16 +339,10 @@ function boardFilterTasks() {
   let search = document.getElementById('board-task-search').value;
   search = search.toLowerCase();
   for (let i = 0; i < tasks.length; i++) {
-    if (
-      !tasks[i]['title'].toLowerCase().includes(search) &&
-      !document.getElementById(`board-task-${i}`).classList.contains('d-none')
-    ) {
+    if (!tasks[i]['title'].toLowerCase().includes(search) && !document.getElementById(`board-task-${i}`).classList.contains('d-none')) {
       document.getElementById(`board-task-${i}`).classList.add('d-none');
     }
-    if (
-      tasks[i]['title'].toLowerCase().includes(search) &&
-      document.getElementById(`board-task-${i}`).classList.contains('d-none')
-    ) {
+    if (tasks[i]['title'].toLowerCase().includes(search) && document.getElementById(`board-task-${i}`).classList.contains('d-none')) {
       document.getElementById(`board-task-${i}`).classList.remove('d-none');
     }
   }
@@ -398,37 +389,19 @@ function generateBoardOpenTaskHTML(currentTaskIndex, currentTask, dueDate) {
 
 function generatePrioInOpenTaskHTML(currentTaskIndex) {
   if (tasks[currentTaskIndex]['prio'] == 'urgent') {
-    document.getElementById(
-      `open-task-priority`
-    ).innerHTML = `Urgent<img class="board-prio-img" id="open-task-priority-img">`;
-    document
-      .getElementById(`open-task-priority`)
-      .setAttribute('style', 'background-color: #FF3D00');
-    document
-      .getElementById('open-task-priority-img')
-      .setAttribute('src', './assets/img/icons/add-task-urgent-white.svg');
+    document.getElementById(`open-task-priority`).innerHTML = `Urgent<img class="board-prio-img" id="open-task-priority-img">`;
+    document.getElementById(`open-task-priority`).setAttribute('style', 'background-color: #FF3D00');
+    document.getElementById('open-task-priority-img').setAttribute('src', './assets/img/icons/add-task-urgent-white.svg');
   }
   if (tasks[currentTaskIndex]['prio'] == 'medium') {
-    document.getElementById(
-      `open-task-priority`
-    ).innerHTML = `Medium<img class="board-prio-img" id="open-task-priority-img">`;
-    document
-      .getElementById(`open-task-priority`)
-      .setAttribute('style', 'background-color: #FFA800');
-    document
-      .getElementById('open-task-priority-img')
-      .setAttribute('src', './assets/img/icons/add-task-medium-white.svg');
+    document.getElementById(`open-task-priority`).innerHTML = `Medium<img class="board-prio-img" id="open-task-priority-img">`;
+    document.getElementById(`open-task-priority`).setAttribute('style', 'background-color: #FFA800');
+    document.getElementById('open-task-priority-img').setAttribute('src', './assets/img/icons/add-task-medium-white.svg');
   }
   if (tasks[currentTaskIndex]['prio'] == 'low') {
-    document.getElementById(
-      `open-task-priority`
-    ).innerHTML = `Low<img class="board-prio-img" id="open-task-priority-img">`;
-    document
-      .getElementById(`open-task-priority`)
-      .setAttribute('style', 'background-color: #7AE229');
-    document
-      .getElementById('open-task-priority-img')
-      .setAttribute('src', './assets/img/icons/add-task-low-white.svg');
+    document.getElementById(`open-task-priority`).innerHTML = `Low<img class="board-prio-img" id="open-task-priority-img">`;
+    document.getElementById(`open-task-priority`).setAttribute('style', 'background-color: #7AE229');
+    document.getElementById('open-task-priority-img').setAttribute('src', './assets/img/icons/add-task-low-white.svg');
   }
 }
 

@@ -19,9 +19,7 @@ function showLoginCard() {
 function responsiveLogin() {
   document.getElementById('login-logo').classList.add('d-none');
   document.getElementById('login-logo-responsive').classList.remove('d-none');
-  document
-    .getElementById('login-logo-responsive')
-    .classList.add('animation-responsive');
+  document.getElementById('login-logo-responsive').classList.add('animation-responsive');
   setTimeout(showLoginCard, 1500);
 }
 
@@ -30,7 +28,7 @@ function responsiveLogin() {
  */
 function sendMailConfirm() {
   document.getElementById('send-mail-confirm').classList.remove('d-none');
-  setTimeout(hideMailConfirm, 1500);
+  setTimeout(hideMailConfirm, 3000);
 }
 
 function hideMailConfirm() {
@@ -42,11 +40,37 @@ function hideMailConfirm() {
  */
 function sendNewPasswordConfirm() {
   document.getElementById('send-new-password-confirm').classList.remove('d-none');
-  setTimeout(hidePasswordConfirm, 1500);
+  setTimeout(hidePasswordConfirm, 3000);
 }
 
 function hidePasswordConfirm() {
   document.getElementById('send-new-password-confirm').classList.add('d-none');
+  window.location.replace('index.html');
+}
+
+/**
+ * This function animates the "Signup successful" confirmatioon
+ */
+function sendNewSignupConfirm() {
+  document.getElementById('send-new-signup-confirm').classList.remove('d-none');
+  setTimeout(hideNewSignupConfirm, 3000);
+}
+
+function hideNewSignupConfirm() {
+  document.getElementById('send-new-signup-confirm').classList.add('d-none');
+  window.location.replace('index.html');
+}
+
+/**
+ * This function animates the "signup before login" confirmatioon
+ */
+function sendSignupFirstConfirm() {
+  document.getElementById('send-signup-before-login-confirm').classList.remove('d-none');
+  setTimeout(hideSignupFirstConfirm, 3000);
+}
+
+function hideSignupFirstConfirm() {
+  document.getElementById('send-signup-before-login-confirm').classList.add('d-none');
   window.location.replace('index.html');
 }
 
@@ -57,21 +81,15 @@ function hidePasswordConfirm() {
 function loginUser() {
   let email = document.getElementById('useremail');
   let password = document.getElementById('userpassword');
-  let user = users.find(
-    (u) => u.email == email.value && u.password == password.value
-  );
+  let user = users.find((u) => u.email == email.value && u.password == password.value);
   if (user) {
-    console.log(
-      'Form has been submitted. You have been loged in successfully!'
-    );
     setCookieUser(user['name']);
     if (document.getElementById('remember-login').checked) {
       setCookieRememberUser(user['email']);
     }
     window.location.replace('summary.html');
   } else {
-    console.log('Uupps! You are not registered. Please sign in first.');
-    window.location.replace('index.html');
+    sendSignupFirstConfirm();
   }
 }
 
@@ -95,8 +113,6 @@ async function addNewUser() {
     password: password.value,
   });
   await backend.setItem('users', JSON.stringify(users));
-  console.log('Form has been submitted. You are registered right now!');
-  window.location.replace('index.html');
 }
 
 function setCookieRememberUser(currentUserMail) {
