@@ -558,7 +558,7 @@ hr {
   gap: 6px;
   cursor: pointer;
   font-size: 16px;
-  align-items: end;
+  align-items: center;
 }
 .contacts-edit > div {
   width: 115px;

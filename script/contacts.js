@@ -428,9 +428,14 @@ async function deleteContacts(contact) {
     const index = contacts.findIndex((c) => c.number === contact);
     contacts.splice(index, 1);
     await backend.setItem('contacts', JSON.stringify(contacts));
-    contactsShowContactlist(sortContacts);
-    window.location.replace('contacts.html');
+    updateContactView();
   }
+}
+
+function updateContactView() {
+  document.getElementById('contacts-user').innerHTML = '';
+  getSortListofContacts();
+  contactsShowContactlist(sortContacts);
 }
 
 function getUserName(contact) {
