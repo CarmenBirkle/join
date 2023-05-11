@@ -438,11 +438,11 @@ function getUserName(contact) {
   return name.fullname;
 }
 
-function checkContactInTask() {
+function checkContactInTask(deleteContactName) {
   const tasksWithCarmen = tasks.filter((task) =>
-    task.contact.includes('Carmen Birkle')
+    task.contact.includes(deleteContactName)
   );
-  const descriptions = tasksWithCarmen.map((task) => task.description);
-  console.log(descriptions);
-  return descriptions.length > 0;
+  const title = tasksWithCarmen.map((task) => task.title);
+  console.log(title);
+  return title.length > 0;
 }
