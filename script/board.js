@@ -196,10 +196,12 @@ function generateContactsInTask(index) {
   let contactField = document.getElementById(`box-contacts-${index}`);
   contactField.innerHTML = ``;
   for (let i = 0; i < currentContacts.length; i++) {
+    if(currentContacts[i][0]){
     let bgcolor = currentContacts[i][0]['bgcolor'];
     let initals = currentContacts[i][0]['initals'];
     contactField.innerHTML += openAssignedUserHTML(bgcolor, initals);
-  }
+    }
+}
 }
 
 /**
@@ -439,17 +441,17 @@ function generateContactsInOpenTaskHTML(currentTaskIndex) {
   currentContacts = [];
   for (let index = 0; index < tasks[currentTaskIndex]['contact'].length; index++) {
     const currentContact = tasks[currentTaskIndex]['contact'][index];
-    let currentContactFromBackend = contacts.filter(
-      (c) => c['fullname'] == currentContact
-    );
+    let currentContactFromBackend = contacts.filter((c) => c['fullname'] == currentContact);
     currentContacts.push(currentContactFromBackend);
   }
   for (let j = 0; j < currentContacts.length; j++) {
+    if(currentContacts[j][0]){
     const element = currentContacts[j][0];
     document.getElementById('open-task-contacts').innerHTML += `
             <div style="display: flex; align-items: center; gap: 25px; margin-bottom: 25px"><div style="color: white; 
             background-color:rgb(${element['bgcolor']}); border-radius: 100%; padding: 10px">${element['initals']}</div>
             <span>${element['fullname']}</span></div>
             `;
+    }
   }
 }

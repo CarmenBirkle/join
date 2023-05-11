@@ -456,12 +456,13 @@ function openSecondTaskPage(currentTaskIndex) {
   
   function openChangeAssignedList(name, email, bgcolor, initals) {
     for (let i = 0; i < assignedToUsers.length; i++) {
+      if( assignedToUsers[i]){
       let assignedName = assignedToUsers[i].fullname;
       if (assignedName == name) {
         document.getElementById('change-task-assignedto-dropdown').innerHTML +=
           openChangeCheckboxCheckedHTML(name, email, bgcolor, initals);
         return;
-      }
+      }}
     }
     document.getElementById('change-task-assignedto-dropdown').innerHTML +=
       openChangeCheckboxUncheckedHTML(name, email, bgcolor, initals);
