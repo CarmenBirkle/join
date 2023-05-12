@@ -70,7 +70,7 @@ function openTopSetCategoryHTML(color, type) {
 function openNewCategorySelectHTML() {
     return /*html*/`
     <div class="add-task-dropdown-top">
-        <input id="new-category-type-name" class="add-task-new-categroy-input" type="text" placeholder="New category name" onkeypress="saveNewCategoryEnter(event)">
+        <input id="new-category-type-name" class="add-task-new-categroy-input" type="text" placeholder="New category name" onkeypress="handleEnterKeyPress(event, saveNewCategory)">
         <div class="add-task-new-categroy-buttons">
             <img src="./assets/img/icons/add-task-button-cross.svg" onclick="initCategory()" alt="cross">
             <div class="add-task-category-greyline"></div>
@@ -130,7 +130,7 @@ function openInviteNewContactHTML() {
 function openNewContactSelectHTML() {
     return /*html*/`
     <div class="add-task-dropdown-top">
-        <input id="assigned-new-contact-input" class="add-task-new-contact-input" type="email" placeholder="Contact email" onkeypress="searchNewContactEnter(event)">
+        <input id="assigned-new-contact-input" class="add-task-new-contact-input" type="email" placeholder="Contact email" onkeypress="handleEnterKeyPress(event, searchNewContact)">
         <div class="add-task-new-categroy-buttons">
             <img src="./assets/img/icons/add-task-button-cross.svg" onclick="renderTopAssigendToAfterNewContact()" alt="cross">
             <div class="add-task-category-greyline"></div>
@@ -180,7 +180,7 @@ function loadSubtaskHTML() {
 function openSubtaskInputHTML() {
     return /*html*/`
     <div class="add-task-subtask-main-placeholder">
-        <input id="add-task-subtask-input" type="text" placeholder="Create new icons" onkeypress="addNewSubtaskEnter(event)">
+        <input id="add-task-subtask-input" type="text" placeholder="Create new icons" onkeypress="handleEnterKeyPress(event, addNewSubtask)">
         <div class="add-task-new-subtask-buttons">
             <img src="./assets/img/icons/add-task-button-cross.svg" onclick="initSubtask()" alt="cross">
             <div class="add-task-category-greyline"></div>

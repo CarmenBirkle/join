@@ -49,16 +49,6 @@ function initAddTaskTemplates() {
     initSubtask();
 }
 
-/**
- * Renders an error message for a specific element.
- * @param {String} id - The ID of the element.
- * @param {String} message - The error message to display.
- */
-function renderError(id, message) {
-    document.getElementById(id).innerHTML = '';
-    document.getElementById(id).innerHTML = `${addTaskErrorHTML(message)}`;
-}
-
 /*-- Category --*/
 /**
  * Generate the CategoryHTML from the add-task-template.js.
@@ -91,7 +81,7 @@ function renderTopCategory() {
 
 /**
  * Render the new category field in the dropdown.
- * Render the category selection in the category dropdown using the global array defaultCategoryColor.
+ * Render the category selection in the category dropdown using the global array categorys.
  */
 function renderCategorySelection() {
     document.getElementById('add-task-category-dropdown').innerHTML = '';
@@ -110,8 +100,8 @@ function renderCategorySelection() {
 /**
  * Renders the selected section and shows them int the category top.
  * Dropdown will be closed.
- * @param {String} color -The color of the defaultCategoryColor, represented as a hexadecimal string.
- * @param {String} type - The type of the defaultCategoryType, represented as a string.
+ * @param {String} color -The color of the categorys array, represented as a hexadecimal string.
+ * @param {String} type - The type of the categorys array, represented as a string.
  */
 function setCategory(color, type) {
     choseCategory(color, type);
@@ -157,23 +147,11 @@ function saveNewColor(dotColor, i) {
 }
 
 /**
- * Handles the keydown event for the "Add New Category" input field. 
- * @param {event} event - This parameter is used to detect if the user has pressed the "Enter" key, and if so,
- *                      to prevent the default form submission behavior.
- */
-function saveNewCategoryEnter(event) {
-    if (event.key == "Enter") {
-        event.preventDefault();
-        saveNewCategory();
-    }
-}
-
-/**
  * 1. Validate the new-category input field and selected dot-color.
  * 2. Pushes the input value from the 'New Category' input field
- * into an array(defaultCategoryType) and saves it when a new option is selected in this section.
+ * into an array(categorys) and saves it when the form is submitted.
  * 2. Pushes the selected dot-color from the 'New Category'
- * into an array(defaultCategoryColor) and saves it when a new option is selected in this section.
+ * into an array(categorys) and saves it when the form is submitted.
  */
 function saveNewCategory() {
     let newType = document.getElementById('new-category-type-name');
@@ -289,18 +267,6 @@ function renderAssignedToNewContact() {
     document.getElementById('add-task-assignedto-dropdown').classList.toggle('d-none');
     document.getElementById('add-task-assigendto-dropdown-top').innerHTML = '';
     document.getElementById('add-task-add-new-contact-section').innerHTML = openNewContactSelectHTML();
-}
-
-/**
- * Handles the keydown event for the "Serach New Contact" input field. 
- * @param {event} event - This parameter is used to detect if the user has pressed the "Enter" key, and if so,
- *                      to prevent the default form submission behavior.
- */
-function searchNewContactEnter(event) {
-    if (event.key == "Enter") {
-        event.preventDefault();
-        searchNewContact();
-    }
 }
 
 /**
@@ -470,18 +436,6 @@ function changeSubtask() {
 }
 
 /**
- * Handles the keydown event for the "Subtask" input field. 
- * @param {event} event - This parameter is used to detect if the user has pressed the "Enter" key, and if so,
- *                      to prevent the default form submission behavior.
- */
-function addNewSubtaskEnter(event) {
-    if (event.key == "Enter") {
-        event.preventDefault();
-        addNewSubtask();
-    }
-}
-
-/**
  * Validates the value from the subtask input field.
  * If the input is incorrect, a error will be generate.
  * If the input is correct, the input is pushed into the addSubtasks array and start the renderSubtaskCheckbox() function.
@@ -533,8 +487,8 @@ function clearAddTask() {
 /*-- Form / Create Button --*/
 /**
  * Push the selected color and type from category section in the chosenCategoryColor and chosenCategoryType array. (form validate)
- * @param {String} color - The color of the defaultCategoryColor, represented as a hexadecimal string.
- * @param {String} type - The type of the defaultCategoryType, represented as a string.
+ * @param {String} color - The color of the categorys array or the entered category-name, represented as a hexadecimal string.
+ * @param {String} type - The type of the categorys array or the selected color, represented as a string.
  */
 function choseCategory(color, type) {
     chosenCategoryColor = [];
@@ -686,3 +640,26 @@ function showsAddedTaskAnimation() {
         addedContainer.classList.add('d-none');
     }, 2000);
 }
+
+/*Helpfunctions*/
+/**
+ * Renders an error message for a specific element.
+ * @param {String} id - The ID of the element.
+ * @param {String} message - The error message to display.
+ */
+function renderError(id, message) {
+    document.getElementById(id).innerHTML = '';
+    document.getElementById(id).innerHTML = `${addTaskErrorHTML(message)}`;
+}
+
+/**
+ * Handles the keydown event for the input field "Add New Category", "Search New Contact" and "Add New Subtask".
+ * @param {event} event - This parameter is used to detect if the user has pressed the "Enter" key, and if so, to prevent the default form submission behavior.
+ * @param {Function} inputCallback - The function to be executed.
+ */
+function handleEnterKeyPress(event, inputCallback) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      inputCallback();
+    }
+  }
