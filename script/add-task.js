@@ -166,7 +166,6 @@ function saveNewCategory() {
             'color': chosenCategoryColor[0]
         };
         categorys.push(category);
-        console.log(categorys);
         initCategory();
         renderTopNewCategory();
         addedNewCategoryMessage();
@@ -198,7 +197,6 @@ function addedNewCategoryMessage() {
 }
 
 function deleteCatgory(i, event) {
-    console.log('Müll', categorys[i]);
     categorys.splice(i, 1);
     renderCategorySelection();
 
