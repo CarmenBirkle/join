@@ -200,3 +200,35 @@ function contactsShowContactToEditTemplate(contact) {
         </div>
     `;
 }
+
+function contactsShowCantDelTemplate(taskTitle) {
+  const titleListHtml = taskTitle.map((title) => `<li>${title}</li>`).join('');
+
+  return `
+            <div id="render-popup-edit-Contact" class="contacts-overlay" onclick="closeAllPopups()">
+                <div class="contacts-add-contact fadeInRight fadeInBottom" onclick="doNotClose(event)">
+                    <div class="contacts-add-contact-left">
+                    <img class="contacts-white-edit" src="./assets/img/icons/X-white.png"
+                    onclick="contactsCloseOverlaycantDel()" alt="X">
+                
+                        <h2 class="deltitle">Contact can not be deleted</h2>
+                
+                        <hr>
+                    </div>
+                    <div class="contacts-add-contact-right delete">
+                    <div class="taskdel">     
+                        <p> Dieser Kontakt ist noch <br/> anderen Tasks zugeordnet.</p> 
+                        <p> Bitte verteile vor dem Löschen </br> die Aufgaben auf andere User </p>
+                        </br>
+                        <p> Der Kontakt ist in folgenden Tasks hinterlegt:</p>
+                    </div>
+                
+                     <ul class="scroll">${titleListHtml}</ul>
+                        <img class="contacts-full" src="./assets/img/icons/contacs-x.svg"
+                            onclick="contactsCloseOverlaycantDel()" alt="X">
+                           <a href="board.html" class="contacts-btn-save-contact contacts-btn-cantdel">zum Board</a>
+                    </div>
+                </div>
+        </div>
+    `;
+}

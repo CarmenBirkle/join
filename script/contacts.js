@@ -416,13 +416,16 @@ function updateContacts(contact) {
  * @function
  * @param {integer} contact - the individual contact number, this is generated
  * dynamically in ascending order when creating a contact
- *
- *
  */
 async function deleteContacts(contact) {
   const deleteContactName = getUserName(contact);
   if (checkContactInTask(deleteContactName)) {
     console.log('cant delete - contact is in task');
+    const container = document.getElementById('contacts-popup-noDel-Contact');
+    container.classList.remove('d-none');
+    const taskTitle = checkContactInTask(deleteContactName);
+    container.innerHTML = contactsShowCantDelTemplate(taskTitle);
+
     return;
   } else {
     const index = contacts.findIndex((c) => c.number === contact);
@@ -449,5 +452,11 @@ function checkContactInTask(deleteContactName) {
   );
   const title = tasksWithCarmen.map((task) => task.title);
   console.log(title);
-  return title.length > 0;
+  return title;
+}
+
+function contactsCloseOverlaycantDel() {
+  document
+    .getElementById('contacts-popup-noDel-Contact')
+    .classList.add('d-none');
 }

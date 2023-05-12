@@ -377,6 +377,35 @@ hr {
   cursor: pointer;
 }
 
+.contacts-btn-cantdel {
+  width: unset;
+  height: unset;
+  margin-right: unset;
+}
+
+.delete {
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  margin-left: 142px;
+}
+.scroll {
+  overflow-y: scroll;
+  height: 100%;
+}
+
+.taskdel {
+  gap: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 15px;
+}
+.taskdel p {
+  margin: 0;
+}
+
 .contacts-btn-save-contact:hover {
   background: #29abe2;
   border: #29abe2;
@@ -467,7 +496,6 @@ hr {
 }
 
 .contacts-titel {
-  padding-top: 82px;
   margin-left: 58px;
   display: flex;
   gap: 30px;

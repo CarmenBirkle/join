@@ -43,6 +43,13 @@
   h3 {
     margin: 0;
   }
+  .deltitle {
+    margin-left: 46px;
+    font-size: 47px;
+    margin: 0;
+    margin-top: 132px;
+    margin-left: 46px;
+  }
 
   . element.style {
   }
@@ -236,6 +243,9 @@
     overflow: visible;
     margin-bottom: 32px;
     position: relative;
+  }
+  .delete {
+    margin-left: unset;
   }
 
   .contacts-join-logo {
@@ -438,7 +448,7 @@
   }
   .contacts-add-contact-left {
     max-height: 282px;
-    max-width: 350px;
+    max-width: 381px;
   }
 
   @media only screen and (max-width: 290px) {
