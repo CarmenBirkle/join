@@ -420,12 +420,10 @@ function updateContacts(contact) {
 async function deleteContacts(contact) {
   const deleteContactName = getUserName(contact);
   if (checkContactInTask(deleteContactName)) {
-    console.log('cant delete - contact is in task');
     const container = document.getElementById('contacts-popup-noDel-Contact');
     container.classList.remove('d-none');
     const taskTitle = checkContactInTask(deleteContactName);
     container.innerHTML = contactsShowCantDelTemplate(taskTitle);
-
     return;
   } else {
     const index = contacts.findIndex((c) => c.number === contact);
@@ -435,8 +433,12 @@ async function deleteContacts(contact) {
   }
 }
 
+/**
+ * Function to update the contact view after delete a contact
+ */
 function updateContactView() {
   document.getElementById('contacts-user').innerHTML = '';
+  contactsCloseMobileContacts();
   getSortListofContacts();
   contactsShowContactlist(sortContacts);
 }
@@ -447,12 +449,15 @@ function getUserName(contact) {
 }
 
 function checkContactInTask(deleteContactName) {
-  const tasksWithCarmen = tasks.filter((task) =>
+  const tasksWithUser = tasks.filter((task) =>
     task.contact.includes(deleteContactName)
   );
-  const title = tasksWithCarmen.map((task) => task.title);
-  console.log(title);
-  return title;
+  const title = tasksWithUser.map((task) => task.title);
+  if (title.length > 0) {
+    return title;
+  } else {
+    return false;
+  }
 }
 
 function contactsCloseOverlaycantDel() {

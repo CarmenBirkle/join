@@ -211,22 +211,23 @@ function contactsShowCantDelTemplate(taskTitle) {
                     <img class="contacts-white-edit" src="./assets/img/icons/X-white.png"
                     onclick="contactsCloseOverlaycantDel()" alt="X">
                 
-                        <h2 class="deltitle">Contact can not be deleted</h2>
+                        <h2 class="deltitle">Contact can\'t be deleted</h2>
                 
                         <hr>
                     </div>
                     <div class="contacts-add-contact-right delete">
                     <div class="taskdel">     
-                        <p> Dieser Kontakt ist noch <br/> anderen Tasks zugeordnet.</p> 
-                        <p> Bitte verteile vor dem Löschen </br> die Aufgaben auf andere User </p>
+                        <p> This contact is still
+assigned to other tasks.</p> 
+                        <p> To delete: </br> Distribute the Tasks differently. </p>
                         </br>
-                        <p> Der Kontakt ist in folgenden Tasks hinterlegt:</p>
+                        <p> Linked Tasks:</p>
                     </div>
                 
                      <ul class="scroll">${titleListHtml}</ul>
                         <img class="contacts-full" src="./assets/img/icons/contacs-x.svg"
                             onclick="contactsCloseOverlaycantDel()" alt="X">
-                           <a href="board.html" class="contacts-btn-save-contact contacts-btn-cantdel">zum Board</a>
+                           <a href="board.html" class="contacts-btn-save-contact contacts-btn-cantdel">Board</a>
                     </div>
                 </div>
         </div>
