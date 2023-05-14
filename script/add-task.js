@@ -365,13 +365,11 @@ function renderAssignedUsers() {
 
 /*-- Due Date --*/
 /**
- * Generate the due-date input field from the add-task-template.js.
- * min date = current date
+ * Generate the minimum due date for a task as the current date.
  */
 function initDueDate() {
-    document.getElementById('add-task-due-date').innerHTML = '';
     const today = new Date().toISOString().split('T')[0];
-    document.getElementById('add-task-due-date').innerHTML = loadDueDateHTML(today);
+    document.getElementById('add-task-input-due-date').min = today;
 }
 
 /*-- Prio --*/

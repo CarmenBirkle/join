@@ -148,14 +148,6 @@ function openAssignedUserHTML(bgColor, initals) {
     `;
 }
 
-/*-- Due Date Template-HTML --*/
-function loadDueDateHTML(today) {
-    return /*html*/`
-    <label for="add-task-input-due-date">Due date</label>
-    <input style="font-family: Inter, sans-serif;" id="add-task-input-due-date" type="date" min="${today}" required>
-    `;
-}
-
 /*-- Prio-Buttons-HTML --*/
 function loadPrioButtonsHTML(prioName, prioNameFormatted) {
     return /*html*/`
