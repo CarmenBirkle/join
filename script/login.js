@@ -2,11 +2,11 @@
  * This function starts the beginning Join logo animation
  */
 function startAnimation() {
-  if (window.innerWidth >= 768) {
+  if (window.innerWidth >= 768) {   // for big screens
     document.getElementById('login-logo').classList.add('animation');
     setTimeout(showLoginCard, 1500);
   }
-  if (window.innerWidth < 768) {
+  if (window.innerWidth < 768) {   // for small screens
     responsiveLogin();
   }
 }
@@ -93,6 +93,10 @@ function loginUser() {
   }
 }
 
+/**
+ * This function logs in the "Guest" user
+ */
+
 function guestLogin() {
   setCookieUser('Guest');
   window.location.replace('summary.html');
@@ -115,11 +119,17 @@ async function addNewUser() {
   await backend.setItem('users', JSON.stringify(users));
 }
 
+/** This function sets a cookie for the remember function on the login website
+ */
+
 function setCookieRememberUser(currentUserMail) {
   let now = getCookieUserExpireTime();
   document.cookie =
     'email =' + currentUserMail + '; expires=' + now.toUTCString() + ';path=/';
 }
+
+/** This function calculates the expire time of the remember user cookie
+ */
 
 function getCookieUserExpireTime() {
   let now = new Date();
@@ -129,11 +139,8 @@ function getCookieUserExpireTime() {
   return now;
 }
 
-function writeRememberUserMail() {
-  if (getRememberUserCookie('email')) {
-    document.getElementById('useremail').setAttribute('value', `${getRememberUserCookie('email')}`);
-  }
-}
+/** This function gets the remember user cookie
+ */
 
 function getRememberUserCookie(cname) {
   let name = cname + '=';
@@ -149,4 +156,13 @@ function getRememberUserCookie(cname) {
     }
   }
   return '';
+}
+
+/** This writes the remember user cookie
+ */
+
+function writeRememberUserMail() {
+  if (getRememberUserCookie('email')) {
+    document.getElementById('useremail').setAttribute('value', `${getRememberUserCookie('email')}`);
+  }
 }
