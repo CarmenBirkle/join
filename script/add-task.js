@@ -9,8 +9,6 @@
  * @param {Array}
  */
 const allCategoryColor = ['#FC71FF', '#1FD7C1', '#FF8A00', '#8AA4FF', '#FF0000', '#2AD300', '#E200BE', '#0038FF'];
-//let defaultCategoryColor = ['#FC71FF', '#1FD7C1', '#FF8A00', '#8AA4FF'];
-//let defaultCategoryType = ['Sale', 'Backoffice', 'Design', 'Marketing'];
 let addSubtasks = [];
 let assignedToUsers = [];
 /**
@@ -159,8 +157,6 @@ function saveNewCategory() {
     if (newType.value === '' || chosenCategoryColor.length === 0) {
         renderError("add-task-new-category-error", "Please select a category name and pick a color");
     } else {
-        //defaultCategoryColor = defaultCategoryColor.concat(chosenCategoryColor);
-        //defaultCategoryType.push(newType.value);
         let category = {
             'type': newType.value,
             'color': chosenCategoryColor[0]
@@ -176,8 +172,6 @@ function saveNewCategory() {
  * Shows the value from the new-category input field and the selected dot-color.
  */
 function renderTopNewCategory() {
-    //let newColor = defaultCategoryColor[defaultCategoryColor.length - 1];
-    //let newType = defaultCategoryType[defaultCategoryType.length - 1];
     let newColor = categorys[categorys.length - 1].color;
     let newType = categorys[categorys.length - 1].type;
 
