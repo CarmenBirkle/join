@@ -86,10 +86,12 @@ function summaryGreetingResponsive() {
  */
 function showsGreetingResponsiveAnimation() {
     document.getElementById('summary-welcome-responsive').classList.remove('d-none');
+    document.getElementById('summary-body').classList.add('summary-hidden');
     setTimeout(() => {
         document.getElementById('summary-welcome-responsive').classList.add('summary-welcome-animation');
         setTimeout(() => {
             document.getElementById('summary-welcome-responsive').classList.add('d-none');
+            document.getElementById('summary-body').classList.remove('summary-hidden');
         }, 1000);
     }, 2000);
 }
