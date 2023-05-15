@@ -221,7 +221,7 @@ function contactsShowCantDelTemplate(taskTitle) {
 assigned to other tasks.</p> 
                         <p> To delete: </br> Distribute the Tasks differently. </p>
                         </br>
-                        <p> Linked Tasks:</p>
+                        <p> Linked Task-Titel:</p>
                     </div>
                 
                      <ul class="scroll">${titleListHtml}</ul>
