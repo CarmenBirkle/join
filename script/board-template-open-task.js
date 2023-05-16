@@ -519,7 +519,8 @@ function openSecondTaskPage(currentTaskIndex) {
   async function saveChangedTask(currentTaskIndex) {
     let currentTask = tasks[currentTaskIndex];
     await pushChangeTaskIntoBackend(currentTask);
-    window.location.reload();
+    await renderTasks();
+    closeOpenTaskPopup();
   }
   
   function pushAlreadySelectedContacts() {
@@ -549,6 +550,7 @@ function openSecondTaskPage(currentTaskIndex) {
   async function boardDeleteTask(currentTaskIndex) {
     tasks.splice(currentTaskIndex, 1);
     await backend.setItem('tasks', JSON.stringify(tasks));
-    window.location.reload();
+    await renderTasks();
+    closeOpenTaskPopup();
   }
   
