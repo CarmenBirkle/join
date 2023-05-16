@@ -92,7 +92,7 @@ function pushChosenSubtasks() {
  * 2. Start pushTaskIntoBackend() function.
  * 3. Reset the form by automatic trigger the clear button.
  * 4. Shows the showsAddedTaskAnimation.
- * 5. Forwards to the board.html.
+ * 5. Forwards to the board.html or render the board page.
  * 6. After sending the form into the backend the create task button will be activated again.
  * @async - pushTaskIntoBackend() / Pushed the task into the backend.
  */
@@ -106,13 +106,26 @@ async function sendFormToBackend() {
         document.getElementById('add-task-clear-button').click(); // reset form
         showsAddedTaskAnimation();
         setTimeout(() => {
-            window.location.href = 'board.html';
+            loadOrRender();
         }, 2000);
     } catch (error) {
         console.log('An error has occurred!' + error);
     } finally {
         document.getElementById('add-task-create-button').disabled = false;
         document.getElementById('add-task-create-button-media').disabled = false;
+    }
+}
+
+async function loadOrRender() {
+    const board = 'board';
+    let lastSegment = activePage.substring(activePage.lastIndexOf('/') + 1); // activePage in app.js
+    let tempTrimmed = lastSegment.replace(/^\/|\.html$/g, '');
+    if(tempTrimmed === board) {
+        console.log('Moin', tempTrimmed);
+        await renderTasks();
+        boardCloseAddTask();
+    } else {
+        window.location.href = 'board.html';
     }
 }
 
