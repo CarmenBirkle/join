@@ -121,7 +121,6 @@ async function loadOrRender() {
     let lastSegment = activePage.substring(activePage.lastIndexOf('/') + 1); // activePage in app.js
     let tempTrimmed = lastSegment.replace(/^\/|\.html$/g, '');
     if(tempTrimmed === board) {
-        console.log('Moin', tempTrimmed);
         await renderTasks();
         boardCloseAddTask();
     } else {
@@ -149,7 +148,7 @@ async function pushTaskIntoBackend() {
         'description': description,
         'categoryColor': categoryColor,
         'categoryType': categoryType,
-        'category': 'to-do',
+        'category': chosenCategory,
         'contact': contact,
         'date': dateFormattedMilliseconds(),
         'prio': prio,

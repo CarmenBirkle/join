@@ -19,6 +19,7 @@ let chosenCategoryColor = [];
 let chosenCategoryType = [];
 let chosenAssignedTo = [];
 let chosenPrioButton = [];
+let chosenCategory = 'to-do';
 let chosenSubtasks = []; // not a required field
 /**
  * @param {Array} tasks - Array of tasks (for backend).

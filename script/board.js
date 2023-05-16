@@ -299,13 +299,19 @@ async function setStartCategory(category) {
 /**
  * This function opens the add tasks popup
  */
-
+/*
 function boardOpenAddTask(category) {
   document.getElementById('board-add-task').classList.remove('d-none');
   document.getElementById('board-content').classList.add('d-none');
   if (category) {
     document.getElementById('task-form-submit').setAttribute('onsubmit', `boardValidateForm(${category}); return false`);
   }
+}*/
+
+function boardOpenAddTask(category) {
+  document.getElementById('board-add-task').classList.remove('d-none');
+  document.getElementById('board-content').classList.add('d-none');
+  chosenCategory = category;
 }
 
 /**

@@ -4,7 +4,7 @@
 
 function closeAddTaskPopup() {
     document.getElementById('board-add-task').classList.add('d-none');
-    window.location.reload();
+    document.getElementById('board-content').classList.remove('d-none');
 }
 
 /**
