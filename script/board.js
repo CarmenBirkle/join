@@ -314,10 +314,10 @@ function boardFilterTasks() {
   let search = document.getElementById('board-task-search').value;
   search = search.toLowerCase();
   for (let i = 0; i < tasks.length; i++) {
-    if (!tasks[i]['title'].toLowerCase().includes(search) && !document.getElementById(`board-task-${i}`).classList.contains('d-none')) {
+    if (!(tasks[i]['title'].toLowerCase().includes(search) || tasks[i]['description'].toLowerCase().includes(search)) && !document.getElementById(`board-task-${i}`).classList.contains('d-none')) {
       document.getElementById(`board-task-${i}`).classList.add('d-none');
     }
-    if (tasks[i]['title'].toLowerCase().includes(search) && document.getElementById(`board-task-${i}`).classList.contains('d-none')) {
+    if ((tasks[i]['title'].toLowerCase().includes(search) || tasks[i]['description'].toLowerCase().includes(search)) && document.getElementById(`board-task-${i}`).classList.contains('d-none')) {
       document.getElementById(`board-task-${i}`).classList.remove('d-none');
     }
   }
