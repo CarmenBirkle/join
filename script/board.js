@@ -299,52 +299,11 @@ async function setStartCategory(category) {
 /**
  * This function opens the add tasks popup
  */
-/*
-function boardOpenAddTask(category) {
-  document.getElementById('board-add-task').classList.remove('d-none');
-  document.getElementById('board-content').classList.add('d-none');
-  if (category) {
-    document.getElementById('task-form-submit').setAttribute('onsubmit', `boardValidateForm(${category}); return false`);
-  }
-}*/
 
 function boardOpenAddTask(category) {
   document.getElementById('board-add-task').classList.remove('d-none');
   document.getElementById('board-content').classList.add('d-none');
   chosenCategory = category;
-}
-
-/**
- * This function submits the new task into the backend array
- * (only if the category is not "to-do")
- */
-
-async function boardValidateForm(category) {
-  if (chosenCategoryType.length === 0 || chosenCategoryColor.length === 0) {
-    renderCategoryError();
-    return;}
-  if (chosenPrioButton.length === 0) {
-    renderPrioButtonError();
-    return;}
-  pushChosenAssignedTo();
-  if (chosenAssignedTo.length === 0) {
-    renderAssignedToError();
-    return;}
-  await furtherFunctionsToValidate(category);
-}
-
-/**
- * This function validates further functions and reloadds the tasks array 
- */
-
-async function furtherFunctionsToValidate(category) {
-  pushChosenSubtasks(); // not a required field
-  sendFormToBackend();
-  await includeHTML();
-  await downloadFromServer();
-  tasks = (await JSON.parse(backend.getItem('tasks'))) || [];
-  setStartCategory(category);
-  window.location.reload();
 }
 
 /**
