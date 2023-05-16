@@ -217,8 +217,7 @@ function contactsShowCantDelTemplate(taskTitle) {
                     </div>
                     <div class="contacts-add-contact-right delete">
                     <div class="taskdel">     
-                        <p> This contact is still
-assigned to other tasks.</p> 
+                        <p> This contact is still assigned to other tasks.</p> 
                         <p> To delete: </br> Distribute the Tasks differently. </p>
                         </br>
                         <p> Linked Task-Titel:</p>

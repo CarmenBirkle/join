@@ -22,14 +22,6 @@ hr {
   border-radius: 3px;
 }
 
-/* input {
-  padding-left: 21px;
-  height: 25px;
-  width: 320px;
-  border: none;
-  font-size: 21px;
-} */
-
 .header-block {
   display: none;
 }
@@ -101,7 +93,7 @@ hr {
   display: flex;
   justify-content: center;
   width: 1116px;
-  height: 923px;
+  height: 823px;
   background: #ffffff;
   border-radius: 30px;
 }
