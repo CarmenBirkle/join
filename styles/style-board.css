@@ -272,7 +272,7 @@
     justify-content: center;
     background: #FFFFFF;
     border-radius: 30px;
-    padding: 35px;
+    padding: 25px;
     position: absolute;
     height: 98vh;
 }
@@ -600,6 +600,6 @@ input[type=checkbox]:checked::before {
 
     .add-task-headline {
         font-size: 45px !important;
-        margin-top: 20px;
+        margin-top: 10px;
     }
 }

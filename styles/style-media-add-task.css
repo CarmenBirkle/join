@@ -6,6 +6,10 @@
         font-size: 16px;
     }
 
+    .add-task-main-content-template {
+        margin-top: 68px !important;
+    }
+
     .add-task-media {
         width: 513px;
     }
