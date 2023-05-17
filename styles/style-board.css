@@ -617,4 +617,16 @@ input[type=checkbox]:checked::before {
         right: -50%;
         bottom: unset;
     }
+
+    ::-webkit-scrollbar {
+        width: unset !important; 
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: unset !important; 
+    }
+
+    ::-webkit-scrollbar-track {
+        background: unset !important;
+    }
 }
