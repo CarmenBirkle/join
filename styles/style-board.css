@@ -621,15 +621,15 @@ input[type=checkbox]:checked::before {
         bottom: unset;
     }
 
-    ::-webkit-scrollbar {
+    .board-add-task::-webkit-scrollbar {
         width: unset !important; 
     }
 
-    ::-webkit-scrollbar-thumb {
+    .board-add-task::-webkit-scrollbar-thumb {
         background: unset !important; 
     }
 
-    ::-webkit-scrollbar-track {
+    .board-add-task::-webkit-scrollbar-track {
         background: unset !important;
     }
 }
