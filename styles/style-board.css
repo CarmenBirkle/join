@@ -415,6 +415,9 @@ input[type=checkbox]:checked::before {
     cursor: not-allowed;
 }
 
+.overflow-hidden{
+    overflow: hidden !important;
+}
 
 /* BOARD RESPONSIVE CSS */
 
@@ -614,7 +617,7 @@ input[type=checkbox]:checked::before {
 
     .board-button-box{
         position: relative;
-        right: -50%;
+        right: -60%;
         bottom: unset;
     }
 

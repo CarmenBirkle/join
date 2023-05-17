@@ -190,6 +190,7 @@ function boardShowTask(currentTaskIndex) {
   document.getElementById('board-open-task').innerHTML = generateBoardOpenTaskHTML(currentTaskIndex, currentTask, dueDate);
   generatePrioInOpenTaskHTML(currentTaskIndex);
   generateContactsInOpenTaskHTML(currentTaskIndex);
+  document.getElementById('board-html').classList.add('overflow-hidden');
 }
 
 /** This function generates the contacts icons with initals in the tasks
@@ -329,6 +330,7 @@ function boardFilterTasks() {
 
 function closeOpenTaskPopup() {
   document.getElementById('board-open-task').classList.add('d-none');
+  document.getElementById('board-html').classList.remove('overflow-hidden');
 }
 
 /**
