@@ -62,19 +62,6 @@ function hideNewSignupConfirm() {
 }
 
 /**
- * This function animates the "signup before login" confirmatioon
- */
-function sendSignupFirstConfirm() {
-  document.getElementById('send-signup-before-login-confirm').classList.remove('d-none');
-  setTimeout(hideSignupFirstConfirm, 3000);
-}
-
-function hideSignupFirstConfirm() {
-  document.getElementById('send-signup-before-login-confirm').classList.add('d-none');
-  window.location.replace('index.html');
-}
-
-/**
  * This function logs in a user
  */
 
@@ -89,9 +76,18 @@ function loginUser() {
     }
     window.location.replace('summary.html');
   } else {
-    sendSignupFirstConfirm();
+    showLoginError();
   }
 }
+
+function showLoginError(){
+ document.getElementById('login-user-error').classList.remove('d-none');
+ setTimeout(hideLoginError, 3000);
+}
+
+function hideLoginError(){
+  document.getElementById('login-user-error').classList.add('d-none');
+ }
 
 /**
  * This function logs in the "Guest" user

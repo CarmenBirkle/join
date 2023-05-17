@@ -35,6 +35,7 @@
         <div class="underline-headline"></div>
         <form class="input-bar" onsubmit="loginUser(); return false" autocomplete="on">
           <input required type="email" class="input-field email w3-round-large" id="useremail" placeholder="Email"/>
+          <span class="d-none" id="login-user-error" style="color: red">User unknown. Please signup first</span>
           <input required type="password" class="input-field password w3-round-large" id="userpassword" placeholder="Password"/>
           <div class="detail-bar">
             <input type="checkbox" id="remember-login" defaultValue="false" style="cursor: pointer"/>
