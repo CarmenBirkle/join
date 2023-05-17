@@ -10,6 +10,8 @@
     overflow: hidden;
 }
 
+
+
 .board-content {
     display: flex;
     flex-direction: column;
@@ -601,5 +603,18 @@ input[type=checkbox]:checked::before {
     .add-task-headline {
         font-size: 45px !important;
         margin-top: 10px;
+    }
+
+    .open-task-card{
+        max-width: 90%;
+        overflow-x: hidden;
+        overflow-y: auto;
+        max-height: 90%;
+    }
+
+    .board-button-box{
+        position: relative;
+        right: -50%;
+        bottom: unset;
     }
 }
