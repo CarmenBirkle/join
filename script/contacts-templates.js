@@ -8,7 +8,9 @@ function getUserLeftTemplate(contact) {
                 </div>
                 <div class="contact-info-top-right">
                     <div class="contact-name">${contact.fullname}</div>
-                    <div class="add-task" onclick="contactsOpenAddTask()">
+                    <div class="add-task" onclick="contactsOpenAddTask${
+                      contact.fullname
+                    })">
                         <img src="./assets/img/icons/contact-add-task.png" alt="+">
                         <div>Add Task</div>
                     </div>
@@ -78,7 +80,9 @@ function mobileLeftTemplate(contact) {
                 </div>
                 <div class="contact-info-top-right">
                     <div class="contact-name">${contact.fullname}</div>
-                    <div class="add-task" onclick="contactsOpenAddTask()">
+                    <div class="add-task" onclick="contactsOpenAddTask(${
+                      contact.fullname
+                    })">
                         <img src="./assets/img/icons/contact-add-task.png" alt="+">
                         <div>Add Task</div>
                     </div>
