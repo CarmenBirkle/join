@@ -249,7 +249,8 @@ function renderAssignedToSelection() {
         const email = contacts[i].email;
         const bgColor = contacts[i].bgcolor;
         const initals = contacts[i].initals;
-        document.getElementById('add-task-assignedto-dropdown').innerHTML += openAssignedListHTML(name, email, bgColor, initals);
+        const checkboxStatus = (name === chosenAssignedTo[0]) ? 'checked' : '';
+        document.getElementById('add-task-assignedto-dropdown').innerHTML += openAssignedListHTML(name, email, bgColor, initals, checkboxStatus);
     }
 }
 

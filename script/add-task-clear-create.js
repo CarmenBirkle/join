@@ -56,6 +56,7 @@ function validateForm() {
  * Push the selected assigned user into the chosenAssignedTo array to validate the form.
  */
 function pushChosenAssignedTo() {
+    chosenAssignedTo = [];
     let contactsCheckboxes = document.querySelectorAll('.validate-assignedto-checkbox');
     for (let i = 0; i < contactsCheckboxes.length; i++) {
         if (contactsCheckboxes[i].checked) {

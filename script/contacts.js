@@ -61,8 +61,17 @@ function contactsCloseOverlayEdit() {
 /**
  * Function to display the overlay to add a new task
  */
-function contactsOpenAddTask() {
+function contactsOpenAddTask(name) {
   document.getElementById('contacts-add-task').classList.remove('d-none');
+  chosenAssignedTo = [];
+  assignedToUsers = [];
+  chosenAssignedTo.push(name);
+  const selectedContact = contacts.find(contact => contact.fullname === name);
+  let bgColor = selectedContact.bgcolor;
+  let initals = selectedContact.initals;
+  assignedToUsers.push({ bgColor: bgColor, initals: initals });
+  initAddTaskTemplates();
+  renderAssignedUsers();
 }
 
 /**
