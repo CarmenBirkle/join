@@ -74,7 +74,6 @@ function openCategoryDropdown() {
  * Render the top section from the category and open the placeholder.
  */
 function renderTopCategory() {
-    document.getElementById('add-task-category-dropdown-top').innerHTML = '';
     document.getElementById('add-task-category-dropdown-top').innerHTML = openTopPlaceholderHTML('Select task category');
 }
 
@@ -83,7 +82,6 @@ function renderTopCategory() {
  * Render the category selection in the category dropdown using the global array categorys.
  */
 function renderCategorySelection() {
-    document.getElementById('add-task-category-dropdown').innerHTML = '';
     document.getElementById('add-task-category-dropdown').innerHTML = openNewCategoryHTML();
 
     if(categorys.length >= 0) {
@@ -184,7 +182,6 @@ function renderTopNewCategory() {
  * Shows a message when a new category is added to the category dropdown menu.
  */
 function addedNewCategoryMessage() {
-    document.getElementById('add-task-new-category-error').innerHTML = '';
     document.getElementById('add-task-new-category-error').innerHTML = addTaskMessageHTML('Added new category');
     setTimeout(() => {
         document.getElementById('add-task-new-category-error').innerHTML = '';
@@ -204,7 +201,6 @@ function deleteCatgory(i, event) {
  * Executes the functions that renders the names and the new-contact field.
  */
 function initAssignedTo() {
-    document.getElementById('add-task-assignedto-render').innerHTML = '';
     document.getElementById('add-task-assigned-error').innerHTML = '';
     document.getElementById('add-task-assignedto-render').innerHTML = loadAssignedToHTML();
     renderAssignedToSelection();
@@ -225,7 +221,6 @@ function openAssignedToDropdown() {
  * Render the top section from the Assigned to and open the placeholder.
  */
 function renderTopAssigendTo() {
-    document.getElementById('add-task-assigendto-dropdown-top').innerHTML = '';
     document.getElementById('add-task-assigned-error').innerHTML = '';
     document.getElementById('add-task-assigendto-dropdown-top').innerHTML = openTopPlaceholderHTML('Select contacts to assign');
 }
@@ -288,7 +283,6 @@ function searchNewContact() {
  * If you click on the cross, the assigned-new-contact-input will be closed.
  */
 function renderTopAssigendToAfterNewContact() {
-    document.getElementById('add-task-add-new-contact-section').innerHTML = '';
     document.getElementById('add-task-add-new-contact-section').innerHTML = openTopAssignedToHTML();
 }
 
@@ -412,7 +406,6 @@ function setPrioButtonDesign(prioId) {
  * Generate the subtask section from the add-task-template.js.
  */
 function initSubtask() {
-    document.getElementById('add-task-subtask-render').innerHTML = '';
     document.getElementById('add-task-subtask-error').innerHTML = '';
     document.getElementById('add-task-subtask-render').innerHTML = loadSubtaskHTML();
 }
@@ -422,7 +415,6 @@ function initSubtask() {
  * then the subtask input field will be generated and the input field is automatically focused.
  */
 function changeSubtask() {
-    document.getElementById('add-task-subtask-render').innerHTML = '';
     document.getElementById('add-task-subtask-render').innerHTML = openSubtaskInputHTML();
     document.getElementById('add-task-subtask-input').focus();
 }

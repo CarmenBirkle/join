@@ -1,3 +1,10 @@
+/**
+ * add-task-clear-create.js is responsible for validating the add-task.
+ * @author Daniel Hartmann
+ * @version 1.0
+ */
+
+
 /*-- Clear Button --*/
 /**
  * After pressing the clear button, all input fields and arrays will be reset.
