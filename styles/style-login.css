@@ -258,9 +258,7 @@ p {
   }
 
   .login-card{
-    margin-top: 0;
-    gap: 25px;
-    padding: 20px;
+    margin-top: 25px;
   }
 
   .login-arrow-left{
