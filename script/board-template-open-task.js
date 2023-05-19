@@ -68,8 +68,10 @@ function openSecondTaskPage(currentTaskIndex) {
       </div>
       
   
-      <button type="submit" class="board-save-button">OK<img style="object-fit: contain; 
-      color: white; margin-left: 10px" src="./assets/img/icons/board-ok-white.svg"></button>
+      <div class="board-button-box-main">
+        <button type="submit" class="board-save-button">OK<img style="object-fit: contain; 
+        color: white; margin-left: 10px" src="./assets/img/icons/board-ok-white.svg"></button>
+      </div>
       </div>
       </form>
       `;

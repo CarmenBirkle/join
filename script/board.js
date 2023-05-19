@@ -108,10 +108,10 @@ function generateTaskHTML(currentTask) {
       onclick="closeTaskCardOverlay(event, ${tasks.indexOf(currentTask)})">
       <h4><b>Move to</b></h4>
       <div class="move-task-btn-container">
-        <span id="move-to-responsive-btn-1-of-task-${tasks.indexOf(currentTask)}" onclick="moveTo('to-do')" class="move-task-btn">To-Do</span>
-        <span id="move-to-responsive-btn-2-of-task-${tasks.indexOf(currentTask)}" onclick="moveTo('in-progress')" class="move-task-btn">In Progress</span>
-        <span id="move-to-responsive-btn-3-of-task-${tasks.indexOf(currentTask)}" onclick="moveTo('awaiting-feedback')"class="move-task-btn">Awaiting Feedback</span>
-        <span id="move-to-responsive-btn-4-of-task-${tasks.indexOf(currentTask)}" onclick="moveTo('done')" class="move-task-btn" style="margin-bottom: 25px">Done</span>
+        <span id="move-to-responsive-btn-to-do-of-task-${tasks.indexOf(currentTask)}" onclick="moveTo('to-do')" class="move-task-btn">To-Do</span>
+        <span id="move-to-responsive-btn-in-progress-of-task-${tasks.indexOf(currentTask)}" onclick="moveTo('in-progress')" class="move-task-btn">In Progress</span>
+        <span id="move-to-responsive-btn-awaiting-feedback-of-task-${tasks.indexOf(currentTask)}" onclick="moveTo('awaiting-feedback')"class="move-task-btn">Awaiting Feedback</span>
+        <span id="move-to-responsive-btn-done-of-task-${tasks.indexOf(currentTask)}" onclick="moveTo('done')" class="move-task-btn" style="margin-bottom: 25px">Done</span>
       </div>
     </div>
     <div id="board-task-${tasks.indexOf(currentTask)}" draggable="true" 
@@ -261,18 +261,7 @@ async function moveTo(category) {
 
 async function checkMoveToResponsive(currentTaskIndex) {
   let currentTaskCategory = tasks[currentTaskIndex]['category'];
-  if(currentTaskCategory == 'to-do'){
-    document.getElementById(`move-to-responsive-btn-1-of-task-${currentTaskIndex}`).classList.add('same-category-btn');
-  }
-  if(currentTaskCategory == 'in-progress'){
-    document.getElementById(`move-to-responsive-btn-2-of-task-${currentTaskIndex}`).classList.add('same-category-btn');
-  }
-  if(currentTaskCategory == 'awaiting-feedback'){
-    document.getElementById(`move-to-responsive-btn-3-of-task-${currentTaskIndex}`).classList.add('same-category-btn');
-  }
-  if(currentTaskCategory == 'done'){
-    document.getElementById(`move-to-responsive-btn-4-of-task-${currentTaskIndex}`).classList.add('same-category-btn');
-  }
+    document.getElementById(`move-to-responsive-btn-${currentTaskCategory}-of-task-${currentTaskIndex}`).classList.add('same-category-btn');
 }
 
 /** These functions highlight the current dragged area
@@ -351,9 +340,11 @@ function generateBoardOpenTaskHTML(currentTaskIndex, currentTask, dueDate) {
         <div class="board-prio-button" id="open-task-priority"></div></div>
         <p><b>Assigned to:</b></p>
         <div id="open-task-contacts"></div>
+        <div class="board-button-box-main">
         <div class="board-button-box">
         <div class="board-delete-button" onclick="boardDeleteTask(${currentTaskIndex})"><img style="object-fit: contain" src="./assets/img/icons/board-delete-button-black.svg"></div>
         <div class="board-edit-button" onclick="openSecondTaskPage(${currentTaskIndex})"><img style="object-fit: contain" src="./assets/img/icons/board-edit-button-white.svg"></div>
+        </div>
         </div>
     </div>
     `;

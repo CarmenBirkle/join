@@ -243,6 +243,11 @@ p {
     margin-top: 50px;
   }
 
+  .detail-bar{
+    flex-direction: column;
+    gap: 0px;
+  }
+
 }
 
 @media screen and (max-width:500px) {

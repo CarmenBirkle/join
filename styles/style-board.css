@@ -170,12 +170,14 @@
     min-width: 35%;
 }
 
-.board-button-box {
-    position: absolute;
-    bottom: 25px;
-    right: 25px;
+.board-button-box-main {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.board-button-box {
+    display: flex;
     align-items: center;
     color: white;
     border: none !important;
@@ -206,10 +208,8 @@
 }
 
 .board-save-button {
-    position: absolute;
+    display: flex;
     border-radius: 10px;
-    bottom: 25px;
-    right: 25px;
     padding: 15px 20px;
     display: flex;
     justify-content: center;
@@ -609,16 +609,19 @@ input[type=checkbox]:checked::before {
     }
 
     .open-task-card{
-        max-width: 90%;
+        max-width: 100%;
         overflow-x: hidden;
         overflow-y: auto;
         max-height: 90%;
+        padding: 25px;
+    }
+
+    .add-task-prio-button-container {
+        gap: 5px !important;
     }
 
     .board-button-box{
-        position: relative;
-        right: -60%;
-        bottom: unset;
+
     }
 
     .open-task-card::-webkit-scrollbar {
