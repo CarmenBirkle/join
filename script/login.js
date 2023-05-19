@@ -4,7 +4,7 @@
 function startAnimation() {
   if (window.innerWidth >= 768) {   // for big screens
     document.getElementById('login-logo').classList.add('animation');
-    setTimeout(showLoginCard, 1500);
+    setTimeout(showLoginCard, 1000);
   }
   if (window.innerWidth < 768) {   // for small screens
     responsiveLogin();
