@@ -303,7 +303,6 @@ async function setStartCategory(category) {
 
 function boardOpenAddTask(category) {
   document.getElementById('board-add-task').classList.remove('d-none');
-  document.getElementById('board-content').classList.add('d-none');
   chosenCategory = category;
 }
 

@@ -13,5 +13,4 @@ function closeAddTaskPopup() {
 
 function boardCloseAddTask() {
     document.getElementById('board-add-task').classList.add('d-none');
-    document.getElementById('board-content').classList.remove('d-none');
 }
