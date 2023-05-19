@@ -20,7 +20,7 @@ function responsiveLogin() {
   document.getElementById('login-logo').classList.add('d-none');
   document.getElementById('login-logo-responsive').classList.remove('d-none');
   document.getElementById('login-logo-responsive').classList.add('animation-responsive');
-  setTimeout(showLoginCard, 1500);
+  setTimeout(showLoginCard, 1000);
 }
 
 /**
