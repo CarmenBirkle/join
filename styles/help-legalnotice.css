@@ -1,7 +1,6 @@
 /* css - classes for help.html and legal-notice-html*/
 
 h1{
-    margin-top: 171px;
     margin-bottom: 48px;
 }
 
@@ -45,27 +44,45 @@ div.help-list div:before {
 
 
 .legal-notice-help-responsive-top{
-    display: none; 
-    justify-content: space-between;
+    display:flex;
+    margin-top: 114px;
+    justify-content: flex-end;
     align-items: center;
 }
 
-@media (max-width: 1170px) {
+.legal-notice-help-back {
+    cursor: pointer;
+}
 
-    .legal-notice-help-responsive-top{
-        display:flex;
-        margin-top: 114px;
-    }
+h1{
+    margin-top: 19px;
+}
+
+.legal-notice-help-sub-title {
+    display: none;
+}
+
+@media (max-width: 1170px) {
 
     h1{
         margin-top: 19px;
         margin-bottom: 35px;
     }
+
+    .legal-notice-help-responsive-top{
+        justify-content: space-between;
+    }
+
+    .legal-notice-help-sub-title {
+        display: flex;
+    }
+
     .legal-notice-help-main{
         margin-left: 33px;
         margin-right: 33px;
         margin-bottom: 150px;
     }
+
     .side-bar{
         z-index:3;
     }
