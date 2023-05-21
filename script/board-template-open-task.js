@@ -51,7 +51,7 @@ function openSecondTaskPage(currentTaskIndex) {
       <div class="add-task-assigned margin-bottom-10">
       <label>Assigned to</label>
       <div class="add-task-assigned-dropdown" id="change-task-assignedto-render"></div>
-      <span id="change-task-assigned-error"></span>
+      <span style="color: red" id="change-task-assigned-error"></span>
       <div class="add-task-assigned-users-main" id="change-task-assigned-users"></div>
       </div>
   
@@ -425,9 +425,10 @@ function openSecondTaskPage(currentTaskIndex) {
   function renderChangeAssignedToError() {
     document.getElementById('change-task-assigned-error').innerHTML = '';
     document.getElementById('change-task-assigned-error').innerHTML =
-    addTaskErrorHTML('Please select a Contact');
+    'Please select a Contact';
   }
-  
+
+
   /*-- Assigned to Template-HTML --*/
   
   /**
@@ -519,10 +520,15 @@ function openSecondTaskPage(currentTaskIndex) {
   }
   
   async function saveChangedTask(currentTaskIndex) {
+    if(assignedToUsers.length < 1){
+      renderChangeAssignedToError();
+    }
+    else{
     let currentTask = tasks[currentTaskIndex];
     await pushChangeTaskIntoBackend(currentTask);
     await renderTasks();
     closeOpenTaskPopup();
+    }
   }
   
   function pushAlreadySelectedContacts() {
