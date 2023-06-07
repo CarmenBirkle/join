@@ -3,9 +3,7 @@ let users = [];
 // main java-script file , side behavior an all pages, menue
 let activLogOutArea = false;
 const activePage = window.location.pathname; // get the current pathname from window.location
-setURL(
-  'https://gruppenarbeit-502-join.developerakademie.net/smallest_backend_ever'
-);
+setURL('https://carmen-birkle.developerakademie.net/smallest_backend_ever');
 
 async function init() {
   await includeHTML();
